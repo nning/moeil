@@ -22,8 +22,9 @@ production:
   adapter: postgresql
   encoding: unicode
   template: template0
-  hostname: localhost
+  host: localhost
+  port: 5432
   database: mail
   username: mail
-  password:
+  password: 
   pool: 5
