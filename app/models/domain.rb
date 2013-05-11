@@ -1,3 +1,5 @@
 class Domain < ActiveRecord::Base
-  attr_accessible :active, :backupmx, :description, :domain
+  has_many :aliases
+  has_many :mailboxes
+  attr_accessible :active, :backupmx, :created_at, :description, :name, :updated_at
 end

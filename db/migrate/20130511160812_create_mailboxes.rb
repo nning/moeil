@@ -4,7 +4,7 @@ class CreateMailboxes < ActiveRecord::Migration
       t.string :username, null: false
       t.string :password, null: false
       t.string :name
-      t.string :maildir, null: false
+      t.string :mail_location
       t.integer :quota, default: 0
       t.boolean :active, default: true
       t.references :domain, null: false

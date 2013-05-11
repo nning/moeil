@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+require 'pp'
+require 'uri'
+
+def usage_message
+	$stderr.puts "Usage: #{File.basename($0)} <source-database-url>"
+	exit 1
+end
+
+if ARGV[0].nil? || ['-h', '--help'].include?(ARGV[0])
+  usage_message
+else
+  SOURCE = URI.parse(ARGV[0])
+end
+
+require File.expand_path('../../config/environment',  __FILE__)
+
+%w(alias domain mailbox).each do |database|
+  eval "
+    class Old#{database.capitalize} < ActiveRecord::Base
+      establish_connection SOURCE.to_s
+      set_table_name '#{database}'
+    end
+  "
+end
+
+OldDomain.find_each do |o|
+  pp Domain.where(name: o.domain).first_or_create \
+    description:  o.description,
+    backupmx:     o.backupmx,
+    active:       o.active,
+    created_at:   o.created,
+    updated_at:   o.modified
+end
+
+OldAlias.find_each do |o|
+  pp Alias.where(address: o.address).first_or_create \
+    goto:       o.goto,
+    domain:     Domain.where(name: o.domain).first,
+    active:     o.active,
+    created_at: o.created,
+    updated_at: o.modified
+end
+
+OldMailbox.find_each do |o|
+  pp Mailbox
+    .where(username: o.username, domain_id: Domain.where(name: o.domain).first)
+    .first_or_create \
+      password:   o.password,
+      name:       o.name,
+      quota:      o.quota,
+      active:     o.active,
+      created_at: o.created,
+      updated_at: o.modified
+end
