@@ -14,16 +14,16 @@
 ActiveRecord::Schema.define(:version => 20130511160812) do
 
   create_table "aliases", :force => true do |t|
-    t.string   "address",                      :null => false
-    t.text     "goto",                         :null => false
+    t.string   "username",                     :null => false
     t.integer  "domain_id",                    :null => false
+    t.text     "goto",                         :null => false
     t.boolean  "active",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
   end
 
-  add_index "aliases", ["address"], :name => "index_aliases_on_address", :unique => true
   add_index "aliases", ["domain_id"], :name => "index_aliases_on_domain_id"
+  add_index "aliases", ["username", "domain_id"], :name => "index_aliases_on_username_and_domain_id", :unique => true
 
   create_table "domains", :force => true do |t|
     t.string   "name",                           :null => false

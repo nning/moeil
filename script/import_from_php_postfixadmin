@@ -35,17 +35,20 @@ OldDomain.find_each do |o|
 end
 
 OldAlias.find_each do |o|
-  pp Alias.where(address: o.address).first_or_create \
-    goto:       o.goto,
-    domain:     Domain.where(name: o.domain).first,
-    active:     o.active,
-    created_at: o.created,
-    updated_at: o.modified
+  local_part = o.address.split('@').first
+  pp Alias
+    .where(username: local_part, domain_id: Domain.where(name: o.domain).first)
+    .first_or_create \
+      goto:       o.goto,
+      active:     o.active,
+      created_at: o.created,
+      updated_at: o.modified
 end
 
 OldMailbox.find_each do |o|
+  local_part = o.username.split('@').first
   pp Mailbox
-    .where(username: o.username, domain_id: Domain.where(name: o.domain).first)
+    .where(username: local_part, domain_id: Domain.where(name: o.domain).first)
     .first_or_create \
       password:   o.password,
       name:       o.name,
