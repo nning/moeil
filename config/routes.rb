@@ -1,4 +1,4 @@
-Postfixadmin::Application.routes.draw do
+Møil::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

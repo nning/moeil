@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Postfixadmin::Application.load_tasks
+Møil::Application.load_tasks
