@@ -19,7 +19,7 @@ module Password
 
     class SHA512 < HashedPassword
       def initialize(password)
-        @password = password.crypt(Crypt.generate_salt(:sha512))
+        @password = password.crypt(Crypt.generate_salt)
       end
     end
 
@@ -31,11 +31,15 @@ module Password
 
   private
 
-    def self.generate_salt(hash)
-      salt = CONFIG[hash].first
+    def self.generate_salt(hash = :sha512)
+      begin
+        salt = CONFIG[hash].first.dup
+      rescue NoMethodError
+        raise "No information on hashing algorithm '#{hash.to_s}'."
+      end
 
       CONFIG[hash].last.times do
-        salt << SEEDS[rand(SEEDS.size)].to_s
+        salt << SEEDS[SecureRandom.random_number(SEEDS.size)].to_s
       end
 
       salt
