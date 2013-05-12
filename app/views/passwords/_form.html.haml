@@ -1,0 +1,18 @@
+= form_tag(password_path, method: 'put') do
+  %fieldset
+    .row
+      .small-9
+        .row
+          .small-4.columns
+            = label_tag :password1, 'Password', class: 'right inline'
+          .small-8.columns
+            = text_field_tag :password1, '', type: 'password'
+        .row
+          .small-4.columns
+            = label_tag :password2, 'Confirmation', class: 'right inline'
+          .small-8.columns
+            = text_field_tag :password2, '', type: 'password'
+        .row
+          .small-4.columns
+          .small-8.columns
+            = submit_tag 'Generate password', class: 'small button'

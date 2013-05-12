@@ -13,7 +13,11 @@
 %body
   = render partial: 'shared/navigation'
 
-  %div.row
+  .row
+    - flash.each do |type, message|
+      %div{class: type}= message
+
+  .row
     = yield
 
   = javascript_include_tag 'application'

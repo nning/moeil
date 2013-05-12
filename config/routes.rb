@@ -1,3 +1,5 @@
 Moeil::Application.routes.draw do
-  root to: 'home#generate_hash'
+  resource :password, only: [:show, :update]
+# put '', controller: 'home#generate_hash'
+  root to: 'passwords#show'
 end
