@@ -47,4 +47,10 @@ module Password
 
   end
 
+  def self.check(password, hash)
+    a = hash.split('$')
+    a.delete_at(-1)
+    password.crypt(a.join('$')) == hash
+  end
+
 end
