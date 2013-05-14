@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+def usage_message
+	$stderr.puts "Usage: #{File.basename($0)} <name>"
+	exit 1
+end
+
+if ARGV[0].nil? || ['-h', '--help'].include?(ARGV[0])
+  usage_message
+else
+  name = ARGV[0]
+end
+
+require File.expand_path('../../config/environment',  __FILE__)
+
+begin
+  Domain.create(name: name)
+rescue ActiveRecord::RecordNotUnique
+  $stderr.puts 'Domain is already existing.'
+  exit 2
+end

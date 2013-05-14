@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+def usage_message
+	$stderr.puts "Usage: #{File.basename($0)} <address> <password>"
+	exit 1
+end
+
+if ARGV[0].nil? || ['-h', '--help'].include?(ARGV[0])
+  usage_message
+else
+  username, domain = ARGV[0].split('@')
+  password = ARGV[1]
+end
+
+require File.expand_path('../../config/environment',  __FILE__)
+
+unless domain = Domain.where(name: domain).first
+  $stderr.puts 'Domain is not existing.'
+  exit 2
+end
+
+begin
+  domain.mailboxes.create \
+    username: username,
+    password: Password::Crypt::SHA512.new(password),
+    quota: 5242880
+rescue ActiveRecord::RecordNotUnique
+  $stderr.puts 'Username is already existing.'
+  exit 3
+end
