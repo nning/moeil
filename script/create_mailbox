@@ -22,7 +22,7 @@ end
 begin
   domain.mailboxes.create \
     username: username,
-    password: Password::Crypt::SHA512.new(password),
+    password: Password::Crypt::SHA512.new(password).password,
     quota: 5242880
 rescue ActiveRecord::RecordNotUnique
   $stderr.puts 'Username is already existing.'
