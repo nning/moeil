@@ -1,5 +1,7 @@
 Moeil::Application.routes.draw do
+  devise_for :mailboxes
+
   resource :password, only: [:show, :update]
-# put '', controller: 'home#generate_hash'
+
   root to: 'passwords#show'
 end

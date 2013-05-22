@@ -6,10 +6,13 @@ gem 'sqlite3'
 gem 'pg'
 gem 'mysql'
 
+gem 'devise'
+gem 'devise-encryptable'
 gem 'faker'
 gem 'haml'
 gem 'highline'
 gem 'jquery-rails'
+gem 'rails_config'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

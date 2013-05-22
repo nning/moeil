@@ -30,10 +30,7 @@ password = ask('Password: ') { |q| q.echo = nil } if password.nil?
 password, generated = Password.random, true if password.blank?
 
 begin
-  domain.mailboxes.create \
-    username: username,
-    password: Password::Crypt::SHA512.new(password).password,
-    quota: 5242880
+  domain.mailboxes.create username: username, password: password, quota: 5242880
 rescue ActiveRecord::RecordNotUnique
   $stderr.puts 'Username is already existing.'
   exit 3
