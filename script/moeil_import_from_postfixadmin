@@ -59,12 +59,12 @@ OldMailbox.find_each do |o|
     .where(username: local_part, domain_id: Domain.where(name: o.domain).first)
     .first_or_create(
       {
-        password:   o.password,
-        name:       o.name,
-        quota:      o.quota,
-        active:     o.active,
-        created_at: o.created,
-        updated_at: o.modified
+        encrypted_password: o.password,
+        name:               o.name,
+        quota:              o.quota,
+        active:             o.active,
+        created_at:         o.created,
+        updated_at:         o.modified
       },
       without_protection: true
     )

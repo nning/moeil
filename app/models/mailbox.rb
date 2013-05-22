@@ -1,16 +1,24 @@
 class Mailbox < ActiveRecord::Base
 
   belongs_to :domain
-  attr_accessible :active, :mail_location, :name, :password, :quota, :username
 
-  def sha512_crypt_password=(password)
-    self.password = Password::Crypt::SHA512.new(password).to_s
-    save!
+  devise :database_authenticatable, :encryptable
+  require Rails.root.join('lib', 'devise', 'encryptors', 'sha512_dovecot')
+
+  attr_accessible :active, :mail_location, :name, :password,
+    :password_confirmation, :quota, :username
+
+  def email
+    [self.username, self.domain.name].join('@')
   end
 
-  def md5_crypt_password=(password)
-    self.password = Password::Crypt::MD5.new(password).to_s
-    save!
+  def password_salt
+    salt = self.encrypted_password.split('$')[2] rescue nil
+    return Password::Sha512Crypt.generate_salt if salt.blank?
+    salt
+  end
+
+  def password_salt=(value)
   end
 
 end
