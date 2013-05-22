@@ -8,6 +8,10 @@ class Mailbox < ActiveRecord::Base
   attr_accessible :active, :mail_location, :name, :password,
     :password_confirmation, :quota, :username
 
+  def email
+    [self.username, self.domain.name].join('@')
+  end
+
   def password_salt
     salt = self.encrypted_password.split('$')[2] rescue nil
     return Password::Sha512Crypt.generate_salt if salt.blank?

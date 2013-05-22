@@ -11,6 +11,7 @@ gem 'devise-encryptable'
 gem 'faker'
 gem 'haml'
 gem 'highline'
+gem 'inherited_resources'
 gem 'jquery-rails'
 gem 'rails_config'
 

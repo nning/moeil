@@ -6,7 +6,7 @@ class PasswordsController < ApplicationController
           params[:password1], nil, Password::Sha512Crypt.generate_salt, nil
       else
         flash[:error] = 'Passwords missmatch.'
-        redirect_to root_path
+        redirect_to password_path
       end
     end
   end

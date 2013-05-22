@@ -5,9 +5,25 @@
         %a{href: root_path} Møil
 
   %section.top-bar-section
+
     %ul.left
+
       %li.devider
-      %li.active
-        %a{href: root_path} Generate password hash
-      %li
-        %a{href: new_mailbox_session_path} Sign in
+
+      %li{class: active_navigation('passwords')}
+        = link_to 'Generate password hash', password_path
+
+    %ul.right
+
+      - if signed_in?
+
+        %li{class: active_navigation('mailbox')}
+          = link_to current_mailbox.email, mailbox_path(current_mailbox)
+
+        %li{class: active_navigation('devise/sessions')}
+          = link_to 'Logout', destroy_mailbox_session_path, method: :delete
+
+      - else
+
+        %li{class: active_navigation('devise/sessions')}
+          = link_to 'Login', new_mailbox_session_path

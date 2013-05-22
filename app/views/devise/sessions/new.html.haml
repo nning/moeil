@@ -1,0 +1,13 @@
+%h2 Login
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = f.label :username
+  = f.text_field :username, autofocus: true
+
+  = f.label :domain_id
+  = f.select :domain_id, Domain.all.collect { |d| [d.name, d.id] }
+
+  = f.label :password
+  = f.password_field :password
+
+  = f.submit 'Sign in'
