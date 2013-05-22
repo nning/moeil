@@ -15,7 +15,7 @@
 
   .row
     - flash.each do |type, message|
-      %div{class: type}= message
+      %div{class: "alert-box #{type}"}= message
 
   .row
     = yield
