@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522173714) do
+ActiveRecord::Schema.define(:version => 20130522223802) do
 
   create_table "aliases", :force => true do |t|
     t.string   "username",                     :null => false
@@ -37,15 +37,16 @@ ActiveRecord::Schema.define(:version => 20130522173714) do
   add_index "domains", ["name"], :name => "index_domains_on_name", :unique => true
 
   create_table "mailboxes", :force => true do |t|
-    t.string   "username",                             :null => false
-    t.string   "encrypted_password",                   :null => false
+    t.string   "username",                              :null => false
+    t.string   "encrypted_password",                    :null => false
     t.string   "name"
     t.string   "mail_location"
     t.integer  "quota",              :default => 0
     t.boolean  "active",             :default => true
-    t.integer  "domain_id",                            :null => false
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.integer  "domain_id",                             :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "admin",              :default => false
   end
 
   add_index "mailboxes", ["domain_id"], :name => "index_mailboxes_on_domain_id"

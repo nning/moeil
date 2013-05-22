@@ -1,0 +1,14 @@
+%h1 Domains
+
+%p
+  Got
+  = pluralize(collection.count, 'domain')
+
+%table
+  %thead
+    %th Name
+    %th Mailboxes
+    %th Aliases
+    %th
+  %tbody
+    = render collection

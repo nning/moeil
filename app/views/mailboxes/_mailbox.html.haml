@@ -1,0 +1,5 @@
+%tr
+  %td= mailbox.email
+  %td= :yes if mailbox.password_scheme == :sha512_crypt
+  %td= :yes if mailbox.admin
+  %td= link_to 'Delete', domain_mailbox_path(mailbox.domain, mailbox), method: :delete, class: 'tiny button'

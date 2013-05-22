@@ -21,4 +21,13 @@ class Mailbox < ActiveRecord::Base
   def password_salt=(value)
   end
 
+  def password_scheme
+    case encrypted_password.split('$').second
+      when '1'
+        :md5_crypt
+      when '6'
+        :sha512_crypt
+    end
+  end
+
 end

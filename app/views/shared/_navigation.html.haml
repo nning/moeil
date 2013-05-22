@@ -8,17 +8,20 @@
 
     %ul.left
 
-      %li.devider
-
       %li{class: active_navigation('passwords')}
         = link_to 'Generate password hash', password_path
+
+      - if current_mailbox.admin
+
+        %li{class: active_navigation('domains')}
+          = link_to 'Domains', domains_path
 
     %ul.right
 
       - if signed_in?
 
         %li{class: active_navigation('mailbox')}
-          = link_to current_mailbox.email, mailbox_path(current_mailbox)
+          = link_to current_mailbox.email, domain_mailbox_path(current_mailbox.domain, current_mailbox)
 
         %li{class: active_navigation('devise/sessions')}
           = link_to 'Logout', destroy_mailbox_session_path, method: :delete

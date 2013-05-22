@@ -1,0 +1,5 @@
+%tr
+  %td= domain.name
+  %td= link_to domain.mailboxes.count, domain_mailboxes_path(domain)
+  %td= link_to domain.aliases.count, domain_aliases_path(domain)
+  %td

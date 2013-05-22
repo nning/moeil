@@ -1,0 +1,14 @@
+%h1 Mailboxes
+
+%p
+  Got
+  = pluralize(collection.count, 'mailbox')
+
+%table
+  %thead
+    %th E-Mail
+    %th sha512-crypt?
+    %th Admin?
+    %th
+  %tbody
+    = render collection
