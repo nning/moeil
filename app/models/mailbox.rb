@@ -1,7 +1,7 @@
 class Mailbox < ActiveRecord::Base
 
   belongs_to :domain
-  attr_accessible :active, :created_at, :mail_location, :name, :password, :quota, :updated_at, :username
+  attr_accessible :active, :mail_location, :name, :password, :quota, :username
 
   def sha512_crypt_password=(password)
     self.password = Password::Crypt::SHA512.new(password).to_s

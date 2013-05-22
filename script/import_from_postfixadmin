@@ -8,6 +8,10 @@ def usage_message
 	exit 1
 end
 
+def h(args)
+  Hash.new.merge(args)
+end
+
 if ARGV[0].nil? || ['-h', '--help'].include?(ARGV[0])
   usage_message
 else
@@ -27,11 +31,14 @@ end
 
 OldDomain.find_each do |o|
   pp Domain.where(name: o.domain).first_or_create \
-    description:  o.description,
-    backupmx:     o.backupmx,
-    active:       o.active,
-    created_at:   o.created,
-    updated_at:   o.modified
+    h(
+      description:  o.description,
+      backupmx:     o.backupmx,
+      active:       o.active,
+      created_at:   o.created,
+      updated_at:   o.modified
+    ),
+    without_protection: true
 end
 
 OldAlias.find_each do |o|
@@ -39,10 +46,13 @@ OldAlias.find_each do |o|
   pp Alias
     .where(username: local_part, domain_id: Domain.where(name: o.domain).first)
     .first_or_create \
-      goto:       o.goto,
-      active:     o.active,
-      created_at: o.created,
-      updated_at: o.modified
+      h(
+        goto:       o.goto,
+        active:     o.active,
+        created_at: o.created,
+        updated_at: o.modified
+      ),
+      without_protection: true
 end
 
 OldMailbox.find_each do |o|
@@ -50,10 +60,13 @@ OldMailbox.find_each do |o|
   pp Mailbox
     .where(username: local_part, domain_id: Domain.where(name: o.domain).first)
     .first_or_create \
-      password:   o.password,
-      name:       o.name,
-      quota:      o.quota,
-      active:     o.active,
-      created_at: o.created,
-      updated_at: o.modified
+      h(
+        password:   o.password,
+        name:       o.name,
+        quota:      o.quota,
+        active:     o.active,
+        created_at: o.created,
+        updated_at: o.modified
+      ),
+      without_protection: true
 end
