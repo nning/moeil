@@ -44,6 +44,7 @@ GEM
       i18n (~> 0.5)
     haml (4.0.1)
       tilt
+    highline (1.6.16)
     hike (1.2.2)
     i18n (0.6.1)
     journey (1.0.4)
@@ -120,6 +121,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   faker
   haml
+  highline
   jquery-rails
   mysql
   pg

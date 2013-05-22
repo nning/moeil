@@ -8,6 +8,7 @@ gem 'mysql'
 
 gem 'faker'
 gem 'haml'
+gem 'highline'
 gem 'jquery-rails'
 
 group :assets do

@@ -5,7 +5,7 @@ def usage_message
 	exit 1
 end
 
-if ARGV[0].nil? || ['-h', '--help'].include?(ARGV[0])
+if ARGV[0].nil? || ARGV.include?('-h') || ARGV.include?('--help')
   usage_message
 else
   name = ARGV[0]

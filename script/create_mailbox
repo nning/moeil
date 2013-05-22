@@ -1,15 +1,22 @@
 #!/usr/bin/env ruby
 
+require 'highline/import'
+
 def usage_message
-	$stderr.puts "Usage: #{File.basename($0)} <address> <password>"
+	$stderr.puts <<EOF
+Usage: #{File.basename($0)} <address> [password]
+
+Password is read interactively, if not given on command line. Then, if password
+is blank, a random one is generated and printed.
+EOF
 	exit 1
 end
 
-if ARGV[0].nil? || ['-h', '--help'].include?(ARGV[0])
+if ARGV[0].nil? || ARGV.include?('-h') || ARGV.include?('--help')
   usage_message
 else
   username, domain = ARGV[0].split('@')
-  password = ARGV[1]
+  password, generated = ARGV[1], false
 end
 
 require File.expand_path('../../config/environment',  __FILE__)
@@ -18,6 +25,9 @@ unless domain = Domain.where(name: domain).first
   $stderr.puts 'Domain is not existing.'
   exit 2
 end
+
+password = ask('Password: ') { |q| q.echo = nil } if password.nil?
+password, generated = Password.random, true if password.blank?
 
 begin
   domain.mailboxes.create \
@@ -28,3 +38,5 @@ rescue ActiveRecord::RecordNotUnique
   $stderr.puts 'Username is already existing.'
   exit 3
 end
+
+puts password if generated

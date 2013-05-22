@@ -29,8 +29,6 @@ module Password
       end
     end
 
-  private
-
     def self.generate_salt(hash = :sha512)
       begin
         salt = CONFIG[hash].first.dup
@@ -51,6 +49,10 @@ module Password
     a = hash.split('$')
     a.delete_at(-1)
     password.crypt(a.join('$')) == hash
+  end
+
+  def self.random(n = 12)
+    ('0'..'z').to_a.shuffle.first(n).join
   end
 
 end
