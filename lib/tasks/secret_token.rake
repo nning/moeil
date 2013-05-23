@@ -3,7 +3,7 @@
 # config/initializers/secret_token.rb
 #
 namespace :secret do
-  desc 'Replace the secure secret key in config/initializers/secret_token.rb'
+  desc 'Replace the secure secret key in config/initializers/secret_token.rb.'
   task :replace do
     secret = SecureRandom.hex(128)
     path = File.join(Rails.root, 'config', 'initializers', 'secret_token.rb')

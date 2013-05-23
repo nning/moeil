@@ -2,7 +2,7 @@ before 'deploy:setup', 'db:configure'
 after 'deploy:update_code', 'db:symlink'
  
 namespace :db do
-  desc 'Create database yaml in shared path'
+  desc 'Create database yaml in shared path.'
   task :configure do
     db_config = <<-EOF
       base: &base
@@ -27,7 +27,7 @@ namespace :db do
     put db_config, "#{shared_path}/config/database.yml"
   end
  
-  desc "Make symlink for database yaml"
+  desc 'Create symlink for database.yml.'
   task :symlink do
     run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
   end

@@ -1,4 +1,4 @@
-require "bundler/capistrano"
+require 'bundler/capistrano'
 
 hostname = 'moeil.orgizm.net'
 
@@ -13,4 +13,4 @@ role :app, hostname
 role :web, hostname
 role :db,  hostname, :primary => true
 
-default_environment['PATH'] = "${PATH}:#{Gem.bindir}"
+Dir[File.dirname(__FILE__) + '/deploy/*.rb'].each { |f| load f }
