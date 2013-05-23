@@ -6,6 +6,7 @@ gem 'sqlite3'
 gem 'pg'
 gem 'mysql'
 
+gem 'capistrano'
 gem 'devise'
 gem 'devise-encryptable'
 gem 'faker'
