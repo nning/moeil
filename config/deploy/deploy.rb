@@ -1,5 +1,6 @@
 after 'deploy:update', 'deploy:symlink_secret'
-after :deploy, 'deploy:cleanup'
+after 'deploy:setup', 'deploy:chown'
+after 'deploy', 'deploy:cleanup'
 
 namespace :deploy do
   desc 'Restart Application'
@@ -19,5 +20,10 @@ namespace :deploy do
     end
     
     run "ln -nfs #{shared_secret} #{release_secret}"
+  end
+
+  desc 'Set owner of application folders'
+  task :chown do
+    run "sudo -p 'sudo password: ' chown -R $(whoami):$(whoami) #{deploy_to}"
   end
 end
