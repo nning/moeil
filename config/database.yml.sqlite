@@ -1,0 +1,16 @@
+base: &base
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+development:
+  database: moeil_development
+  <<: *base
+
+test:
+  database: moeil_test
+  <<: *base
+
+production:
+  database: moeil_production
+  <<: *base
