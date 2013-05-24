@@ -1,6 +1,7 @@
 after 'deploy:update', 'deploy:symlink_secret'
 after 'deploy:setup', 'deploy:chown'
 after 'deploy', 'deploy:cleanup'
+before 'deploy:symlink_secret', 'deploy:create_dirs'
 
 namespace :deploy do
   desc 'Restart Application'
@@ -15,7 +16,7 @@ namespace :deploy do
     shared_secret  = "#{shared_path}/config/#{filename}"
     
     if capture("[ -f #{shared_secret} ] || echo missing").start_with?('missing')
-      rake_command 'secret:replace'
+      run "cd #{release_path} && rake secret:replace"
       run "mv #{release_secret} #{shared_secret}"
     end
     
@@ -25,5 +26,10 @@ namespace :deploy do
   desc 'Set owner of application folders'
   task :chown do
     run "sudo -p 'sudo password: ' chown -R $(whoami):$(whoami) #{deploy_to}"
+  end
+
+  desc 'Create necessary directories'
+  task :create_dirs do
+    run "mkdir -p #{shared_path}/config"
   end
 end
