@@ -30,6 +30,8 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    bootstrap-sass (2.3.1.2)
+      sass (~> 3.2)
     builder (3.0.4)
     capistrano (2.14.2)
       highline
@@ -143,13 +145,12 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
       rack (>= 1.0)
-    zurb-foundation (4.0.9)
-      sass (>= 3.2.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (~> 2.3.1.2)
   capistrano
   coffee-rails (~> 3.2.1)
   devise
@@ -167,4 +168,3 @@ DEPENDENCIES
   sqlite3
   therubyracer
   uglifier (>= 1.0.3)
-  zurb-foundation (~> 4.0.0)

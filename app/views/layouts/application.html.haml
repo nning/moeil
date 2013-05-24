@@ -7,17 +7,25 @@
   %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
 
   = stylesheet_link_tag 'application'
-  = javascript_include_tag 'vendor/custom.modernizr'
+  =# javascript_include_tag 'vendor/custom.modernizr'
   = csrf_meta_tag
+
+  %link{rel: 'shortcut icon', href: 'images/favicon.png'}
 
 %body
   = render partial: 'shared/navigation'
 
-  .row
-    - flash.each do |type, message|
-      %div{class: "alert-box #{type}"}= message
+  .container-fluid
+    .row-fluid
+      - flash.each do |type, message|
+        %div{class: "alert-box #{type}"}= message
 
-  .row
-    = yield
+      .span8
+        = yield
+
+    %hr
+    %footer
+      %p
+        Released under the terms of the AGPLv3.
 
   = javascript_include_tag 'application'

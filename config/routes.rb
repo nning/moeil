@@ -5,7 +5,7 @@ Moeil::Application.routes.draw do
   resource :home,     only: [:show]
   resource :password, only: [:show, :update]
 
-  resources :domains, only: [:index] do
+  resources :domains, only: [:index, :destroy] do
     resources :mailboxes, only: [:show, :index, :destroy]
   end
 

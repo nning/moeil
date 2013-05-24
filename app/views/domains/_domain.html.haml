@@ -2,4 +2,4 @@
   %td= domain.name
   %td= link_to domain.mailboxes.count, domain_mailboxes_path(domain)
   %td= domain.aliases.count
-  %td
+  %td= link_to 'Delete', domain_path(domain), method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger'

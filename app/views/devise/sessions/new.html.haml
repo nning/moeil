@@ -1,13 +1,23 @@
 %h2 Login
 
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  = f.label :username
-  = f.text_field :username, autofocus: true
+=# TODO The login does not seem to work anymore.
 
-  = f.label :domain_id
-  = f.select :domain_id, Domain.all.collect { |d| [d.name, d.id] }
+= form_tag session_path(resource), class: 'form-horizontal' do
+  .control-group
+    = label_tag :username, 'Username', class: 'control-label'
+    .controls
+      = text_field_tag :username, '', autofocus: true
 
-  = f.label :password
-  = f.password_field :password
+  .control-group
+    = label_tag :domain_id, 'Domain', class: 'control-label'
+    .controls
+      = select_tag :domain_id, options_from_collection_for_select(Domain.all, 'id', 'name')
 
-  = f.submit 'Sign in'
+  .control-group
+    = label_tag :password, 'Password', type: 'password', class: 'control-label'
+    .controls
+      = text_field_tag :password, '', type: 'password'
+
+  .control-group
+    .controls
+      = submit_tag 'Login', class: 'btn'

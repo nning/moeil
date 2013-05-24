@@ -1,32 +1,29 @@
-%nav.top-bar
-  %ul.title-area
-    %li.name
-      %h1
-        %a{href: root_path} Møil
+.navbar.navbar-inverse.navbar-fixed-top
+  .navbar-inner
+    .container-fluid
+      %button.btn.btn-navbar{type: 'button', :'data-toggle' => 'collapse', :'data-target' => '.nav-collapse'}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
 
-  %section.top-bar-section
+      = link_to 'Møil', root_path, class: 'brand'
 
-    %ul.left
+      .nav-collapse.collapse
+        %ul.nav
+          %li{class: active_navigation('passwords')}
+            = link_to 'Generate password hash', password_path
 
-      %li{class: active_navigation('passwords')}
-        = link_to 'Generate password hash', password_path
+          - if current_mailbox.try(:admin)
+            %li{class: active_navigation('domains')}
+              = link_to 'Domains', domains_path
 
-      - if current_mailbox.try(:admin)
+        %ul.nav.pull-right
+          - if signed_in?
+            %li{class: active_navigation('mailbox')}
+              = link_to current_mailbox.email, domain_mailbox_path(current_mailbox.domain, current_mailbox)
+            %li{class: active_navigation('devise/sessions')}
+              = link_to 'Logout', destroy_mailbox_session_path, method: :delete
 
-        %li{class: active_navigation('domains')}
-          = link_to 'Domains', domains_path
-
-    %ul.right
-
-      - if signed_in?
-
-        %li{class: active_navigation('mailbox')}
-          = link_to current_mailbox.email, domain_mailbox_path(current_mailbox.domain, current_mailbox)
-
-        %li{class: active_navigation('devise/sessions')}
-          = link_to 'Logout', destroy_mailbox_session_path, method: :delete
-
-      - else
-
-        %li{class: active_navigation('devise/sessions')}
-          = link_to 'Login', new_mailbox_session_path
+          - else
+            %li{class: active_navigation('devise/sessions')}
+              = link_to 'Login', new_mailbox_session_path
