@@ -1,3 +1,6 @@
+after 'deploy:update', 'deploy:symlink_secret'
+after :deploy, 'deploy:cleanup'
+
 namespace :deploy do
   desc 'Restart Application'
   task :restart, roles: :app, except: { no_release: true } do
@@ -18,11 +21,3 @@ namespace :deploy do
     run "ln -nfs #{shared_secret} #{release_secret}"
   end
 end
-
-after 'deploy:setup' do
-  run "mkdir -p #{shared_path}/config"
-  run "mkdir -p #{shared_path}/uploads"
-end
-
-after 'deploy:update', 'deploy:symlink_secret'
-after :deploy, 'deploy:cleanup'
