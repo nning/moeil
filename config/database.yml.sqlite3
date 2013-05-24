@@ -4,13 +4,13 @@ base: &base
   timeout: 5000
 
 development:
-  database: db/moeil_development.sqlite3
+  database: db/development.sqlite3
   <<: *base
 
 test:
-  database: db/moeil_test.sqlite3
+  database: db/test.sqlite3
   <<: *base
 
 production:
-  database: db/moeil_production.sqlite3
+  database: db/production.sqlite3
   <<: *base
