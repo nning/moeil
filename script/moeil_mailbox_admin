@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+def usage_message
+	$stderr.puts "Usage: #{File.basename($0)} <address>"
+	exit 1
+end
+
+if ARGV[0].nil? || ARGV.include?('-h') || ARGV.include?('--help')
+  usage_message
+else
+  username, domain = ARGV[0].split('@')
+end
+
+require File.expand_path('../../config/environment',  __FILE__)
+
+unless domain = Domain.where(name: domain).first
+  $stderr.puts 'Domain is not existing.'
+  exit 2
+end
+
+begin
+  m = domain.mailboxes.where(username: username).first
+  m.admin = true
+  m.save!
+rescue
+  $stderr.puts 'Setting admin flag went wrong.'
+  exit 3
+end
