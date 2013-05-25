@@ -15,6 +15,7 @@ gem 'highline'
 gem 'inherited_resources'
 gem 'jquery-rails'
 gem 'rails_config'
+gem 'simple_form'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'

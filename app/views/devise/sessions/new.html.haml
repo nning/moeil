@@ -1,23 +1,8 @@
 %h2 Login
 
-=# TODO The login does not seem to work anymore.
-
-= form_tag mailbox_session_path(resource), class: 'form-horizontal' do
-  .control-group
-    = label_tag :username, 'Username', class: 'control-label'
-    .controls
-      = text_field_tag :username, '', autofocus: true
-
-  .control-group
-    = label_tag :domain_id, 'Domain', class: 'control-label'
-    .controls
-      = select_tag :domain_id, options_from_collection_for_select(Domain.all, 'id', 'name')
-
-  .control-group
-    = label_tag :password, 'Password', type: 'password', class: 'control-label'
-    .controls
-      = text_field_tag :password, '', type: 'password'
-
-  .control-group
-    .controls
-      = submit_tag 'Login', class: 'btn'
+= simple_form_for resource, url: mailbox_session_path do |f|
+  = f.input :username
+  = f.association :domain
+  = f.input :password
+  .form-actions
+    = f.button :submit, 'Login', class: 'btn-primary'

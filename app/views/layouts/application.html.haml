@@ -7,7 +7,6 @@
   %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
 
   = stylesheet_link_tag 'application'
-  =# javascript_include_tag 'vendor/custom.modernizr'
   = csrf_meta_tag
 
   %link{rel: 'shortcut icon', href: 'images/favicon.png'}
@@ -17,11 +16,8 @@
 
   .container-fluid
     .row-fluid
-      - flash.each do |type, message|
-        %div{class: "alert-box #{type}"}= message
-
-      .span8
-        = yield
+      = render partial: 'shared/flash_messages'
+      = yield
 
     %hr
     %footer

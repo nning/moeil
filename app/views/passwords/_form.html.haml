@@ -1,14 +1,5 @@
-= form_tag password_path, method: 'put', class: 'form-horizontal' do
-  .control-group
-    = label_tag :password1, 'Password', class: 'control-label'
-    .controls
-      = text_field_tag :password1, '', type: 'password', autofocus: true
-
-  .control-group
-    = label_tag :password2, 'Confirmation', class: 'control-label'
-    .controls
-      = text_field_tag :password2, '', type: 'password'
-
-  .control-group
-    .controls
-      = submit_tag 'Generate password', class: 'btn'
+= simple_form_for :password, method: :put, defaults: { required: false } do |f|
+  = f.input :password, input_html: { name: 'password1' }
+  = f.input :password_confirmation, input_html: { name: 'password2' }, label: 'Confirmation'
+  .form-actions
+    = f.button :submit, 'Generate Password', class: 'btn-primary'
