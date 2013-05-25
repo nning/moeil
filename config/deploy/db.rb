@@ -1,5 +1,4 @@
-before 'deploy:assets:precompile', 'db:use_sqlite'
-#after 'db:use_sqlite', 'db:migrate'
+before 'deploy:assets:precompile', 'db:use_pgsql'
 after 'db:use_pgsql', 'db:migrate'
  
 namespace :db do
