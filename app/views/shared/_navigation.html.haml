@@ -20,7 +20,7 @@
         %ul.nav.pull-right
           - if signed_in?
             %li{class: active_navigation('mailbox')}
-              = link_to current_mailbox.email, domain_mailbox_path(current_mailbox.domain, current_mailbox)
+              = link_to current_mailbox.email, edit_domain_mailbox_path(current_mailbox.domain, current_mailbox)
             %li{class: active_navigation('devise/sessions')}
               = link_to 'Logout', destroy_mailbox_session_path, method: :delete
 

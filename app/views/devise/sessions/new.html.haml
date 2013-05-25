@@ -1,4 +1,5 @@
-%h2= @page_title =  'Login'
+%h2 Login
+%hr
 
 = simple_form_for resource, url: mailbox_session_path do |f|
   = f.input :email, label: 'E-Mail', autofocus: true

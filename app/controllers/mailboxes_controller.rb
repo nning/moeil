@@ -8,6 +8,12 @@ class MailboxesController < InheritedResources::Base
     end
   end
 
+  def update
+    update! do |format|
+      format.html { redirect_to edit_domain_mailbox_path(current_mailbox.domain, current_mailbox) }
+    end
+  end
+
   protected
 
     def collection

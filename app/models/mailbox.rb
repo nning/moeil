@@ -22,12 +22,7 @@ class Mailbox < ActiveRecord::Base
   end
 
   def password_scheme
-    case encrypted_password.split('$').second
-      when '1'
-        :md5_crypt
-      when '6'
-        :sha512_crypt
-    end
+    { 1 => :md5_crypt, 6 => :sha512_crypt }[encrypted_password.split('$')[1]]
   end
 
 end

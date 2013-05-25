@@ -1,0 +1,22 @@
+%h1= resource.email
+%hr
+
+= simple_form_for [resource.domain, resource] do |f|
+  %fieldset
+    = f.input :username
+    = f.input :name
+
+  = f.input :password
+  = f.input :password_confirmation, label: false
+
+  - if current_mailbox.admin?
+    = f.input :admin
+    = f.input :quota
+
+  .form-actions
+    %button{type: 'submit', class: 'btn btn-primary'}
+      %i{class: 'icon-ok icon-white'}
+      Update Mailbox
+    %button{type: 'reset', class: 'btn btn-danger'}
+      %i{class: 'icon-remove icon-white'}
+        Reset Form

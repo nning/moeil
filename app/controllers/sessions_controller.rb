@@ -9,9 +9,9 @@ class SessionsController < Devise::SessionsController
     pm[:username], domain = pm[:email].split('@')
 
     if domain.nil?
-      pm[:domain_id] ||= Domain.where(name: Settings.default_domain).first.id
+      pm[:domain_id] = Domain.where(name: Settings.default_domain).first.try(:id)
     else
-      pm[:domain_id]   = Domain.where(name: domain).first.id
+      pm[:domain_id] = Domain.where(name: domain).first.try(:id)
     end
   end
 end
