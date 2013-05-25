@@ -7,7 +7,7 @@ Moeil::Application.routes.draw do
   resource :password, only: [:show, :update]
 
   resources :domains, only: [:index, :destroy] do
-    resources :mailboxes, only: [:destroy, :edit, :index, :update]
+    resources :mailboxes, only: [:destroy, :edit, :index, :update, :show]
   end
 
   devise_scope :mailbox do

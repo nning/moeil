@@ -2,9 +2,9 @@
 %hr
 
 = simple_form_for [resource.domain, resource] do |f|
-  %fieldset
-    = f.input :username
-    = f.input :name
+  = f.input :username
+  = f.association :domain
+  = f.input :name
 
   = f.input :password
   = f.input :password_confirmation, label: false
@@ -19,4 +19,4 @@
       Update Mailbox
     %button{type: 'reset', class: 'btn btn-danger'}
       %i{class: 'icon-remove icon-white'}
-        Reset Form
+      Reset Form
