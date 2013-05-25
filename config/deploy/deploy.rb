@@ -1,8 +1,11 @@
 after 'deploy:update', 'deploy:symlink_secret'
 after 'deploy:setup', 'deploy:chown'
 after 'deploy', 'deploy:cleanup'
+
 before 'deploy:symlink_secret', 'deploy:create_dirs'
-before 'deploy:cleanup' { set :use_sudo, false }
+before 'deploy:cleanup' do
+  set :use_sudo, false
+end
 
 namespace :deploy do
   desc 'Restart Application'
