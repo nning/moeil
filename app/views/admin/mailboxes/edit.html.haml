@@ -1,7 +1,7 @@
 %h1= resource.email
 %hr
 
-= simple_form_for resource, url: resource_path, method: :put do |f|
+= simple_form_for [:admin, resource.domain, resource] do |f|
   .well
     %fieldset
       %legend Account Information
@@ -15,11 +15,11 @@
       = f.input :password
       = f.input :password_confirmation, label: false
 
-  - if current_mailbox.admin?
-    .well
-      %fieldset
-        %legend Quota
-        = f.input :quota, hint: 'in Bytes'
+  .well
+    %fieldset
+      %legend Admin Options
+      = f.input :admin
+      = f.input :quota, hint: 'in Bytes'
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}

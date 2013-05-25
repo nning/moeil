@@ -1,8 +1,11 @@
-%h2 Login
-%hr
+= render partial: 'shared/welcome'
 
-= simple_form_for resource, url: mailbox_session_path do |f|
-  = f.input :email, label: 'E-Mail', autofocus: true
-  = f.input :password
-  .form-actions
-    = f.button :submit, 'Login', class: 'btn-primary'
+.span6
+  %h2 Login
+  %hr
+
+  = simple_form_for resource, url: mailbox_session_path do |f|
+    = f.input :email, label: 'E-Mail', autofocus: true
+    = f.input :password
+    .control-group.controls
+      = f.button :submit, 'Login', class: 'btn-primary'

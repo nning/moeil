@@ -15,15 +15,11 @@
 
           - if current_mailbox.try(:admin)
             %li{class: active_navigation('domains')}
-              = link_to 'Domains', domains_path
+              = link_to 'Domains', admin_domains_path
 
-        %ul.nav.pull-right
-          - if signed_in?
+        - if signed_in?
+          %ul.nav.pull-right
             %li{class: active_navigation('mailbox')}
-              = link_to current_mailbox.email, edit_domain_mailbox_path(current_mailbox.domain, current_mailbox)
+              = link_to current_mailbox.email, edit_mailbox_path
             %li{class: active_navigation('devise/sessions')}
               = link_to 'Logout', destroy_mailbox_session_path, method: :delete
-
-          - else
-            %li{class: active_navigation('devise/sessions')}
-              = link_to 'Login', new_mailbox_session_path

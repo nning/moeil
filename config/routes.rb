@@ -6,11 +6,15 @@ Moeil::Application.routes.draw do
   resource :home,     only: [:show]
   resource :password, only: [:show, :update]
 
-  resources :domains, only: [:index, :destroy] do
-    resources :mailboxes, only: [:destroy, :edit, :index, :update, :show]
+  namespace :admin do
+    resources :domains, only: [:index, :destroy] do
+      resources :mailboxes, only: [:destroy, :edit, :index, :update]
+    end
   end
 
+  resource :mailbox, only: [:edit, :update]
+
   devise_scope :mailbox do
-    root to: 'home#show'
+    root to: 'sessions#new'
   end
 end

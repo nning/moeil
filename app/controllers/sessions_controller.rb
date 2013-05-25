@@ -1,7 +1,8 @@
 class SessionsController < Devise::SessionsController
+
   before_filter :prepare_params, only: :create
 
-  private
+private
 
   def prepare_params
     pm = params[:mailbox]
@@ -14,4 +15,5 @@ class SessionsController < Devise::SessionsController
       pm[:domain_id] = Domain.where(name: domain).first.try(:id)
     end
   end
+
 end

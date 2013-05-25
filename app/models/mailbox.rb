@@ -1,4 +1,5 @@
 class Mailbox < ActiveRecord::Base
+
   belongs_to :domain
 
   devise :database_authenticatable, :encryptable
@@ -21,6 +22,7 @@ class Mailbox < ActiveRecord::Base
       in: Settings.blocked_usernames,
       message: 'Username is blocked.'
     }
+
   validates :domain_id, presence: true
   validates :encrypted_password, presence: true
 
@@ -39,7 +41,7 @@ class Mailbox < ActiveRecord::Base
   end
 
   def password_scheme
-    { 1 => :md5_crypt, 6 => :sha512_crypt }[encrypted_password.split('$')[1]]
+    { 1 => :md5_crypt, 6 => :sha512_crypt }[encrypted_password.split('$')[1].to_i]
   end
 
 end
