@@ -1,4 +1,6 @@
 ActiveRecord::Base.logger = Logger.new($stdout)
 
-domain = Domain.create(name: 'example.com')
-domain.mailboxes.create(username: 'jane.doe', password: 'foo')
+['example.com', 'example.org'].each do |d|
+  d = Domain.create(name: d)
+  d.mailboxes.create(username: 'jane.doe', password: 'foobar', admin: true)
+end

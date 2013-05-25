@@ -1,6 +1,7 @@
 Moeil::Application.routes.draw do
   devise_for :mailboxes, path: '',
-    path_names: {sign_in: 'login', sign_out: 'logout' }
+    path_names: { sign_in: 'login', sign_out: 'logout' },
+    controllers: { sessions: 'sessions' }
 
   resource :home,     only: [:show]
   resource :password, only: [:show, :update]

@@ -1,8 +1,7 @@
-%h2 Login
+%h2= @page_title =  'Login'
 
 = simple_form_for resource, url: mailbox_session_path do |f|
-  = f.input :username
-  = f.association :domain
+  = f.input :email, label: 'E-Mail', autofocus: true
   = f.input :password
   .form-actions
     = f.button :submit, 'Login', class: 'btn-primary'
