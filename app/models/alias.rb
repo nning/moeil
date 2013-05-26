@@ -8,4 +8,12 @@ class Alias < ActiveRecord::Base
     [self.address, self.domain.name].join('@')
   end
 
+  def goto_mailbox
+    Mailbox.joins(:domain).where(username: goto_username).first
+  end
+
+  def goto_username
+    goto.split('@').first
+  end
+
 end
