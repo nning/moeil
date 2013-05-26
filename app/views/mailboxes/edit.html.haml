@@ -20,7 +20,8 @@
           = f.input :password, hint: 'Leave blank, if you do not want to change it.'
           = f.input :password_confirmation, label: false
 
-    - if current_mailbox.admin?
+  - if current_mailbox.admin?
+    .row-fluid
       .span6
         .well
           %fieldset
