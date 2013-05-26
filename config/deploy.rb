@@ -7,7 +7,6 @@ set :application, Rails.application.class.parent_name.downcase
 
 set :repository, 'git://git.orgizm.net/moeil.git'
 set :deploy_to, '/srv/http/' + hostname
-#set :deploy_via, :remote_cache
 set :shared_children, %w(log tmp/pids)
 
 default_run_options[:pty] = true

@@ -1,4 +1,5 @@
 after 'deploy:update', 'deploy:symlink_secret'
+after 'deploy:update', 'deploy:git_version'
 after 'deploy:setup', 'deploy:chown'
 after 'deploy', 'deploy:cleanup'
 
@@ -35,5 +36,10 @@ namespace :deploy do
   desc 'Create necessary directories'
   task :create_dirs do
     run "mkdir -p #{shared_path}/config"
+  end
+
+  desc 'Save git version'
+  task :git_version do
+    run "cd #{release_path} && git log | head -1 | cut -d ' ' -f 2 > app/views/shared/_git_version.html.haml"
   end
 end

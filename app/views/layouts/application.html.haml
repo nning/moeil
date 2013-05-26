@@ -20,9 +20,6 @@
     .row-fluid
       = yield
 
-    %hr
-    %footer
-      %p
-        Released under the terms of the AGPLv3.
+    = render partial: 'shared/footer'
 
   = javascript_include_tag 'application'
