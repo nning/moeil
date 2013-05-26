@@ -5,6 +5,7 @@
   .well
     %fieldset
       %legend Account Information
+      = f.input :id, disabled: true, label: 'ID'
       = f.input :username
       = f.association :domain
       = f.input :name
@@ -12,14 +13,23 @@
   .well
     %fieldset
       %legend Change Password
+      %p.text-right
+        = content_tag :code, resource.encrypted_password
       = f.input :password
       = f.input :password_confirmation, label: false
 
   .well
     %fieldset
       %legend Admin Options
+      = f.input :active
       = f.input :admin
       = f.input :quota, hint: 'in Bytes'
+
+  .well
+    %fieldset
+      %legend Timestamps
+      = f.input :created_at, as: :string, disabled: true
+      = f.input :updated_at, as: :string, disabled: true
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
