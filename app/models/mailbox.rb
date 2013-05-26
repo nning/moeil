@@ -7,6 +7,8 @@ class Mailbox < ActiveRecord::Base
   attr_accessible :admin, :domain_id, :mail_location, :name, :password,
     :password_confirmation, :quota, :username
 
+  default_scope order('username asc')
+
 
   validates :username,
     presence: true,
