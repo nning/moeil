@@ -1,32 +1,33 @@
-%h1= resource.email
+%h1 Create Mailbox
+= link_to_back admin_domain_mailboxes_path(resource.domain)
 %hr
 
-= simple_form_for resource, url: resource_path, method: :put do |f|
+= simple_form_for [:admin, resource.domain, resource] do |f|
   .well
     %fieldset
       %legend Account Information
-      %p.text-right
-        Your account was created #{time_ago_in_words resource.created_at} ago.
       = f.input :username
       = f.association :domain
       = f.input :name
 
   .well
     %fieldset
-      %legend Change Password
+      %legend Password
       = f.input :password
       = f.input :password_confirmation, label: false
 
-  - if current_mailbox.admin?
-    .well
-      %fieldset
-        %legend Quota
-        = f.input :quota, hint: 'in Bytes'
+  .well
+    %fieldset
+      %legend Admin Options
+      = f.input :active
+      = f.input :admin
+      = f.input :quota, hint: 'in Bytes'
+      = f.input :mail_location
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
       %i{class: 'icon-ok icon-white'}
-      Update Mailbox
+      Create Mailbox
     %button{type: 'reset', class: 'btn btn-danger'}
       %i{class: 'icon-remove icon-white'}
       Reset Form

@@ -3,12 +3,11 @@ Moeil::Application.routes.draw do
     path_names: { sign_in: 'login', sign_out: 'logout' },
     controllers: { sessions: 'sessions' }
 
-  resource :home,     only: [:show]
   resource :password, only: [:show, :update]
 
   namespace :admin do
-    resources :domains, only: [:index, :destroy] do
-      resources :mailboxes, only: [:destroy, :edit, :index, :update]
+    resources :domains, except: :show do
+      resources :mailboxes, except: :show
     end
   end
 

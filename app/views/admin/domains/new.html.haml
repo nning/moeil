@@ -1,0 +1,20 @@
+%h1 Create Domain
+= link_to_back admin_domains_path
+%hr
+
+= simple_form_for [:admin, resource], uri: admin_domains_path, method: :post do |f|
+  .well
+    %fieldset
+      %legend General
+      = f.input :name
+      = f.input :description
+      = f.input :backupmx, label: 'Backup MX'
+      = f.input :active
+
+  .form-actions
+    %button{type: 'submit', class: 'btn btn-primary'}
+      %i{class: 'icon-ok icon-white'}
+      Create Domain
+    %button{type: 'reset', class: 'btn btn-danger'}
+      %i{class: 'icon-remove icon-white'}
+      Reset Form

@@ -1,4 +1,8 @@
 %h1 Mailboxes
+.btn-toolbar
+  .btn-group
+    = link_to_back admin_domains_path
+    = link_to_create new_admin_domain_mailbox_path(collection.first.domain)
 %hr
 
 %p
@@ -10,6 +14,7 @@
     %th E-Mail
     %th sha512-crypt?
     %th Admin?
+    %th Active?
     %th
   %tbody
     = render collection

@@ -6,4 +6,16 @@ module ApplicationHelper
   def flash_class(type)
     ({ notice: :info, alert: :warning }[type] or type).to_s
   end
+
+  def link_to_back(path)
+    link_to path, class: 'btn' do
+      content_tag :i, nil, class: 'icon-arrow-left'
+    end
+  end
+
+  def link_to_create(path)
+    link_to path, class: 'btn' do
+      content_tag :i, nil, class: 'icon-plus'
+    end
+  end
 end

@@ -1,4 +1,5 @@
 %h1= resource.email
+= link_to_back admin_domain_mailboxes_path(resource.domain)
 %hr
 
 = simple_form_for [:admin, resource.domain, resource] do |f|
@@ -31,10 +32,4 @@
       = f.input :created_at, as: :string, disabled: true
       = f.input :updated_at, as: :string, disabled: true
 
-  .form-actions
-    %button{type: 'submit', class: 'btn btn-primary'}
-      %i{class: 'icon-ok icon-white'}
-      Update Mailbox
-    %button{type: 'reset', class: 'btn btn-danger'}
-      %i{class: 'icon-remove icon-white'}
-      Reset Form
+  = render partial: 'shared/form_actions_update'

@@ -4,10 +4,20 @@ class Admin::MailboxesController < AdminController
 
   before_filter :authenticate_mailbox!
 
+  def create
+    create! do |success, error|
+      success.html { redirect_to admin_domain_mailboxes_path(resource.domain) }
+    end
+  end
+
   def destroy
     destroy! do |success, error|
-      format.html { redirect_to admin_domain_mailboxes_path(resource.domain) }
+      success.html { redirect_to admin_domain_mailboxes_path(resource.domain) }
     end
+  end
+
+  def new
+    build_resource.domain_id = params[:domain_id]
   end
 
   def update

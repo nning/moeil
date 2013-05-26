@@ -2,4 +2,7 @@
   %td= link_to mailbox.email, edit_admin_domain_mailbox_path(mailbox.domain, mailbox)
   %td= :yes if mailbox.password_scheme == :sha512_crypt
   %td= :yes if mailbox.admin
-  %td= link_to 'Delete', admin_domain_mailbox_path(mailbox.domain, mailbox), method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger'
+  %td= :no unless mailbox.active
+  %td
+    = link_to admin_domain_mailbox_path(mailbox.domain, mailbox), method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger' do
+      = content_tag :i, nil, class: 'icon-trash icon-white'

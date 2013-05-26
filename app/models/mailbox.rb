@@ -4,7 +4,7 @@ class Mailbox < ActiveRecord::Base
 
   devise :database_authenticatable, :encryptable
 
-  attr_accessible :admin, :domain_id, :mail_location, :name, :password,
+  attr_accessible :active, :admin, :domain_id, :mail_location, :name, :password,
     :password_confirmation, :quota, :username
 
   default_scope order('username asc')
