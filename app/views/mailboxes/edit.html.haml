@@ -2,26 +2,30 @@
 %hr
 
 = simple_form_for resource, url: resource_path, method: :put do |f|
-  .well
-    %fieldset
-      %legend Account Information
-      %p.text-right
-        Your account was created #{time_ago_in_words resource.created_at} ago.
-      = f.input :username
-      = f.association :domain
-      = f.input :name
+  .row-fluid
+    .span6
+      .well
+        %fieldset
+          %legend Account Information
+          %p.text-right
+            Your account was created #{time_ago_in_words resource.created_at} ago.
+          = f.input :username
+          = f.association :domain
+          = f.input :name
 
-  .well
-    %fieldset
-      %legend Change Password
-      = f.input :password
-      = f.input :password_confirmation, label: false
+    .span6
+      .well
+        %fieldset
+          %legend Change Password
+          = f.input :password, hint: 'Leave blank, if you do not want to change it.'
+          = f.input :password_confirmation, label: false
 
-  - if current_mailbox.admin?
-    .well
-      %fieldset
-        %legend Quota
-        = f.input :quota, hint: 'in Bytes'
+    - if current_mailbox.admin?
+      .span6
+        .well
+          %fieldset
+            %legend Quota
+            = f.input :quota, hint: 'in Bytes'
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
@@ -30,3 +34,7 @@
     %button{type: 'reset', class: 'btn btn-danger'}
       %i{class: 'icon-remove icon-white'}
       Reset Form
+
+%h2 Unhappy?
+.well
+  %p You can cancel your account here. It will not be recoverable.

@@ -3,26 +3,29 @@
 %hr
 
 = simple_form_for [:admin, resource.domain, resource] do |f|
-  .well
-    %fieldset
-      %legend Account Information
-      = f.input :username
-      = f.association :domain
-      = f.input :name
+  .row-fluid
+    .span6
+      .well
+        %fieldset
+          %legend Account Information
+          = f.input :username
+          = f.association :domain
+          = f.input :name
 
-  .well
-    %fieldset
-      %legend Password
-      = f.input :password
-      = f.input :password_confirmation, label: false
+      .well
+        %fieldset
+          %legend Password
+          = f.input :password
+          = f.input :password_confirmation, label: false
 
-  .well
-    %fieldset
-      %legend Admin Options
-      = f.input :active
-      = f.input :admin
-      = f.input :quota, hint: 'in Bytes'
-      = f.input :mail_location
+    .span6
+      .well
+        %fieldset
+          %legend Admin Options
+          = f.input :active
+          = f.input :admin
+          = f.input :quota, hint: 'in Bytes'
+          = f.input :mail_location
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}

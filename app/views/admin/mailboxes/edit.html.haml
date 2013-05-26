@@ -3,33 +3,38 @@
 %hr
 
 = simple_form_for [:admin, resource.domain, resource] do |f|
-  .well
-    %fieldset
-      %legend Account Information
-      = f.input :id, disabled: true, label: 'ID'
-      = f.input :username
-      = f.association :domain
-      = f.input :name
+  .row-fluid
+    .span6
+      .well
+        %fieldset
+          %legend Account Information
+          = f.input :id, disabled: true, label: 'ID'
+          = f.input :username
+          = f.association :domain
+          = f.input :name
 
-  .well
-    %fieldset
-      %legend Change Password
-      %p.text-right
-        = content_tag :code, resource.encrypted_password
-      = f.input :password
-      = f.input :password_confirmation, label: false
+      .well
+        %fieldset
+          %legend Change Password
+          .control-group
+            = label_tag :password_scheme, 'Password scheme', class: 'control-label'
+            .controls
+              = text_field_tag :password_scheme, resource.password_scheme, disabled: true
+          = f.input :password, hint: 'Leave blank, if you do not want to change it.'
+          = f.input :password_confirmation, label: false
 
-  .well
-    %fieldset
-      %legend Admin Options
-      = f.input :active
-      = f.input :admin
-      = f.input :quota, hint: 'in Bytes'
+    .span6
+      .well
+        %fieldset
+          %legend Admin Options
+          = f.input :active
+          = f.input :admin
+          = f.input :quota, hint: 'in Bytes'
 
-  .well
-    %fieldset
-      %legend Timestamps
-      = f.input :created_at, as: :string, disabled: true
-      = f.input :updated_at, as: :string, disabled: true
+      .well
+        %fieldset
+          %legend Timestamps
+          = f.input :created_at, as: :string, disabled: true
+          = f.input :updated_at, as: :string, disabled: true
 
   = render partial: 'shared/form_actions_update'

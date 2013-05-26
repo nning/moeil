@@ -3,31 +3,35 @@
 %hr
 
 = simple_form_for [:admin, resource] do |f|
-  .well
-    %fieldset
-      %legend General
-      = f.input :id, disabled: true
-      = f.input :name
-      = f.input :description
-      = f.input :backupmx, label: 'Backup MX'
-      = f.input :active
+  .row-fluid
+    .span6
+      .well
+        %fieldset
+          %legend General
+          = f.input :id, disabled: true
+          = f.input :name
+          = f.input :description
+          = f.input :backupmx, label: 'Backup MX'
+          = f.input :active
 
-  .well
-    %fieldset
-      %legend Counts
-      .control-group
-        = label_tag :mailboxes_count, 'Mailboxes', class: 'control-label'
-        .controls
-          = text_field_tag :mailboxes_count, resource.mailboxes.count, disabled: true
-      .control-group
-        = label_tag :aliases_count, 'Aliases', class: 'control-label'
-        .controls
-          = text_field_tag :aliases_count, resource.aliases.count, disabled: true
+    .span6
+      .well
+        %fieldset
+          %legend Counts
+          .control-group
+            = label_tag :mailboxes_count, 'Mailboxes', class: 'control-label'
+            .controls
+              = text_field_tag :mailboxes_count, resource.mailboxes.count, disabled: true
+          .control-group
+            = label_tag :aliases_count, 'Aliases', class: 'control-label'
+            .controls
+              = text_field_tag :aliases_count, resource.aliases.count, disabled: true
 
-  .well
-    %fieldset
-      %legend Timestamps
-      = f.input :created_at, as: :string, disabled: true
-      = f.input :updated_at, as: :string, disabled: true
+    .span6
+      .well
+        %fieldset
+          %legend Timestamps
+          = f.input :created_at, as: :string, disabled: true
+          = f.input :updated_at, as: :string, disabled: true
 
   = render partial: 'shared/form_actions_update'
