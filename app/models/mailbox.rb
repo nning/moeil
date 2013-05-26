@@ -30,7 +30,7 @@ class Mailbox < ActiveRecord::Base
 
 
   def email
-    [self.username, self.domain.name].join('@') rescue nil
+    [self.username, self.domain.name].join '@' rescue nil
   end
 
   def password_salt
