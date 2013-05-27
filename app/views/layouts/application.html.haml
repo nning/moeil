@@ -16,13 +16,9 @@
 
   .container-fluid
     .row-fluid
-      .span2
-      .span8
-        .row-fluid
-          = render partial: 'shared/flash_messages'
-        .row-fluid
-          = yield
-      .span2
+      = render partial: 'shared/flash_messages'
+    .row-fluid
+      = yield
 
     = render partial: 'shared/footer'
 
