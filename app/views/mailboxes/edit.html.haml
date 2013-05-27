@@ -36,16 +36,17 @@
       %i{class: 'icon-remove icon-white'}
       Reset Form
 
-%h2 Aliases
+- if (aliases = resource.aliases).any?
+  %h2 Aliases
 
-.well
-  %p
-    There are
-    = resource.aliases.count
-    aliases pointing to your E-Mail address:
+  .well
+    %p
+      There are
+      = aliases.count
+      aliases pointing to your E-Mail address:
 
-  %p
-    = resource.aliases.map(&:email).join(', ')
+    %p
+      = aliases.map(&:email).join(', ')
 
 %h2 Unhappy?
 
