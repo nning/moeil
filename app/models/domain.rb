@@ -10,4 +10,11 @@ class Domain < ActiveRecord::Base
   validates :name,
     format: { with: /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix }
 
+  def self.default
+    d = where(name: Settings.default_domain).limit(1).first
+    d = Domain.first if a.nil?
+
+    d
+  end
+
 end

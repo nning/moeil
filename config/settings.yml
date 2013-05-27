@@ -1,5 +1,5 @@
 host: moeil.orgizm.net
-default_domain: example.com
+default_domain: orgizm.net
 
 blocked_usernames:
   - postmaster
