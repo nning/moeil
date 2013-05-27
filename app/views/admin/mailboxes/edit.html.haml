@@ -34,7 +34,19 @@
       .well
         %fieldset
           %legend Timestamps
-          = f.input :created_at, as: :string, disabled: true
-          = f.input :updated_at, as: :string, disabled: true
+          = f.input :created_at, as: :string, disabled: true, hint: time_ago_in_words(resource.created_at)
+          = f.input :updated_at, as: :string, disabled: true, hint: time_ago_in_words(resource.updated_at)
 
   = render partial: 'shared/form_actions_update'
+
+- if (aliases = resource.aliases).any?
+  %h2 Aliases
+
+  .well
+    %p
+      There are
+      = aliases.count
+      aliases pointing to this E-Mail address:
+
+    %p
+      = aliases.map(&:email).join(', ')
