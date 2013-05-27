@@ -22,7 +22,7 @@ class Admin::MailboxesController < AdminController
 
   def update
     update! do |success, error|
-      success.html { redirect_to edit_admin_domain_mailbox_path(resource.domain, resource) }
+      success.html { redirect_to admin_domain_mailboxes_path(resource.domain) }
     end
   end
 
