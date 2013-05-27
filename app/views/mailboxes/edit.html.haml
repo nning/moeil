@@ -36,6 +36,21 @@
       %i{class: 'icon-remove icon-white'}
       Reset Form
 
+%h2 Aliases
+
+.well
+  %p
+    There are
+    = resource.aliases.count
+    aliases pointing to your E-Mail address:
+
+  %p
+    = resource.aliases.map(&:email).join(', ')
+
 %h2 Unhappy?
+
 .well
   %p You can cancel your account here. It will not be recoverable.
+  = link_to mailbox_path, class: 'btn btn-danger', method: :delete, confirm: 'Your account will not be recoverable, are you really sure? You were warned.' do
+    = content_tag :i, nil, class: 'icon-thumbs-down icon-white'
+    Delete Account

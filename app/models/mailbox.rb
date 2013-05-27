@@ -29,6 +29,10 @@ class Mailbox < ActiveRecord::Base
   validates :encrypted_password, presence: true
 
 
+  def aliases
+    Alias.where('goto like ?', email)
+  end
+
   def email
     [self.username, self.domain.name].join '@' rescue nil
   end
