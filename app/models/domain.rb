@@ -12,7 +12,7 @@ class Domain < ActiveRecord::Base
 
   def self.default
     d = where(name: Settings.default_domain).limit(1).first
-    d = Domain.first if a.nil?
+    d = Domain.first if d.nil?
 
     d
   end
