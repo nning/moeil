@@ -9,8 +9,8 @@
           %legend Account Information
           %p.text-right
             Your account was created #{time_ago_in_words resource.created_at} ago.
-          = f.input :username
-          = f.association :domain
+          = f.input :username, disabled: true, required: false
+          = f.association :domain, disabled: true, required: false
           = f.input :name
 
     .span6
@@ -20,13 +20,15 @@
           = f.input :password, hint: 'Leave blank, if you do not want to change it.'
           = f.input :password_confirmation, label: false
 
-  - if current_mailbox.admin?
-    .row-fluid
-      .span6
-        .well
-          %fieldset
-            %legend Quota
+  .row-fluid
+    .span6
+      .well
+        %fieldset
+          %legend Quota
+          - if current_mailbox.admin?
             = f.input :quota, hint: 'in Bytes'
+          - else
+            = f.input :quota, hint: 'in Bytes', disabled: true
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
