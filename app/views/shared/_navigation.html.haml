@@ -20,6 +20,10 @@
               = link_to new_admin_domain_mailbox_path(Domain.default) do
                 = content_tag :i, nil, class: 'icon-plus icon-white'
                 Mailbox
+            %li{class: active_navigation('admin/aliases')}
+              = link_to new_admin_domain_alias_path(Domain.default) do
+                = content_tag :i, nil, class: 'icon-plus icon-white'
+                Alias
 
         - if signed_in?
           %ul.nav.pull-right
