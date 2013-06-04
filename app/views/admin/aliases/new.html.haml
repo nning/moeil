@@ -1,0 +1,27 @@
+%h1 Create Alias
+= link_to_back admin_domain_aliases_path(resource.domain)
+%hr
+
+= simple_form_for [:admin, resource.domain, resource] do |f|
+  .row-fluid
+    .span6
+      .well
+        %fieldset
+          %legend Redirection
+          = f.input :username
+          = f.association :domain
+          = f.input :goto, hint: 'A comma-seperated list of receiver addresses.'
+
+    .span6
+      .well
+        %fieldset
+          %legend Admin Options
+          = f.input :active
+
+  .form-actions
+    %button{type: 'submit', class: 'btn btn-primary'}
+      %i{class: 'icon-ok icon-white'}
+      Create Alias
+    %button{type: 'reset', class: 'btn btn-danger'}
+      %i{class: 'icon-remove icon-white'}
+      Reset Form

@@ -2,7 +2,7 @@ class Admin::MailboxesController < AdminController
 
   inherit_resources
 
-  before_filter :authenticate_mailbox!
+  #before_filter :authenticate_mailbox!
 
   def create
     create! do |success, error|

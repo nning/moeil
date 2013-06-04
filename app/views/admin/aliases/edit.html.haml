@@ -1,0 +1,28 @@
+%h1= resource.email
+= link_to_back admin_domain_aliases_path(resource.domain)
+%hr
+
+= simple_form_for [:admin, resource.domain, resource] do |f|
+  .row-fluid
+    .span6
+      .well
+        %fieldset
+          %legend Redirection
+          = f.input :id, disabled: true, label: 'ID'
+          = f.input :username
+          = f.association :domain
+          = f.input :goto
+
+    .span6
+      .well
+        %fieldset
+          %legend Admin Options
+          = f.input :active
+
+      .well
+        %fieldset
+          %legend Timestamps
+          = f.input :created_at, as: :string, disabled: true, hint: time_ago_in_words(resource.created_at)
+          = f.input :updated_at, as: :string, disabled: true, hint: time_ago_in_words(resource.updated_at)
+
+  = render partial: 'shared/form_actions_update'

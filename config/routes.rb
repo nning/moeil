@@ -7,7 +7,7 @@ Moeil::Application.routes.draw do
 
   namespace :admin do
     resources :domains, except: :show do
-      resources :aliases, only: [:destroy, :index]
+      resources :aliases, except: :show
       resources :mailboxes, except: :show
     end
   end

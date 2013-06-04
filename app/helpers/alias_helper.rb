@@ -1,4 +1,7 @@
 module AliasHelper
+
+  include AliasAndMailboxHelper
+
   def address_list(string)
     addresses = string.split(',')
     html = []
@@ -18,4 +21,5 @@ module AliasHelper
 
     html.join.html_safe
   end
+
 end

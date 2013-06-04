@@ -1,5 +1,8 @@
 %h1 Aliases
-= link_to_back admin_domains_path
+.btn-toolbar
+  .btn-group
+    = link_to_back admin_domains_path
+    = link_to_create new_admin_domain_alias_path(parent)
 %hr
 
 %p
@@ -15,7 +18,7 @@
   %tbody
     - collection.each do |a|
       %tr
-        %td= a.email
+        %td= link_to a.email, edit_admin_domain_alias_path(a.domain, a)
         %td= address_list(a.goto)
         %td= :no unless a.active
         %td

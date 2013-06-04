@@ -23,6 +23,7 @@ class Alias < ActiveRecord::Base
     }
 
   validates :domain_id, presence: true
+  validates :goto, presence: true
 
 
   def email
