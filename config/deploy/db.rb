@@ -1,10 +1,10 @@
-before 'deploy:assets:precompile', 'db:use_pgsql'
-after 'db:use_pgsql', 'db:migrate'
+before 'deploy:assets:precompile', 'db:copy_db_config'
+after 'db:copy_db_config', 'db:migrate'
  
 namespace :db do
-  desc 'Use PostgreSQL database in production.'
-  task :use_pgsql do
-    run "cd #{latest_release}/config && cp database.yml.pgsql database.yml"
+  desc 'Copy production database config from home directory of deployment user.'
+  task :copy_db_config do
+    run "cd #{latest_release}/config && cp ~/database.yml ."
   end
 
   desc 'Migrate database.'
