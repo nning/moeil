@@ -9,7 +9,7 @@
         %fieldset
           %legend Account Information
           = f.input :id, disabled: true, label: 'ID'
-          = f.input :username
+          = f.input :username, hint: 'Note, that changing the username or domain currently requires manually moving the mail_location!'
           = f.association :domain
           = f.input :name
 
