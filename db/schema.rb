@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522223802) do
+ActiveRecord::Schema.define(:version => 20130604130221) do
 
   create_table "aliases", :force => true do |t|
     t.string   "username",                     :null => false
@@ -47,10 +47,23 @@ ActiveRecord::Schema.define(:version => 20130522223802) do
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
     t.boolean  "admin",              :default => false
+    t.integer  "relocation_id"
   end
 
   add_index "mailboxes", ["domain_id"], :name => "index_mailboxes_on_domain_id"
   add_index "mailboxes", ["username", "domain_id"], :name => "index_mailboxes_on_username_and_domain_id", :unique => true
   add_index "mailboxes", ["username"], :name => "index_mailboxes_on_username"
+
+  create_table "relocations", :force => true do |t|
+    t.string   "old_username", :null => false
+    t.string   "old_domain",   :null => false
+    t.integer  "mailbox_id",   :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "relocations", ["mailbox_id"], :name => "index_relocations_on_mailbox_id", :unique => true
+  add_index "relocations", ["old_username", "old_domain", "mailbox_id"], :name => "index_relocations_on_old_username_and_old_domain_and_mailbox_id", :unique => true
+  add_index "relocations", ["old_username", "old_domain"], :name => "index_relocations_on_old_username_and_old_domain", :unique => true
 
 end

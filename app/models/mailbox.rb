@@ -1,11 +1,14 @@
 class Mailbox < ActiveRecord::Base
 
   belongs_to :domain
+  has_one :relocation, dependent: :destroy
 
   devise :database_authenticatable, :encryptable
 
   attr_accessible :active, :admin, :domain_id, :mail_location, :name, :password,
     :password_confirmation, :quota, :username
+
+  before_save :create_relocation
 
   default_scope order('username asc')
 
@@ -48,6 +51,26 @@ class Mailbox < ActiveRecord::Base
 
   def password_scheme
     { 1 => :md5_crypt, 6 => :sha512_crypt }[encrypted_password.split('$')[1].to_i]
+  end
+
+private
+
+  def create_relocation
+    if persisted? and (username_changed? or domain_id_changed?)
+      old_username = if username_changed?
+        changes[:username].first
+      else
+        username
+      end
+
+      old_domain = if domain_id_changed?
+        Domain.find_by_id(changes[:domain_id].first).name
+      else
+        domain.name
+      end
+
+      create_relocation! old_username: old_username, old_domain: old_domain
+    end
   end
 
 end
