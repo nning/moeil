@@ -3,8 +3,6 @@ Moeil::Application.routes.draw do
     path_names: { sign_in: 'login', sign_out: 'logout' },
     controllers: { sessions: 'sessions' }
 
-  resource :password, only: [:show, :update]
-
   namespace :admin do
     resources :domains, except: :show do
       resources :aliases, except: :show
@@ -13,6 +11,7 @@ Moeil::Application.routes.draw do
   end
 
   resource :mailbox, only: [:edit, :update]
+  resource :password, only: [:show, :update]
 
   devise_scope :mailbox do
     root to: 'sessions#new'
