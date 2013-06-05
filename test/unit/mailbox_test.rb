@@ -1,12 +1,13 @@
 require 'test_helper'
 
 class MailboxTest < ActiveSupport::TestCase
+
   should belong_to :domain
   should have_one :relocation
 
   should have_db_index(:username)
   should have_db_index(:domain_id)
-  should have_db_index([:username, :domain_id]).unique true
+  should have_db_index([:username, :domain_id]).unique(true)
 
   context 'Validations' do
     ['jane', 'jane.doe', 'jane_doe', 'jane-doe'].each do |value|
@@ -20,4 +21,62 @@ class MailboxTest < ActiveSupport::TestCase
     should_not allow_value(nil).for(:domain_id)
     should_not allow_value(nil).for(:encrypted_password)
   end
+
+  context 'Instance' do
+    setup do
+      @mailbox = FactoryGirl.create :mailbox
+    end
+
+    should 'return E-Mail address' do
+      assert_equal @mailbox.email, [@mailbox.username, @mailbox.domain.name].join('@')
+    end
+
+    context 'password salt' do
+      should 'equal the one from password' do
+        assert_equal @mailbox.password_salt, @mailbox.encrypted_password.split('$')[2]
+      end
+    end
+
+    context 'password scheme' do
+      should 'be sha512_crypt for new mailboxes' do
+        assert_equal @mailbox.password_scheme, :sha512_crypt
+      end
+    end
+  end
+
+  context 'Relocation' do
+    context 'username' do
+      setup do
+        @mailbox = FactoryGirl.create :mailbox
+      end
+
+      should 'be created after modifying username' do
+        old_username = @mailbox.username
+
+        @mailbox.username = 'new_username'
+        @mailbox.save!
+
+        assert_not_equal @mailbox.relocation, nil
+        assert_equal @mailbox.relocation.old_username, old_username
+      end
+    end
+
+    context 'domain' do
+      setup do
+        @mailbox = FactoryGirl.create :mailbox
+        @domain = FactoryGirl.create :domain
+      end
+
+      should 'be created after modifying username' do
+        old_domain = @mailbox.domain.name
+
+        @mailbox.domain = @domain
+        @mailbox.save!
+
+        assert_not_equal @mailbox.relocation, nil
+        assert_equal @mailbox.relocation.old_domain, old_domain
+      end
+    end
+  end
+
 end
