@@ -4,7 +4,7 @@ class Relocation < ActiveRecord::Base
 
   attr_accessible :old_username, :old_domain, :mailbox_id
 
-  default_scope order('updated_at asc')
+  default_scope -> { order 'updated_at asc' }
 
   validates :old_username,
     presence: true,

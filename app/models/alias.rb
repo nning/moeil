@@ -4,7 +4,7 @@ class Alias < ActiveRecord::Base
 
   attr_accessible :active, :domain_id, :goto, :username
 
-  default_scope order('username asc')
+  default_scope -> { order 'username asc' }
 
 
   validates :username,

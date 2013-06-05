@@ -10,7 +10,7 @@ class Mailbox < ActiveRecord::Base
 
   before_save :create_relocation
 
-  default_scope order('username asc')
+  default_scope -> { order 'username asc' }
 
 
   validates :username,
