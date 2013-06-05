@@ -8,7 +8,14 @@ class CreateRelocations < ActiveRecord::Migration
     end
 
     change_table :relocations do |t|
-      t.index [:old_username, :old_domain, :mailbox_id], unique: true
+      # There was no problem in SQLite and PostgreSQL with the length of the
+      # index name but rails 4 tries to protect MySQL.
+      begin
+        t.index [:old_username, :old_domain, :mailbox_id], unique: true
+      rescue ArgumentError
+        t.index [:old_username, :old_domain, :mailbox_id], unique: true,
+          name: 'index_relocations_on_complete_uniqueness'
+      end
       t.index [:old_username, :old_domain], unique: true
       t.index :mailbox_id, unique: true
     end
