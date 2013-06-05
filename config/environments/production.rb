@@ -63,4 +63,6 @@ Moeil::Application.configure do
 
   # Set default host part in URLs in mails for devise
   config.action_mailer.default_url_options = { host: Settings.host }
+
+  config.eager_load = true
 end
