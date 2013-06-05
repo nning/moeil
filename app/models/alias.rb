@@ -14,7 +14,7 @@ class Alias < ActiveRecord::Base
       message: 'Combination of username and domain is not unique.'
     },
     format: {
-      with: /^[a-zA-Z0-9.\-_]+$/,
+      with: /\A[a-zA-Z0-9.\-_]+\z/,
       message: 'Username contains invalid characters.'
     },
     exclusion: {
