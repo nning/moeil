@@ -3,6 +3,7 @@ require 'test_helper'
 class MailboxesControllerTest < ActionController::TestCase
 
   should route(:get, 'mailbox/edit').to(controller: :mailboxes, action: :edit)
+  should route(:put, 'mailbox').to(controller: :mailboxes, action: :update)
 
   context 'Own mailbox' do
     setup do
