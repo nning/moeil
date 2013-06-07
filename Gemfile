@@ -9,6 +9,7 @@ gem 'mysql'
 
 gem 'devise'                # Authentication
 gem 'devise-encryptable'
+gem 'foreigner'             # Foreign key constraints
 gem 'haml'                  # More beautiful views
 gem 'highline'              # For terminal input in command line scripts
 gem 'inherited_resources'   # DRY

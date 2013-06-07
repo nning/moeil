@@ -1,7 +1,7 @@
 class Domain < ActiveRecord::Base
 
-  has_many :aliases
-  has_many :mailboxes
+  has_many :aliases, dependent: :destroy
+  has_many :mailboxes, dependent: :destroy
 
   attr_accessible :active, :backupmx, :description, :name
 
