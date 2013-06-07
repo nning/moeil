@@ -2,8 +2,6 @@ class Admin::AliasesController < AdminController
 
   inherit_resources
 
-  #before_filter :authenticate_mailbox!
-
   def create
     create! do |success, error|
       success.html { redirect_to admin_domain_aliases_path(resource.domain) }
