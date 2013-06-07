@@ -28,24 +28,27 @@ class Admin::DomainsControllerTest < ActionController::TestCase
         should render_template 'admin/domains/edit'
       end
 
-#     context 'on DESTROY to own domain' do
-#       setup do
-#         delete :destroy, id: @mailbox.domain.id
-#       end
+# TODO This has to be solved.
+=begin
+      context 'on DESTROY to own domain' do
+        setup do
+          delete :destroy, id: @mailbox.domain.id
+        end
 
-#       should respond_with :not_found
-#       should render_template nil
-#     end
+        should respond_with :not_found
+        should render_template nil
+      end
 
-#     context 'on DESTROY to other domain' do
-#       setup do
-#         @domain = FactoryGirl.create :domain
-#         delete :destroy, id: @domain.id
-#       end
+      context 'on DESTROY to other domain' do
+        setup do
+          @domain = FactoryGirl.create :domain
+          delete :destroy, id: @domain.id
+        end
 
-#       should respond_with :redirect
-#       should render_template :index
-#     end
+        should respond_with :redirect
+        should render_template :index
+      end
+=end
     end
 
     context 'not as admin' do
