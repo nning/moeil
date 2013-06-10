@@ -1,6 +1,6 @@
 class MailboxesController < InheritedResources::Base
 
-  before_filter :assure_logged_in
+  before_filter :require_login
 
   def resource
     current_mailbox
@@ -29,7 +29,7 @@ class MailboxesController < InheritedResources::Base
 
 private
 
-  def assure_logged_in
+  def require_login
     redirect_to new_mailbox_session_path unless current_mailbox
   end
 
