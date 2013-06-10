@@ -17,6 +17,7 @@
       .well
         %fieldset
           %legend Change Password
+          = f.input :current_password, hint: 'Your current password.'
           = f.input :password, hint: 'Leave blank, if you do not want to change it.'
           = f.input :password_confirmation, label: false
 

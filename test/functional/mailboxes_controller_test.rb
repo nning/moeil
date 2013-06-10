@@ -7,7 +7,7 @@ class MailboxesControllerTest < ActionController::TestCase
 
   context 'Own mailbox' do
     setup do
-      @mailbox = FactoryGirl.create :mailbox
+      @mailbox = FactoryGirl.create :mailbox, password: 'foo'
       sign_in @mailbox
     end
 
@@ -27,14 +27,21 @@ class MailboxesControllerTest < ActionController::TestCase
           username: 'foo',
           domain_id: @domain.id,
           name: 'Foo',
-          password: 'foo',
-          password_confirmation: 'foo',
+          current_password: 'foo',
+          password: 'bar',
+          password_confirmation: 'bar',
           quota: 1337
         }
       end
 
       should respond_with :success
       should render_template :edit
+
+# TODO Flashes are empty but should contain success message.
+=begin
+      should set_the_flash[:info]
+      should_not set_the_flash[:error]
+=end
 
 # TODO I do not understand, why the second should block does not work _after_
 #      the PUT.

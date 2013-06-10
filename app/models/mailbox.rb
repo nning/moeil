@@ -5,8 +5,8 @@ class Mailbox < ActiveRecord::Base
 
   devise :database_authenticatable, :encryptable
 
-  attr_accessible :active, :admin, :domain_id, :mail_location, :name, :password,
-    :password_confirmation, :quota, :username
+  attr_accessible :active, :admin, :current_password, :domain_id,
+    :mail_location, :name, :password, :password_confirmation, :quota, :username
 
   before_save :create_relocation
 
