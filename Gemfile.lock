@@ -100,6 +100,9 @@ GEM
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     orm_adapter (0.4.0)
+    paper_trail (2.7.2)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     pg (0.15.0)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -186,6 +189,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   mysql
+  paper_trail
   pg
   rails (~> 3.2.13)
   rails_config
