@@ -14,6 +14,7 @@ gem 'haml'                  # More beautiful views
 gem 'highline'              # For terminal input in command line scripts
 gem 'inherited_resources'   # DRY
 gem 'jquery-rails'          # jQuery
+gem 'kaminari'              # Pagination
 gem 'paper_trail'           # Change history
 gem 'rails_config'          # For configuration
 gem 'simple_form'           # DRY form

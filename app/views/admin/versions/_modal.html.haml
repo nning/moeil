@@ -1,0 +1,13 @@
+%div{:id => "modal#{version.id}", :class => 'modal hide fade', :tabindex => -1, :role => 'dialog', :'aria-labelledby' => 'Changes', :'aria-hidden' => 'true'}
+  .modal-header
+    %button{:type => 'button', :class => 'close', :'data-dismiss' => 'modal', :'aria-hidden' => 'true'}
+      &times;
+    %h3
+      Changes to
+      = link_to_object version.item_type, version.item_id
+  .modal-body
+    %p
+      %strong
+        Made at
+        = version.created_at
+    = summarize_changes version.object_changes

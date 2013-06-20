@@ -1,12 +1,15 @@
-%h1 Recent Changes
+%h1 Changes
 %hr
 
 %table.table.table-striped
   %thead
+    %th Action
     %th Type
-    %th ID
-    %th Event
+    %th Object
     %th User
     %th Time
+    %th Changes
   %tbody
-    = render collection.order('created_at desc').limit(20)
+    = render collection
+
+= paginate collection

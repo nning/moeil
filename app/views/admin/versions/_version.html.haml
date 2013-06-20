@@ -1,3 +1,10 @@
 %tr
-  - [:item_type, :item_id, :event, :whodunnit, :created_at].each do |attribute|
-    %td= version.send attribute
+  %td= version.event
+  %td= version.item_type
+  %td= link_to_object version.item_type, version.item_id
+  %td= link_to_user version.whodunnit
+  %td= time_ago_in_words version.created_at
+  %td
+    = link_to "#modal#{version.id}", :class => 'btn btn-mini', :role => 'button', :'data-toggle' => 'modal' do
+      = content_tag :i, nil, class: 'icon-eye-open'
+    = render partial: 'modal', locals: { version: version }
