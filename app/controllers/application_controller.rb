@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 protected
 
   def user_for_paper_trail
-    current_mailbox || 'Unknown'
+    mailbox_signed_in? ? current_mailbox : 'Unknown'
   end
 
 end

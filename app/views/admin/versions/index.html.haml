@@ -1,0 +1,12 @@
+%h1 Recent Changes
+%hr
+
+%table.table.table-striped
+  %thead
+    %th Type
+    %th ID
+    %th Event
+    %th User
+    %th Time
+  %tbody
+    = render collection.order('created_at desc').limit(20)

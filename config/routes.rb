@@ -8,6 +8,7 @@ Moeil::Application.routes.draw do
       resources :aliases, except: :show
       resources :mailboxes, except: :show
     end
+    resources :versions, only: :index
   end
 
   resource :mailbox, only: [:edit, :update]

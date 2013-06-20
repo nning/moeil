@@ -6,6 +6,8 @@ class Alias < ActiveRecord::Base
 
   default_scope order('username asc')
 
+  has_paper_trail
+
 
   validates :username,
     presence: true,
