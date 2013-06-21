@@ -50,33 +50,6 @@ class Admin::DomainsControllerTest < ActionController::TestCase
       end
 =end
     end
-
-    context 'not as admin' do
-      setup do
-        @mailbox = FactoryGirl.create :mailbox, admin: false
-        sign_in @mailbox
-      end
-
-      context 'on GET to domain index' do
-        setup do
-          get :index
-        end
-
-        should respond_with :not_found
-        should render_template nil
-      end
-    end
-
-    context 'without session' do
-      context 'on GET to domain index' do
-        setup do
-          get :index
-        end
-
-        should respond_with :not_found
-        should render_template nil
-      end
-    end
   end
 
 end

@@ -2,6 +2,8 @@ class AdminController < ApplicationController
 
   before_filter :admin?
 
+private
+
   def admin?
     unless current_mailbox.try(:admin?)
       render file: "#{Rails.root}/public/404", layout: false, status: :not_found
