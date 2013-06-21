@@ -9,6 +9,7 @@ Moeil::Application.routes.draw do
       resources :mailboxes, except: :show
     end
     resources :versions, only: :index
+    post 'versions/:id/revert' => 'versions#revert', as: 'revert_version'
   end
 
   resource :mailbox, only: [:edit, :update]

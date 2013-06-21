@@ -11,3 +11,7 @@
         Made at
         = version.created_at
     = summarize_changes version.object_changes
+  .modal-footer
+    - if ['update', 'destroy'].include? version.event
+      = link_to 'Revert', admin_revert_version_path(version), class: 'btn btn-danger', method: :post
+    = button_tag 'Close', :class => 'btn', :'data-dismiss' => 'modal', :'aria-hidden' => 'true'
