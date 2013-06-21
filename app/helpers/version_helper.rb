@@ -39,10 +39,12 @@ module VersionHelper
 
 private
 
+  # TODO Better handling of domain deletion.
   def alternative_name(version)
     if version.object
       hash   = YAML.load(version.object)
-      domain = Domain.find(hash['domain_id']).name
+      domain = Domain.where(id: hash['domain_id']).first
+      domain = domain ? domain.name : 'unknown'
 
       return [hash['username'], domain].join('@')
     end
