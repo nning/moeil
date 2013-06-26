@@ -1,85 +1,56 @@
 GIT
-  remote: git://github.com/plataformatec/devise.git
-  revision: 6b5988d756d780903bf8c9ccb3e2b3b724ccebe8
+  remote: git://github.com/airblade/paper_trail.git
+  revision: e76fb279eb5f0bbfa481f16b820a075419ab3d3f
   branch: rails4
   specs:
-    devise (2.2.4)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      warden (~> 1.2.1)
+    paper_trail (2.7.2)
+      activerecord (>= 4.0.0.beta, < 5.0)
+      railties (>= 4.0.0.beta, < 5.0)
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: d75963307f3a9aa7884cff8d5ad228f65e94d343
+  revision: a2286a6d6d9aa9c251a272fbe9dbcf77669ce51f
   specs:
     simple_form (3.0.0.rc)
       actionpack (>= 4.0.0.rc1, < 4.1)
       activemodel (>= 4.0.0.rc1, < 4.1)
 
 GIT
-  remote: git://github.com/rails/coffee-rails.git
-  revision: cbc4a6f571e87f68d272b9a377db3fb3307464ab
+  remote: git://github.com/rails/sass-rails.git
+  revision: 31f756f208ee71af935454ab4dfb34786d15e891
   specs:
-    coffee-rails (4.0.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 4.0.0.beta, < 5.0)
+    sass-rails (4.0.0)
+      railties (>= 4.0.0, < 5.0)
+      sass (>= 3.1.10)
+      sprockets-rails (~> 2.0.0)
 
-GIT
-  remote: git://github.com/rails/rails.git
-  revision: d13c07d92298944020aca15e67cd25c7b5c9f80e
-  branch: 4-0-stable
+GEM
+  remote: https://rubygems.org/
   specs:
-    actionmailer (4.0.0.rc1)
-      actionpack (= 4.0.0.rc1)
-      mail (~> 2.5.4)
-    actionpack (4.0.0.rc1)
-      activesupport (= 4.0.0.rc1)
+    actionmailer (4.0.0)
+      actionpack (= 4.0.0)
+      mail (~> 2.5.3)
+    actionpack (4.0.0)
+      activesupport (= 4.0.0)
       builder (~> 3.1.0)
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    activemodel (4.0.0.rc1)
-      activesupport (= 4.0.0.rc1)
+    activemodel (4.0.0)
+      activesupport (= 4.0.0)
       builder (~> 3.1.0)
-    activerecord (4.0.0.rc1)
-      activemodel (= 4.0.0.rc1)
+    activerecord (4.0.0)
+      activemodel (= 4.0.0)
       activerecord-deprecated_finders (~> 1.0.2)
-      activesupport (= 4.0.0.rc1)
+      activesupport (= 4.0.0)
       arel (~> 4.0.0)
-    activesupport (4.0.0.rc1)
+    activerecord-deprecated_finders (1.0.3)
+    activesupport (4.0.0)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
-    rails (4.0.0.rc1)
-      actionmailer (= 4.0.0.rc1)
-      actionpack (= 4.0.0.rc1)
-      activerecord (= 4.0.0.rc1)
-      activesupport (= 4.0.0.rc1)
-      bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.0.rc1)
-      sprockets-rails (~> 2.0.0.rc4)
-    railties (4.0.0.rc1)
-      actionpack (= 4.0.0.rc1)
-      activesupport (= 4.0.0.rc1)
-      rake (>= 0.8.7)
-      thor (>= 0.18.1, < 2.0)
-
-GIT
-  remote: git://github.com/rails/sass-rails.git
-  revision: 33799418f104c961b1ce41452e77cf1e04930755
-  specs:
-    sass-rails (4.0.0.rc1)
-      railties (>= 4.0.0.beta, < 5.0)
-      sass (>= 3.1.10)
-      sprockets-rails (~> 2.0.0.rc4)
-
-GEM
-  remote: https://rubygems.org/
-  specs:
-    activerecord-deprecated_finders (1.0.2)
     arel (4.0.0)
     atomic (1.1.9)
     bcrypt-ruby (3.0.1)
@@ -92,17 +63,32 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    coffee-rails (4.0.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0.beta, < 5.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
-    devise-encryptable (0.1.2)
-      devise (>= 2.1.0)
+    devise (3.0.0.rc)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      warden (~> 1.2.1)
+    devise-encryptable (0.1.1)
+      devise (>= 2.1.0.rc)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
     faker (1.1.2)
       i18n (~> 0.5)
+    foreigner (1.4.2)
+      activerecord (>= 3.0.0)
     haml (4.0.3)
       tilt
     has_scope (0.5.1)
@@ -112,16 +98,19 @@ GEM
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
       responders (~> 0.6)
-    jquery-rails (3.0.0)
+    jquery-rails (3.0.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     libv8 (3.11.8.17)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
-    minitest (4.7.4)
-    multi_json (1.7.6)
+    minitest (4.7.5)
+    multi_json (1.7.7)
     mysql (2.9.1)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
@@ -138,18 +127,37 @@ GEM
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
+    rails (4.0.0)
+      actionmailer (= 4.0.0)
+      actionpack (= 4.0.0)
+      activerecord (= 4.0.0)
+      activesupport (= 4.0.0)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.0.0)
+      sprockets-rails (~> 2.0.0)
     rails_config (0.3.3)
       activesupport (>= 3.0)
-    rake (10.0.4)
+    railties (4.0.0)
+      actionpack (= 4.0.0)
+      activesupport (= 4.0.0)
+      rake (>= 0.8.7)
+      thor (>= 0.18.1, < 2.0)
+    rake (10.1.0)
     ref (1.0.5)
     responders (0.6.5)
     sass (3.2.9)
+    shoulda (3.5.0)
+      shoulda-context (~> 1.0, >= 1.0.1)
+      shoulda-matchers (>= 1.4.1, < 3.0)
+    shoulda-context (1.1.4)
+    shoulda-matchers (2.2.0)
+      activesupport (>= 3.0.0)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.0.0.rc4)
+    sprockets-rails (2.0.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
@@ -178,20 +186,25 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 2.3.1.2)
   capistrano
-  coffee-rails!
-  devise!
+  coffee-rails
+  devise
   devise-encryptable
+  factory_girl_rails
   faker
+  foreigner
   haml
   highline
   inherited_resources
   jquery-rails
+  kaminari
   mysql
+  paper_trail!
   pg
   protected_attributes
-  rails (~> 4.0.0.rc1)!
+  rails (~> 4.0.0)
   rails_config
   sass-rails!
+  shoulda
   simple_form!
   sqlite3
   therubyracer

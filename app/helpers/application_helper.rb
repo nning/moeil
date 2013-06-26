@@ -7,8 +7,8 @@ module ApplicationHelper
     ({ notice: :info, alert: :warning }[type] or type).to_s
   end
 
-  def link_to_back(path)
-    link_to path, class: 'btn' do
+  def link_to_back
+    link_to 'javascript:history.back()', class: 'btn' do
       content_tag :i, nil, class: 'icon-arrow-left'
     end
   end
