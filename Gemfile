@@ -23,6 +23,7 @@ gem 'rails_config'                    # For configuration
 gem 'sass-rails', git: 'git://github.com/rails/sass-rails.git' # Less ugly CSS
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git' # DRY form
 gem 'therubyracer', platforms: :ruby  # JS VM for assets
+gem 'turbolinks'                      # Load links with JS
 gem 'uglifier', '>= 1.0.3'            # Compress JS
 gem 'yaml_db'                         # Database dump
 
@@ -33,7 +34,13 @@ end
 group :test do
   gem 'factory_girl_rails'            # Instead of fixtures
   gem 'faker'                         # For test data
-  #gem 'shoulda', git: 'git://github.com/thoughtbot/shoulda.git' # Cleaner tests
-  #gem 'shoulda-matchers', git: 'git://github.com/thoughtbot/shoulda-matchers.git'
-  gem 'shoulda'
+  gem 'shoulda', git: 'git://github.com/thoughtbot/shoulda.git' # Cleaner tests
+  gem 'shoulda-matchers', git: 'git://github.com/thoughtbot/shoulda-matchers.git'
+  gem 'shoulda-context', git: 'git://github.com/thoughtbot/shoulda-context.git'
+  #gem 'shoulda'
+end
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
 end

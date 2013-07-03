@@ -1,19 +1,19 @@
 GIT
   remote: git://github.com/airblade/paper_trail.git
-  revision: e76fb279eb5f0bbfa481f16b820a075419ab3d3f
+  revision: 1baead241804bbe476a8fa89b24ab4bdcb6d0c95
   branch: rails4
   specs:
     paper_trail (2.7.2)
-      activerecord (>= 4.0.0.beta, < 5.0)
-      railties (>= 4.0.0.beta, < 5.0)
+      activerecord (~> 4.0)
+      railties (~> 4.0)
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: a2286a6d6d9aa9c251a272fbe9dbcf77669ce51f
+  revision: dcf4862972792abafeefd73f6b1d385322a64115
   specs:
     simple_form (3.0.0.rc)
-      actionpack (>= 4.0.0.rc1, < 4.1)
-      activemodel (>= 4.0.0.rc1, < 4.1)
+      actionpack (>= 4.0.0, < 4.1)
+      activemodel (>= 4.0.0, < 4.1)
 
 GIT
   remote: git://github.com/rails/sass-rails.git
@@ -23,6 +23,27 @@ GIT
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+
+GIT
+  remote: git://github.com/thoughtbot/shoulda-context.git
+  revision: de61fd688b10eb0d2ff0339f3388e416b9e0b5af
+  specs:
+    shoulda-context (1.1.4)
+
+GIT
+  remote: git://github.com/thoughtbot/shoulda-matchers.git
+  revision: 3f7c440851fabb7d258b817b638fe4b8cd0ceed5
+  specs:
+    shoulda-matchers (2.2.0)
+      activesupport (>= 3.0.0)
+
+GIT
+  remote: git://github.com/thoughtbot/shoulda.git
+  revision: 203447e142d6eae00ad83f775b7691b189cce19c
+  specs:
+    shoulda (3.5.0)
+      shoulda-context (~> 1.0, >= 1.0.1)
+      shoulda-matchers (>= 1.4.1, < 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -52,7 +73,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.0)
-    atomic (1.1.9)
+    atomic (1.1.10)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.3.1.3)
       sass (~> 3.2)
@@ -101,6 +122,7 @@ GEM
     jquery-rails (3.0.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    json (1.8.0)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -122,8 +144,8 @@ GEM
     orm_adapter (0.4.0)
     pg (0.15.1)
     polyglot (0.3.3)
-    protected_attributes (1.0.1)
-      activemodel (>= 4.0.0.beta, < 5.0)
+    protected_attributes (1.0.3)
+      activemodel (>= 4.0.0, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -143,15 +165,14 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.1.0)
+    rdoc (3.12.2)
+      json (~> 1.4)
     ref (1.0.5)
     responders (0.6.5)
     sass (3.2.9)
-    shoulda (3.5.0)
-      shoulda-context (~> 1.0, >= 1.0.1)
-      shoulda-matchers (>= 1.4.1, < 3.0)
-    shoulda-context (1.1.4)
-    shoulda-matchers (2.2.0)
-      activesupport (>= 3.0.0)
+    sdoc (0.3.20)
+      json (>= 1.1.3)
+      rdoc (~> 3.10)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -172,6 +193,8 @@ GEM
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
+    turbolinks (1.2.0)
+      coffee-rails
     tzinfo (0.3.37)
     uglifier (2.1.1)
       execjs (>= 0.3.0)
@@ -204,9 +227,13 @@ DEPENDENCIES
   rails (~> 4.0.0)
   rails_config
   sass-rails!
-  shoulda
+  sdoc
+  shoulda!
+  shoulda-context!
+  shoulda-matchers!
   simple_form!
   sqlite3
   therubyracer
+  turbolinks
   uglifier (>= 1.0.3)
   yaml_db
