@@ -1,1 +1,0 @@
-Settings.blocked_usernames ||= []
