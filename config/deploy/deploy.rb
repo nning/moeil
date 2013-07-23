@@ -21,7 +21,7 @@ namespace :deploy do
     shared_secret  = "#{shared_path}/config/#{filename}"
     
     if capture("[ -f #{shared_secret} ] || echo missing").start_with?('missing')
-      run "cd #{release_path} && rake secret:replace"
+      run "cd #{release_path} && bundle exec rake secret:replace"
       run "mv #{release_secret} #{shared_secret}"
     end
     
