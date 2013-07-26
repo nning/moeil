@@ -9,6 +9,6 @@ namespace :db do
 
   desc 'Migrate database.'
   task :migrate do
-    run "cd #{latest_release} && RAILS_ENV=production rake db:migrate"
+    run "cd #{latest_release} && RAILS_ENV=production bundle exec rake db:migrate"
   end
 end
