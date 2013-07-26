@@ -2,6 +2,4 @@ host: moeil.orgizm.net
 default_domain: orgizm.net
 
 blocked_usernames:
-  - postmaster
-  - ssl
-  - root
+  - dummy
