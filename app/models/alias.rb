@@ -2,7 +2,7 @@ class Alias < ActiveRecord::Base
 
   belongs_to :domain
 
-  attr_accessible :active, :domain_id, :goto, :username
+  #attr_accessible :active, :domain_id, :goto, :username
 
   default_scope -> { order 'username asc' }
 

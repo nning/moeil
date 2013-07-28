@@ -7,11 +7,11 @@ class MailboxesController < InheritedResources::Base
   end
 
   def update
-    unless current_mailbox.admin?
-      [:domain_id, :quota, :username].each do |a|
-        params[:mailbox].delete a
-      end
-    end
+    #unless current_mailbox.admin?
+    #  [:admin, :domain_id, :mail_location, :quota, :username].each do |a|
+    #    params[:mailbox].delete a
+    #  end
+    #end
 
     unless params[:mailbox][:password].blank?
       unless current_mailbox.valid_password? params[:mailbox][:current_password]
@@ -28,6 +28,29 @@ class MailboxesController < InheritedResources::Base
   end
 
 private
+
+  def permitted_params
+    a = [
+      :active,
+      :current_password,
+      :email,
+      :name,
+      :password,
+      :password_confirmation
+    ]
+
+    if current_mailbox.admin?
+      a << [
+        :admin,
+        :domain_id,
+        :mail_location,
+        :quota,
+        :username
+      ]
+    end
+
+    {mailbox: params.require(mailbox: a)}
+  end
 
   def require_login
     redirect_to new_mailbox_session_path unless current_mailbox
