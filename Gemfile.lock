@@ -74,7 +74,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.10)
-    bcrypt-ruby (3.0.1)
+    bcrypt-ruby (3.1.1)
     bootstrap-sass (2.3.2.1)
       sass (~> 3.2)
     builder (3.1.4)
@@ -91,11 +91,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
-    devise (3.0.0.rc)
+    devise (3.0.0)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
-      warden (~> 1.2.1)
+      warden (~> 1.2.3)
     devise-encryptable (0.1.1)
       devise (>= 2.1.0.rc)
     erubis (2.7.0)
@@ -185,7 +185,7 @@ GEM
       libv8 (~> 3.11.8.12)
       ref
     thor (0.18.1)
-    thread_safe (0.1.0)
+    thread_safe (0.1.2)
       atomic
     tilt (1.4.1)
     treetop (1.4.14)
@@ -197,7 +197,7 @@ GEM
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    warden (1.2.1)
+    warden (1.2.3)
       rack (>= 1.0)
     yaml_db (0.2.3)
 
