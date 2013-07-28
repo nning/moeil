@@ -3,7 +3,7 @@ class Domain < ActiveRecord::Base
   has_many :aliases, dependent: :destroy
   has_many :mailboxes, dependent: :destroy
 
-  attr_accessible :active, :backupmx, :description, :name
+  #attr_accessible :active, :backupmx, :description, :name
 
   default_scope -> { order 'name asc' }
 

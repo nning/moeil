@@ -7,7 +7,7 @@ gem 'sqlite3'
 gem 'pg'
 gem 'mysql'
 
-gem 'bootstrap-sass', '~> 2.3.1.2'    # CSS framework
+gem 'bootstrap-sass', '~> 2.3.2.1'    # CSS framework
 gem 'coffee-rails'                    # Less ugly JS
 gem 'devise'                          # Authentication
 gem 'devise-encryptable'
@@ -18,7 +18,6 @@ gem 'inherited_resources'             # DRY
 gem 'jquery-rails'                    # jQuery
 gem 'kaminari'                        # Pagination
 gem 'paper_trail', git: 'git://github.com/airblade/paper_trail.git', branch: 'rails4' # Change history
-gem 'protected_attributes'            # attr_accessible
 gem 'rails_config'                    # For configuration
 gem 'sass-rails', git: 'git://github.com/rails/sass-rails.git' # Less ugly CSS
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git' # DRY form
