@@ -7,6 +7,7 @@ gem 'sqlite3'
 gem 'pg'
 gem 'mysql'
 
+gem 'cancan'                # Authorization
 gem 'devise'                # Authentication
 gem 'devise-encryptable'
 gem 'foreigner'             # Foreign key constraints

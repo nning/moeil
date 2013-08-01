@@ -1,5 +1,8 @@
 class Domain < ActiveRecord::Base
 
+  include Permissionable
+
+
   has_many :aliases, dependent: :destroy
   has_many :mailboxes, dependent: :destroy
 

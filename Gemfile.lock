@@ -35,6 +35,7 @@ GEM
     bourne (1.4.0)
       mocha (~> 0.13.2)
     builder (3.0.4)
+    cancan (1.6.9)
     capistrano (2.14.2)
       highline
       net-scp (>= 1.0.0)
@@ -179,6 +180,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 2.3.1.2)
+  cancan
   capistrano
   coffee-rails (~> 3.2.1)
   devise
