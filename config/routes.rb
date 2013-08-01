@@ -1,4 +1,5 @@
 Moeil::Application.routes.draw do
+
   devise_for :mailboxes, path: '',
     path_names: { sign_in: 'login', sign_out: 'logout' },
     controllers: { sessions: 'sessions' }
@@ -20,4 +21,5 @@ Moeil::Application.routes.draw do
   devise_scope :mailbox do
     root to: 'sessions#new'
   end
+
 end
