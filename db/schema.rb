@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620161824) do
+ActiveRecord::Schema.define(:version => 20130803153840) do
 
   create_table "aliases", :force => true do |t|
-    t.string   "username",                     :null => false
-    t.integer  "domain_id",                    :null => false
-    t.text     "goto",                         :null => false
-    t.boolean  "active",     :default => true
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.string   "username",                      :null => false
+    t.integer  "domain_id",                     :null => false
+    t.text     "goto",                          :null => false
+    t.boolean  "active",      :default => true
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "description"
   end
 
   add_index "aliases", ["domain_id"], :name => "index_aliases_on_domain_id"
