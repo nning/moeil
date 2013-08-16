@@ -1,6 +1,8 @@
 class MailboxesController < InheritedResources::Base
 
-  before_filter :require_login
+# before_filter :require_login
+
+  load_and_authorize_resource
 
   def resource
     current_mailbox
@@ -29,8 +31,8 @@ class MailboxesController < InheritedResources::Base
 
 private
 
-  def require_login
-    redirect_to new_mailbox_session_path unless current_mailbox
-  end
+# def require_login
+#   redirect_to new_mailbox_session_path unless current_mailbox
+# end
 
 end

@@ -1,4 +1,7 @@
 class PasswordsController < ApplicationController
+
+  skip_authorization_check
+
   def update
     unless params[:password1].nil?
       if params[:password1] == params[:password2]
@@ -10,4 +13,5 @@ class PasswordsController < ApplicationController
       end
     end
   end
+
 end

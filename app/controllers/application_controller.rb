@@ -1,11 +1,15 @@
 class ApplicationController < ActionController::Base
 
-  #check_authorization
+  check_authorization unless: :devise_controller?
 
   protect_from_forgery
 
   def after_sign_in_path_for(resource)
     edit_mailbox_path
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new current_mailbox
   end
 
 protected

@@ -42,6 +42,10 @@ class Mailbox < ActiveRecord::Base
     [self.username, self.domain.name].join '@' rescue nil
   end
 
+  def manager?
+    Permission.where(subject_id: id).any? || admin?
+  end
+
   def password_salt
     salt = self.encrypted_password.split('$')[2] rescue nil
     return Password::Sha512Crypt.generate_salt if salt.blank?

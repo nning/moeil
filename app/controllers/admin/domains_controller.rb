@@ -1,5 +1,7 @@
 class Admin::DomainsController < AdminController
 
+  load_and_authorize_resource
+
   inherit_resources
 
   actions :all, except: :show

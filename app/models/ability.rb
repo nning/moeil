@@ -7,25 +7,30 @@ class Ability
     mailbox ||= Mailbox.new # Not logged in
     
     if mailbox.admin?
-      can { true }
+      can :manage, :all
     elsif mailbox.id
       # Domain
+      can :index, Domain do |subject|
+        mailbox.manager?
+      end
       can [:edit, :update], Domain do |subject|
         subject.permission? :editor, mailbox
       end
       can [:destroy, :permissions], Domain do |subject|
         subject.permission? :owner, mailbox
       end
-      can [:new, :create], Domain do |subject|
-        subject.admin?
-      end
-      # Mailbox
-      can Mailbox do |subject|
-        subject.domain.permission? :editor, mailbox
-      end
-      # Alias
-      can Alias do |subject|
-        subject.domain.permission? :editor, mailbox
+
+      # Mailbox and Alias
+      [Alias, Mailbox].each do |model|
+        can :index, model do |subject|
+          mailbox.manager?
+        end
+        can [:edit, :update], model do |subject|
+          subject.domain.permission? :editor, mailbox
+        end
+        can [:destroy, :permissions], model do |subject|
+          subject.domain.permission? :owner, mailbox
+        end
       end
     end
   end
