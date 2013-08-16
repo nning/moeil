@@ -32,6 +32,16 @@ class Ability
           subject.domain.permission? :owner, mailbox
         end
       end
+
+      # Version
+      can :index, Version do |subject|
+        mailbox.manager?
+      end
+      can :manage, Version do |subject|
+        item = subject.item
+        item = item.domain unless item.is_a? Domain
+        item.permission? :owner, mailbox
+      end
     end
   end
 end
