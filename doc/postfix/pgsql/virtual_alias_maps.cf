@@ -1,0 +1,5 @@
+user = mail
+password = foobar
+hosts = localhost
+dbname = mail
+query = select goto from aliases where username = '%u' and active = true and domain_id in (select id from domains where name = '%d')

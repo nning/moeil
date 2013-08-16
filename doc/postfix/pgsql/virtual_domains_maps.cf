@@ -1,0 +1,5 @@
+user = mail
+password = foobar
+hosts = localhost
+dbname = mail
+query = select name from domains where name = '%s' and backupmx = false and active = true

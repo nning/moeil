@@ -1,0 +1,74 @@
+smtpd_banner = $myhostname ESMTP
+biff = no
+append_dot_mydomain = no
+myhostname = example.org
+mydomain = $myhostname
+myorigin = $myhostname
+mydestination = localhost
+mynetworks_style = host
+
+inet_interfaces = all
+
+#
+# Restrictions
+#
+
+smtpd_client_restrictions =
+	reject_rbl_client sbl.spamhaus.org
+	reject_rbl_client bl.spamcop.net
+	permit_sasl_authenticated
+
+smtpd_sender_restrictions =
+	reject_non_fqdn_sender
+	reject_unknown_sender_domain
+	permit_sasl_authenticated
+	permit_mynetworks
+
+smtpd_recipient_restrictions =
+	permit_mynetworks
+	permit_sasl_authenticated
+	reject_unauth_destination
+
+#
+# Virtual Mailboxes
+#
+
+virtual_mailbox_base = /srv/mail
+virtual_mailbox_domains = proxy:pgsql:/etc/postfix/pgsql/virtual_domains_maps.cf
+virtual_mailbox_maps = proxy:pgsql:/etc/postfix/pgsql/virtual_mailbox_maps.cf
+virtual_alias_maps = proxy:pgsql:/etc/postfix/pgsql/virtual_alias_maps.cf
+virtual_minimum_uid = 105
+virtual_uid_maps = static:105
+virtual_gid_maps = static:109
+virtual_transport = lmtp:unix:private/dovecot-lmtp
+
+#
+# SASL Authentication
+#
+
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_exceptions_networks = $mynetworks
+smtpd_sasl_security_options = noanonymous
+broken_sasl_auth_clients = yes
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+
+#
+# TLS
+#
+
+smtpd_tls_cert_file = /etc/ssl/certs/mx.example.org.crt
+smtpd_tls_key_file = /etc/ssl/private/mx.example.org.key
+smtpd_tls_session_cache_database = btree:/var/lib/postfix/smtpd_tls_session_cache.db
+smtpd_tls_security_level = may
+smtpd_tls_received_header = no
+smtpd_tls_loglevel = 0
+smtpd_tls_auth_only = yes
+tls_random_source = dev:/dev/urandom
+
+#
+# Virus and spam checking
+#
+
+content_filter = smtp-amavis:[127.0.0.1]:10024
+receive_override_options = no_address_mappings
