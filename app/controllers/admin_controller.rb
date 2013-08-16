@@ -1,5 +1,7 @@
 class AdminController < ApplicationController
 
+  authorize_resource
+
   before_filter :access?
 
 private

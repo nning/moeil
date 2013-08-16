@@ -15,7 +15,7 @@ class AdminControllerTest < ActionController::TestCase
         end
 
         should respond_with :success
-        should 'answer positively' do
+        should 'grant access' do
           assert_select 'h1', 'ok'
         end
       end
@@ -28,23 +28,21 @@ class AdminControllerTest < ActionController::TestCase
       end
 
       context 'on GET to test' do
-        setup do
-          get :test
+        should 'deny access' do
+          assert_raise CanCan::AccessDenied do
+            get :test
+          end
         end
-
-        should respond_with :not_found
-        should render_template nil
       end
     end
 
     context 'without session' do
       context 'on GET to test' do
-        setup do
-          get :test
+        should 'deny access' do
+          assert_raise CanCan::AccessDenied do
+            get :test
+          end
         end
-
-        should respond_with :not_found
-        should render_template nil
       end
     end
   end
