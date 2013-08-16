@@ -12,8 +12,8 @@ puts 'Created mailbox jane.doe@example.org (password "foobar") with admin rights
   d = FactoryGirl.create :domain
 
   begin
-    rand(50).times { FactoryGirl.create :mailbox, domain: d }
-    rand(20).times { FactoryGirl.create :alias, domain: d }
+    (rand(50) + 1).times { FactoryGirl.create :mailbox, domain: d }
+    (rand(20) + 1).times { FactoryGirl.create :alias, domain: d }
   rescue
   end
 end

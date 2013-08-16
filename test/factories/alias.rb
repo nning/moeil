@@ -3,5 +3,6 @@ FactoryGirl.define do
     username { Faker::Internet.user_name }
     association :domain
     goto { ([0] * (rand(9) + 1)).map { Faker::Internet.email }.join(',') }
+    description { Faker::Lorem.sentence }
   end
 end

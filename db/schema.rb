@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801113355) do
+ActiveRecord::Schema.define(:version => 20130803153840) do
 
   create_table "aliases", :force => true do |t|
-    t.string   "username",                     :null => false
-    t.integer  "domain_id",                    :null => false
-    t.text     "goto",                         :null => false
-    t.boolean  "active",     :default => true
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.string   "username",                      :null => false
+    t.integer  "domain_id",                     :null => false
+    t.text     "goto",                          :null => false
+    t.boolean  "active",      :default => true
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "description"
   end
 
   add_index "aliases", ["domain_id"], :name => "index_aliases_on_domain_id"
@@ -78,7 +79,7 @@ ActiveRecord::Schema.define(:version => 20130801113355) do
   end
 
   add_index "relocations", ["mailbox_id"], :name => "index_relocations_on_mailbox_id", :unique => true
-  add_index "relocations", ["old_username", "old_domain", "mailbox_id"], :name => "index_relocations_on_complete_uniqueness", :unique => true
+  add_index "relocations", ["old_username", "old_domain", "mailbox_id"], :name => "index_relocations_on_old_username_and_old_domain_and_mailbox_id", :unique => true
   add_index "relocations", ["old_username", "old_domain"], :name => "index_relocations_on_old_username_and_old_domain", :unique => true
 
   create_table "versions", :force => true do |t|
