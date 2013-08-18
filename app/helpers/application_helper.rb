@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def active_navigation(controller)
     'active' if params[:controller] == controller
   end
@@ -18,4 +19,11 @@ module ApplicationHelper
       content_tag :i, nil, class: 'icon-plus'
     end
   end
+
+  def link_to_delete(path)
+    link_to path, method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger' do
+      content_tag :i, nil, class: 'icon-trash icon-white'
+    end
+  end
+
 end

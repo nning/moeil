@@ -1,8 +1,11 @@
 %h1= resource.email
-= link_to_back
+.btn-toolbar
+  .btn-group
+    = link_to_back
+    = link_to_delete [:admin, parent, resource]
 %hr
 
-= simple_form_for [:admin, resource.domain, resource] do |f|
+= simple_form_for [:admin, parent, resource] do |f|
   .row-fluid
     .span6
       .well
