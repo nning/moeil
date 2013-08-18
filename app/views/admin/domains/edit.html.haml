@@ -4,8 +4,10 @@
     = link_to_back
     = link_to admin_domain_mailboxes_path(resource), class: 'btn' do
       %i{class: 'icon-inbox'}
+      = resource.mailboxes.count
     = link_to admin_domain_aliases_path(resource), class: 'btn' do
       %i{class: 'icon-share-alt'}
+      = resource.aliases.count
     = link_to_delete [:admin, resource]
 %hr
 
