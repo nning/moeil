@@ -23,24 +23,17 @@ class Ability
       # Mailbox and Alias
       [Alias, Mailbox].each do |model|
         can :index, model do |subject|
+          subject.domain.permission? :editor, mailbox
+        end
+        can :new, model do |subject|
           mailbox.manager?
         end
-        can [:edit, :update], model do |subject|
-          subject.domain.permission? :editor, mailbox
+        can [:create, :edit, :update], model do |subject|
+          subject.domain.permission? :editor, mailbox unless subject.domain.nil?
         end
         can [:destroy, :permissions], model do |subject|
           subject.domain.permission? :owner, mailbox
         end
-      end
-
-      # Version
-      can :index, Version do |subject|
-        mailbox.manager?
-      end
-      can :manage, Version do |subject|
-        item = subject.item
-        item = item.domain unless item.is_a? Domain
-        item.permission? :owner, mailbox
       end
     end
   end

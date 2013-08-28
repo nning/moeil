@@ -25,6 +25,12 @@ class Admin::DomainsController < AdminController
   end
 =end
 
+  # TODO Does this work properly with inherited_resources?
+  #      View uses collection method.
+  def index
+    @domains = Domain.managable current_mailbox
+  end
+
   def update
     update! do |success, error|
       success.html { redirect_to edit_admin_domain_path(resource) }

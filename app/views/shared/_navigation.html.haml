@@ -17,8 +17,9 @@
             %li{class: 'divider-vertical'}
             %li{class: active_navigation('admin/domains')}
               = link_to 'Domains', admin_domains_path
-            %li{class: active_navigation('admin/versions')}
-              = link_to 'Changes', admin_versions_path
+            - if current_mailbox.admin?
+              %li{class: active_navigation('admin/versions')}
+                = link_to 'Changes', admin_versions_path
             %li{class: 'divider-vertical'}
             %li{class: active_navigation('admin/mailboxes')}
               = link_to new_admin_domain_mailbox_path(Domain.default) do

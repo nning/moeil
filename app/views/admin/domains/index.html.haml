@@ -4,7 +4,7 @@
 
 %p
   Got
-  = pluralize(collection.count, 'domain')
+  = pluralize collection.size, 'domain'
 
 %table.table.table-striped
   %thead

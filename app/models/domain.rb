@@ -23,4 +23,8 @@ class Domain < ActiveRecord::Base
     domain
   end
 
+  def self.managable(mailbox)
+    Domain.all.map { |d| d if d.permission? :editor, mailbox }.compact
+  end
+
 end

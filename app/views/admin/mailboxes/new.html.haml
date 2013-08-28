@@ -9,7 +9,7 @@
         %fieldset
           %legend Account Information
           = f.input :username
-          = f.association :domain
+          = f.association :domain, collection: @domains
           = f.input :name
 
       .well

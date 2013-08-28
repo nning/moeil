@@ -19,6 +19,7 @@ class Admin::MailboxesController < AdminController
   end
 
   def new
+    @domains = Domain.managable current_mailbox
     build_resource.domain_id = params[:domain_id]
   end
 
