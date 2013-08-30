@@ -2,6 +2,8 @@ class Admin::DomainsController < AdminController
 
   inherit_resources
 
+  actions :all, except: :show
+
   def create
     create! do |success, error|
       success.html { redirect_to admin_domains_path }

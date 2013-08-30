@@ -1,7 +1,17 @@
 Møil
 ====
 
-Administration user interface for database backed mail servers.
+Møil is an open source administration user interface for database backed mail
+servers (postfix/dovecot). It brings the handy possibility of managing the
+database with migrations and a lot of beautiful CRUD.
+
+The code is available from git://git.orgizm.net/moeil.git
+
+Installation
+------------
+
+Just deploy like any other current rails project. Configuration examples for
+postfix and dovecot are to be found in the doc directory of the code repository.
 
 License
 -------

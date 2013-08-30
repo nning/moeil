@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def after_sign_in_path_for(resource)
-    edit_mailbox_path
+    resource.admin ? admin_domains_path : edit_mailbox_path
   end
 
 protected

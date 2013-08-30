@@ -48,8 +48,13 @@
       = aliases.count
       aliases pointing to your E-Mail address:
 
-    %p
-      = aliases.map(&:email).join(', ')
+    - if current_mailbox.admin?
+      %p
+        - aliases.each do |a|
+          = link_to a.email, edit_admin_domain_alias_path(a.domain, a)
+    - else
+      %p
+        = aliases.map(&:email).join(', ')
 
 %h2 Unhappy?
 
