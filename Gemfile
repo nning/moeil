@@ -9,8 +9,8 @@ gem 'mysql'
 
 gem 'bootstrap-sass', '~> 2.3.2.1'       # CSS framework
 gem 'coffee-rails'                       # Less ugly JS
-gem 'devise'                             # Authentication
-gem 'devise-encryptable'
+gem 'devise', git: 'https://github.com/plataformatec/devise.git'
+gem 'devise-encryptable', git: 'https://github.com/plataformatec/devise-encryptable.git'
 gem 'foreigner'                          # Foreign key constraints
 gem 'haml'                               # More beautiful views
 gem 'highline'                           # Terminal input in cli scripts

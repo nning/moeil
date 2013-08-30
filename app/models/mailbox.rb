@@ -39,6 +39,17 @@ class Mailbox < ActiveRecord::Base
     [self.username, self.domain.name].join '@' rescue nil
   end
 
+  def email=(value)
+    self.username, domain_name = value.split('@')
+    domain = Domain.where(name: domain_name).first
+
+    if domain
+      self.domain = domain
+    else
+      raise ActiveRecord::RecordNotFound
+    end
+  end
+
   def password_salt
     salt = self.encrypted_password.split('$')[2] rescue nil
     return Password::Sha512Crypt.generate_salt if salt.blank?
