@@ -21,7 +21,7 @@ module ApplicationHelper
   end
 
   def link_to_delete(path)
-    link_to path, method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger' do
+    link_to path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
       content_tag :i, nil, class: 'icon-trash icon-white'
     end
   end
