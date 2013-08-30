@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/airblade/paper_trail.git
-  revision: c441a5de2d61042126bb042c3c18012fca3af32b
+  revision: 1baead241804bbe476a8fa89b24ab4bdcb6d0c95
   branch: rails4
   specs:
     paper_trail (2.7.2)
@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 87323fd625802f3aea7fd7d8a2fd64016b18cdaa
+  revision: dcf4862972792abafeefd73f6b1d385322a64115
   specs:
     simple_form (3.0.0.rc)
       actionpack (>= 4.0.0, < 4.1)
@@ -23,6 +23,27 @@ GIT
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+
+GIT
+  remote: git://github.com/thoughtbot/shoulda-context.git
+  revision: de61fd688b10eb0d2ff0339f3388e416b9e0b5af
+  specs:
+    shoulda-context (1.1.4)
+
+GIT
+  remote: git://github.com/thoughtbot/shoulda-matchers.git
+  revision: 3f7c440851fabb7d258b817b638fe4b8cd0ceed5
+  specs:
+    shoulda-matchers (2.2.0)
+      activesupport (>= 3.0.0)
+
+GIT
+  remote: git://github.com/thoughtbot/shoulda.git
+  revision: 203447e142d6eae00ad83f775b7691b189cce19c
+  specs:
+    shoulda (3.5.0)
+      shoulda-context (~> 1.0, >= 1.0.1)
+      shoulda-matchers (>= 1.4.1, < 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -57,7 +78,7 @@ GEM
     bootstrap-sass (2.3.2.1)
       sass (~> 3.2)
     builder (3.1.4)
-    capistrano (2.15.5)
+    capistrano (2.15.4)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
@@ -69,14 +90,14 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.3)
+    coffee-script-source (1.6.2)
     devise (3.0.0)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
-    devise-encryptable (0.1.2)
-      devise (>= 2.1.0)
+    devise-encryptable (0.1.1)
+      devise (>= 2.1.0.rc)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -98,9 +119,10 @@ GEM
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
       responders (~> 0.6)
-    jquery-rails (3.0.4)
+    jquery-rails (3.0.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    json (1.8.0)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -112,15 +134,15 @@ GEM
     minitest (4.7.5)
     multi_json (1.7.7)
     mysql (2.9.1)
-    net-scp (1.1.2)
+    net-scp (1.1.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.6.8)
+    net-ssh (2.6.7)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     orm_adapter (0.4.0)
-    pg (0.16.0)
+    pg (0.15.1)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -141,15 +163,14 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.1.0)
+    rdoc (3.12.2)
+      json (~> 1.4)
     ref (1.0.5)
     responders (0.6.5)
     sass (3.2.9)
-    shoulda (3.5.0)
-      shoulda-context (~> 1.0, >= 1.0.1)
-      shoulda-matchers (>= 1.4.1, < 3.0)
-    shoulda-context (1.1.4)
-    shoulda-matchers (2.2.0)
-      activesupport (>= 3.0.0)
+    sdoc (0.3.20)
+      json (>= 1.1.3)
+      rdoc (~> 3.10)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -170,8 +191,10 @@ GEM
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
+    turbolinks (1.2.0)
+      coffee-rails
     tzinfo (0.3.37)
-    uglifier (2.1.2)
+    uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.3)
@@ -201,9 +224,13 @@ DEPENDENCIES
   rails (~> 4.0.0)
   rails_config
   sass-rails!
-  shoulda
+  sdoc
+  shoulda!
+  shoulda-context!
+  shoulda-matchers!
   simple_form!
   sqlite3
   therubyracer
+  turbolinks
   uglifier (>= 1.0.3)
   yaml_db

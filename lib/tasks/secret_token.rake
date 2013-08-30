@@ -9,7 +9,8 @@ namespace :secret do
     path = File.join(Rails.root, 'config', 'initializers', 'secret_token.rb')
 
     File.open(path, 'w') do |f|
-      f.write "Moeil::Application.config.secret_token = '#{secret}'"
+      f.write "Moeil::Application.config.secret_token = '#{secret}'\n"
+      f.write "Moeil::Application.config.secret_key_base = Moeil::Application.config.secret_token\n"
     end
   end
 end

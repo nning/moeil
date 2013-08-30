@@ -5,15 +5,14 @@ class SessionsController < Devise::SessionsController
 private
 
   def prepare_params
-    pm = params[:mailbox]
+    params.require(:mailbox).permit(:domain_id, :email, :username, :password)
 
-    pm[:username], domain = pm[:email].split('@')
+    mp = params[:mailbox]
 
-    if domain.nil?
-      pm[:domain_id] = Domain.where(name: Settings.default_domain).first.try(:id)
-    else
-      pm[:domain_id] = Domain.where(name: domain).first.try(:id)
-    end
+    mp[:username], domain = mp.delete(:email).split('@')
+
+    domain ||= Settings.default_domain
+    mp[:domain_id] = Domain.where(name: domain).first.try(:id)
   end
 
 end
