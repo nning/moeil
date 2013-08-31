@@ -11,12 +11,11 @@ class Admin::AliasesControllerTest < ActionController::TestCase
 
       context 'on GET to index' do
         setup do
-          get :index
+          get :index, domain_id: @mailbox.domain.id
         end
 
         should respond_with :success
         should render_template 'admin/aliases/index'
-        should render_template 'admin/aliases/_alias'
       end
 
       # TODO Write more tests.
