@@ -51,8 +51,8 @@ class Mailbox < ActiveRecord::Base
   end
 
   def password_salt
-    salt = self.encrypted_password.split('$')[2] rescue nil
-    return Password::Sha512Crypt.generate_salt if salt.blank?
+    salt   = self.encrypted_password.split('$')[2] rescue nil
+    salt ||= Password::Sha512Crypt.generate_salt
     salt
   end
 
@@ -61,6 +61,10 @@ class Mailbox < ActiveRecord::Base
 
   def password_scheme
     { 1 => :md5_crypt, 6 => :sha512_crypt }[encrypted_password.split('$')[1].to_i]
+  end
+
+  def self.lookup(username, domain_id)
+    where(username: username, domain_id: domain_id).first
   end
 
 private
