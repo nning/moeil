@@ -24,24 +24,6 @@ GIT
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
 
-GIT
-  remote: https://github.com/plataformatec/devise-encryptable.git
-  revision: 4997273e8f9671c05ad621e9adc53393247f49c8
-  specs:
-    devise-encryptable (0.1.2)
-      devise (>= 2.1.0)
-
-GIT
-  remote: https://github.com/plataformatec/devise.git
-  revision: f6a74e90e5e05f6f4eb42144e37de84dd05cba7e
-  specs:
-    devise (3.1.0.rc2)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -88,6 +70,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    devise (3.1.0.rc2)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+    devise-encryptable (0.1.2)
+      devise (>= 2.1.0)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.1)
@@ -122,7 +112,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.24)
+    mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.7.9)
     mysql (2.9.1)
@@ -218,8 +208,8 @@ DEPENDENCIES
   bootstrap-sass (~> 2.3.2.1)
   capistrano
   coffee-rails
-  devise!
-  devise-encryptable!
+  devise (~> 3.1.0.rc2)
+  devise-encryptable
   factory_girl_rails
   faker
   foreigner

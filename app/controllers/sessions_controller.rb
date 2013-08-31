@@ -2,10 +2,6 @@ class SessionsController < Devise::SessionsController
 
   before_filter :prepare_params, only: :create
 
-  def new
-    @mailbox = Mailbox.new
-  end
-
 private
 
   def prepare_params
@@ -18,7 +14,8 @@ private
   end
 
   def sign_in_params
-    params.require(:mailbox).permit(:domain_id, :email, :username, :password)
+    devise_parameter_sanitizer.for(:sign_in) << :email
+    super
   end
 
 end
