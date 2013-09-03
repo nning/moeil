@@ -1,0 +1,2 @@
+* Alias without username works as domain catch-all; Møil does not allow a blank
+  username. Maybe there is an elegant solution for this.
