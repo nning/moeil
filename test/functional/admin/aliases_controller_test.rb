@@ -6,19 +6,77 @@ class Admin::AliasesControllerTest < ActionController::TestCase
     context 'as admin' do
       setup do
         @mailbox = FactoryGirl.create :mailbox, admin: true
+        @domain_id = @mailbox.domain_id
         sign_in @mailbox
       end
 
       context 'on GET to index' do
         setup do
-          get :index, domain_id: @mailbox.domain.id
+          get :index, domain_id: @domain_id
         end
 
         should respond_with :success
-        should render_template 'admin/aliases/index'
+        should render_template :index
       end
 
-      # TODO Write more tests.
+      context 'on POST' do
+        context 'to create' do
+          setup do
+            @alias = FactoryGirl.build :alias, domain_id: @domain_id
+            post :create,
+              domain_id: @domain_id,
+              alias: {
+                username: @alias.username,
+                domain_id: @domain_id,
+                goto: @alias.goto
+              }
+          end
+
+          should 'create a record' do
+            assert Alias.where(username: @alias.username, domain_id: @domain_id).first
+          end
+
+          should respond_with :redirect
+          should set_the_flash.to /created/i
+        end
+
+        context 'to update' do
+          setup do
+            @alias = FactoryGirl.create :alias
+            @old_username = @alias.username
+            @domain_id = @alias.domain_id
+
+            post :update,
+              id: @alias.id,
+              domain_id: @domain_id,
+              alias: {
+                username: 'new-username'
+              }
+          end
+
+          should 'change the record' do
+            assert Alias.where(username: 'new-username', domain_id: @domain_id).first
+            assert !Alias.where(username: @alias.username, domain_id: @domain_id).first
+          end
+
+          should respond_with :redirect
+          should set_the_flash.to /successfully updated/i
+        end
+      end
+
+      context 'on DELETE to destroy' do
+        setup do
+          @alias = FactoryGirl.create :alias
+          delete :destroy, id: @alias.id, domain_id: @alias.domain_id
+        end
+
+        should 'delete the record' do
+          assert !Alias.where(username: @alias.username, domain_id: @alias.domain_id).first
+        end
+
+        should respond_with :redirect
+        should set_the_flash.to /successfully destroyed/i
+      end
     end
   end
 
