@@ -4,40 +4,24 @@ class Admin::AliasesAndMailboxesController < AdminController
 
   actions :all, except: :show
 
+  belongs_to :domain
+
   def create
     create! do |success, error|
-      success.html { redirect_to redirect_path }
+      success.html { redirect_to collection_url }
     end
   end
 
   def destroy
     destroy! do |success, error|
-      success.html { redirect_to redirect_path }
+      success.html { redirect_to collection_url }
     end
-  end
-
-  def new
-    build_resource.domain_id = params[:domain_id]
   end
 
   def update
     update! do |success, error|
-      success.html { redirect_to redirect_path }
+      success.html { redirect_to collection_url }
     end
-  end
-
-protected
-
-  def collection
-    @aliases ||= end_of_association_chain.where(domain_id: params[:domain_id])
-  end
-
-  def model
-    resource.class.to_s.downcase.pluralize
-  end
-
-  def redirect_path
-    eval "admin_domain_#{model}_path(resource.domain)"
   end
 
 end
