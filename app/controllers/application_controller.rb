@@ -5,11 +5,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def after_sign_in_path_for(resource)
-    resource.admin ? admin_domains_path : edit_mailbox_path
+    resource.manager? ? admin_domains_path : edit_mailbox_path
   end
 
   def current_ability
     @current_ability ||= Ability.new current_mailbox
+  end
+
+  def render_404
+    render file: "#{Rails.root}/public/404", layout: false, status: :not_found
   end
 
 protected

@@ -1,0 +1,6 @@
+#development_login
+  .well
+    = form_for :development_login, url: development_login_path do |f|
+      .form-inline
+        = collection_select :development_login, :mailbox_id, Mailbox.all, :id, :email
+        = submit_tag 'Login', class: 'btn'

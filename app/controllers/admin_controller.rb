@@ -7,9 +7,7 @@ class AdminController < ApplicationController
 private
 
   def access?
-    if current_mailbox.nil? || !current_mailbox.manager?
-      render file: "#{Rails.root}/public/404", layout: false, status: :not_found and return
-    end
+    render_404 and return if current_mailbox.nil? || !current_mailbox.manager?
   end
 
 end

@@ -3,8 +3,8 @@
 %head
   %title= content_for?(:title) ? yield(:title) : 'Møil'
   
-  %meta{ charset: 'utf-8' }
-  %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+  %meta{charset: 'utf-8'}
+  %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
 
   = stylesheet_link_tag 'application'
   = csrf_meta_tag
@@ -12,6 +12,9 @@
   %link{rel: 'shortcut icon', href: '/images/favicon.png'}
 
 %body
+  - if Rails.env.development?
+    = render partial: 'shared/development_login'
+
   = render partial: 'shared/navigation'
 
   .container-fluid
