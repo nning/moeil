@@ -1,5 +1,6 @@
 %h1 Domains
-= link_to_create new_admin_domain_path
+- if can? :create, Domain
+  = link_to_create new_admin_domain_path
 %hr
 
 %p

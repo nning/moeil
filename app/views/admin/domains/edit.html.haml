@@ -8,7 +8,8 @@
     = link_to admin_domain_aliases_path(resource), class: 'btn' do
       %i{class: 'icon-share-alt'}
       = resource.aliases.count
-    = link_to_delete [:admin, resource]
+    - if can? :destroy, resource
+      = link_to_delete [:admin, resource]
 %hr
 
 = simple_form_for [:admin, resource] do |f|

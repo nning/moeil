@@ -10,8 +10,8 @@ class Ability
       can :manage, :all
     elsif mailbox.id
       # Domain
-      can :index, Domain do |subject|
-        mailbox.manager?
+      can :read, Domain do |subject|
+        subject.permission? :editor, mailbox
       end
       can [:edit, :update], Domain do |subject|
         subject.permission? :editor, mailbox
@@ -22,14 +22,9 @@ class Ability
 
       # Mailbox and Alias
       [Alias, Mailbox].each do |model|
-        can :index, model do |subject|
-          subject.domain.permission? :editor, mailbox
-        end
-        can :new, model do |subject|
-          mailbox.manager?
-        end
+        can :index, model
         can [:create, :edit, :update], model do |subject|
-          subject.domain.permission? :editor, mailbox unless subject.domain.nil?
+          subject.domain.permission? :editor, mailbox #unless subject.domain.nil?
         end
         can [:destroy, :permissions], model do |subject|
           subject.domain.permission? :owner, mailbox

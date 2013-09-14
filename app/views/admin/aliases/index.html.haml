@@ -22,5 +22,6 @@
         %td= address_list(a.goto)
         %td= :no unless a.active
         %td
-          = link_to admin_domain_alias_path(a.domain, a), method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger' do
-            = content_tag :i, nil, class: 'icon-trash icon-white'
+          - if can? :destroy, a
+            = link_to admin_domain_alias_path(a.domain, a), method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger' do
+              = content_tag :i, nil, class: 'icon-trash icon-white'

@@ -1,14 +1,20 @@
 #development_login {
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	right: 0;
 	padding: 1em;
 
+	opacity: 0.3;
+
 	form {
-		margin:0;padding:0;
+		margin: 0;
 	}
 
 	.well {
 		margin: 0;
 	}
+}
+
+#development_login:hover {
+	opacity: 1;
 }

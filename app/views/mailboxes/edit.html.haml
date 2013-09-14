@@ -31,6 +31,20 @@
           - else
             = f.input :quota, hint: 'in Bytes', disabled: true
 
+    - if resource.admin? or resource.permissions.any?
+      .span6.permission-list
+        .well
+          %fieldset
+            %legend Roles and Permissions
+          %ul
+            - if resource.admin?
+              %li Admin
+            - resource.permissions.each do |permission|
+              %li
+                = permission.role.capitalize
+                of
+                = link_to permission.item.name, edit_admin_domain_path(permission.item.id)
+
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
       %i{class: 'icon-ok icon-white'}
