@@ -21,7 +21,7 @@ class Domain < ActiveRecord::Base
   end
 
   def catch_all_address=(goto)
-    return aliases.where(username: nil).first.destroy if goto.blank?
+    return aliases.where(username: nil).first.try(:destroy) if goto.blank?
 
     a = aliases.where(username: nil).first || aliases.build
     a.goto = goto
