@@ -23,7 +23,6 @@
           = f.input :backupmx, label: 'Backup MX'
           = f.input :active
 
-    .span6
       .well
         %fieldset
           %legend Counts
@@ -42,5 +41,10 @@
           %legend Timestamps
           = f.input :created_at, as: :string, disabled: true, hint: time_ago_in_words(resource.created_at)
           = f.input :updated_at, as: :string, disabled: true, hint: time_ago_in_words(resource.updated_at)
+
+      .well
+        %fieldset
+          %legend Catch-All Alias
+          = f.input :catch_all_address, label: 'Address'
 
   = render partial: 'shared/form_actions_update'

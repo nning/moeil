@@ -3,14 +3,28 @@ class Domain < ActiveRecord::Base
   has_many :aliases, dependent: :destroy
   has_many :mailboxes, dependent: :destroy
 
-  attr_accessible :active, :backupmx, :description, :name
+  attr_accessible :active, :backupmx, :catch_all_address, :description, :name
 
   default_scope order('name asc')
 
   validates :name,
-    format: { with: /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix }
+    format: { with: /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix },
+    presence: true
 
   has_paper_trail
+
+  before_save :downcase_name
+
+
+  def catch_all_address
+    aliases.where(username: nil).first.try :goto
+  end
+
+  def catch_all_address=(goto)
+    a = aliases.where(username: nil).first || aliases.build
+    a.goto = goto
+    a.save! validate: false
+  end
 
 
   def self.default
@@ -18,6 +32,12 @@ class Domain < ActiveRecord::Base
     domain = Domain.first if domain.nil?
 
     domain
+  end
+
+  private
+
+  def downcase_name
+    name.downcase!
   end
 
 end

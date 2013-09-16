@@ -2,7 +2,7 @@
 .btn-toolbar
   .btn-group
     = link_to_back
-    = link_to_create new_admin_domain_alias_path(parent)
+    = link_to_create [:new, :admin, parent, :alias]
 %hr
 
 %p
@@ -18,9 +18,9 @@
   %tbody
     - collection.each do |a|
       %tr
-        %td= link_to a.email, edit_admin_domain_alias_path(a.domain, a)
+        %td= link_to a.email, [:edit, :admin, a.domain, a]
         %td= address_list(a.goto)
         %td= :no unless a.active
         %td
-          = link_to admin_domain_alias_path(a.domain, a), method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger' do
+          = link_to [:admin, a.domain, a], method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger' do
             = content_tag :i, nil, class: 'icon-trash icon-white'
