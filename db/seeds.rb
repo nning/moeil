@@ -11,6 +11,10 @@ bob   = d.mailboxes.create username: 'bob',   password: p
 carol = d.mailboxes.create username: 'carol', password: p
 dan   = d.mailboxes.create username: 'dan',   password: p
 
+a = d.aliases.build
+a.goto = alice.email
+a.save! validate: false
+
 puts <<O
 Created mailboxes
   alice@example.org with admin rights,
