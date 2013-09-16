@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130803153840) do
+ActiveRecord::Schema.define(:version => 20130916220251) do
 
   create_table "aliases", :force => true do |t|
-    t.string   "username",                      :null => false
+    t.string   "username"
     t.integer  "domain_id",                     :null => false
     t.text     "goto",                          :null => false
     t.boolean  "active",      :default => true

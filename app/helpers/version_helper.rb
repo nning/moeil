@@ -50,9 +50,13 @@ private
     end
 
     hash     = YAML.load(version.object_changes)
-    username = hash['username'].last 
-    domain   = Domain.find(hash['domain_id'].last).name
 
+    username = hash['username'].try(:last)
+
+    domain   = hash['domain_id'].try(:last)
+    domain   = domain.nil? ? 'unknown' : Domain.find(domain).name
+
+    return "Cath-All alias for #{domain}" if username.nil?
     return [username, domain].join('@')
   end
 
@@ -62,7 +66,11 @@ private
         text = object.name
         url = edit_admin_domain_path(object.id)
       when 'Alias'
-        text = object.email
+        text = if object.username
+          object.email
+        else
+          "Catch-All alias for #{object.domain.name}"
+        end
         url = edit_admin_domain_alias_path(object.domain.id, object.id)
       when 'Mailbox'
         text = object.email
