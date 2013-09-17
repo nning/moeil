@@ -13,16 +13,6 @@
           = f.association :domain, disabled: true, required: false
           = f.input :name
 
-    .span6
-      .well
-        %fieldset
-          %legend Change Password
-          = f.input :current_password, hint: 'Your current password.'
-          = f.input :password, hint: 'Leave blank, if you do not want to change it.'
-          = f.input :password_confirmation, label: false
-
-  .row-fluid
-    .span6
       .well
         %fieldset
           %legend Quota
@@ -31,19 +21,15 @@
           - else
             = f.input :quota, hint: 'in Bytes', disabled: true
 
-    - if resource.admin? or resource.permissions.any?
-      .span6.permission-list
-        .well
-          %fieldset
-            %legend Roles and Permissions
-          %ul
-            - if resource.admin?
-              %li Admin
-            - resource.permissions.each do |permission|
-              %li
-                = permission.role.capitalize
-                of
-                = link_to permission.item.name, edit_admin_domain_path(permission.item.id)
+    .span6
+      .well
+        %fieldset
+          %legend Change Password
+          = f.input :current_password, hint: 'Your current password.'
+          = f.input :password, hint: 'Leave blank, if you do not want to change it.'
+          = f.input :password_confirmation, label: false
+
+      = render partial: 'shared/mailbox_permissions'
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
