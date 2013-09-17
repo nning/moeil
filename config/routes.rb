@@ -8,6 +8,7 @@ Moeil::Application.routes.draw do
     resources :domains, except: :show do
       resources :aliases, except: :show
       resources :mailboxes, except: :show
+      resources :permissions, except: :show
     end
     resources :versions, only: :index
     post 'versions/:id/revert' => 'versions#revert', as: 'revert_version'

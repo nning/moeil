@@ -1,9 +1,9 @@
 %tr
-  %td= link_to domain.name, edit_admin_domain_path(domain)
-  %td= link_to domain.mailboxes.count, admin_domain_mailboxes_path(domain)
-  %td= link_to domain.aliases.count, admin_domain_aliases_path(domain)
+  %td= link_to_domain domain
+  %td= link_to domain.mailboxes.count, [:admin, domain, :mailboxes]
+  %td= link_to domain.aliases.count, [:admin, domain, :aliases]
   %td= link_to_alias_or_mailbox domain.catch_all_address
   %td
     - if can? :destroy, domain
-      = link_to admin_domain_path(domain), method: :delete, confirm: 'Are you really sure? This will delete all mailboxes and aliases of this domain, too.', class: 'btn btn-mini btn-danger' do
+      = link_to [:admin, domain], method: :delete, confirm: 'Are you really sure? This will delete all mailboxes and aliases of this domain, too.', class: 'btn btn-mini btn-danger' do
         = content_tag :i, nil, class: 'icon-trash icon-white'

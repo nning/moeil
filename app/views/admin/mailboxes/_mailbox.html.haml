@@ -1,9 +1,9 @@
 %tr
-  %td= link_to mailbox.email, edit_admin_domain_mailbox_path(mailbox.domain, mailbox)
+  %td= link_to mailbox.email, [:edit, :admin, mailbox.domain, mailbox]
   %td= :yes if mailbox.password_scheme == :sha512_crypt
   %td= :yes if mailbox.admin
   %td= :no unless mailbox.active
   %td
     - if can? :destroy, mailbox
-      = link_to admin_domain_mailbox_path(mailbox.domain, mailbox), method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger' do
+      = link_to [:admin, mailbox.domain, mailbox], method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger' do
         = content_tag :i, nil, class: 'icon-trash icon-white'

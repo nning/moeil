@@ -2,12 +2,15 @@
 .btn-toolbar
   .btn-group
     = link_to_back
-    = link_to admin_domain_mailboxes_path(resource), class: 'btn' do
+    = link_to [:admin, resource, :mailboxes], class: 'btn' do
       %i{class: 'icon-inbox'}
       = resource.mailboxes.count
-    = link_to admin_domain_aliases_path(resource), class: 'btn' do
+    = link_to [:admin, resource, :aliases], class: 'btn' do
       %i{class: 'icon-share-alt'}
       = resource.aliases.count
+    = link_to [:admin, resource, :permissions], class: 'btn' do
+      %i{class: 'icon-certificate'}
+      = resource.permissions.count
     - if can? :destroy, resource
       = link_to_delete [:admin, resource]
 %hr

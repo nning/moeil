@@ -19,14 +19,18 @@ class Domain < ActiveRecord::Base
   before_save :downcase_name
 
 
+  def catch_all_alias
+    aliases.where(username: nil).first
+  end
+
   def catch_all_address
-    aliases.where(username: nil).first.try :goto
+    catch_all_alias.try :goto
   end
 
   def catch_all_address=(goto)
-    return aliases.where(username: nil).first.try(:destroy) if goto.blank?
+    return catch_all_alias.try(:destroy) if goto.blank?
 
-    a = aliases.where(username: nil).first || aliases.build
+    a = catch_all_alias || aliases.build
     a.goto = goto
     a.save! validate: false
   end

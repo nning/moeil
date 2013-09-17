@@ -1,0 +1,20 @@
+%h2
+  Permissions for
+  = parent.name
+.btn-toolbar
+  .btn-group
+    = link_to_back
+    = link_to_create [:new, :admin, parent, :permission]
+%hr
+
+%p
+  Got
+  = pluralize(collection.count, 'permission')
+
+%table.table.table-striped
+  %thead
+    %th Mailbox
+    %th Role
+    %th
+  %tbody
+    = render collection

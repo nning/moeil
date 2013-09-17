@@ -30,6 +30,9 @@ class Ability
           subject.domain.permission? :owner, mailbox
         end
       end
+
+      # Permission
+      can :index, Permission
     end
   end
 end
