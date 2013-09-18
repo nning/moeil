@@ -27,7 +27,7 @@ class Ability
 
       # Permission
       can :index, Permission
-      can [:create, :destroy, :update], Permission do |subject|
+      can :manage, Permission do |subject|
         subject.item.permission? :owner, mailbox
       end
     end
