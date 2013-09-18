@@ -4,6 +4,8 @@ class Permission < ActiveRecord::Base
   
   # Thrown if the last admin/owner tries to remove itself.
   class PowerVaccuumError < Exception; end
+
+  has_paper_trail
   
   attr_accessible :subject, :subject_id, :subject_type, :role
   
@@ -29,10 +31,4 @@ class Permission < ActiveRecord::Base
   scope :owner, role(:owner)
   scope :editor, role(:editor)
 
-
-  def subject=(id)
-    subject_id   = id
-    subject_type = 'Mailbox'
-  end
-  
 end

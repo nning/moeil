@@ -4,8 +4,9 @@
   %td
     .btn-toolbar
       .btn-group
-        = link_to [:edit, :admin, permission.item, permission], class: 'btn btn-mini' do
-          = content_tag :i, nil, class: 'icon-edit'
+        - if can? :update, permission
+          = link_to [:edit, :admin, permission.item, permission], class: 'btn btn-mini' do
+            = content_tag :i, nil, class: 'icon-edit'
         - if can? :destroy, permission
           = link_to [:admin, permission.item, permission], method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger' do
             = content_tag :i, nil, class: 'icon-trash icon-white'

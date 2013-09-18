@@ -42,6 +42,10 @@ class Mailbox < ActiveRecord::Base
     [self.username, self.domain.name].join '@' rescue nil
   end
 
+  def mailboxes_for_select
+    permissions.map(&:item).map(&:mailboxes_for_select).flatten(1)
+  end
+
   def manager?
     permissions.any? || admin?
   end
@@ -63,7 +67,8 @@ class Mailbox < ActiveRecord::Base
     Permission.subject self
   end
 
-private
+
+  private
 
   def create_relocation
     if persisted? and (username_changed? or domain_id_changed?)

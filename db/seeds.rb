@@ -11,9 +11,8 @@ bob   = d.mailboxes.create username: 'bob',   password: p
 carol = d.mailboxes.create username: 'carol', password: p
 dan   = d.mailboxes.create username: 'dan',   password: p
 
-a = d.aliases.build
-a.goto = alice.email
-a.save! validate: false
+d.catch_all_address = alice.email
+d.save!
 
 puts <<O
 Created mailboxes

@@ -10,6 +10,9 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
+# Ignore database dump
+/db/data.yml
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp

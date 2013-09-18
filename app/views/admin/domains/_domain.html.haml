@@ -2,6 +2,7 @@
   %td= link_to_domain domain
   %td= link_to domain.mailboxes.count, [:admin, domain, :mailboxes]
   %td= link_to domain.aliases.count, [:admin, domain, :aliases]
+  %td= link_to domain.permissions.count, [:admin, domain, :permissions]
   %td= link_to_alias_or_mailbox domain.catch_all_address
   %td
     - if can? :destroy, domain
