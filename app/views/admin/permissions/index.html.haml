@@ -4,7 +4,7 @@
 .btn-toolbar
   .btn-group
     = link_to_back
-    - if can? :create, Permission
+    - if can? :create, :permission
       = link_to_create [:new, :admin, parent, :permission]
 %hr
 
