@@ -1,9 +1,4 @@
-* Alias without username works as domain catch-all; Møil does not allow a blank
-  username. Maybe there is an elegant solution for this.
-
 * Make encrypted_password on mailboxes editable by admins?
-
-* Maybe logging of Logins to IMAP and/or to Møil would be a handy feature.
 
 * Delete domain, revert change and delete again results in 500 on versions
   index.
@@ -23,7 +18,6 @@
     app/views/admin/versions/index.html.haml:13:in `_app_views_admin_versions_index_html_haml__1447019459763249947_34958420'
 
 * Display of created objects in versions index.
-  permissions).
 
 * Creating mailboxes without password does not result in an error message being
   shown. At least an admin user could create a mailbox specifying a wrong
