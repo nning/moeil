@@ -35,6 +35,10 @@ class Domain < ActiveRecord::Base
     a.save! validate: false
   end
 
+  def mailboxes_for_select
+    mailboxes.map { |m| [m.email, m.id] }
+  end
+
 
   def self.default
     domain = where(name: Settings.default_domain).limit(1).first

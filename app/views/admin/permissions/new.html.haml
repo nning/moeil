@@ -1,0 +1,22 @@
+%h1 Create Permission
+= link_to_back
+%hr
+
+= simple_form_for [:admin, resource.item, resource] do |f|
+  .row-fluid
+    .span6
+      .well
+        %fieldset
+          %legend Permission
+          = f.input :subject, collection: resource.item.mailboxes_for_select, label: 'Mailbox', required: true
+          = f.input :role, collection: [:owner, :editor], required: true
+
+  .row-fluid
+    .span6
+      .form-actions
+        %button{type: 'submit', class: 'btn btn-primary'}
+          %i{class: 'icon-ok icon-white'}
+          Create Permission
+        %button{type: 'reset', class: 'btn btn-danger'}
+          %i{class: 'icon-remove icon-white'}
+          Reset Form

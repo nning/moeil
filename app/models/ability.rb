@@ -33,6 +33,9 @@ class Ability
 
       # Permission
       can :index, Permission
+      can :create, Permission do |subject|
+        subject.item.permission? :owner, mailbox
+      end
     end
   end
 end

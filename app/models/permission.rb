@@ -11,7 +11,7 @@ class Permission < ActiveRecord::Base
   belongs_to :item,    polymorphic: true
   belongs_to :creator, class_name: 'Mailbox'
   
-  validates_inclusion_of :role, in: ROLES
+  validates :role, inclusion: { in: ROLES }
 
   scope :item, ->(item) {
     where \
@@ -28,5 +28,11 @@ class Permission < ActiveRecord::Base
   scope :role, ->(role) { where role: role }
   scope :owner, role(:owner)
   scope :editor, role(:editor)
+
+
+  def subject=(id)
+    subject_id   = id
+    subject_type = 'Mailbox'
+  end
   
 end
