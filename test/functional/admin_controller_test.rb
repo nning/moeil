@@ -23,26 +23,26 @@ class AdminControllerTest < ActionController::TestCase
 
     context 'not as admin' do
       setup do
-        @mailbox = FactoryGirl.create :mailbox, admin: false
+        @mailbox = FactoryGirl.create :mailbox
         sign_in @mailbox
       end
 
       context 'on GET to test' do
-        should 'deny access' do
-          assert_raise CanCan::AccessDenied do
-            get :test
-          end
+        setup do
+          get :test
         end
+
+        should respond_with :not_found
       end
     end
 
     context 'without session' do
       context 'on GET to test' do
-        should 'deny access' do
-          assert_raise CanCan::AccessDenied do
-            get :test
-          end
+        setup do
+          get :test
         end
+
+        should respond_with :not_found
       end
     end
   end

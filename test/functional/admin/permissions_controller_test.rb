@@ -217,19 +217,16 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
         context 'create' do
           setup do
             @permission = FactoryGirl.build :permission, item: @mailbox.domain
+            post :create,
+              domain_id: @domain_id,
+              permission: {
+                subject_id:   @permission.subject.id,
+                subject_type: @permission.subject.class,
+                role:         @permission.role
+              }
           end
 
-          should 'raise AccessDenied exception' do
-            assert_raise CanCan::AccessDenied do
-              post :create,
-                domain_id: @domain_id,
-                permission: {
-                  subject_id:   @permission.subject.id,
-                  subject_type: @permission.subject.class,
-                  role:         @permission.role
-                }
-            end
-          end
+          should respond_with :not_found
 
           should 'not create a record' do
             assert !Permission
@@ -243,18 +240,15 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
         context 'update' do
           setup do
             @permission = FactoryGirl.create :permission, item: @mailbox.domain
+            post :update,
+              id: @permission.id,
+              domain_id: @domain_id,
+              permission: {
+                role: 'editor'
+              }
           end
 
-          should 'raise AccessDenied exception' do
-            assert_raise CanCan::AccessDenied do
-              post :update,
-                id: @permission.id,
-                domain_id: @domain_id,
-                permission: {
-                  role: 'editor'
-                }
-            end
-          end
+          should respond_with :not_found
 
           should 'not change the record' do
             assert Permission
@@ -274,15 +268,12 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
       context 'on DELETE to destroy' do
         setup do
           @permission = FactoryGirl.create :permission, item: @mailbox.domain
+          delete :destroy, 
+            domain_id: @mailbox.domain_id,
+            id: @permission.id
         end
 
-        should 'raise AccessDenied exception' do
-          assert_raise CanCan::AccessDenied do
-            delete :destroy, 
-              domain_id: @mailbox.domain_id,
-              id: @permission.id
-          end
-        end
+        should respond_with :not_found
 
         should 'not delete the record' do
           assert Permission
