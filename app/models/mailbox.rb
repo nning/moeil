@@ -67,6 +67,10 @@ class Mailbox < ActiveRecord::Base
     Permission.subject self
   end
 
+  def to_s
+    email
+  end
+
 
   private
 

@@ -31,4 +31,8 @@ class Permission < ActiveRecord::Base
   scope :owner, role(:owner)
   scope :editor, role(:editor)
 
+  def to_s
+    "#{subject.email} is #{role} on #{item.name}"
+  end
+
 end

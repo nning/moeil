@@ -22,7 +22,7 @@
     app/views/admin/versions/_version.html.haml:4:in `_app_views_admin_versions__version_html_haml__1414858255934159415_16525540'
     app/views/admin/versions/index.html.haml:13:in `_app_views_admin_versions_index_html_haml__1447019459763249947_34958420'
 
-* Better display of items in versions index (especially deleted domains and
+* Display of created objects in versions index.
   permissions).
 
 * Creating mailboxes without password does not result in an error message being

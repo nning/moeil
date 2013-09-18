@@ -39,6 +39,10 @@ class Domain < ActiveRecord::Base
     mailboxes.map { |m| [m.email, m.id] }
   end
 
+  def to_s
+    name
+  end
+
 
   def self.default
     domain = where(name: Settings.default_domain).limit(1).first
@@ -50,6 +54,7 @@ class Domain < ActiveRecord::Base
   def self.managable(mailbox)
     Domain.all.map { |d| d if d.permission? :editor, mailbox }.compact
   end
+
 
   private
 
