@@ -23,7 +23,7 @@ module VersionHelper
     html << if object.persisted?
       link_to object.to_s, url_for_object(object)
     else
-      object.to_s if object
+      object.to_s
     end
     html.html_safe
   end
