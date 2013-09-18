@@ -12,7 +12,7 @@ before_install:
   - gem install bundler
 
 before_script:
-  - ln -s config/database.yml.example config/database.yml
+  - ln -s database.yml.example config/database.yml
   - bundle exec rake db:migrate
   - bundle exec secret:replace
 
