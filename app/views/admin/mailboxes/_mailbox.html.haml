@@ -1,6 +1,5 @@
 %tr
   %td= link_to mailbox.email, [:edit, :admin, mailbox.domain, mailbox]
-  %td= :yes if mailbox.password_scheme == :sha512_crypt
   %td= :yes if mailbox.admin
   %td= :no unless mailbox.active
   %td

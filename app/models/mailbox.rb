@@ -60,10 +60,6 @@ class Mailbox < ActiveRecord::Base
   def password_salt=(value)
   end
 
-  def password_scheme
-    { 1 => :md5_crypt, 6 => :sha512_crypt }[encrypted_password.split('$')[1].to_i]
-  end
-
   def permissions
     Permission.subject self
   end

@@ -20,10 +20,6 @@
       .well
         %fieldset
           %legend Change Password
-          .control-group
-            = label_tag :password_scheme, 'Password scheme', class: 'control-label'
-            .controls
-              = text_field_tag :password_scheme, resource.password_scheme, disabled: true
           = f.input :password, hint: 'Leave blank, if you do not want to change it.'
           = f.input :password_confirmation, label: false
 
@@ -32,7 +28,7 @@
     .span6
       .well
         %fieldset
-          %legend Admin Options
+          %legend Miscellaneous
           = f.input :active
           = f.input :admin
           = f.input :quota, hint: 'in Bytes'

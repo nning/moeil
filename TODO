@@ -37,3 +37,5 @@
     app/helpers/version_helper.rb:27:in `link_to_object'
     app/views/admin/versions/_version.html.haml:4:in `_app_views_admin_versions__version_html_haml___4089833317253556138_35865860'
     app/views/admin/versions/index.html.haml:13:in `_app_views_admin_versions_index_html_haml___1619396568015451788_36644140'
+
+* If a mailbox is deleted, it's permissions have to also be.
