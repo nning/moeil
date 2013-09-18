@@ -19,7 +19,6 @@ Moeil::Application.routes.draw do
   post 'development_login' => 'development_login#edit'
 
   resource :mailbox, only: [:edit, :update]
-  resource :password, only: [:show, :update]
 
   devise_scope :mailbox do
     root to: 'sessions#new'

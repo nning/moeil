@@ -10,9 +10,6 @@
 
       .nav-collapse.collapse
         %ul.nav
-          %li{class: active_navigation('passwords')}
-            = link_to 'Generate password hash', password_path
-
           - if current_mailbox.try(:manager?)
             %li{class: 'divider-vertical'}
             %li{class: active_navigation('admin/domains')}
