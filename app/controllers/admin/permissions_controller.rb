@@ -17,6 +17,8 @@ class Admin::PermissionsController < AdminController
     respond_to do |format|
       format.html { redirect_to [:admin, parent, :permissions], flash: { notice: 'Permission successfully created.' } }
     end
+  rescue
+    redirect_to [:new, :admin, parent, :permission], flash: { error: 'Permission already existing.' }
   end
 
 end

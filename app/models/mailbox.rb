@@ -43,7 +43,8 @@ class Mailbox < ActiveRecord::Base
   end
 
   def mailboxes_for_select
-    permissions.map(&:item).map(&:mailboxes_for_select).flatten(1)
+    domains = admin? ? Domain.all : permissions.map(&:item)
+    domains.map(&:mailboxes_for_select).flatten(1)
   end
 
   def manager?

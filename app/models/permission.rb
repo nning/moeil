@@ -13,7 +13,10 @@ class Permission < ActiveRecord::Base
   belongs_to :item,    polymorphic: true
   belongs_to :creator, class_name: 'Mailbox'
   
-  validates :role, inclusion: { in: ROLES }
+  validates :role, inclusion: { in: ROLES }, presence: true
+  validates :subject_id,
+    uniqueness: { scope: [:subject_id, :subject_type] },
+    presence: true
 
   scope :item, ->(item) {
     where \
