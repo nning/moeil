@@ -1,41 +1,7 @@
-* Make encrypted_password on mailboxes editable by admins?
-
-* Delete domain, revert change and delete again results in 500 on versions
-  index.
-
-  ActionView::Template::Error (undefined method `last' for nil:NilClass):
-      1: %tr
-      2:   %td= version.event
-      3:   %td= version.item_type
-      4:   %td= link_to_object version
-      5:   %td= link_to_user version.whodunnit
-      6:   %td= time_ago_in_words version.created_at
-      7:   %td
-    app/helpers/version_helper.rb:53:in `alternative_name'
-    app/helpers/version_helper.rb:10:in `rescue in link_to_object'
-    app/helpers/version_helper.rb:7:in `link_to_object'
-    app/views/admin/versions/_version.html.haml:4:in `_app_views_admin_versions__version_html_haml__1414858255934159415_16525540'
-    app/views/admin/versions/index.html.haml:13:in `_app_views_admin_versions_index_html_haml__1447019459763249947_34958420'
-
 * Display of created objects in versions index.
 
 * Creating mailboxes without password does not result in an error message being
   shown. At least an admin user could create a mailbox specifying a wrong
   password in the confirm field.
-
-* On https://moeil.orgizm.net/admin/versions?page=2 there is currently an
-  exception:
-
-  ActionView::Template::Error (can't convert nil into String):
-      1: %tr
-      2:   %td= version.event
-      3:   %td= version.item_type
-      4:   %td= link_to_object version
-      5:   %td= link_to_mailbox version.whodunnit
-      6:   %td= time_ago_in_words version.created_at
-      7:   %td
-    app/helpers/version_helper.rb:27:in `link_to_object'
-    app/views/admin/versions/_version.html.haml:4:in `_app_views_admin_versions__version_html_haml___4089833317253556138_35865860'
-    app/views/admin/versions/index.html.haml:13:in `_app_views_admin_versions_index_html_haml___1619396568015451788_36644140'
 
 * If a mailbox is deleted, it's permissions have to also be.

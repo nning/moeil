@@ -65,6 +65,7 @@ class Mailbox < ActiveRecord::Base
   end
 
   def to_s
+    return "#{username}@#{domain_id}" if domain.nil?
     email
   end
 

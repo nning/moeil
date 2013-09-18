@@ -33,7 +33,19 @@ class Alias < ActiveRecord::Base
   end
 
   def to_s
-    username ? email : "Catch-All for #{domain.name} to #{goto}"
+    if domain
+      if username
+        email
+      else
+        "Catch-All for #{domain.name} to #{goto}"
+      end
+    else
+      if username
+        "#{username}@#{domain_id}"
+      else
+        "Catch-All for #{domain_id} to #{goto}"
+      end
+    end
   end
 
 end
