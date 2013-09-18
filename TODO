@@ -25,9 +25,6 @@
 * Better display of items in versions index (especially deleted domains and
   permissions).
 
-* Mailboxes with :editor permissions on a domain weirdly seem to have :manage
-  abilities for permissions.
-
 * Creating mailboxes without password does not result in an error message being
   shown. At least an admin user could create a mailbox specifying a wrong
   password in the confirm field.

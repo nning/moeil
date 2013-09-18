@@ -8,6 +8,7 @@ class Admin::AliasesAndMailboxesController < AdminController
 
   belongs_to :domain
 
+
   def create
     create! do |success, error|
       success.html { redirect_to collection_url }
@@ -33,6 +34,7 @@ class Admin::AliasesAndMailboxesController < AdminController
       success.html { redirect_to collection_url }
     end
   end
+
 
   protected
 

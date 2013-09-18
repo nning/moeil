@@ -217,13 +217,18 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
         context 'create' do
           setup do
             @permission = FactoryGirl.build :permission, item: @mailbox.domain
-            post :create,
-              domain_id: @domain_id,
-              permission: {
-                subject_id:   @permission.subject.id,
-                subject_type: @permission.subject.class,
-                role:         @permission.role
-              }
+          end
+
+          should 'raise AccessDenied exception' do
+            assert_raise CanCan::AccessDenied do
+              post :create,
+                domain_id: @domain_id,
+                permission: {
+                  subject_id:   @permission.subject.id,
+                  subject_type: @permission.subject.class,
+                  role:         @permission.role
+                }
+            end
           end
 
           should 'not create a record' do
@@ -233,20 +238,22 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
               .item(@permission.item)
               .first
           end
-
-          #should respond_with :redirect
-          #should set_the_flash.to /created/i
         end
 
         context 'update' do
           setup do
             @permission = FactoryGirl.create :permission, item: @mailbox.domain
-            post :update,
-              id: @permission.id,
-              domain_id: @domain_id,
-              permission: {
-                role: 'editor'
-              }
+          end
+
+          should 'raise AccessDenied exception' do
+            assert_raise CanCan::AccessDenied do
+              post :update,
+                id: @permission.id,
+                domain_id: @domain_id,
+                permission: {
+                  role: 'editor'
+                }
+            end
           end
 
           should 'not change the record' do
@@ -261,16 +268,20 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
               .item(@permission.item)
               .first
           end
-
-          #should respond_with :redirect
-          #should set_the_flash.to /successfully updated/i
         end
       end
 
       context 'on DELETE to destroy' do
         setup do
           @permission = FactoryGirl.create :permission, item: @mailbox.domain
-          delete :destroy, id: @permission.id, domain_id: @mailbox.domain_id
+        end
+
+        should 'raise AccessDenied exception' do
+          assert_raise CanCan::AccessDenied do
+            delete :destroy, 
+              domain_id: @mailbox.domain_id,
+              id: @permission.id
+          end
         end
 
         should 'not delete the record' do
@@ -280,9 +291,6 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
             .item(@permission.item)
             .first
         end
-
-        #should respond_with :redirect
-        #should set_the_flash.to /successfully destroyed/i
       end
     end
   end

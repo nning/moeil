@@ -5,6 +5,10 @@ class Admin::PermissionsController < AdminController
 
   belongs_to :domain
 
+  load_and_authorize_resource :domain
+  load_and_authorize_resource :permission, through: :domain
+
+
   def create
     build_resource.creator = current_mailbox
     build_resource.subject = Mailbox.find(params[:permission][:subject_id])
