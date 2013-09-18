@@ -13,7 +13,7 @@ before_install:
 
 before_script:
   - ln -s database.yml.example config/database.yml
-  - bundle exec secret:replace
+  - bundle exec rake secret:replace
   - bundle exec rake db:migrate
 
 script:
