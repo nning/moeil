@@ -2,12 +2,111 @@ require 'test_helper'
 
 class Admin::PermissionsControllerTest < ActionController::TestCase
 
-  context 'Admin namespace' do
-    context 'as admin' do
+  context 'As admin' do
+    setup do
+      @mailbox = FactoryGirl.create :mailbox, admin: true
+      @domain_id = @mailbox.domain_id
+      sign_in @mailbox
+    end
+
+    context 'on GET to index' do
       setup do
-        @mailbox = FactoryGirl.create :mailbox, admin: true
-        @domain_id = @mailbox.domain_id
+        get :index, domain_id: @domain_id
+      end
+
+      should respond_with :success
+      should render_template :index
+    end
+
+    context 'on POST to' do
+      context 'create' do
+        setup do
+          @permission = FactoryGirl.build :permission, item: @mailbox.domain
+          post :create,
+            domain_id: @domain_id,
+            permission: {
+              subject_id:   @permission.subject.id,
+              subject_type: @permission.subject.class,
+              role:         @permission.role
+            }
+        end
+
+        should 'create a record' do
+          assert Permission
+            .role(@permission.role)
+            .subject(@permission.subject)
+            .item(@permission.item)
+            .first
+        end
+
+        should respond_with :redirect
+        should set_the_flash.to /created/i
+      end
+
+      context 'update' do
+        setup do
+          @permission = FactoryGirl.create :permission, item: @mailbox.domain
+          post :update,
+            id: @permission.id,
+            domain_id: @domain_id,
+            permission: {
+              role: 'editor'
+            }
+        end
+
+        should 'change the record' do
+          assert Permission
+            .role('editor')
+            .subject(@permission.subject)
+            .item(@permission.item)
+            .first
+          assert !Permission
+            .role(@permission.role)
+            .subject(@permission.subject)
+            .item(@permission.item)
+            .first
+        end
+
+        should respond_with :redirect
+        should set_the_flash.to /successfully updated/i
+      end
+    end
+
+    context 'on DELETE to destroy' do
+      setup do
+        @permission = FactoryGirl.create :permission, item: @mailbox.domain
+        delete :destroy, id: @permission.id, domain_id: @mailbox.domain_id
+      end
+
+      should 'delete the record' do
+        assert !Permission
+          .role(@permission.role)
+          .subject(@permission.subject)
+          .item(@permission.item)
+          .first
+      end
+
+      should respond_with :redirect
+      should set_the_flash.to /successfully destroyed/i
+    end
+  end
+
+  context 'With role' do
+    setup do
+      @mailbox = FactoryGirl.create :mailbox
+      @domain_id = @mailbox.domain_id
+    end
+
+    context 'owner' do
+      setup do
+        @mailbox.domain.permissions.create! \
+          subject: @mailbox,
+          role: 'owner'
         sign_in @mailbox
+      end
+
+      should 'have owner permission' do
+        assert @mailbox.domain.permission? :owner, @mailbox
       end
 
       context 'on GET to index' do
@@ -19,8 +118,8 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
         should render_template :index
       end
 
-      context 'on POST' do
-        context 'to create' do
+      context 'on POST to' do
+        context 'create' do
           setup do
             @permission = FactoryGirl.build :permission, item: @mailbox.domain
             post :create,
@@ -43,26 +142,29 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
           should respond_with :redirect
           should set_the_flash.to /created/i
         end
-      end
 
-=begin
-        context 'to update' do
+        context 'update' do
           setup do
-            @mailbox = FactoryGirl.create :mailbox
-            @old_username = @mailbox.username
-            @domain_id = @mailbox.domain_id
-
+            @permission = FactoryGirl.create :permission, item: @mailbox.domain
             post :update,
-              id: @mailbox.id,
+              id: @permission.id,
               domain_id: @domain_id,
-              mailbox: {
-                username: 'new-username'
+              permission: {
+                role: 'editor'
               }
           end
 
           should 'change the record' do
-            assert Mailbox.where(username: 'new-username', domain_id: @domain_id).first
-            assert !Mailbox.where(username: @mailbox.username, domain_id: @domain_id).first
+            assert Permission
+              .role('editor')
+              .subject(@permission.subject)
+              .item(@permission.item)
+              .first
+            assert !Permission
+              .role(@permission.role)
+              .subject(@permission.subject)
+              .item(@permission.item)
+              .first
           end
 
           should respond_with :redirect
@@ -72,18 +174,116 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
 
       context 'on DELETE to destroy' do
         setup do
-          @mailbox = FactoryGirl.create :mailbox
-          delete :destroy, id: @mailbox.id, domain_id: @mailbox.domain_id
+          @permission = FactoryGirl.create :permission, item: @mailbox.domain
+          delete :destroy, id: @permission.id, domain_id: @mailbox.domain_id
         end
 
         should 'delete the record' do
-          assert !Mailbox.where(username: @mailbox.username, domain_id: @mailbox.domain_id).first
+          assert !Permission
+            .role(@permission.role)
+            .subject(@permission.subject)
+            .item(@permission.item)
+            .first
         end
 
         should respond_with :redirect
         should set_the_flash.to /successfully destroyed/i
       end
-=end
+    end
+
+    context 'editor' do
+      setup do
+        @mailbox.domain.permissions.create! \
+          subject: @mailbox,
+          role: 'editor'
+        sign_in @mailbox
+      end
+
+      should 'have editor permission' do
+        assert  @mailbox.domain.permission?(:editor, @mailbox)
+        assert !@mailbox.domain.permission?(:owner,  @mailbox)
+      end
+
+      context 'on GET to index' do
+        setup do
+          get :index, domain_id: @domain_id
+        end
+
+        should respond_with :success
+        should render_template :index
+      end
+
+      context 'on POST to' do
+        context 'create' do
+          setup do
+            @permission = FactoryGirl.build :permission, item: @mailbox.domain
+            post :create,
+              domain_id: @domain_id,
+              permission: {
+                subject_id:   @permission.subject.id,
+                subject_type: @permission.subject.class,
+                role:         @permission.role
+              }
+          end
+
+          should 'not create a record' do
+            assert !Permission
+              .role(@permission.role)
+              .subject(@permission.subject)
+              .item(@permission.item)
+              .first
+          end
+
+          #should respond_with :redirect
+          #should set_the_flash.to /created/i
+        end
+
+        context 'update' do
+          setup do
+            @permission = FactoryGirl.create :permission, item: @mailbox.domain
+            post :update,
+              id: @permission.id,
+              domain_id: @domain_id,
+              permission: {
+                role: 'editor'
+              }
+          end
+
+          should 'not change the record' do
+            assert Permission
+              .role(@permission.role)
+              .subject(@permission.subject)
+              .item(@permission.item)
+              .first
+            assert !Permission
+              .role('editor')
+              .subject(@permission.subject)
+              .item(@permission.item)
+              .first
+          end
+
+          #should respond_with :redirect
+          #should set_the_flash.to /successfully updated/i
+        end
+      end
+
+      context 'on DELETE to destroy' do
+        setup do
+          @permission = FactoryGirl.create :permission, item: @mailbox.domain
+          delete :destroy, id: @permission.id, domain_id: @mailbox.domain_id
+        end
+
+        should 'not delete the record' do
+          assert Permission
+            .role(@permission.role)
+            .subject(@permission.subject)
+            .item(@permission.item)
+            .first
+        end
+
+        #should respond_with :redirect
+        #should set_the_flash.to /successfully destroyed/i
+      end
     end
   end
 
