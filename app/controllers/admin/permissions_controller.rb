@@ -11,7 +11,7 @@ class Admin::PermissionsController < AdminController
     build_resource.save!
 
     respond_to do |format|
-      format.html { redirect_to [:admin, parent, :permissions] }
+      format.html { redirect_to [:admin, parent, :permissions], flash: { notice: 'Permission successfully created.' } }
     end
   end
 
