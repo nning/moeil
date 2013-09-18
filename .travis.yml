@@ -1,0 +1,20 @@
+language: ruby
+
+rvm:
+  - 2.0.0
+  - jruby-19mode
+  - rbx-19mode
+
+notifications:
+  email: false
+
+before_install:
+  - gem install bundler
+
+before_script:
+  - psql -c 'create database moeil_test;' -U postgres
+  - bundle exec rake db:migrate
+  - bundle exec secret:replace
+
+script:
+  - bundle exec rake test

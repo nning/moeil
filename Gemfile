@@ -37,5 +37,6 @@ end
 group :test do
   gem 'factory_girl_rails'  # Instead of fixtures
   gem 'faker'               # For test data
+  gem 'rake'                # Travis seems to like this added explicitly
   gem 'shoulda'             # Cleaner tests
 end

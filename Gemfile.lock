@@ -197,6 +197,7 @@ DEPENDENCIES
   pg
   rails (~> 3.2.14)
   rails_config
+  rake
   sass-rails
   shoulda
   simple_form
