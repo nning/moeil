@@ -14,6 +14,8 @@ private
     else
       pm[:domain_id] = Domain.where(name: domain).first.try(:id)
     end
+
+    pm.delete(:email)
   end
 
 end
