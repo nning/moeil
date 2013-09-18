@@ -15,7 +15,7 @@ class Permission < ActiveRecord::Base
   
   validates :role, inclusion: { in: ROLES }, presence: true
   validates :subject_id,
-    uniqueness: { scope: [:subject_id, :subject_type] },
+    uniqueness: { scope: [:subject_id, :subject_type, :item_id, :item_type] },
     presence: true
 
   scope :item, ->(item) {
