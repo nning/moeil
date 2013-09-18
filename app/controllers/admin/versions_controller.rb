@@ -15,7 +15,7 @@ class Admin::VersionsController < AdminController
       @version.reify.save!
       redirect_to admin_versions_path, notice: "Reverted #{@version.event}."
     else
-      redirect_to admin_versions_path, flash: { error: "Unpossible to revert #{@version.event}." }
+      redirect_to admin_versions_path, flash: { error: "Impossible to revert #{@version.event}." }
     end
   end
 
