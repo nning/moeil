@@ -22,17 +22,6 @@ GEM
       activesupport (= 3.2.14)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-jdbc-adapter (1.3.1)
-      activerecord (>= 2.2)
-    activerecord-jdbcmysql-adapter (1.3.1)
-      activerecord-jdbc-adapter (~> 1.3.1)
-      jdbc-mysql (>= 5.1.22)
-    activerecord-jdbcpostgresql-adapter (1.3.1)
-      activerecord-jdbc-adapter (~> 1.3.1)
-      jdbc-postgres (>= 9.1)
-    activerecord-jdbcsqlite3-adapter (1.3.1)
-      activerecord-jdbc-adapter (~> 1.3.1)
-      jdbc-sqlite3 (~> 3.7.2)
     activeresource (3.2.14)
       activemodel (= 3.2.14)
       activesupport (= 3.2.14)
@@ -91,9 +80,6 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    jdbc-mysql (5.1.25)
-    jdbc-postgres (9.2.1002.1)
-    jdbc-sqlite3 (3.7.2.1)
     journey (1.0.4)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
@@ -109,6 +95,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25)
     multi_json (1.8.0)
+    mysql (2.9.1)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -120,6 +107,7 @@ GEM
     paper_trail (2.7.2)
       activerecord (~> 3.0)
       railties (~> 3.0)
+    pg (0.17.0)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -170,6 +158,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.8)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
@@ -215,13 +204,16 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   kaminari
+  mysql
   paper_trail
+  pg
   rails (~> 3.2.14)
   rails_config
   rake
   sass-rails
   shoulda
   simple_form
+  sqlite3
   therubyracer
   therubyrhino
   uglifier
