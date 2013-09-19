@@ -3,13 +3,17 @@ source 'https://rubygems.org'
 gem 'rails', '~> 3.2.14'
 
 # All database adapters are included for the postfixadmin data import script.
-gem 'sqlite3', platform: :ruby
-gem 'pg', platform: :ruby
-gem 'mysql', platform: :ruby
+platforms :ruby do
+  gem 'sqlite3'
+  gem 'pg'
+  gem 'mysql'
+end
 
-gem 'activerecord-jdbcsqlite3-adapter', platform: :jruby
-gem 'activerecord-jdbcpostgresql-adapter', platform: :jruby
-gem 'activerecord-jdbcmysql-adapter', platform: :jruby
+platforms :jruby do
+  gem 'activerecord-jdbcsqlite3-adapter'
+  gem 'activerecord-jdbcpostgresql-adapter'
+  gem 'activerecord-jdbcmysql-adapter'
+end
 
 gem 'cancan'                # Authorization
 gem 'devise'                # Authentication
