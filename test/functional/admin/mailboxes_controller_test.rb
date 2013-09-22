@@ -32,8 +32,31 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
             }
         end
 
-        should 'create a record' do
-          assert Mailbox.where(username: @mailbox.username, domain_id: @domain_id).first
+        context 'record' do
+          setup do
+            @new_record = Mailbox.where(username: @mailbox.username, domain_id: @domain_id).first
+          end
+
+          should 'be created' do
+            assert @new_record
+          end
+
+          should 'have a sha512-crypt password' do
+            assert @new_record.encrypted_password.starts_with? '$6$'
+          end
+
+          context 'hash' do
+            setup do
+              @method = ->(*args) do
+                Devise::Encryptable::Encryptors::Sha512Dovecot.send(:digest, *args)
+              end
+              @params = [@mailbox.password, nil, @new_record.password_salt, nil]
+            end
+
+            should 'be correctly set' do
+              assert_equal @new_record.encrypted_password, @method.call(*@params)
+            end
+          end
         end
 
         should respond_with :redirect
