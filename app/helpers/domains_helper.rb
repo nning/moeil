@@ -1,4 +1,4 @@
-module DomainHelper
+module DomainsHelper
   
   def link_to_domain(domain)
     domain = Domain.where(name: domain).first if domain.is_a? String

@@ -1,6 +1,6 @@
-module AliasHelper
+module AliasesHelper
 
-  include AliasAndMailboxHelper
+  include AliasesAndMailboxesHelper
 
   def address_list(string)
     addresses = string.split(',')
