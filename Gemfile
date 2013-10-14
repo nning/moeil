@@ -36,7 +36,7 @@ group :assets do
   gem 'uglifier'
 
   gem 'sass-rails'
-  gem 'bootstrap-sass'
+  gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
 end
 
 group :development do

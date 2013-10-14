@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
+  revision: ab2f7dd92491bd490e545c18d32e966567b84a3b
+  specs:
+    bootstrap-sass (3.0.0.0)
+      sass (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -44,8 +51,6 @@ GEM
     atomic (1.1.14-java)
     bcrypt-ruby (3.1.2)
     bcrypt-ruby (3.1.2-java)
-    bootstrap-sass (2.3.2.2)
-      sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.10)
     capistrano (2.15.5)
@@ -204,7 +209,7 @@ DEPENDENCIES
   activerecord-jdbcmysql-adapter
   activerecord-jdbcpostgresql-adapter
   activerecord-jdbcsqlite3-adapter
-  bootstrap-sass
+  bootstrap-sass!
   cancan
   capistrano
   coffee-rails
