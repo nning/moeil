@@ -4,20 +4,17 @@
 
 = simple_form_for [:admin, resource.domain, resource] do |f|
   .row
-    .col-md-6
+    .col-md-12
       .well
         %fieldset
           %legend Redirection
-          = f.input :username
-          = f.association :domain
-          = f.input :goto, hint: 'A comma-seperated list of receiver addresses.'
-          = f.input :description
-
-    .col-md-6
-      .well
-        %fieldset
-          %legend Admin Options
-          = f.input :active
+          .col-md-6
+            = f.input :username
+            = f.association :domain
+            = f.input :description
+            = f.input :active
+          .col-md-6
+            = f.input :goto, input_html: { rows: 9 }, hint: 'A comma-seperated list of receiver addresses.'
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}

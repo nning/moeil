@@ -27,11 +27,7 @@ inputs.each do |input_type|
 end
  
 SimpleForm.setup do |config|
-  config.boolean_style = :nested
- 
-  config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'has-error',
-      defaults: { input_html: { class: 'default_class' } } do |b|
-    
+  config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :min_max
     b.use :maxlength
@@ -40,27 +36,18 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :readonly
     
-    b.use :label_input
-    b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
+    b.wrapper tag: 'div', class: 'col-md-4 col-xs-12' do |ba|
+      ba.use :label
+    end
+
+    b.wrapper tag: 'div', class: 'col-md-8 col-xs-12' do |ba|
+      ba.use :input
+      ba.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+      ba.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
+    end
   end
-  
-  config.wrappers :group, tag: 'div', class: 'form-group', error_class: 'has-error',
-      defaults: { input_html: { class: 'default-class '} }  do |b|
 
-    b.use :html5
-    b.use :min_max
-    b.use :maxlength
-    b.use :placeholder
-
-    b.optional :pattern
-    b.optional :readonly
-
-    b.use :label
-    b.use :input, wrap_with: { class: 'input-group' }
-    b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
-  end
+  config.form_class = 'simple_form form-horizontal'
 
   config.default_wrapper = :bootstrap3
 end

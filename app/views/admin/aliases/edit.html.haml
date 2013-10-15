@@ -8,22 +8,21 @@
 
 = simple_form_for [:admin, resource.domain, resource] do |f|
   .row
-    .col-md-6
+    .col-md-12
       .well
         %fieldset
           %legend Redirection
-          = f.input :id, disabled: true, label: 'ID'
-          = f.input :username
-          = f.association :domain
-          = f.input :goto
-          = f.input :description
+          .col-md-6
+            = f.input :id, disabled: true, label: 'ID'
+            = f.input :username
+            = f.association :domain
+            = f.input :description
+            = f.input :active
+          .col-md-6
+            = f.input :goto, input_html: { rows: 9 }, hint: 'A comma-seperated list of receiver addresses.'
+
 
     .col-md-6
-      .well
-        %fieldset
-          %legend Miscellaneous
-          = f.input :active
-
       .well
         %fieldset
           %legend Timestamps
