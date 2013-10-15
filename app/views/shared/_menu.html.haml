@@ -1,24 +1,22 @@
-.nav-collapse.collapse
-  %ul.nav
+.collapse.navbar-collapse.navbar-menu-collapse
+  %ul.nav.navbar-nav
     - if current_mailbox.try(:manager?)
-      %li{class: 'divider-vertical'}
       %li{class: active_navigation('admin/domains')}
-        = link_to 'Domains', admin_domains_path
+        = link_to 'Domains', [:admin, :domains]
       - if current_mailbox.admin?
         %li{class: active_navigation('admin/versions')}
-          = link_to 'Changes', admin_versions_path
-      %li{class: 'divider-vertical'}
+          = link_to 'Changes', [:admin, :versions]
       %li{class: active_navigation('admin/mailboxes')}
-        = link_to new_admin_domain_mailbox_path(Domain.default) do
-          = content_tag :i, nil, class: 'icon-plus icon-white'
-          Mailbox
+        = link_to [:new, :admin, Domain.default, :mailbox] do
+          = content_tag :span, nil, class: 'glyphicon glyphicon-plus'
+          New Mailbox
       %li{class: active_navigation('admin/aliases')}
-        = link_to new_admin_domain_alias_path(Domain.default) do
-          = content_tag :i, nil, class: 'icon-plus icon-white'
-          Alias
+        = link_to [:new, :admin, Domain.default, :alias] do
+          = content_tag :span, nil, class: 'glyphicon glyphicon-plus'
+          New Alias
 
-  %ul.nav.pull-right
+  %ul.nav.navbar-nav.navbar-right
     %li{class: active_navigation('mailbox')}
-      = link_to current_mailbox.email, edit_mailbox_path
+      = link_to current_mailbox.email, [:edit, :mailbox]
     %li{class: active_navigation('devise/sessions')}
-      = link_to 'Logout', destroy_mailbox_session_path, method: :delete
+      = link_to 'Logout', [:destroy, :mailbox_session], method: :delete
