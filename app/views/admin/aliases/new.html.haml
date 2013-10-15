@@ -4,7 +4,7 @@
 
 = simple_form_for [:admin, resource.domain, resource] do |f|
   .row-fluid
-    .span6
+    .col-md-6
       .well
         %fieldset
           %legend Redirection
@@ -13,7 +13,7 @@
           = f.input :goto, hint: 'A comma-seperated list of receiver addresses.'
           = f.input :description
 
-    .span6
+    .col-md-6
       .well
         %fieldset
           %legend Admin Options
@@ -21,8 +21,8 @@
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
-      %i{class: 'icon-ok icon-white'}
+      = icon :ok
       Create Alias
     %button{type: 'reset', class: 'btn btn-danger'}
-      %i{class: 'icon-remove icon-white'}
+      = icon :remove
       Reset Form

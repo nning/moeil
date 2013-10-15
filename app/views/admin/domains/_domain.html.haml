@@ -7,4 +7,4 @@
   %td
     - if can? :destroy, domain
       = link_to [:admin, domain], method: :delete, confirm: 'Are you really sure? This will delete all mailboxes and aliases of this domain, too.', class: 'btn btn-mini btn-danger' do
-        = content_tag :i, nil, class: 'icon-trash icon-white'
+        = icon :trash

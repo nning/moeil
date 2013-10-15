@@ -6,7 +6,7 @@
 
 = simple_form_for [:admin, resource.item, resource] do |f|
   .row-fluid
-    .span6
+    .col-md-6
       .well
         %fieldset
           %legend Permission
@@ -14,11 +14,11 @@
           = f.input :role, collection: Permission::ROLES, hint: 'Editors can manage mailboxes and aliases. Owners can do everything.'
 
   .row-fluid
-    .span6
+    .col-md-6
       .form-actions
         %button{type: 'submit', class: 'btn btn-primary'}
-          %i{class: 'icon-ok icon-white'}
+          = icon :ok
           Create Permission
         %button{type: 'reset', class: 'btn btn-danger'}
-          %i{class: 'icon-remove icon-white'}
+          = icon :remove
           Reset Form

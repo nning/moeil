@@ -8,11 +8,11 @@
           = link_to 'Changes', [:admin, :versions]
       %li{class: active_navigation('admin/mailboxes')}
         = link_to [:new, :admin, Domain.default, :mailbox] do
-          = content_tag :span, nil, class: 'glyphicon glyphicon-plus'
+          = icon :plus
           New Mailbox
       %li{class: active_navigation('admin/aliases')}
         = link_to [:new, :admin, Domain.default, :alias] do
-          = content_tag :span, nil, class: 'glyphicon glyphicon-plus'
+          = icon :plus
           New Alias
 
   %ul.nav.navbar-nav.navbar-right

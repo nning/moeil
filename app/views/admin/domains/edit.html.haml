@@ -3,13 +3,13 @@
   .btn-group
     = link_to_back
     = link_to [:admin, resource, :mailboxes], class: 'btn' do
-      %i{class: 'icon-inbox'}
+      = icon :inbox
       = resource.mailboxes.count
     = link_to [:admin, resource, :aliases], class: 'btn' do
-      %i{class: 'icon-share-alt'}
+      = icon :share_alt
       = resource.aliases.count
     = link_to [:admin, resource, :permissions], class: 'btn' do
-      %i{class: 'icon-certificate'}
+      = icon :certificate
       = resource.permissions.count
     - if can? :destroy, resource
       = link_to_delete [:admin, resource]
@@ -17,7 +17,7 @@
 
 = simple_form_for [:admin, resource] do |f|
   .row-fluid
-    .span6
+    .col-md-6
       .well
         %fieldset
           %legend General
@@ -39,7 +39,7 @@
             .controls
               = text_field_tag :aliases_count, resource.aliases.count, disabled: true
 
-    .span6
+    .col-md-6
       .well
         %fieldset
           %legend Timestamps

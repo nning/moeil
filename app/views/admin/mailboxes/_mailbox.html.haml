@@ -5,4 +5,4 @@
   %td
     - if can? :destroy, mailbox
       = link_to [:admin, mailbox.domain, mailbox], method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger' do
-        = content_tag :i, nil, class: 'icon-trash icon-white'
+        = icon :trash

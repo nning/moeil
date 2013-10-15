@@ -4,7 +4,7 @@
 
 = simple_form_for [:admin, resource.domain, resource] do |f|
   .row-fluid
-    .span6
+    .col-md-6
       .well
         %fieldset
           %legend Account Information
@@ -18,7 +18,7 @@
           = f.input :password
           = f.input :password_confirmation, label: false
 
-    .span6
+    .col-md-6
       .well
         %fieldset
           %legend Miscellaneous
@@ -29,8 +29,8 @@
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
-      %i{class: 'icon-ok icon-white'}
+      = icon :ok
       Create Mailbox
     %button{type: 'reset', class: 'btn btn-danger'}
-      %i{class: 'icon-remove icon-white'}
+      = icon :remove
       Reset Form

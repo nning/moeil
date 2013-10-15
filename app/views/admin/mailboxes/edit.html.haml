@@ -8,7 +8,7 @@
 
 = simple_form_for [:admin, parent, resource] do |f|
   .row-fluid
-    .span6
+    .col-md-6
       .well
         %fieldset
           %legend Account Information
@@ -25,7 +25,7 @@
 
       = render partial: 'shared/mailbox_permissions'
 
-    .span6
+    .col-md-6
       .well
         %fieldset
           %legend Miscellaneous
