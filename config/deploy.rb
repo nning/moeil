@@ -5,7 +5,7 @@ hostname = YAML.load_file("#{File.dirname(__FILE__)}/settings.yml")['host']
 
 set :application, Rails.application.class.parent_name.downcase
 
-set :repository, 'git://git.orgizm.net/moeil.git'
+set :repository, 'https://github.com/nning/moeil.git'
 set :deploy_to, '/srv/http/' + hostname
 set :shared_children, %w(log tmp/pids)
 set :use_sudo, false
