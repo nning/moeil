@@ -40,7 +40,7 @@ group :assets do
 end
 
 group :development do
-  gem 'capistrano'          # Easy deployment
+  gem 'capistrano', '~> 2.15.5' # Easy deployment
 end
 
 group :test do

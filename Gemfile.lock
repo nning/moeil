@@ -53,10 +53,12 @@ GEM
     bcrypt-ruby (3.1.2-java)
     builder (3.0.4)
     cancan (1.6.10)
-    capistrano (3.0.0)
-      i18n
-      rake (>= 10.0.0)
-      sshkit (>= 0.0.23)
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -111,11 +113,15 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25)
-    multi_json (1.8.1)
+    multi_json (1.8.2)
     mysql (2.9.1)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     orm_adapter (0.4.0)
     paper_trail (2.7.2)
       activerecord (~> 3.0)
@@ -172,12 +178,6 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.8)
-    sshkit (1.0.0)
-      net-scp
-      net-ssh
-      term-ansicolor
-    term-ansicolor (1.2.2)
-      tins (~> 0.8)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
@@ -190,7 +190,6 @@ GEM
     thread_safe (0.1.3-java)
       atomic
     tilt (1.4.1)
-    tins (0.12.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -212,7 +211,7 @@ DEPENDENCIES
   activerecord-jdbcsqlite3-adapter
   bootstrap-sass!
   cancan
-  capistrano
+  capistrano (~> 2.15.5)
   coffee-rails
   devise
   devise-encryptable
