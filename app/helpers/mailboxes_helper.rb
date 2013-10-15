@@ -1,6 +1,6 @@
-module MailboxHelper
+module MailboxesHelper
   
-  include AliasAndMailboxHelper
+  include AliasesAndMailboxesHelper
 
   def link_to_mailbox(id)
     return unless id

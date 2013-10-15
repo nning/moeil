@@ -16,7 +16,7 @@ class Domain < ActiveRecord::Base
 
   has_paper_trail
 
-  before_save :downcase_name
+  before_save ->{ name.downcase! }
 
 
   def catch_all_alias
@@ -53,13 +53,6 @@ class Domain < ActiveRecord::Base
 
   def self.managable(mailbox)
     Domain.all.map { |d| d if d.permission? :editor, mailbox }.compact
-  end
-
-
-  private
-
-  def downcase_name
-    name.downcase!
   end
 
 end

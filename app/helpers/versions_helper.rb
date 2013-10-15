@@ -1,6 +1,6 @@
-module VersionHelper
+module VersionsHelper
 
-  include MailboxHelper
+  include MailboxesHelper
 
   def link_to_object(version)
     clazz = version.item_type

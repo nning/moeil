@@ -1,4 +1,4 @@
-module AliasAndMailboxHelper
+module AliasesAndMailboxesHelper
 
   def parent
     Domain.where(id: params[:domain_id]).first

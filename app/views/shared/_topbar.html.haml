@@ -1,0 +1,7 @@
+.navbar.navbar-inverse.navbar-fixed-top
+  .navbar-inner
+    .container
+      = link_to 'Møil', root_path, class: 'brand'
+      - if signed_in?
+        = render partial: 'shared/menu_button'
+        = render partial: 'shared/menu'
