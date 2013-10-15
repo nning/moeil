@@ -7,14 +7,14 @@
   = link_to_back
 
 = simple_form_for [:admin, resource.item, resource] do |f|
-  .row-fluid
+  .row
     .col-md-6
       .well
         %fieldset
           %legend Permission
           = f.input :role, collection: Permission::ROLES
 
-  .row-fluid
+  .row
     .col-md-6
       .form-actions
         %button{type: 'submit', class: 'btn btn-primary'}

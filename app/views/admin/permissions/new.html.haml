@@ -5,7 +5,7 @@
   = link_to_back
 
 = simple_form_for [:admin, resource.item, resource] do |f|
-  .row-fluid
+  .row
     .col-md-6
       .well
         %fieldset
@@ -13,7 +13,7 @@
           = f.input :subject_id, collection: current_mailbox.mailboxes_for_select, label: 'Mailbox'
           = f.input :role, collection: Permission::ROLES, hint: 'Editors can manage mailboxes and aliases. Owners can do everything.'
 
-  .row-fluid
+  .row
     .col-md-6
       .form-actions
         %button{type: 'submit', class: 'btn btn-primary'}
