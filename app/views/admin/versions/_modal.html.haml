@@ -1,17 +1,19 @@
-%div{id: "modal#{version.id}", class: 'modal hide fade', tabindex: -1, role: 'dialog', :'aria-labelledby' => 'Changes', :'aria-hidden' => 'true'}
-  .modal-header
-    %button{type: 'button', class: 'close', :'data-dismiss' => 'modal', :'aria-hidden' => 'true'}
-      &times;
-    %h3
-      Changes to
-      = link_to_object version
-  .modal-body
-    %p
-      %strong
-        Made at
-        = version.created_at
-    = summarize_changes version.object_changes
-  .modal-footer
-    - if ['update', 'destroy'].include? version.event
-      = link_to 'Revert', [:admin, :revert, version], class: 'btn btn-danger', method: :post
-    = button_tag 'Close', class: 'btn btn-default', :'data-dismiss' => 'modal', :'aria-hidden' => 'true'
+.modal.fade{id: "modal#{version.id}"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button{type: 'button', class: 'close', :'data-dismiss' => 'modal', :'aria-hidden' => 'true'}
+          ×
+        %h4.modal-title
+          Changes to
+          = link_to_object version
+      .modal-body
+        %p
+          %strong
+            Made at
+            = version.created_at
+        = summarize_changes version.object_changes
+      .modal-footer
+        - if ['update', 'destroy'].include? version.event
+          = link_to 'Revert', [:admin, :revert, version], class: 'btn btn-danger', method: :post
+        = button_tag 'Close', class: 'btn btn-default', :'data-dismiss' => 'modal'
