@@ -1,12 +1,12 @@
-%h1
-  Permissions for
-  = parent.name
-.btn-toolbar
-  .btn-group
-    = link_to_back
-    - if can? :create, :permission
-      = link_to_create [:new, :admin, parent, :permission]
-%hr
+.page-header
+  %h1
+    Permissions for
+    = parent.name
+  .btn-toolbar
+    .btn-group
+      = link_to_back
+      - if can? :create, :permission
+        = link_to_create [:new, :admin, parent, :permission]
 
 %p
   Got

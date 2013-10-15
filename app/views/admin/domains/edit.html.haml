@@ -1,23 +1,23 @@
-%h1= resource.name
-.btn-toolbar
-  .btn-group
-    = link_to_back
+.page-header
+  %h1= resource.name
+  .btn-toolbar
+    .btn-group
+      = link_to_back
 
-  .btn-group
-    = link_to [:admin, resource, :mailboxes], class: 'btn btn-default' do
-      = icon :inbox
-      = resource.mailboxes.count
-    = link_to [:admin, resource, :aliases], class: 'btn btn-default' do
-      = icon :share_alt
-      = resource.aliases.count
-    = link_to [:admin, resource, :permissions], class: 'btn btn-default' do
-      = icon :certificate
-      = resource.permissions.count
+    .btn-group
+      = link_to [:admin, resource, :mailboxes], class: 'btn btn-default' do
+        = icon :inbox
+        = resource.mailboxes.count
+      = link_to [:admin, resource, :aliases], class: 'btn btn-default' do
+        = icon :share_alt
+        = resource.aliases.count
+      = link_to [:admin, resource, :permissions], class: 'btn btn-default' do
+        = icon :certificate
+        = resource.permissions.count
 
-  .btn-group
-    - if can? :destroy, resource
-      = link_to_delete [:admin, resource]
-%hr
+    .btn-group
+      - if can? :destroy, resource
+        = link_to_delete [:admin, resource]
 
 = simple_form_for [:admin, resource] do |f|
   .row-fluid

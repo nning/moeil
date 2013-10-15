@@ -1,6 +1,6 @@
-%h1 Create Domain
-= link_to_back
-%hr
+.page-header
+  %h1 Create Domain
+  = link_to_back
 
 = simple_form_for [:admin, resource], uri: admin_domains_path, method: :post do |f|
   .well

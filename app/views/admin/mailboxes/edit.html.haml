@@ -1,10 +1,10 @@
-%h1= resource.email
-.btn-toolbar
-  .btn-group
-    = link_to_back
-    - if can? :destroy, resource
-      = link_to_delete [:admin, parent, resource]
-%hr
+.page-header
+  %h1= resource.email
+  .btn-toolbar
+    .btn-group
+      = link_to_back
+      - if can? :destroy, resource
+        = link_to_delete [:admin, parent, resource]
 
 = simple_form_for [:admin, parent, resource] do |f|
   .row-fluid
