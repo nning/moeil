@@ -8,11 +8,12 @@ set :application, Rails.application.class.parent_name.downcase
 set :repository, 'git://git.orgizm.net/moeil.git'
 set :deploy_to, '/srv/http/' + hostname
 set :shared_children, %w(log tmp/pids)
+set :use_sudo, false
 
 default_run_options[:pty] = true
 
 role :app, hostname
 role :web, hostname
-role :db,  hostname, :primary => true
+role :db,  hostname, primary: true
 
 Dir[File.dirname(__FILE__) + '/deploy/*.rb'].each { |f| load f }
