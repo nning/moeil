@@ -17,12 +17,13 @@
 
   = render partial: 'shared/navbar'
 
-  .container-fluid
-    .row-fluid
-      = render partial: 'shared/flash_messages'
-    .row-fluid
-      = yield
+  %main#content
+    .container
+      .row-fluid
+        = render partial: 'shared/flash_messages'
+      .row-fluid
+        = yield
 
-    = render partial: 'shared/footer'
+  = render partial: 'shared/footer'
 
   = javascript_include_tag 'application'
