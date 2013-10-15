@@ -4,8 +4,8 @@
   %td
     .btn-group
       - if can? :update, permission
-        = link_to [:edit, :admin, permission.item, permission], class: 'btn btn-mini' do
+        = link_to [:edit, :admin, permission.item, permission], class: 'btn btn-default btn-xs' do
           = icon :edit
       - if can? :destroy, permission
-        = link_to [:admin, permission.item, permission], method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger' do
+        = link_to [:admin, permission.item, permission], method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger btn-xs' do
           = icon :trash

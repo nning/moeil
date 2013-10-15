@@ -9,13 +9,13 @@ module ApplicationHelper
   end
 
   def link_to_back
-    link_to 'javascript:history.back()', class: 'btn' do
+    link_to 'javascript:history.back()', class: 'btn btn-default' do
       icon :arrow_left
     end
   end
 
   def link_to_create(path)
-    link_to path, class: 'btn' do
+    link_to path, class: 'btn btn-default' do
       icon :plus
     end
   end

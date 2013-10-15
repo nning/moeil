@@ -3,4 +3,4 @@
     = form_for :development_login, url: development_login_path do |f|
       .form-inline
         = collection_select :development_login, :mailbox_id, Mailbox.all, :id, :email, {selected: [current_mailbox.try(:id)]}
-        = submit_tag 'Login', class: 'btn'
+        = submit_tag 'Login', class: 'btn btn-default'

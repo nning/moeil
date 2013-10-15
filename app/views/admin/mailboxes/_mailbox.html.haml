@@ -4,5 +4,5 @@
   %td= :no unless mailbox.active
   %td
     - if can? :destroy, mailbox
-      = link_to [:admin, mailbox.domain, mailbox], method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-danger' do
+      = link_to [:admin, mailbox.domain, mailbox], method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger btn-xs' do
         = icon :trash
