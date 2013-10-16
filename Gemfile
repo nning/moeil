@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.14'
+gem 'rails', '~> 3.2.15'
 
 # All database adapters are included for the postfixadmin data import script.
 platforms :ruby do
