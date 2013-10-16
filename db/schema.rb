@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130803153840) do
+ActiveRecord::Schema.define(version: 20130916220251) do
 
   create_table "aliases", force: true do |t|
-    t.string   "username",                   null: false
+    t.string   "username"
     t.integer  "domain_id",                  null: false
     t.text     "goto",                       null: false
     t.boolean  "active",      default: true
@@ -54,6 +54,21 @@ ActiveRecord::Schema.define(version: 20130803153840) do
   add_index "mailboxes", ["domain_id"], name: "index_mailboxes_on_domain_id"
   add_index "mailboxes", ["username", "domain_id"], name: "index_mailboxes_on_username_and_domain_id", unique: true
   add_index "mailboxes", ["username"], name: "index_mailboxes_on_username"
+
+  create_table "permissions", force: true do |t|
+    t.integer  "subject_id",                      null: false
+    t.string   "subject_type",                    null: false
+    t.integer  "item_id",                         null: false
+    t.string   "item_type",                       null: false
+    t.integer  "creator_id"
+    t.string   "role",         default: "editor", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "permissions", ["creator_id"], name: "index_permissions_on_creator_id"
+  add_index "permissions", ["item_id", "item_type", "subject_id", "subject_type"], name: "index_permissions_on_item_and_subject", unique: true
+  add_index "permissions", ["subject_id", "subject_type"], name: "index_permissions_on_subject_id_and_subject_type"
 
   create_table "relocations", force: true do |t|
     t.string   "old_username", null: false

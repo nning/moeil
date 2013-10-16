@@ -1,9 +1,11 @@
-%h1 Mailboxes
-.btn-toolbar
-  .btn-group
-    = link_to_back
-    = link_to_create new_admin_domain_mailbox_path(parent)
-%hr
+.page-header
+  %h1
+    Mailboxes for
+    = parent.name
+  .btn-toolbar
+    .btn-group
+      = link_to_back
+      = link_to_create [:new, :admin, parent, :mailbox]
 
 %p
   Got
@@ -12,7 +14,6 @@
 %table.table.table-striped
   %thead
     %th E-Mail Address
-    %th sha512-crypt?
     %th Admin?
     %th Active?
     %th

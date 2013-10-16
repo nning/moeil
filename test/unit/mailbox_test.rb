@@ -36,12 +36,6 @@ class MailboxTest < ActiveSupport::TestCase
         assert_equal @mailbox.password_salt, @mailbox.encrypted_password.split('$')[2]
       end
     end
-
-    context 'password scheme' do
-      should 'be sha512_crypt for new mailboxes' do
-        assert_equal @mailbox.password_scheme, :sha512_crypt
-      end
-    end
   end
 
   context 'Relocation' do

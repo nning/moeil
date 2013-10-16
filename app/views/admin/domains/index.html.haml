@@ -1,16 +1,25 @@
-%h1 Domains
-= link_to_create new_admin_domain_path
-%hr
+.page-header
+  %h1 Domains
+  - if can? :create, :domain
+    = link_to_create new_admin_domain_path
 
 %p
   Got
-  = pluralize(collection.count, 'domain')
+  = pluralize collection.size, 'domain'
 
 %table.table.table-striped
   %thead
     %th Name
-    %th Mailboxes
-    %th Aliases
+    %th
+      = icon :inbox
+      Mailboxes
+    %th
+      = icon :share_alt
+      Aliases
+    %th
+      = icon :certificate
+      Permissions
+    %th Catch-All
     %th
   %tbody
     = render collection

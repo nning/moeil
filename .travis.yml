@@ -1,0 +1,18 @@
+language: ruby
+
+rvm:
+  - 2.0.0
+
+notifications:
+  email: false
+
+before_install:
+  - gem install bundler
+
+before_script:
+  - ln -s database.yml.example config/database.yml
+  - bundle exec rake secret:replace
+  - bundle exec rake db:migrate
+
+script:
+  - bundle exec rake test

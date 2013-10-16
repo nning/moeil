@@ -1,0 +1,29 @@
+.page-header
+  %h1
+    Permission for
+    = resource.subject.email
+    on
+    = resource.item.name
+  .btn-toolbar
+    .btn-group
+      = link_to_back
+      - if can? :destroy, resource
+        = link_to_delete [:admin, parent, resource]
+
+= simple_form_for [:admin, resource.item, resource] do |f|
+  .row
+    .col-md-6
+      .well
+        %fieldset
+          %legend Permission
+          = f.input :role, collection: Permission::ROLES
+
+  .row
+    .col-md-6
+      .form-actions
+        %button{type: 'submit', class: 'btn btn-primary'}
+          = icon :ok
+          Update Permission
+        %button{type: 'reset', class: 'btn btn-danger'}
+          = icon :remove
+          Reset Form

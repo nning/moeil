@@ -1,28 +1,25 @@
-%h1 Create Alias
-= link_to_back
-%hr
+.page-header
+  %h1 Create Alias
+  = link_to_back
 
 = simple_form_for [:admin, resource.domain, resource] do |f|
-  .row-fluid
-    .span6
+  .row
+    .col-md-12
       .well
         %fieldset
           %legend Redirection
-          = f.input :username
-          = f.association :domain
-          = f.input :goto, hint: 'A comma-seperated list of receiver addresses.'
-          = f.input :description
-
-    .span6
-      .well
-        %fieldset
-          %legend Admin Options
-          = f.input :active
+          .col-md-6
+            = f.input :username
+            = f.association :domain
+            = f.input :description
+            = f.input :active
+          .col-md-6
+            = f.input :goto, input_html: { rows: 9 }, hint: 'A comma-seperated list of receiver addresses.'
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
-      %i{class: 'icon-ok icon-white'}
+      = icon :ok
       Create Alias
     %button{type: 'reset', class: 'btn btn-danger'}
-      %i{class: 'icon-remove icon-white'}
+      = icon :remove
       Reset Form

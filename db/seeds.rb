@@ -11,6 +11,9 @@ bob   = d.mailboxes.create username: 'bob',   password: p
 carol = d.mailboxes.create username: 'carol', password: p
 dan   = d.mailboxes.create username: 'dan',   password: p
 
+d.catch_all_address = alice.email
+d.save!
+
 puts <<O
 Created mailboxes
   alice@example.org with admin rights,
@@ -28,4 +31,9 @@ rand5.times do
     rand5.times { FactoryGirl.create :alias, domain: d }
   rescue
   end
+end
+
+Domain.last(2).each do |d|
+  d.permissions.create subject: bob,   role: 'owner'
+  d.permissions.create subject: carol, role: 'editor'
 end

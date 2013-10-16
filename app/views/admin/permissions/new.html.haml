@@ -1,0 +1,24 @@
+.page-header
+  %h1
+    Create Permission for
+    = parent.name
+  = link_to_back
+
+= simple_form_for [:admin, resource.item, resource] do |f|
+  .row
+    .col-md-6
+      .well
+        %fieldset
+          %legend Permission
+          = f.input :subject_id, collection: current_mailbox.mailboxes_for_select, label: 'Mailbox'
+          = f.input :role, collection: Permission::ROLES, hint: 'Editors can manage mailboxes and aliases. Owners can do everything.'
+
+  .row
+    .col-md-6
+      .form-actions
+        %button{type: 'submit', class: 'btn btn-primary'}
+          = icon :ok
+          Create Permission
+        %button{type: 'reset', class: 'btn btn-danger'}
+          = icon :remove
+          Reset Form

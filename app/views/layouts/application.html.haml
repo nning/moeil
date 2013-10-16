@@ -3,8 +3,8 @@
 %head
   %title= content_for?(:title) ? yield(:title) : 'Møil'
   
-  %meta{ charset: 'utf-8' }
-  %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+  %meta{charset: 'utf-8'}
+  %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
 
   = stylesheet_link_tag 'application'
   = csrf_meta_tag
@@ -12,14 +12,18 @@
   %link{rel: 'shortcut icon', href: '/images/favicon.png'}
 
 %body
-  = render partial: 'shared/navigation'
+  - if Rails.env.development?
+    = render partial: 'shared/development_login'
 
-  .container-fluid
-    .row-fluid
-      = render partial: 'shared/flash_messages'
-    .row-fluid
-      = yield
+  = render partial: 'shared/navbar'
 
-    = render partial: 'shared/footer'
+  %main#content
+    .container
+      .row.flash-messages
+        = render partial: 'shared/flash_messages'
+      .row
+        = yield
+
+  = render partial: 'shared/footer'
 
   = javascript_include_tag 'application'

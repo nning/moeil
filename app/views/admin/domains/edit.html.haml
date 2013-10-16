@@ -1,19 +1,27 @@
-%h1= resource.name
-.btn-toolbar
-  .btn-group
-    = link_to_back
-    = link_to admin_domain_mailboxes_path(resource), class: 'btn' do
-      %i{class: 'icon-inbox'}
-      = resource.mailboxes.count
-    = link_to admin_domain_aliases_path(resource), class: 'btn' do
-      %i{class: 'icon-share-alt'}
-      = resource.aliases.count
-    = link_to_delete [:admin, resource]
-%hr
+.page-header
+  %h1= resource.name
+  .btn-toolbar
+    .btn-group
+      = link_to_back
+
+    .btn-group
+      = link_to [:admin, resource, :mailboxes], class: 'btn btn-default' do
+        = icon :inbox
+        = resource.mailboxes.count
+      = link_to [:admin, resource, :aliases], class: 'btn btn-default' do
+        = icon :share_alt
+        = resource.aliases.count
+      = link_to [:admin, resource, :permissions], class: 'btn btn-default' do
+        = icon :certificate
+        = resource.permissions.count
+
+    .btn-group
+      - if can? :destroy, resource
+        = link_to_delete [:admin, resource]
 
 = simple_form_for [:admin, resource] do |f|
-  .row-fluid
-    .span6
+  .row
+    .col-md-6
       .well
         %fieldset
           %legend General
@@ -23,7 +31,6 @@
           = f.input :backupmx, label: 'Backup MX'
           = f.input :active
 
-    .span6
       .well
         %fieldset
           %legend Counts
@@ -36,11 +43,16 @@
             .controls
               = text_field_tag :aliases_count, resource.aliases.count, disabled: true
 
-    .span6
+    .col-md-6
       .well
         %fieldset
           %legend Timestamps
           = f.input :created_at, as: :string, disabled: true, hint: time_ago_in_words(resource.created_at)
           = f.input :updated_at, as: :string, disabled: true, hint: time_ago_in_words(resource.updated_at)
+
+      .well
+        %fieldset
+          %legend Catch-All Alias
+          = f.input :catch_all_address, label: 'Address'
 
   = render partial: 'shared/form_actions_update'

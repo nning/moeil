@@ -1,28 +1,28 @@
-%h1= resource.email
-.btn-toolbar
-  .btn-group
-    = link_to_back
-    = link_to_delete [:admin, parent, resource]
-%hr
+.page-header
+  %h1= resource.email
+  .btn-toolbar
+    .btn-group
+      = link_to_back
+      - if can? :destroy, resource
+        = link_to_delete [:admin, parent, resource]
 
 = simple_form_for [:admin, resource.domain, resource] do |f|
-  .row-fluid
-    .span6
+  .row
+    .col-md-12
       .well
         %fieldset
           %legend Redirection
-          = f.input :id, disabled: true, label: 'ID'
-          = f.input :username
-          = f.association :domain
-          = f.input :goto
-          = f.input :description
+          .col-md-6
+            = f.input :id, disabled: true, label: 'ID'
+            = f.input :username
+            = f.association :domain
+            = f.input :description
+            = f.input :active
+          .col-md-6
+            = f.input :goto, input_html: { rows: 9 }, hint: 'A comma-seperated list of receiver addresses.'
 
-    .span6
-      .well
-        %fieldset
-          %legend Admin Options
-          = f.input :active
 
+    .col-md-6
       .well
         %fieldset
           %legend Timestamps

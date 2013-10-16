@@ -1,6 +1,6 @@
-module AliasHelper
+module AliasesHelper
 
-  include AliasAndMailboxHelper
+  include AliasesAndMailboxesHelper
 
   def address_list(string)
     addresses = string.split(',')
@@ -11,7 +11,7 @@ module AliasHelper
       m = Mailbox.joins(:domain).where(username: u).first
 
       unless m.nil?
-        a = link_to a, edit_admin_domain_mailbox_path(m.domain, m)
+        a = link_to a, [:edit, :admin, m.domain, m]
       end
 
       a = content_tag :p, a

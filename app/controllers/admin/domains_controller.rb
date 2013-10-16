@@ -1,5 +1,7 @@
 class Admin::DomainsController < AdminController
 
+  load_and_authorize_resource
+
   inherit_resources
 
   actions :all, except: :show
@@ -22,6 +24,12 @@ class Admin::DomainsController < AdminController
     end
   end
 =end
+
+  # TODO Does this work properly with inherited_resources?
+  #      View uses collection method.
+  def index
+    @domains = Domain.managable current_mailbox
+  end
 
   def update
     update! do |success, error|

@@ -1,18 +1,34 @@
-require 'bundler/capistrano'
 require File.expand_path('../../config/environment',  __FILE__)
-
-hostname = YAML.load_file("#{File.dirname(__FILE__)}/settings.yml")['host']
-
+ 
 set :application, Rails.application.class.parent_name.downcase
+set :hostname, YAML.load_file(File.join(File.dirname(__FILE__), 'settings.yml'))['host'] 
 
-set :repository, 'git://git.orgizm.net/moeil.git'
-set :deploy_to, '/srv/http/' + hostname
-set :shared_children, %w(log tmp/pids)
+set :repo_url, 'https://github.com/nning/moeil.git'
+set :scm, :git
 
-default_run_options[:pty] = true
+set :rbenv_type, :user
+set :rbenv_ruby, '2.0.0-p247'
 
-role :app, hostname
-role :web, hostname
-role :db,  hostname, :primary => true
+set :deploy_to,  '/srv/http/' + fetch(:hostname)
+set :deploy_via, :remote_cache
 
-Dir[File.dirname(__FILE__) + '/deploy/*.rb'].each { |f| load f }
+set :log_level, :info
+
+set :linked_files, %w[config/database.yml config/initializers/secret_token.rb]
+set :linked_dirs, %w[bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system]
+
+set :keep_releases, 5
+
+
+namespace :deploy do
+
+  desc 'Restart application'
+  task :restart do
+    on roles :app, in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
+  after :finishing, 'deploy:cleanup'
+
+end

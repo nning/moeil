@@ -1,6 +1,6 @@
-%h1 Create Domain
-= link_to_back
-%hr
+.page-header
+  %h1 Create Domain
+  = link_to_back
 
 = simple_form_for [:admin, resource], uri: admin_domains_path, method: :post do |f|
   .well
@@ -13,8 +13,8 @@
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
-      %i{class: 'icon-ok icon-white'}
+      = icon :ok
       Create Domain
     %button{type: 'reset', class: 'btn btn-danger'}
-      %i{class: 'icon-remove icon-white'}
+      = icon :remove
       Reset Form

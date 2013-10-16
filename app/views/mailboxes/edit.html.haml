@@ -1,9 +1,9 @@
-%h1= resource.email
-%hr
+.page-header
+  %h1= resource.email
 
 = simple_form_for resource, url: resource_path, method: :put do |f|
-  .row-fluid
-    .span6
+  .row
+    .col-md-6
       .well
         %fieldset
           %legend Account Information
@@ -13,16 +13,6 @@
           = f.association :domain, disabled: true, required: false
           = f.input :name
 
-    .span6
-      .well
-        %fieldset
-          %legend Change Password
-          = f.input :current_password, hint: 'Your current password.'
-          = f.input :password, hint: 'Leave blank, if you do not want to change it.'
-          = f.input :password_confirmation, label: false
-
-  .row-fluid
-    .span6
       .well
         %fieldset
           %legend Quota
@@ -31,12 +21,22 @@
           - else
             = f.input :quota, hint: 'in Bytes', disabled: true
 
+    .col-md-6
+      .well
+        %fieldset
+          %legend Change Password
+          = f.input :current_password, hint: 'Your current password.'
+          = f.input :password, hint: 'Leave blank, if you do not want to change it.'
+          = f.input :password_confirmation, label: false
+
+      = render partial: 'shared/mailbox_permissions'
+
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
-      %i{class: 'icon-ok icon-white'}
+      = icon :ok
       Update Mailbox
     %button{type: 'reset', class: 'btn btn-danger'}
-      %i{class: 'icon-remove icon-white'}
+      = icon :remove
       Reset Form
 
 - if (aliases = resource.aliases).any?
@@ -61,5 +61,5 @@
 .well
   %p You can cancel your account here. It will not be recoverable.
   = link_to mailbox_path, class: 'btn btn-danger', method: :delete, data: { confirm: 'Your account will not be recoverable, are you really sure? You were warned.' } do
-    = content_tag :i, nil, class: 'icon-thumbs-down icon-white'
+    = icon :thumbs_down
     Delete Account

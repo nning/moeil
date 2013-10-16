@@ -1,15 +1,15 @@
-%h1 Create Mailbox
-= link_to_back
-%hr
+.page-header
+  %h1 Create Mailbox
+  = link_to_back
 
 = simple_form_for [:admin, resource.domain, resource] do |f|
-  .row-fluid
-    .span6
+  .row
+    .col-md-6
       .well
         %fieldset
           %legend Account Information
           = f.input :username
-          = f.association :domain
+          = f.association :domain, collection: @domains
           = f.input :name
 
       .well
@@ -18,10 +18,10 @@
           = f.input :password
           = f.input :password_confirmation, label: false
 
-    .span6
+    .col-md-6
       .well
         %fieldset
-          %legend Admin Options
+          %legend Miscellaneous
           = f.input :active
           = f.input :admin
           = f.input :quota, hint: 'in Bytes'
@@ -29,8 +29,8 @@
 
   .form-actions
     %button{type: 'submit', class: 'btn btn-primary'}
-      %i{class: 'icon-ok icon-white'}
+      = icon :ok
       Create Mailbox
     %button{type: 'reset', class: 'btn btn-danger'}
-      %i{class: 'icon-remove icon-white'}
+      = icon :remove
       Reset Form

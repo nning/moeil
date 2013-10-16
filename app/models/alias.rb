@@ -32,4 +32,20 @@ class Alias < ActiveRecord::Base
     [self.username, self.domain.name].join '@' rescue nil
   end
 
+  def to_s
+    if domain
+      if username
+        email
+      else
+        "Catch-All for #{domain.name} to #{goto}"
+      end
+    else
+      if username
+        "#{username}@#{domain_id}"
+      else
+        "Catch-All for #{domain_id} to #{goto}"
+      end
+    end
+  end
+
 end

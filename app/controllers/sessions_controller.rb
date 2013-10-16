@@ -23,7 +23,8 @@ class SessionsController < Devise::SessionsController
     respond_with resource, :location => after_sign_in_path_for(resource)
   end
 
-private
+
+  private
 
   def prepare_params
     mp = params[:mailbox]

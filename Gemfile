@@ -3,13 +3,20 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.0.0'
 
 # All database adapters are included for the postfixadmin data import script.
-gem 'sqlite3'
-gem 'pg'
-gem 'mysql'
+platforms :ruby do
+  gem 'sqlite3'
+  gem 'pg'
+  gem 'mysql'
+end
 
-gem 'bootstrap-sass', '~> 2.3.2.1'       # CSS framework
-gem 'coffee-rails'                       # Less ugly JS
-gem 'devise', '~> 3.1.0.rc2'
+platforms :jruby do
+  gem 'activerecord-jdbcsqlite3-adapter'
+  gem 'activerecord-jdbcpostgresql-adapter'
+  gem 'activerecord-jdbcmysql-adapter'
+end
+
+gem 'cancan'                             # Authorization
+gem 'devise', '~> 3.1.0.rc2'             # Authentication
 gem 'devise-encryptable'
 gem 'foreigner'                          # Foreign key constraints
 gem 'haml'                               # More beautiful views
@@ -17,17 +24,28 @@ gem 'highline'                           # Terminal input in cli scripts
 gem 'inherited_resources'                # DRY
 gem 'jquery-rails'                       # jQuery
 gem 'kaminari'                           # Pagination
-gem 'paper_trail', git: 'git://github.com/airblade/paper_trail.git', branch: 'rails4' # Change history
+gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4' # Change history
 gem 'rails_config'                       # For configuration
-gem 'sass-rails', git: 'git://github.com/rails/sass-rails.git' # Less ugly CSS
-gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git' # DRY form
-gem 'therubyracer', platforms: :ruby     # JS VM for assets
+gem 'simple_form', github: 'plataformatec/simple_form' # DRY form
 gem 'turbolinks'                         # Load links with JS
-gem 'uglifier', '>= 1.0.3'               # Compress JS
 gem 'yaml_db'                            # Database dump
 
+group :assets do
+  gem 'coffee-rails'
+  gem 'therubyracer', platforms: :ruby
+  gem 'therubyrhino', platforms: :jruby
+  gem 'uglifier'
+
+  gem 'sass-rails', github: 'rails/sass-rails' # Less ugly CSS
+  gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
+end
+
 group :development do
-  gem 'capistrano'                       # Easy deployment
+  # Convenient deployment
+  gem 'capistrano', '~> 3.0.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 end
 
 group :test do

@@ -1,10 +1,10 @@
 %tr
-  %td= version.event
+  %td= icon_for_event version.event
   %td= version.item_type
   %td= link_to_object version
-  %td= link_to_user version.whodunnit
+  %td= link_to_mailbox version.whodunnit
   %td= time_ago_in_words version.created_at
   %td
-    = link_to "#modal#{version.id}", :class => 'btn btn-mini', :role => 'button', :'data-toggle' => 'modal' do
-      = content_tag :i, nil, class: 'icon-eye-open'
+    = link_to "#modal#{version.id}", class: 'btn btn-default btn-xs', role: 'button', :'data-toggle' => 'modal' do
+      = icon :eye_open
     = render partial: 'modal', locals: { version: version }

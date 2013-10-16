@@ -1,5 +1,0 @@
-= simple_form_for :password, method: :put, defaults: { required: false } do |f|
-  = f.input :password, input_html: { name: 'password1' }
-  = f.input :password_confirmation, input_html: { name: 'password2' }, label: 'Confirmation'
-  .form-actions
-    = f.button :submit, 'Generate Password', class: 'btn-primary'

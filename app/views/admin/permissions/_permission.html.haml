@@ -1,0 +1,11 @@
+%tr
+  %td= link_to_alias_or_mailbox permission.subject
+  %td= permission.role.capitalize
+  %td
+    .btn-group
+      - if can? :update, permission
+        = link_to [:edit, :admin, permission.item, permission], class: 'btn btn-default btn-xs' do
+          = icon :edit
+      - if can? :destroy, permission
+        = link_to [:admin, permission.item, permission], method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger btn-xs' do
+          = icon :trash

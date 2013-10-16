@@ -50,6 +50,15 @@ class Mailbox < ActiveRecord::Base
     end
   end
 
+  def mailboxes_for_select
+    domains = admin? ? Domain.all : permissions.map(&:item)
+    domains.map(&:mailboxes_for_select).flatten(1)
+  end
+
+  def manager?
+    permissions.any? || admin?
+  end
+
   def password_salt
     salt   = self.encrypted_password.split('$')[2] rescue nil
     salt ||= Password::Sha512Crypt.generate_salt
@@ -59,15 +68,16 @@ class Mailbox < ActiveRecord::Base
   def password_salt=(value)
   end
 
-  def password_scheme
-    { 1 => :md5_crypt, 6 => :sha512_crypt }[encrypted_password.split('$')[1].to_i]
+  def permissions
+    Permission.subject self
   end
 
   def self.lookup(username, domain_id)
     where(username: username, domain_id: domain_id).first
   end
 
-private
+
+  private
 
   def create_relocation
     if persisted? and (username_changed? or domain_id_changed?)
@@ -85,6 +95,11 @@ private
 
       create_relocation! old_username: old_username, old_domain: old_domain
     end
+  end
+
+  def to_s
+    return "#{username}@#{domain_id}" if domain.nil?
+    email
   end
 
 end

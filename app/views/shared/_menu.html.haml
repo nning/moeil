@@ -1,0 +1,26 @@
+.collapse.navbar-collapse.navbar-menu-collapse
+  %ul.nav.navbar-nav
+    - if current_mailbox.try(:manager?)
+      %li{class: active_navigation('admin/domains')}
+        = link_to 'Domains', [:admin, :domains]
+      - if current_mailbox.admin?
+        %li{class: active_navigation('admin/versions')}
+          = link_to 'Changes', [:admin, :versions]
+      %li{class: active_navigation('admin/mailboxes')}
+        = link_to [:new, :admin, Domain.default, :mailbox] do
+          = icon :plus
+          New Mailbox
+      %li{class: active_navigation('admin/aliases')}
+        = link_to [:new, :admin, Domain.default, :alias] do
+          = icon :plus
+          New Alias
+
+  %ul.nav.navbar-nav.navbar-right
+    %li{class: active_navigation('mailbox')}
+      = link_to [:edit, :mailbox] do
+        = icon :user
+        = current_mailbox.email
+    %li{class: active_navigation('devise/sessions')}
+      = link_to [:destroy, :mailbox_session], method: :delete do
+        = icon :off
+        %span.sr-only Logout

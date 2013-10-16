@@ -1,6 +1,6 @@
 class MailboxesController < InheritedResources::Base
 
-  before_filter :require_login
+  load_and_authorize_resource
 
   def resource
     current_mailbox
@@ -27,7 +27,8 @@ class MailboxesController < InheritedResources::Base
     end
   end
 
-private
+
+  private
 
   def permitted_params
     a = [
