@@ -1,7 +1,7 @@
 require File.expand_path('../../config/environment',  __FILE__)
  
 set :application, Rails.application.class.parent_name.downcase
-set :hostname, YAML.load_file(File.join(File.dirname(__FILE__), 'settings.yml'))['host'] 
+set :hostname, Settings.host
 
 set :repo_url, 'https://github.com/nning/moeil.git'
 set :scm, :git
