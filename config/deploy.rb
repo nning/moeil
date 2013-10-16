@@ -1,4 +1,7 @@
-set :application, 'moeil'
+require File.expand_path('../../config/environment',  __FILE__)
+ 
+set :application, Rails.application.class.parent_name.downcase
+set :hostname, YAML.load_file(File.join(File.dirname(__FILE__), 'settings.yml'))['host'] 
 
 set :repo_url, 'https://github.com/nning/moeil.git'
 set :scm, :git
@@ -6,7 +9,7 @@ set :scm, :git
 set :rbenv_type, :user
 set :rbenv_ruby, '2.0.0-p247'
 
-set :deploy_to,  '/srv/http/moeil.orgizm.net'
+set :deploy_to,  '/srv/http/' + fetch(:hostname)
 set :deploy_via, :remote_cache
 
 set :log_level, :info
