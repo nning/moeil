@@ -21,4 +21,17 @@ class Admin::PermissionsController < AdminController
     redirect_to [:new, :admin, parent, :permission], flash: { error: 'Permission already existing.' }
   end
 
+
+  private
+
+  def permitted_params
+    params.permit \
+      permission: [
+        :role,
+        :subject,
+        :subject_id,
+        :subject_type
+      ]
+  end
+
 end

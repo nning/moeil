@@ -37,4 +37,17 @@ class Admin::DomainsController < AdminController
     end
   end
 
+
+  private
+
+  def permitted_params
+    params.permit \
+      domain: [
+        :active,
+        :backupmx,
+        :description,
+        :name
+      ]
+  end
+
 end

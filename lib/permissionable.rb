@@ -20,7 +20,7 @@ module Permissionable
     return true if mailbox.admin?
 
     # Retrieve direct mailbox permissions.
-    @perms = self.permissions.subject(mailbox).all
+    @perms = self.permissions.subject(mailbox).load
 
     # Deny if no permission is found.
     return false unless @perms

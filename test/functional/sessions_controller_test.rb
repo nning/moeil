@@ -36,8 +36,8 @@ class SessionsControllerTest < ActionController::TestCase
           post :create, mailbox: { email: @mailbox.email, password: 'bar' }
         end
 
-        should respond_with :success
-        should render_template :new
+        should respond_with :redirect
+        should redirect_to '/login'
       end
     end
   end

@@ -55,9 +55,11 @@ group :test do
   gem 'shoulda-matchers', '~> 2.4.0.rc1'
 end
 
+=begin
 group :development, :test do
-  gem 'rspec-rails', '~>2.0'             # Needed by shoulda
+  gem 'rspec-rails', '~> 2.0'            # Needed by shoulda
 end
+=end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

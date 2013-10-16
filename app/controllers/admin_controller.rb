@@ -4,7 +4,8 @@ class AdminController < ApplicationController
 
   before_filter :access?
 
-private
+
+  private
 
   def access?
     render_404 and return if current_mailbox.nil? || !current_mailbox.manager?

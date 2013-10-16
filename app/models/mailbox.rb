@@ -72,6 +72,12 @@ class Mailbox < ActiveRecord::Base
     Permission.subject self
   end
 
+  def to_s
+    return "#{username}@#{domain_id}" if domain.nil?
+    email
+  end
+
+
   def self.lookup(username, domain_id)
     where(username: username, domain_id: domain_id).first
   end
@@ -95,11 +101,6 @@ class Mailbox < ActiveRecord::Base
 
       create_relocation! old_username: old_username, old_domain: old_domain
     end
-  end
-
-  def to_s
-    return "#{username}@#{domain_id}" if domain.nil?
-    email
   end
 
 end
