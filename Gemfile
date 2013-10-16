@@ -40,7 +40,11 @@ group :assets do
 end
 
 group :development do
-  gem 'capistrano', '~> 2.15.5' # Easy deployment
+  # Convenient deployment
+  gem 'capistrano', '~> 3.0.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 end
 
 group :test do
