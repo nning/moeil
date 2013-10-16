@@ -16,7 +16,7 @@ platforms :jruby do
 end
 
 gem 'cancan'                             # Authorization
-gem 'devise', '~> 3.1.0.rc2'             # Authentication
+gem 'devise', '~> 3.1.1'                 # Authentication
 gem 'devise-encryptable'
 gem 'foreigner'                          # Foreign key constraints
 gem 'haml'                               # More beautiful views
@@ -24,7 +24,7 @@ gem 'highline'                           # Terminal input in cli scripts
 gem 'inherited_resources'                # DRY
 gem 'jquery-rails'                       # jQuery
 gem 'kaminari'                           # Pagination
-gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4' # Change history
+gem 'paper_trail', '~> 3.0.0.beta1'      # Change history
 gem 'rails_config'                       # For configuration
 gem 'simple_form', github: 'plataformatec/simple_form' # DRY form
 gem 'turbolinks'                         # Load links with JS
@@ -52,7 +52,7 @@ group :test do
   gem 'factory_girl_rails'               # Instead of fixtures
   gem 'faker'                            # For test data
   gem 'shoulda'                          # More beautiful assertions
-  gem 'shoulda-matchers', '~> 2.4.0.rc1'
+  gem 'shoulda-matchers', '~> 2.4.0'
 end
 
 =begin
