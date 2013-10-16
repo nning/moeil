@@ -4,7 +4,11 @@
     = resource.subject.email
     on
     = resource.item.name
-  = link_to_back
+  .btn-toolbar
+    .btn-group
+      = link_to_back
+      - if can? :destroy, resource
+        = link_to_delete [:admin, parent, resource]
 
 = simple_form_for [:admin, resource.item, resource] do |f|
   .row

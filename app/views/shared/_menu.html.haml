@@ -17,6 +17,10 @@
 
   %ul.nav.navbar-nav.navbar-right
     %li{class: active_navigation('mailbox')}
-      = link_to current_mailbox.email, [:edit, :mailbox]
+      = link_to [:edit, :mailbox] do
+        = icon :user
+        = current_mailbox.email
     %li{class: active_navigation('devise/sessions')}
-      = link_to 'Logout', [:destroy, :mailbox_session], method: :delete
+      = link_to [:destroy, :mailbox_session], method: :delete do
+        = icon :off
+        %span.sr-only Logout

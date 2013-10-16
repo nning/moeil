@@ -2,6 +2,17 @@ module VersionsHelper
 
   include MailboxesHelper
 
+  def icon_for_event(event)
+    case event
+      when 'create'
+        icon :plus
+      when 'destroy'
+        icon :trash
+      when 'update'
+        icon :edit
+    end
+  end
+
   def link_to_object(version)
     clazz = version.item_type
     id    = version.item_id
