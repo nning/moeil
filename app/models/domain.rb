@@ -19,6 +19,10 @@ class Domain < ActiveRecord::Base
   before_save ->{ name.downcase! }
 
 
+  def aliases_count
+    aliases.count
+  end
+
   def catch_all_alias
     aliases.where(username: nil).first
   end
@@ -33,6 +37,10 @@ class Domain < ActiveRecord::Base
     a = catch_all_alias || aliases.build
     a.goto = goto
     a.save! validate: false
+  end
+
+  def mailboxes_count
+    mailboxes.count
   end
 
   def mailboxes_for_select
