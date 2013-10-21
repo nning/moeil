@@ -34,14 +34,8 @@
       .well
         %fieldset
           %legend Counts
-          .control-group
-            = label_tag :mailboxes_count, 'Mailboxes', class: 'control-label'
-            .controls
-              = text_field_tag :mailboxes_count, resource.mailboxes.count, disabled: true
-          .control-group
-            = label_tag :aliases_count, 'Aliases', class: 'control-label'
-            .controls
-              = text_field_tag :aliases_count, resource.aliases.count, disabled: true
+          = f.input :mailboxes_count, disabled: true, label: 'Mailboxes'
+          = f.input :aliases_count, disabled: true, label: 'Aliases'
 
     .col-md-6
       .well
