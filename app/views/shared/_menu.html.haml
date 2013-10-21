@@ -22,5 +22,5 @@
         = current_mailbox.email
     %li{class: active_navigation('devise/sessions')}
       = link_to [:destroy, :mailbox_session], method: :delete do
-        = icon :off
-        %span.sr-only Logout
+        = icon :off, class: 'logout'
+        %span.visible-xs Logout

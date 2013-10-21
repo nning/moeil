@@ -26,9 +26,9 @@ module ApplicationHelper
     end
   end
 
-  def icon(name)
+  def icon(name, options = {})
     name = name.to_s.gsub /_/, '-'
-    content_tag :span, nil, class: "glyphicon glyphicon-#{name}"
+    content_tag :span, nil, class: "glyphicon glyphicon-#{name} #{options[:class]}"
   end
 
 end
