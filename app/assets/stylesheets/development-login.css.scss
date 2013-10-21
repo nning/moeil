@@ -13,8 +13,8 @@
 	.well {
 		margin: 0;
 	}
-}
 
-#development_login:hover {
-	opacity: 1;
+	&:hover {
+		opacity: 1;
+	}
 }
