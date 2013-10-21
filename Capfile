@@ -1,9 +1,6 @@
 # Load DSL and Setup Up Stages
 require 'capistrano/setup'
 
-# Seems to be neccessary for capistrano revision log message
-require 'capistrano/i18n'
-
 # Includes default deployment tasks
 require 'capistrano/deploy'
 
