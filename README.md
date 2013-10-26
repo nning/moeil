@@ -1,7 +1,4 @@
-[![Build Status](https://travis-ci.org/nning/moeil.png?branch=master)](https://travis-ci.org/nning/moeil)
-[![Code Climate](https://codeclimate.com/github/nning/moeil.png)](https://codeclimate.com/github/nning/moeil)
-
-Møil 
+Møil [![Build Status](https://travis-ci.org/nning/moeil.png?branch=master)](https://travis-ci.org/nning/moeil)
 ====
 
 Møil is an open source administration user interface for database backed mail
@@ -27,7 +24,7 @@ Installation
 Just deploy like any other current rails project. Configuration examples for
 postfix and dovecot are to be found in the doc directory of the code repository.
 
-### For Testing
+### Local testing
 
     git clone git://github.com/nning/moeil.git
 	cd moeil
@@ -38,6 +35,43 @@ postfix and dovecot are to be found in the doc directory of the code repository.
 	rake db:migrate
 	rake db:seed
 	rails s
+
+### OpenShift
+
+First steps happen in your local terminal. So this is for creating an OpenShift
+Ruby 1.9 application with a PostgreSQL 9.2 cartridge:
+
+	rhc app create -a moeil -t ruby-1.9
+	rhc cartridge add -a moeil -c postgresql-9.2
+
+A git repository is created which holds your application code. We add the Møil
+repository as a remote and pull the code to the application repository:
+
+	cd moeil
+	git remote add upstream -m master https://github.com/nning/moeil.git
+	git pull -s recursive -X theirs upstream master
+
+Then we push the current state and deploy the application (this will take some
+time):
+
+	git push origin master
+
+To create a first domain and a mailbox, we have to SSH into the OpenShift
+application and start a rails console:
+
+	rhc ssh moeil
+	cd app-root/repo
+	RAILS_DB=postgresql RAILS_ENV=production bundle exec rails c
+
+Then, inside the rails console, we are creating a domain and an associated
+mailbox:
+
+	d = Domain.create!(name: 'example.org')
+	m = Mailbox.new(username: 'alice', password: 'foobar', admin: true)
+	m.domain = d
+	m.save!
+
+Now you can login to your Møil deployment on OpenShift.
 
 License
 -------
