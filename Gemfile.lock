@@ -1,15 +1,15 @@
 GIT
   remote: git://github.com/capistrano/rbenv.git
-  revision: 8326795409e262b33c5e2f2ff5943a2bee0e93c8
+  revision: 68fce771ca41ac6882f9a86e3660151f0a518ced
   specs:
     capistrano-rbenv (0.0.1)
       capistrano
 
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: ab2f7dd92491bd490e545c18d32e966567b84a3b
+  revision: 2b2defa3654b7ffbc747711f24a84cb3d54add95
   specs:
-    bootstrap-sass (3.0.0.0)
+    bootstrap-sass (3.0.0.0.rc2)
       sass (~> 3.2)
 
 GEM
@@ -36,17 +36,6 @@ GEM
       activesupport (= 3.2.15)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-jdbc-adapter (1.3.2)
-      activerecord (>= 2.2)
-    activerecord-jdbcmysql-adapter (1.3.2)
-      activerecord-jdbc-adapter (~> 1.3.2)
-      jdbc-mysql (>= 5.1.22)
-    activerecord-jdbcpostgresql-adapter (1.3.2)
-      activerecord-jdbc-adapter (~> 1.3.2)
-      jdbc-postgres (>= 9.1)
-    activerecord-jdbcsqlite3-adapter (1.3.2)
-      activerecord-jdbc-adapter (~> 1.3.2)
-      jdbc-sqlite3 (~> 3.7.2)
     activeresource (3.2.15)
       activemodel (= 3.2.15)
       activesupport (= 3.2.15)
@@ -55,9 +44,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     atomic (1.1.14)
-    atomic (1.1.14-java)
     bcrypt-ruby (3.1.2)
-    bcrypt-ruby (3.1.2-java)
     builder (3.0.4)
     cancan (1.6.10)
     capistrano (3.0.0)
@@ -92,28 +79,24 @@ GEM
       railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
-    foreigner (1.5.0)
+    foreigner (1.6.0)
       activerecord (>= 3.0.0)
     haml (4.0.3)
       tilt
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
-    highline (1.6.19)
+    highline (1.6.20)
     hike (1.2.3)
     i18n (0.6.5)
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    jdbc-mysql (5.1.25)
-    jdbc-postgres (9.2.1002.1)
-    jdbc-sqlite3 (3.7.2.1)
     journey (1.0.4)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.8.0)
-    json (1.8.0-java)
+    json (1.8.1)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -183,7 +166,7 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.8)
-    sshkit (1.0.0)
+    sshkit (1.1.0)
       net-scp
       net-ssh
       term-ansicolor
@@ -192,13 +175,8 @@ GEM
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
-    therubyrhino (2.0.2)
-      therubyrhino_jar (>= 1.7.3)
-    therubyrhino_jar (1.7.4)
     thor (0.18.1)
     thread_safe (0.1.3)
-      atomic
-    thread_safe (0.1.3-java)
       atomic
     tilt (1.4.1)
     tins (0.12.0)
@@ -206,15 +184,14 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
-    uglifier (2.2.1)
+    uglifier (2.3.0)
       execjs (>= 0.3.0)
-      multi_json (~> 1.0, >= 1.0.2)
+      json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
     yaml_db (0.2.3)
 
 PLATFORMS
-  java
   ruby
 
 DEPENDENCIES

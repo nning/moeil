@@ -2,18 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2.15'
 
-# All database adapters are included for the postfixadmin data import script.
-platforms :ruby do
-  gem 'sqlite3'
-  gem 'pg'
-  gem 'mysql'
-end
-
-platforms :jruby do
-  gem 'activerecord-jdbcsqlite3-adapter'
-  gem 'activerecord-jdbcpostgresql-adapter'
-  gem 'activerecord-jdbcmysql-adapter'
-end
+gem 'pg', platforms: :ruby
+gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
 
 gem 'cancan'                # Authorization
 gem 'devise'                # Authentication
@@ -45,6 +35,18 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
+end
+
+group :development, :test do
+  platforms :ruby do
+    gem 'sqlite3'
+    gem 'mysql'
+  end
+
+  platforms :jruby do
+    gem 'activerecord-jdbcsqlite3-adapter'
+    gem 'activerecord-jdbcmysql-adapter'
+  end
 end
 
 group :test do
