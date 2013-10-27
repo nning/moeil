@@ -1,7 +1,8 @@
 class Mailbox < ActiveRecord::Base
 
   belongs_to :domain
-  has_one :relocation, dependent: :destroy
+  has_many   :permissions, dependent: :destroy, as: :subject
+  has_one    :relocation,  dependent: :destroy
 
   devise :database_authenticatable, :encryptable
 
