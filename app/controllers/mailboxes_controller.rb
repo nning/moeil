@@ -8,7 +8,7 @@ class MailboxesController < InheritedResources::Base
 
   def update
     unless current_mailbox.admin?
-      [:domain_id, :quota, :username].each do |a|
+      %i[active admin domain_id mail_location quota username].each do |a|
         params[:mailbox].delete a
       end
     end
