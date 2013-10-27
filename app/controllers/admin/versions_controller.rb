@@ -13,9 +13,9 @@ class Admin::VersionsController < AdminController
 
     if ['update', 'destroy'].include? @version.event
       @version.reify.save!
-      redirect_to admin_versions_path, notice: "Reverted #{@version.event}."
+      redirect_to [:admin, :versions], notice: "Reverted #{@version.event}."
     else
-      redirect_to admin_versions_path, flash: { error: "Impossible to revert #{@version.event}." }
+      redirect_to [:admin, :versions], flash: { error: "Impossible to revert #{@version.event}." }
     end
   end
 

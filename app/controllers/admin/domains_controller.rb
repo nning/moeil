@@ -8,7 +8,7 @@ class Admin::DomainsController < AdminController
 
   def create
     create! do |success, error|
-      success.html { redirect_to admin_domains_path }
+      success.html { redirect_to [:admin, :domains] }
     end
   end
 
@@ -33,7 +33,7 @@ class Admin::DomainsController < AdminController
 
   def update
     update! do |success, error|
-      success.html { redirect_to edit_admin_domain_path(resource) }
+      success.html { redirect_to [:edit, :admin, resource] }
     end
   end
 
