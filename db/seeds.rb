@@ -5,7 +5,7 @@ def rand5; rand(5) + 1; end
 
 ActiveRecord::Base.logger = Logger.new($stdout) unless ENV['DEBUG'].blank?
 
-d, p  = Domain.create(name: 'example.org'), 'foobar'
+d, p  = Domain.create(name: 'example.org'), 'whatever'
 alice = d.mailboxes.create username: 'alice', password: p, admin: true
 bob   = d.mailboxes.create username: 'bob',   password: p
 carol = d.mailboxes.create username: 'carol', password: p
@@ -20,7 +20,7 @@ Created mailboxes
   bob@example.org as owner of some domains,
   carol@example.org as editor of some domains,
   dan@example.org without special rights
-  (all with password "foobar")
+  (all with password "#{p}")
 O
 
 rand5.times do

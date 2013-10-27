@@ -10,8 +10,8 @@
       .well
         %fieldset
           %legend Permission
-          = f.input :subject_id, collection: current_mailbox.mailboxes_for_select, label: 'Mailbox'
-          = f.input :role, collection: Permission::ROLES, hint: 'Editors can manage mailboxes and aliases. Owners can do everything.'
+          = f.input :subject_id, collection: current_mailbox.mailboxes_for_select, label: 'Mailbox', include_blank: false
+          = f.input :role, collection: Permission::ROLES, hint: 'Editors can manage mailboxes and aliases. Owners can do everything.', include_blank: false
 
   .row
     .col-md-6

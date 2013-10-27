@@ -9,7 +9,7 @@ class SessionsControllerTest < ActionController::TestCase
   context 'Login' do
     setup do
       request.env['devise.mapping'] = Devise.mappings[:mailbox]
-      @mailbox = FactoryGirl.create :mailbox, password: 'foo'
+      @mailbox = FactoryGirl.create :mailbox, password: 'whatever'
     end
 
     context 'on GET to new' do
@@ -24,7 +24,7 @@ class SessionsControllerTest < ActionController::TestCase
     context 'on POST to create' do
       context 'with correct password' do
         setup do
-          post :create, mailbox: { email: @mailbox.email, password: 'foo' }
+          post :create, mailbox: { email: @mailbox.email, password: 'whatever' }
         end
 
         should respond_with :redirect
@@ -33,7 +33,7 @@ class SessionsControllerTest < ActionController::TestCase
 
       context 'with wrong password' do
         setup do
-          post :create, mailbox: { email: @mailbox.email, password: 'bar' }
+          post :create, mailbox: { email: @mailbox.email, password: 'everwhat' }
         end
 
         should respond_with :success

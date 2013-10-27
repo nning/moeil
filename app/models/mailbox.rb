@@ -35,10 +35,10 @@ class Mailbox < ActiveRecord::Base
       if: :password_required?
     },
     confirmation: {
-      if: :password_required?
+      if: :password
     },
     length: {
-      in: 8..128,
+      in: Settings.minimal_password_length.to_i..128,
       allow_blank: true
     }
 
@@ -77,8 +77,7 @@ class Mailbox < ActiveRecord::Base
   end
 
   def to_s
-    return "#{username}@#{domain_id}" if domain.nil?
-    email
+    domain ? email : "#{username}@#{domain_id}"
   end
 
 
@@ -103,8 +102,7 @@ class Mailbox < ActiveRecord::Base
   end
 
   def password_required?
-    return false if current_password.nil? && persisted?
-    !persisted? || !password.nil? || !password_confirmation.nil?
+    !(persisted? || password.nil? || password_confirmation.nil?)
   end
 
 end

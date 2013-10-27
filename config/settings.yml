@@ -1,5 +1,7 @@
 host: moeil.orgizm.net
 default_domain: orgizm.net
 
+minimal_password_length: 8
+
 blocked_usernames:
   - dummy

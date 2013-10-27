@@ -7,7 +7,7 @@ class MailboxesControllerTest < ActionController::TestCase
 
   context 'Own mailbox' do
     setup do
-      @mailbox = FactoryGirl.create :mailbox, password: 'foo'
+      @mailbox = FactoryGirl.create :mailbox, password: 'whatever'
       sign_in @mailbox
     end
 
@@ -27,9 +27,9 @@ class MailboxesControllerTest < ActionController::TestCase
           username: 'foo',
           domain_id: @domain.id,
           name: 'Foo',
-          current_password: 'foo',
-          password: 'bar',
-          password_confirmation: 'bar',
+          current_password: 'whatever',
+          password: 'everwhat',
+          password_confirmation: 'everwhat',
           quota: 1337
         }
       end

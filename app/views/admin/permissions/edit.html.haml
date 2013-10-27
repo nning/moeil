@@ -16,7 +16,7 @@
       .well
         %fieldset
           %legend Permission
-          = f.input :role, collection: Permission::ROLES
+          = f.input :role, collection: Permission::ROLES, include_blank: false
 
   .row
     .col-md-6

@@ -13,15 +13,6 @@ class MailboxesController < InheritedResources::Base
       end
     end
 
-    unless params[:mailbox][:password].blank?
-      unless current_mailbox.valid_password? params[:mailbox][:current_password]
-        redirect_to [:edit, :mailbox], flash: { error: 'Current password is wrong.' }
-        return
-      end
-    end
-
-    params[:mailbox].delete :current_password
-
     update! do |success, error|
       success.html { redirect_to [:edit, :mailbox] }
     end
