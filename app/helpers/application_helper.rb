@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def flash_class(type)
-    ({ notice: :info, alert: :warning }[type] or type).to_s
+    ({ notice: :info, alert: :warning, error: :danger }[type] or type).to_s
   end
 
   def link_to_back

@@ -30,6 +30,18 @@ class Mailbox < ActiveRecord::Base
       message: 'Username is blocked.'
     }
 
+  validates :password,
+    presence: {
+      if: :password_required?
+    },
+    confirmation: {
+      if: :password_required?
+    },
+    length: {
+      in: 8..128,
+      allow_blank: true
+    }
+
   validates :domain_id, presence: true
   validates :encrypted_password, presence: true
 
@@ -88,6 +100,11 @@ class Mailbox < ActiveRecord::Base
 
       create_relocation! old_username: old_username, old_domain: old_domain
     end
+  end
+
+  def password_required?
+    return false if current_password.nil? && persisted?
+    !persisted? || !password.nil? || !password_confirmation.nil?
   end
 
 end
