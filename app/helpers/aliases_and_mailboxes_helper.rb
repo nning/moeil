@@ -27,4 +27,8 @@ module AliasesAndMailboxesHelper
     link_to email, [:edit, :admin, o.domain, o]
   end
 
+  def managable_domains
+    Domain.managable current_mailbox
+  end
+
 end
