@@ -63,6 +63,17 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    brakeman (2.1.2)
+      erubis (~> 2.6)
+      fastercsv (~> 1.5)
+      haml (>= 3.0, < 5.0)
+      highline (~> 1.6.19)
+      multi_json (~> 1.2)
+      ruby2ruby (~> 2.0.5)
+      ruby_parser (~> 3.2.2)
+      sass (~> 3.0)
+      slim (>= 1.3.6, < 3.0)
+      terminal-table (~> 1.4)
     builder (3.0.4)
     cancan (1.6.10)
     capistrano (3.0.0)
@@ -73,6 +84,7 @@ GEM
       capistrano (>= 3.0.0.pre)
     capistrano-rails (1.0.0)
       capistrano
+    choice (0.1.6)
     coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -99,6 +111,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
+    fastercsv (1.5.5)
     foreigner (1.5.0)
       activerecord (>= 3.0.0)
     haml (4.0.3)
@@ -155,6 +168,11 @@ GEM
       activesupport (= 3.2.15)
       bundler (~> 1.0)
       railties (= 3.2.15)
+    rails-erd (1.1.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      choice (~> 0.1.6)
+      ruby-graphviz (~> 1.0.4)
     rails_config (0.3.3)
       activesupport (>= 3.0)
     railties (3.2.15)
@@ -170,11 +188,18 @@ GEM
     ref (1.0.5)
     responders (1.0.0)
       railties (>= 3.2, < 5)
+    ruby-graphviz (1.0.9)
+    ruby2ruby (2.0.6)
+      ruby_parser (~> 3.1)
+      sexp_processor (~> 4.0)
+    ruby_parser (3.2.2)
+      sexp_processor (~> 4.1)
     sass (3.2.12)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    sexp_processor (4.4.0)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
       shoulda-matchers (>= 1.4.1, < 3.0)
@@ -184,6 +209,9 @@ GEM
     simple_form (2.1.0)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
+    slim (2.0.2)
+      temple (~> 0.6.6)
+      tilt (>= 1.3.3, < 2.1)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -194,8 +222,10 @@ GEM
       net-scp
       net-ssh
       term-ansicolor
+    temple (0.6.7)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
+    terminal-table (1.4.5)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
@@ -231,6 +261,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass!
+  brakeman
   cancan
   capistrano (~> 3.0.0)
   capistrano-bundler
@@ -251,6 +282,7 @@ DEPENDENCIES
   paper_trail
   pg
   rails (~> 3.2.15)
+  rails-erd
   rails_config
   rake
   sass-rails

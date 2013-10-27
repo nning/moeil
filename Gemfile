@@ -39,6 +39,9 @@ group :development do
   # More beautiful exception pages
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  gem 'rails-erd'                   # Entity/relationship diagram of model
+  gem 'brakeman', require: false    # Vulnerability scanner
 end
 
 group :development, :test do
