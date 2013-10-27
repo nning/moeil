@@ -58,6 +58,11 @@ GEM
     atomic (1.1.14-java)
     bcrypt-ruby (3.1.2)
     bcrypt-ruby (3.1.2-java)
+    better_errors (1.0.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.0.4)
     cancan (1.6.10)
     capistrano (3.0.0)
@@ -68,6 +73,7 @@ GEM
       capistrano (>= 3.0.0.pre)
     capistrano-rails (1.0.0)
       capistrano
+    coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -75,6 +81,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    debug_inspector (0.0.2)
     devise (3.1.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -221,6 +228,8 @@ DEPENDENCIES
   activerecord-jdbcmysql-adapter
   activerecord-jdbcpostgresql-adapter
   activerecord-jdbcsqlite3-adapter
+  better_errors
+  binding_of_caller
   bootstrap-sass!
   cancan
   capistrano (~> 3.0.0)

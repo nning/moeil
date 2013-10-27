@@ -45,6 +45,10 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
+
+  # More beautiful exception pages
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
