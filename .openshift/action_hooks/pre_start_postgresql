@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+cp config/database.yml.openshift config/database.yml
+popd > /dev/null

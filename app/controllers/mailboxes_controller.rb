@@ -7,23 +7,8 @@ class MailboxesController < InheritedResources::Base
   end
 
   def update
-    #unless current_mailbox.admin?
-    #  [:admin, :domain_id, :mail_location, :quota, :username].each do |a|
-    #    params[:mailbox].delete a
-    #  end
-    #end
-
-    unless params[:mailbox][:password].blank?
-      unless current_mailbox.valid_password? params[:mailbox][:current_password]
-        redirect_to edit_mailbox_path, flash: { error: 'Current password is wrong.' }
-        return
-      end
-    end
-
-    params[:mailbox].delete :current_password
-
     update! do |success, error|
-      success.html { redirect_to edit_mailbox_path }
+      success.html { redirect_to [:edit, :mailbox] }
     end
   end
 
@@ -32,8 +17,6 @@ class MailboxesController < InheritedResources::Base
 
   def permitted_params
     a = [
-      :active,
-      :current_password,
       :email,
       :name,
       :password,
@@ -42,6 +25,7 @@ class MailboxesController < InheritedResources::Base
 
     if current_mailbox.admin?
       a << [
+        :active,
         :admin,
         :domain_id,
         :mail_location,

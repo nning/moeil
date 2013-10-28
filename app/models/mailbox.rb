@@ -1,7 +1,8 @@
 class Mailbox < ActiveRecord::Base
 
   belongs_to :domain
-  has_one :relocation, dependent: :destroy
+  has_many   :permissions, dependent: :destroy, as: :subject
+  has_one    :relocation,  dependent: :destroy
 
   devise :database_authenticatable, :encryptable
 
@@ -10,6 +11,8 @@ class Mailbox < ActiveRecord::Base
   default_scope -> { order 'username asc' }
 
   has_paper_trail
+
+  default_value_for :quota, Settings.default_quota
 
 
   validates :username,
@@ -25,6 +28,18 @@ class Mailbox < ActiveRecord::Base
     exclusion: {
       in: Settings.blocked_usernames,
       message: 'Username is blocked.'
+    }
+
+  validates :password,
+    presence: {
+      if: :password_required?
+    },
+    confirmation: {
+      if: :password
+    },
+    length: {
+      in: Settings.minimal_password_length.to_i..128,
+      allow_blank: true
     }
 
   validates :domain_id, presence: true
@@ -73,8 +88,7 @@ class Mailbox < ActiveRecord::Base
   end
 
   def to_s
-    return "#{username}@#{domain_id}" if domain.nil?
-    email
+    domain ? email : "#{username}@#{domain_id}"
   end
 
 
@@ -101,6 +115,10 @@ class Mailbox < ActiveRecord::Base
 
       create_relocation! old_username: old_username, old_domain: old_domain
     end
+  end
+
+  def password_required?
+    !(persisted? || password.nil? || password_confirmation.nil?)
   end
 
 end

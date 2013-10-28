@@ -14,7 +14,7 @@
           %legend Account Information
           = f.input :id, disabled: true, label: 'ID'
           = f.input :username, hint: 'Note, that changing the username or domain currently requires manually moving the mail_location!'
-          = f.association :domain, collection: @domains
+          = f.association :domain, collection: managable_domains, include_blank: false
           = f.input :name
 
       .well

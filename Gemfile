@@ -2,20 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.0.0'
 
-# All database adapters are included for the postfixadmin data import script.
-platforms :ruby do
-  gem 'sqlite3'
-  gem 'pg'
-  gem 'mysql'
-end
-
-platforms :jruby do
-  gem 'activerecord-jdbcsqlite3-adapter'
-  gem 'activerecord-jdbcpostgresql-adapter'
-  gem 'activerecord-jdbcmysql-adapter'
-end
+gem 'pg', platforms: :ruby
+gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
 
 gem 'cancan'                             # Authorization
+gem 'default_value_for'                  # Default values
 gem 'devise', '~> 3.1.1'                 # Authentication
 gem 'devise-encryptable'
 gem 'foreigner'                          # Foreign key constraints
@@ -41,11 +32,30 @@ group :assets do
 end
 
 group :development do
-  # Convenient deployment
-  gem 'capistrano', '~> 3.0.0'
+  gem 'capistrano', '~> 3.0.0'            # Convenient deployment
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
+
+  gem 'better_errors'                     # More beautiful exception pages
+  gem 'binding_of_caller'
+
+  gem 'rails-erd'                         # Entity/relationship diagram of model
+  gem 'brakeman', require: false          # Vulnerability scanner
+end
+
+group :development, :test do
+  platforms :ruby do
+    gem 'sqlite3'
+    gem 'mysql'
+  end
+
+  platforms :jruby do
+    gem 'activerecord-jdbcsqlite3-adapter'
+    gem 'activerecord-jdbcmysql-adapter'
+  end
+
+# gem 'rspec-rails', '~> 2.0'            # Needed by shoulda
 end
 
 group :test do
@@ -54,12 +64,6 @@ group :test do
   gem 'shoulda'                          # More beautiful assertions
   gem 'shoulda-matchers', '~> 2.4.0'
 end
-
-=begin
-group :development, :test do
-  gem 'rspec-rails', '~> 2.0'            # Needed by shoulda
-end
-=end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

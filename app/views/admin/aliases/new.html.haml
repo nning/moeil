@@ -10,7 +10,7 @@
           %legend Redirection
           .col-md-6
             = f.input :username
-            = f.association :domain
+            = f.association :domain, collection: managable_domains, include_blank: false
             = f.input :description
             = f.input :active
           .col-md-6
