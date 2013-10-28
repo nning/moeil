@@ -15,6 +15,8 @@ class Mailbox < ActiveRecord::Base
 
   has_paper_trail
 
+  default_value_for :quota, Settings.default_quota
+
 
   validates :username,
     presence: true,

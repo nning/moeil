@@ -5,19 +5,20 @@ gem 'rails', '~> 3.2.15'
 gem 'pg', platforms: :ruby
 gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
 
-gem 'cancan'                # Authorization
-gem 'devise'                # Authentication
+gem 'cancan'                        # Authorization
+gem 'default_value_for'             # Default values
+gem 'devise'                        # Authentication
 gem 'devise-encryptable'
-gem 'foreigner'             # Foreign key constraints
-gem 'haml'                  # More beautiful views
-gem 'highline'              # For terminal input in command line scripts
-gem 'inherited_resources'   # DRY
-gem 'jquery-rails'          # jQuery
-gem 'kaminari'              # Pagination
-gem 'paper_trail'           # Change history
-gem 'rails_config'          # For configuration
-gem 'simple_form'           # DRY form
-gem 'yaml_db'               # Database dump
+gem 'foreigner'                     # Foreign key constraints
+gem 'haml'                          # More beautiful views
+gem 'highline'                      # For terminal input in command line scripts
+gem 'inherited_resources'           # DRY
+gem 'jquery-rails'                  # jQuery
+gem 'kaminari'                      # Pagination
+gem 'paper_trail'                   # Change history
+gem 'rails_config'                  # For configuration
+gem 'simple_form'                   # DRY form
+gem 'yaml_db'                       # Database dump
 
 group :assets do
   gem 'coffee-rails'
@@ -57,8 +58,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'factory_girl_rails'  # Instead of fixtures
-  gem 'faker'               # For test data
-  gem 'rake'                # Travis seems to like this added explicitly
-  gem 'shoulda'             # Cleaner tests
+  gem 'factory_girl_rails'          # Instead of fixtures
+  gem 'faker'                       # For test data
+  gem 'rake'                        # Travis seems to like this added explicitly
+  gem 'shoulda'                     # Cleaner tests
 end

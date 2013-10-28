@@ -1,5 +1,7 @@
 host: moeil.orgizm.net
+
 default_domain: orgizm.net
+default_quota: 524288
 
 minimal_password_length: 8
 
