@@ -29,6 +29,12 @@ GIT
     bootstrap-sass (3.0.0.0)
       sass (~> 3.2)
 
+GIT
+  remote: git://github.com/tsmango/default_value_for.git
+  revision: 52f1c40f0aa1a043ae15a69379a08ab0a5421c6b
+  specs:
+    default_value_for (2.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -95,7 +101,6 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     debug_inspector (0.0.2)
-    default_value_for (2.0.3)
     devise (3.1.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -255,7 +260,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rbenv!
   coffee-rails
-  default_value_for
+  default_value_for!
   devise (~> 3.1.1)
   devise-encryptable
   factory_girl_rails

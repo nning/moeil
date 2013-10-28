@@ -6,7 +6,7 @@ gem 'pg', platforms: :ruby
 gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
 
 gem 'cancan'                             # Authorization
-gem 'default_value_for'                  # Default values
+gem 'default_value_for', github: 'tsmango/default_value_for' # Default values
 gem 'devise', '~> 3.1.1'                 # Authentication
 gem 'devise-encryptable'
 gem 'foreigner'                          # Foreign key constraints
