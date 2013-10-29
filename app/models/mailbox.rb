@@ -1,5 +1,8 @@
 class Mailbox < ActiveRecord::Base
 
+  PARAMS = %i[email name password password_confirmation]
+  PARAMS_ADMIN = PARAMS + %i[active admin domain_id mail_location quota username]
+
   belongs_to :domain
   has_many   :permissions, dependent: :destroy, as: :subject
   has_one    :relocation,  dependent: :destroy

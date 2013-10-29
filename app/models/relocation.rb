@@ -2,8 +2,6 @@ class Relocation < ActiveRecord::Base
 
   belongs_to :mailbox
 
-  #attr_accessible :old_username, :old_domain, :mailbox_id
-
   default_scope -> { order 'updated_at asc' }
 
   validates :old_username,

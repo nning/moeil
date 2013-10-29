@@ -16,29 +16,14 @@ class MailboxesController < InheritedResources::Base
   private
 
   def permitted_params
-    a = [
-      :email,
-      :name,
-      :password,
-      :password_confirmation
-    ]
+    a = Mailbox::PARAMS
+    a = Mailbox::PARAMS_ADMIN if current_mailbox.admin?
 
-    if current_mailbox.admin?
-      a << [
-        :active,
-        :admin,
-        :domain_id,
-        :mail_location,
-        :quota,
-        :username
-      ]
-    end
-
-    {mailbox: params.require(mailbox: a)}
+    params.permit mailbox: a
   end
 
   def require_login
-    redirect_to new_mailbox_session_path unless current_mailbox
+    redirect_to [:new, :mailbox_session] unless current_mailbox
   end
 
 end

@@ -6,8 +6,6 @@ class Domain < ActiveRecord::Base
   has_many :aliases, dependent: :destroy
   has_many :mailboxes, dependent: :destroy
 
-  #attr_accessible :active, :backupmx, :catch_all_address, :description, :name
-
   default_scope -> { order 'name asc' }
 
   validates :name,

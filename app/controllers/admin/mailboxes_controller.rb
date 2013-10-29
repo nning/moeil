@@ -6,21 +6,7 @@ class Admin::MailboxesController < Admin::AliasesAndMailboxesController
   private
 
   def permitted_params
-    params.permit \
-      :domain_id,
-      mailbox: [
-        :active,
-        :admin,
-        :current_password,
-        :domain_id,
-        :email,
-        :mail_location,
-        :name,
-        :password,
-        :password_confirmation,
-        :quota,
-        :username
-      ]
+    params.permit :domain_id, mailbox: Mailbox::PARAMS_ADMIN
   end
 
 end

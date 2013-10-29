@@ -2,8 +2,6 @@ class Alias < ActiveRecord::Base
 
   belongs_to :domain
 
-  #attr_accessible :active, :description, :domain_id, :goto, :username
-
   default_scope -> { order 'username asc' }
 
   has_paper_trail
