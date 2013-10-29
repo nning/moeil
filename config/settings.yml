@@ -7,3 +7,5 @@ minimal_password_length: 8
 
 blocked_usernames:
   - dummy
+
+dirty_rails4_warden_workaround: true

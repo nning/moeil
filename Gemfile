@@ -5,21 +5,27 @@ gem 'rails', '~> 4.0.0'
 gem 'pg', platforms: :ruby
 gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
 
-gem 'cancan'                             # Authorization
-gem 'default_value_for', github: 'tsmango/default_value_for' # Default values
-gem 'devise', '~> 3.1.1'                 # Authentication
-gem 'devise-encryptable'
-gem 'foreigner'                          # Foreign key constraints
-gem 'haml'                               # More beautiful views
-gem 'highline'                           # Terminal input in cli scripts
-gem 'inherited_resources'                # DRY
-gem 'jquery-rails'                       # jQuery
-gem 'kaminari'                           # Pagination
-gem 'paper_trail', '~> 3.0.0.beta1'      # Change history
-gem 'rails_config'                       # For configuration
-gem 'simple_form', github: 'plataformatec/simple_form' # DRY form
-gem 'turbolinks'                         # Load links with JS
-gem 'yaml_db'                            # Database dump
+gem 'cancan'                              # Authorization
+gem 'default_value_for',                  # Default values
+  github: 'tsmango/default_value_for'
+gem 'devise',                             # Authentication
+  github: 'plataformatec/devise'
+gem 'devise-encryptable',
+  github: 'plataformatec/devise-encryptable'
+gem 'foreigner'                           # Foreign key constraints
+gem 'haml'                                # More beautiful views
+gem 'highline'                            # Terminal input in cli scripts
+gem 'inherited_resources'                 # DRY
+gem 'jquery-rails'                        # jQuery
+gem 'kaminari'                            # Pagination
+gem 'paper_trail', '~> 3.0.0.beta1'       # Change history
+gem 'rails_config'                        # For configuration
+gem 'simple_form',                        # DRY forms
+  github: 'plataformatec/simple_form'
+gem 'turbolinks'                          # Load links with JS
+gem 'warden',                             # Rack authentication
+  github: 'hassox/warden'
+gem 'yaml_db'                             # Database dump
 
 group :assets do
   gem 'coffee-rails'
@@ -27,8 +33,10 @@ group :assets do
   gem 'therubyrhino', platforms: :jruby
   gem 'uglifier'
 
-  gem 'sass-rails', github: 'rails/sass-rails' # Less ugly CSS
-  gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
+  gem 'sass-rails',                       # Less ugly CSS
+    github: 'rails/sass-rails'
+  gem 'bootstrap-sass',
+    github: 'thomas-mcdonald/bootstrap-sass'
 end
 
 group :development do

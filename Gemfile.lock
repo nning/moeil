@@ -1,13 +1,38 @@
 GIT
   remote: git://github.com/capistrano/rbenv.git
-  revision: 8326795409e262b33c5e2f2ff5943a2bee0e93c8
+  revision: 68fce771ca41ac6882f9a86e3660151f0a518ced
   specs:
     capistrano-rbenv (0.0.1)
       capistrano
 
 GIT
+  remote: git://github.com/hassox/warden.git
+  revision: 15f5dfe7444422a82ef17877d69368cb50344803
+  specs:
+    warden (1.2.3)
+      rack (>= 1.0)
+
+GIT
+  remote: git://github.com/plataformatec/devise-encryptable.git
+  revision: 4997273e8f9671c05ad621e9adc53393247f49c8
+  specs:
+    devise-encryptable (0.1.2)
+      devise (>= 2.1.0)
+
+GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: 69d28f9b0e8150aaec9f3175ddd8d1a20af0633a
+  specs:
+    devise (3.1.0)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+
+GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: bc97459dc87f944503cd7c96f02b98b432816b8d
+  revision: b5ae13112ccd6b2ec12a3c5190bc6264c993b42d
   specs:
     simple_form (3.0.0)
       actionpack (>= 4.0.0, < 4.1)
@@ -24,9 +49,9 @@ GIT
 
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 6e21c5b1c2b32204c48b1aa8a09a47eb04d441a0
+  revision: c3f74a5b38792d7164f64af7de452f6df37ca376
   specs:
-    bootstrap-sass (3.0.0.0)
+    bootstrap-sass (3.0.0.0.rc2)
       sass (~> 3.2)
 
 GIT
@@ -62,7 +87,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
-    arel (4.0.0)
+    arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
     better_errors (1.0.1)
@@ -70,11 +95,11 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    brakeman (2.1.2)
+    brakeman (2.2.0)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
       haml (>= 3.0, < 5.0)
-      highline (~> 1.6.19)
+      highline (~> 1.6.20)
       multi_json (~> 1.2)
       ruby2ruby (~> 2.0.5)
       ruby_parser (~> 3.2.2)
@@ -93,22 +118,14 @@ GEM
       capistrano
     choice (0.1.6)
     coderay (1.1.0)
-    coffee-rails (4.0.0)
+    coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
-      railties (>= 4.0.0.beta, < 5.0)
+      railties (>= 4.0.0, < 5.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
     debug_inspector (0.0.2)
-    devise (3.1.1)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
-    devise-encryptable (0.1.2)
-      devise (>= 2.1.0)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.2.0)
@@ -119,7 +136,7 @@ GEM
     faker (1.2.0)
       i18n (~> 0.5)
     fastercsv (1.5.5)
-    foreigner (1.5.0)
+    foreigner (1.6.0)
       activerecord (>= 3.0.0)
     haml (4.0.3)
       tilt
@@ -135,7 +152,7 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.8.0)
+    json (1.8.1)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -209,12 +226,12 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.0.0)
+    sprockets-rails (2.0.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.8)
-    sshkit (1.0.0)
+    sshkit (1.1.0)
       net-scp
       net-ssh
       term-ansicolor
@@ -236,11 +253,9 @@ GEM
     turbolinks (1.3.0)
       coffee-rails
     tzinfo (0.3.38)
-    uglifier (2.2.1)
+    uglifier (2.3.0)
       execjs (>= 0.3.0)
-      multi_json (~> 1.0, >= 1.0.2)
-    warden (1.2.3)
-      rack (>= 1.0)
+      json (>= 1.8.0)
     yaml_db (0.2.3)
 
 PLATFORMS
@@ -261,8 +276,8 @@ DEPENDENCIES
   capistrano-rbenv!
   coffee-rails
   default_value_for!
-  devise (~> 3.1.1)
-  devise-encryptable
+  devise!
+  devise-encryptable!
   factory_girl_rails
   faker
   foreigner
@@ -287,4 +302,5 @@ DEPENDENCIES
   therubyrhino
   turbolinks
   uglifier
+  warden!
   yaml_db
