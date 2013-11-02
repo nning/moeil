@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/capistrano/rbenv.git
-  revision: 68fce771ca41ac6882f9a86e3660151f0a518ced
+  revision: 362dbc02ef963c91425767e09b4848ff7be5132b
   specs:
     capistrano-rbenv (0.0.1)
       capistrano
@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: 69d28f9b0e8150aaec9f3175ddd8d1a20af0633a
+  revision: 9eb0768cb9a416a08326d91db3063c64238ee333
   specs:
     devise (3.1.0)
       bcrypt-ruby (~> 3.0)
@@ -40,18 +40,18 @@ GIT
 
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: debabfce664370f18e5ed6e6ae2fb3772883a284
+  revision: 0fcdff806511d0cfaf0bf379f3530ad11cb16f5c
   specs:
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
-      sass (>= 3.1.10)
+      sass (>= 3.2.0)
       sprockets-rails (~> 2.0.0)
 
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: c3f74a5b38792d7164f64af7de452f6df37ca376
+  revision: 018c0b924824b9f5e33a4e3b6978235576b8647b
   specs:
-    bootstrap-sass (3.0.0.0.rc2)
+    bootstrap-sass (3.0.1.0.rc)
       sass (~> 3.2)
 
 GIT
