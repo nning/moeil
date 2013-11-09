@@ -14,16 +14,16 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise-encryptable.git
-  revision: 4997273e8f9671c05ad621e9adc53393247f49c8
+  revision: eb24142b8af5e11f4d748d2e9b281e882e3e5c69
   specs:
     devise-encryptable (0.1.2)
       devise (>= 2.1.0)
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: 9eb0768cb9a416a08326d91db3063c64238ee333
+  revision: ed86361b9289d1af86b9917c005786e81cf92429
   specs:
-    devise (3.1.0)
+    devise (3.2.0)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
