@@ -283,7 +283,7 @@ DEPENDENCIES
   mysql
   paper_trail
   pg
-  rails (~> 3.2.15)
+  rails (~> 3.2.16)
   rails-erd
   rails_config
   rake
