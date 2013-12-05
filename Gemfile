@@ -39,7 +39,7 @@ group :development do
 
   # More beautiful exception pages
   gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'binding_of_caller', platforms: :ruby
 
   gem 'rails-erd'                   # Entity/relationship diagram of model
   gem 'brakeman', require: false    # Vulnerability scanner
