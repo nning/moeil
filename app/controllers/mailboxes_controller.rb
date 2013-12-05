@@ -8,9 +8,8 @@ class MailboxesController < InheritedResources::Base
 
   def update
     unless current_mailbox.admin?
-      %i[active admin domain_id mail_location quota username].each do |a|
-        params[:mailbox].delete a
-      end
+      a = [:active, :admin, :domain_id, :mail_location, :quota, :username]
+      params[:mailbox].delete_if { |x| a.include? x.to_sym }
     end
 
     update! do |success, error|
