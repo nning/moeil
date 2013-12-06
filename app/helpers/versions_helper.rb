@@ -22,9 +22,7 @@ module VersionsHelper
     rescue ActiveRecord::RecordNotFound
       if version.object
         object = Object.const_get(clazz).new
-        object.assign_attributes \
-          YAML.load(version.object),
-          without_protection: true
+        object.assign_attributes YAML.load(version.object)
       else
         return ''
       end

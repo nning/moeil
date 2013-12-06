@@ -7,11 +7,14 @@ class Admin::VersionsControllerTest < ActionController::TestCase
       setup do
         @mailbox = FactoryGirl.create :mailbox, admin: true
         sign_in @mailbox
+
+        m = FactoryGirl.create :mailbox
+        m.domain.destroy
       end
 
       context 'on GET to index' do
         setup do
-          get :index, domain_id: @mailbox.domain.id
+          get :index
         end
 
         should respond_with :success
@@ -20,8 +23,8 @@ class Admin::VersionsControllerTest < ActionController::TestCase
       end
 
       # TODO Write more tests.
-      context 'on POST to revert' do
-      end
+#     context 'on POST to revert' do
+#     end
     end
   end
 
