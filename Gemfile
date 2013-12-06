@@ -18,7 +18,7 @@ gem 'highline'                            # Terminal input in cli scripts
 gem 'inherited_resources'                 # DRY
 gem 'jquery-rails'                        # jQuery
 gem 'kaminari'                            # Pagination
-gem 'paper_trail', '~> 3.0.0.beta1'       # Change history
+gem 'paper_trail', '3.0.0.beta1'          # Change history
 gem 'rails_config'                        # For configuration
 gem 'simple_form',                        # DRY forms
   github: 'plataformatec/simple_form'
