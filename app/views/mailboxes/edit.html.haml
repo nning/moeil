@@ -16,10 +16,7 @@
       .well
         %fieldset
           %legend Quota
-          - if current_mailbox.admin?
-            = f.input :quota, hint: 'in Bytes'
-          - else
-            = f.input :quota, hint: 'in Bytes', disabled: true
+          = f.input :quota, hint: 'in Kilobytes (KiB)', disabled: !current_mailbox.admin?
 
     .col-md-6
       .well

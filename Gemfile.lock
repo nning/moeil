@@ -287,7 +287,7 @@ DEPENDENCIES
   mysql
   paper_trail (= 3.0.0.beta1)
   pg
-  rails (~> 4.0.1)
+  rails (~> 4.0.2)
   rails-erd
   rails_config
   sass-rails!

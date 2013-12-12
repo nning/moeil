@@ -20,46 +20,56 @@ class MailboxesControllerTest < ActionController::TestCase
       should render_template :edit
     end
 
-    context 'on PUT to edit' do
+    context 'on POST to update' do
       setup do
-        @domain = FactoryGirl.create :domain
-        put :edit, mailbox: {
-          username: 'foo',
-          domain_id: @domain.id,
-          name: 'Foo',
-          current_password: 'whatever',
-          password: 'everwhat',
-          password_confirmation: 'everwhat',
-          quota: 1337
-        }
+        @new_domain = FactoryGirl.create :domain
+
+        put :update,
+          mailbox: {
+            username: 'foo',
+            domain_id: @new_domain.id,
+            name: 'Foo',
+            password: 'everwhat',
+            password_confirmation: 'everwhat',
+            quota: 1337,
+            mail_location: '/',
+            active: false,
+            admin: true
+          }
+
+        @mailbox.reload
       end
 
-      should respond_with :success
-      should render_template :edit
-
-# TODO Flashes are empty but should contain success message.
-=begin
-      should set_the_flash[:info]
-      should_not set_the_flash[:error]
-=end
-
-# TODO I do not understand, why the second should block does not work _after_
-#      the PUT.
-=begin
-      should 'have old username, domain_id and quota' do
-        ['username', 'domain_id', 'quota'].each do |attr|
-          assert_select "#mailbox_#{attr}" do
-            assert_select '[value=?]', @mailbox.attributes[attr]
-          end
-        end
-      end
+      should respond_with :redirect
+      should set_the_flash.to /successfully updated/i
 
       should 'have new name' do
-        assert_select '#mailbox_name' do
-          assert_select '[value=?]', 'Foo'
-        end
+        assert_equal 'Foo', @mailbox.name
       end
-=end
+
+      should 'have old username' do
+        assert @mailbox.username != 'foo'
+      end
+
+      should 'have old domain_id' do
+        assert @mailbox.domain_id != @new_domain.id
+      end
+
+      should 'have old quota' do
+        assert @mailbox.quota != 1337
+      end
+
+      should 'have old mail_location' do
+        assert @mailbox.quota != '/'
+      end
+
+      should 'have old active' do
+        assert @mailbox.active
+      end
+
+      should 'have old admin' do
+        assert !@mailbox.admin
+      end
     end
   end
 

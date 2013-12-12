@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.0.1'
+gem 'rails', '~> 4.0.2'
 
 gem 'pg', platforms: :ruby
 gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
@@ -44,8 +44,9 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 
-  gem 'better_errors'                     # More beautiful exception pages
-  gem 'binding_of_caller'
+  # More beautiful exception pages
+  gem 'better_errors'
+  gem 'binding_of_caller', platforms: :ruby
 
   gem 'rails-erd'                         # Entity/relationship diagram of model
   gem 'brakeman', require: false          # Vulnerability scanner
