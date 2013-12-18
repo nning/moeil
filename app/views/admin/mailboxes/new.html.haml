@@ -8,10 +8,7 @@
       .well
         %fieldset
           %legend Account Information
-          = f.input :username, wrapper: :append do
-            = f.input_field :username, class: 'randomize'
-            = content_tag :span, class: 'input-group-btn' do
-              = link_to icon(:random), '#', class: 'btn btn-default randomize'
+          = f.input :username
           = f.association :domain, collection: managable_domains, include_blank: false
           = f.input :name
 
