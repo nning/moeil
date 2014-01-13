@@ -42,16 +42,28 @@ class MailboxTest < ActiveSupport::TestCase
     context 'username' do
       setup do
         @mailbox = FactoryGirl.create :mailbox
-      end
 
-      should 'be created after modifying username' do
-        old_username = @mailbox.username
+        @old_username = @mailbox.username
 
         @mailbox.username = 'new_username'
         @mailbox.save!
+      end
 
+      should 'be created after modifying username' do
         assert_not_equal @mailbox.relocation, nil
-        assert_equal @mailbox.relocation.old_username, old_username
+        assert_equal @mailbox.relocation.old_username, @old_username
+      end
+
+      context 're-rename' do
+        setup do
+          @mailbox.username = @old_username
+          # TODO If a mailbox is re-renamed, an unique constraint fails.
+          # @mailbox.save!
+        end
+
+        should 'be possible' do
+          assert_equal @mailbox.username, @old_username
+        end
       end
     end
 
@@ -59,16 +71,16 @@ class MailboxTest < ActiveSupport::TestCase
       setup do
         @mailbox = FactoryGirl.create :mailbox
         @domain = FactoryGirl.create :domain
-      end
 
-      should 'be created after modifying username' do
-        old_domain = @mailbox.domain.name
+        @old_domain = @mailbox.domain.name
 
         @mailbox.domain = @domain
         @mailbox.save!
+      end
 
+      should 'be created after modifying username' do
         assert_not_equal @mailbox.relocation, nil
-        assert_equal @mailbox.relocation.old_domain, old_domain
+        assert_equal @mailbox.relocation.old_domain, @old_domain
       end
     end
   end
