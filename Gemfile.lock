@@ -280,7 +280,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   mysql
-  paper_trail (~> 2.7.2)
+  paper_trail
   pg
   rails (~> 3.2.16)
   rails-erd

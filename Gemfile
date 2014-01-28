@@ -15,7 +15,7 @@ gem 'highline'                      # For terminal input in command line scripts
 gem 'inherited_resources'           # DRY
 gem 'jquery-rails'                  # jQuery
 gem 'kaminari'                      # Pagination
-gem 'paper_trail', '~> 2.7.2'       # Change history
+gem 'paper_trail'                   # Change history
 gem 'rails_config'                  # For configuration
 gem 'simple_form'                   # DRY form
 gem 'yaml_db'                       # Database dump
