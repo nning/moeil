@@ -15,14 +15,14 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise-encryptable.git
-  revision: 872286eb1324475c3f68ec7d824580c9a1d1e4c3
+  revision: 803d30fb267f3be9fa626c8a93d9a893acc931a0
   specs:
     devise-encryptable (0.1.2)
       devise (>= 2.1.0)
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: 5b6f1e8f8099ca2824fa9cab50ce14c8e49a04ce
+  revision: 2aedb1bf795947f189183fbd1e479719463f6395
   specs:
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
@@ -160,7 +160,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (4.7.5)
-    multi_json (1.8.2)
+    multi_json (1.8.4)
     mysql (2.9.1)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
