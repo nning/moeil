@@ -1,0 +1,9 @@
+%li.dropdown{class: active_navigation('admin/' + model.to_s.pluralize)}
+  = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
+    = icon :plus
+    New
+    = model.to_s.capitalize
+    %b.caret
+  %ul.dropdown-menu
+    - domains.each do |domain|
+      %li= link_to domain.name, [:new, :admin, domain, model]
