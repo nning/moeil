@@ -1,4 +1,4 @@
-class Admin::AliasesAndMailboxesController < AdminController
+class Admin::AddressesController < AdminController
 
   inherit_resources
 

@@ -21,11 +21,13 @@ module VersionsHelper
       object = Object.const_get(clazz).find(id)
     rescue ActiveRecord::RecordNotFound
       if version.object
-        object = Object.const_get(clazz).new
-        object.assign_attributes YAML.load(version.object)
+        hash = YAML.load(version.object)
       else
-        return ''
+        hash = object_changes_to_hash(version)
       end
+
+      object = Object.const_get(clazz).new
+      object.assign_attributes hash
     end
 
     html = ''
@@ -61,6 +63,14 @@ module VersionsHelper
       when 'Permission'
         [:edit, :admin, object.item, object]
     end
+  end
+
+  def object_changes_to_hash(version)
+    h = {}
+    YAML.load(version.object_changes).each do |key, value|
+      h[key] = value.last
+    end
+    h
   end
 
 end

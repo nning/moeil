@@ -9,7 +9,7 @@
         %fieldset
           %legend Account Information
           = f.input :username
-          = f.association :domain, collection: managable_domains, include_blank: false
+          = f.association :domain, collection: [resource.domain], include_blank: false, disabled: true
           = f.input :name
 
       .well

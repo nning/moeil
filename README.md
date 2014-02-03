@@ -1,4 +1,4 @@
-Møil [![Build Status](https://travis-ci.org/nning/moeil.png?branch=master)](https://travis-ci.org/nning/moeil)
+Møil [![Build Status](https://travis-ci.org/nning/moeil.png?branch=master)](https://travis-ci.org/nning/moeil) [![Dependency Status](https://gemnasium.com/nning/moeil.png)](https://gemnasium.com/nning/moeil) [![Code Climate](https://codeclimate.com/github/nning/moeil.png)](https://codeclimate.com/github/nning/moeil)
 ====
 
 Møil is an open source administration user interface for database backed mail
