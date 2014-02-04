@@ -1,2 +1,2 @@
 set :stage, :production
-server fetch(:hostname), roles: [:web, :app], user: ENV['USER']
+server fetch(:hostname), roles: [:web, :app, :db], user: ENV['USER']
