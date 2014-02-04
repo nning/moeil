@@ -4,7 +4,7 @@ class Admin::DomainsController < AdminController
 
   inherit_resources
 
-  actions :all, except: :show
+  actions :all, except: [:show, :index]
 
   def create
     create! do |success, error|
@@ -25,17 +25,14 @@ class Admin::DomainsController < AdminController
   end
 =end
 
+  def index
+    @domains = Domain.managable current_mailbox
+  end
+
   def update
     update! do |success, error|
       success.html { redirect_to [:edit, :admin, resource] }
     end
-  end
-
-
-  private
-
-  def begin_of_association_chain
-    current_mailbox
   end
 
 end

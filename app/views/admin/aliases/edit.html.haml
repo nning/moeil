@@ -15,7 +15,7 @@
           .col-md-6
             = f.input :id, disabled: true, label: 'ID'
             = f.input :username
-            = f.association :domain, include_blank: false
+            = f.association :domain, collection: domains.all, include_blank: false
             = f.input :description
             = f.input :active
           .col-md-6

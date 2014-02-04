@@ -62,4 +62,16 @@ class Domain < ActiveRecord::Base
     domain
   end
 
+  def self.managable(mailbox)
+    if mailbox.admin?
+      Domain
+    else
+      Domain.includes(:permissions).where('
+        (permissions.role = "editor" or permissions.role = "owner")
+        and subject_id = ?',
+        mailbox.id
+      )
+    end
+  end
+
 end

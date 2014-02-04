@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def domains
-    @domains ||= current_mailbox.domains
+    @domains ||= Domain.managable current_mailbox
   end
 
   def flash_class(type)

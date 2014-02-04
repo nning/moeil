@@ -62,18 +62,6 @@ class Mailbox < ActiveRecord::Base
     domains.map(&:mailboxes_for_select).flatten(1)
   end
 
-  def domains
-    if admin?
-      Domain
-    else
-      Domain.includes(:permissions).where('
-        (permissions.role = "editor" or permissions.role = "owner")
-        and subject_id = ?',
-        id
-      )
-    end
-  end
-
   def manager?
     permissions.any? || admin?
   end
