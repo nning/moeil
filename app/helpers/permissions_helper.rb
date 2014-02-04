@@ -1,5 +1,5 @@
 module PermissionsHelper
 
-  include AliasesAndMailboxesHelper
+  include AddressesHelper
 
 end

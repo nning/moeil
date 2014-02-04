@@ -6,9 +6,12 @@ class Domain < ActiveRecord::Base
   has_many :aliases, dependent: :destroy
   has_many :mailboxes, dependent: :destroy
 
-  attr_accessible :active, :backupmx, :catch_all_address, :description, :name
+  attr_accessible :active, :backupmx, :catch_all_address, :description, :name,
+    :quick_access
 
   default_scope order('name asc')
+
+  scope :quick_access, where(quick_access: true)
 
   validates :name,
     format: { with: /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix },
@@ -57,10 +60,6 @@ class Domain < ActiveRecord::Base
     domain = Domain.first if domain.nil?
 
     domain
-  end
-
-  def self.managable(mailbox)
-    Domain.all.map { |d| d if d.permission? :editor, mailbox }.compact
   end
 
 end

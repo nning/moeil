@@ -31,4 +31,11 @@ class Admin::DomainsController < AdminController
     end
   end
 
+
+  private
+
+  def begin_of_association_chain
+    current_mailbox
+  end
+
 end
