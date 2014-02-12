@@ -27,7 +27,7 @@ group :assets do
   gem 'uglifier'
 
   gem 'sass-rails'
-  gem 'bootstrap-sass', '~> 3.0.3.0'
+  gem 'bootstrap-sass'
 end
 
 group :development do
