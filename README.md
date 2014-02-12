@@ -1,5 +1,10 @@
-Møil [![Build Status](https://travis-ci.org/nning/moeil.png?branch=master)](https://travis-ci.org/nning/moeil) [![Dependency Status](https://gemnasium.com/nning/moeil.png)](https://gemnasium.com/nning/moeil) [![Code Climate](https://codeclimate.com/github/nning/moeil.png)](https://codeclimate.com/github/nning/moeil)
+Møil 
 ====
+
+[![Build Status](https://travis-ci.org/nning/moeil.png?branch=master)](https://travis-ci.org/nning/moeil)
+[![Dependency Status](https://gemnasium.com/nning/moeil.png)](https://gemnasium.com/nning/moeil)
+[![Code Climate](https://codeclimate.com/github/nning/moeil.png)](https://codeclimate.com/github/nning/moeil)
+[![Coverage Status](https://coveralls.io/repos/nning/moeil/badge.png)](https://coveralls.io/r/nning/moeil)
 
 Møil is an open source administration user interface for database backed mail
 servers (postfix/dovecot). It brings the handy possibility of managing the
