@@ -16,7 +16,7 @@ module AddressesHelper
 
     begin
       email, o = email_and_object(email_or_object)
-    rescue DomainNotFound, AddressNotFound
+    rescue Lookup::Error
       return email_or_object
     end
 
@@ -25,28 +25,16 @@ module AddressesHelper
 
   private
 
+  # E-Mail address and Alias or Mailbox object as an Array.
   def email_and_object(email_or_object)
     case email_or_object.class.to_s
       when 'Alias', 'Mailbox'
         o = email_or_object
         email = o.email
       else
-        email, o = search_object_by_email(email_or_object)
+        o = Lookup.by_email(email_or_object)
+        email = email_or_object
     end
-
-    [email, o]
-  end
-
-  def search_object_by_email(email)
-    username, domain = email.split('@')
-    domain = Domain.where(name: domain).first
-
-    raise DomainNotFound if domain.nil?
-
-    o   = domain.aliases.where(username: username).first
-    o ||= domain.mailboxes.where(username: username).first
-
-    raise AddressNotFound if o.nil?
 
     [email, o]
   end
