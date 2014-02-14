@@ -10,8 +10,8 @@ class Permission < ActiveRecord::Base
   
   attr_accessible :subject, :subject_id, :subject_type, :role
   
-  belongs_to :subject, polymorphic: true, dependent: :delete
-  belongs_to :item,    polymorphic: true, dependent: :delete
+  belongs_to :subject, polymorphic: true
+  belongs_to :item,    polymorphic: true
   belongs_to :creator, class_name: 'Mailbox'
   
   validates :role, inclusion: { in: ROLES }, presence: true

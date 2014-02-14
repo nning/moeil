@@ -3,7 +3,8 @@ class DevelopmentLoginController < ApplicationController
 
   skip_authorization_check
 
-  def edit
+  # Change logged in Mailbox in development environment.
+  def update
     render_404 and return unless Rails.env.development?
 
     mailbox = Mailbox.find(params[:development_login][:mailbox_id])

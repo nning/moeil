@@ -7,7 +7,7 @@ module Lookup
   class AddressNotFound < Error; end
 
   # Search Alias or Mailbox by E-Mail address and return model instance.
-  def by_email(email)
+  def self.by_email(email)
     username, domain = email.split('@')
     domain = Domain.where(name: domain).first
 

@@ -5,10 +5,12 @@ class Admin::VersionsController < AdminController
 
   inherit_resources
 
+  # Paginated index, newest change first.
   def index
     @versions = Version.order('created_at desc').page(params[:page]).per(10)
   end
 
+  # Revert a version.
   def revert
     @version = Version.find(params[:id])
 

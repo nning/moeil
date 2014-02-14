@@ -5,8 +5,9 @@ class AdminController < ApplicationController
 
   before_filter :access?
 
-private
+  private
 
+  # Show 404 if no access to admin namespace.
   def access?
     render_404 and return if current_mailbox.nil? || !current_mailbox.manager?
   end

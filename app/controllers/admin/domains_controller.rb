@@ -8,8 +8,8 @@ class Admin::DomainsController < AdminController
   actions :all, except: [:show, :index]
 
   def create
-    create! do |success, error|
-      success.html { redirect_to [:admin, :domains] }
+    super do |success, error|
+      success.html { redirect_to collection_url }
     end
   end
 
@@ -31,7 +31,7 @@ class Admin::DomainsController < AdminController
   end
 
   def update
-    update! do |success, error|
+    super do |success, error|
       success.html { redirect_to [:edit, :admin, resource] }
     end
   end
