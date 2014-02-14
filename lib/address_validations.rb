@@ -1,6 +1,6 @@
 # Shared validations for Alias and Mailbox models.
 module AddressValidations
-  
+
   extend ActiveSupport::Concern
 
   included do

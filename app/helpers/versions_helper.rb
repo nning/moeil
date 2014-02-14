@@ -52,7 +52,6 @@ module VersionsHelper
     html.html_safe
   end
 
-
   private
 
   def url_for_object(object)

@@ -16,6 +16,7 @@ class Relocation < ActiveRecord::Base
   validates :old_domain, presence: true
   validates :mailbox_id, presence: true
 
+  # Actually move data.
   def perform
     "mv /srv/mail/#{old_domain}/#{old_username} /srv/mail/#{mailbox.domain.name}/#{mailbox.username}"
   end

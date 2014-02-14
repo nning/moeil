@@ -20,7 +20,6 @@ class Mailbox < ActiveRecord::Base
 
   default_value_for :quota, Settings.default_quota
 
-
   validates :password,
     presence: {
       if: :password_required?
@@ -35,44 +34,51 @@ class Mailbox < ActiveRecord::Base
 
   validates :encrypted_password, presence: true
 
-
+  # Aliases pointing to Mailbox.
   def aliases
     Alias.where('goto like ?', email)
   end
 
+  # E-Mail address.
   def email
     [self.username, self.domain.name].join '@' rescue nil
   end
 
+  # Mailboxes this mailbox has access to for select input.
   def mailboxes_for_select
     domains = admin? ? Domain.all : permissions.map(&:item)
     domains.map(&:mailboxes_for_select).flatten(1)
   end
 
+  # Does this Mailbox have permission to change Domains?
   def manager?
     permissions.any? || admin?
   end
 
+  # Salt of the password hash.
   def password_salt
     salt = self.encrypted_password.split('$')[2] rescue nil
     return Password::Sha512Crypt.generate_salt if salt.blank?
     salt
   end
 
+  # Dummy setter for password hash salt.
   def password_salt=(value)
   end
 
+  # Permissions of this Mailbox.
   def permissions
     Permission.subject self
   end
 
+  # String representation.
   def to_s
     domain ? email : "#{username}@#{domain_id}"
   end
 
-
   private
 
+  # Create Relocation if username or Domain changed.
   def create_relocation
     if persisted? and (username_changed? or domain_id_changed?)
       old_username = if username_changed?
@@ -91,6 +97,7 @@ class Mailbox < ActiveRecord::Base
     end
   end
 
+  # Is current password required? (For validations.)
   def password_required?
     !(persisted? || password.nil? || password_confirmation.nil?)
   end

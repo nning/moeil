@@ -1,17 +1,16 @@
 # Shared helpers for Alias and Mailbox models.
 module AddressesHelper
 
-  class DomainNotFound < StandardError
-  end
+  class DomainNotFound < StandardError; end
+  class AddressNotFound < StandardError; end
 
-  class AddressNotFound < StandardError
-  end
-
-
+  # A shortcut for Alias or Mailbox Domain.
   def parent
-    Domain.where(id: params[:domain_id]).first
+    resource.domain
   end
 
+  # Link to Alias or Mailbox if existing. Argument can be instance of Alias or
+  # Mailbox or an E-Mail address as a String.
   def link_to_alias_or_mailbox(email_or_object)
     return nil if email_or_object.blank?
 
@@ -23,7 +22,6 @@ module AddressesHelper
 
     link_to email, [:edit, :admin, o.domain, o]
   end
-
 
   private
 

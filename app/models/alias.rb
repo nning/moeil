@@ -3,7 +3,6 @@ class Alias < ActiveRecord::Base
 
   include AddressValidations
 
-
   belongs_to :domain
 
   attr_accessible :active, :description, :domain_id, :goto, :username
@@ -12,14 +11,14 @@ class Alias < ActiveRecord::Base
 
   has_paper_trail
 
-
   validates :goto, presence: true
 
-
+  # E-Mail address.
   def email
     [self.username, self.domain.name].join '@' rescue nil
   end
 
+  # String representation.
   def to_s
     if domain
       if username

@@ -3,7 +3,6 @@ class Domain < ActiveRecord::Base
 
   include Permissionable
 
-
   has_many :aliases, dependent: :destroy
   has_many :mailboxes, dependent: :destroy
 
@@ -22,19 +21,22 @@ class Domain < ActiveRecord::Base
 
   before_save ->{ name.downcase! }
 
-
+  # Aliases count for simple_form.
   def aliases_count
     aliases.count
   end
 
+  # Forwarding of all mails to non-existing addresses.
   def catch_all_alias
     aliases.where(username: nil).first
   end
 
+  # Target(s) of catch all Alias.
   def catch_all_address
     catch_all_alias.try :goto
   end
 
+  # Setter for target(s) of catch all Alias.
   def catch_all_address=(goto)
     return catch_all_alias.try(:destroy) if goto.blank?
 
@@ -43,19 +45,22 @@ class Domain < ActiveRecord::Base
     a.save! validate: false
   end
 
+  # Mailboxes count for simple_form.
   def mailboxes_count
     mailboxes.count
   end
 
+  # Mailboxes for select input.
   def mailboxes_for_select
     mailboxes.map { |m| [m.email, m.id] }
   end
 
+  # String representation.
   def to_s
     name
   end
 
-
+  # Default Domain. (First one, if not configured in config/settings.yml).
   def self.default
     domain = where(name: Settings.default_domain).limit(1).first
     domain = Domain.first if domain.nil?
@@ -63,6 +68,7 @@ class Domain < ActiveRecord::Base
     domain
   end
 
+  # Managable Domains for given mailbox.
   def self.managable(mailbox)
     if mailbox.admin?
       Domain
