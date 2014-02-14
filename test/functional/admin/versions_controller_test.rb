@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# Tests for app/controllers/admin/versions_controller.rb
 class Admin::VersionsControllerTest < ActionController::TestCase
 
   context 'Admin namespace' do

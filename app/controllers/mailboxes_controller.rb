@@ -1,3 +1,4 @@
+# Mailboxes controller.
 class MailboxesController < InheritedResources::Base
 
   load_and_authorize_resource

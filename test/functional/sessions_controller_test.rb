@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# Tests for app/controllers/sessions_controller.rb
 class SessionsControllerTest < ActionController::TestCase
 
   should route(:get, 'login').to(controller: :sessions, action: :new)

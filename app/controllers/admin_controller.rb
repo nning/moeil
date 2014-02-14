@@ -1,3 +1,4 @@
+# Shared code for all admin controllers.
 class AdminController < ApplicationController
 
   authorize_resource

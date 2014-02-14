@@ -1,3 +1,4 @@
+# Shared code for Aliases and Mailboxes controller.
 class Admin::AddressesController < AdminController
 
   inherit_resources

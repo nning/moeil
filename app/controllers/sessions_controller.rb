@@ -1,3 +1,4 @@
+# Sessions controller.
 class SessionsController < Devise::SessionsController
 
   before_filter :prepare_params, only: :create

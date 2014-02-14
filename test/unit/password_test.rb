@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# Tests for lib/password.rb
 class PasswordTest < ActiveSupport::TestCase
 
   context 'sha512_crypt' do

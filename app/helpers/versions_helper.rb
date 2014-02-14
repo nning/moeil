@@ -1,3 +1,4 @@
+# Helper for versions views.
 module VersionsHelper
 
   include MailboxesHelper
@@ -10,6 +11,8 @@ module VersionsHelper
         icon :trash
       when 'update'
         icon :edit
+      else
+        raise "No icon for event '#{event}'."
     end
   end
 
@@ -62,6 +65,8 @@ module VersionsHelper
         [:edit, :admin, object.domain, object]
       when 'Permission'
         [:edit, :admin, object.item, object]
+      else
+        raise "No URL for object class '#{object.class.to_s}'."
     end
   end
 

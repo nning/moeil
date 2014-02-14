@@ -1,12 +1,12 @@
 require 'test_helper'
+require 'functional/admin/test_helper.rb'
 
+# Tests for app/controllers/admin/mailboxes_controller.rb
 class Admin::MailboxesControllerTest < ActionController::TestCase
 
   context 'As admin' do
     setup do
-      @mailbox = FactoryGirl.create :mailbox, admin: true
-      @domain_id = @mailbox.domain_id
-      sign_in @mailbox
+      create_and_sign_in_mailbox
     end
 
     context 'on GET to index' do

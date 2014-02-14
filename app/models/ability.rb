@@ -1,4 +1,6 @@
+# CanCan ability definitions.
 class Ability
+
   include CanCan::Ability
 
   def initialize(mailbox)
@@ -32,4 +34,5 @@ class Ability
       end
     end
   end
+
 end

@@ -1,3 +1,4 @@
+# Permission model.
 class Permission < ActiveRecord::Base
   
   ROLES = %w(owner editor)

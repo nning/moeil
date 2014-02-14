@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# Tests for app/models/domain.rb
 class DomainTest < ActiveSupport::TestCase
 
   should have_many :aliases

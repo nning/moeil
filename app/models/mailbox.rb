@@ -1,4 +1,7 @@
+# Mailbox model (also used for login to Møil).
 class Mailbox < ActiveRecord::Base
+
+  include AddressValidations
 
   belongs_to :domain
   has_many   :permissions, dependent: :destroy, as: :subject
@@ -18,21 +21,6 @@ class Mailbox < ActiveRecord::Base
   default_value_for :quota, Settings.default_quota
 
 
-  validates :username,
-    presence: true,
-    uniqueness: {
-      scope: :domain_id,
-      message: 'Combination of username and domain is not unique.'
-    },
-    format: {
-      with: /\A[a-zA-Z0-9.\-_]+\z/,
-      message: 'Username contains invalid characters.'
-    },
-    exclusion: {
-      in: Settings.blocked_usernames,
-      message: 'Username is blocked.'
-    }
-
   validates :password,
     presence: {
       if: :password_required?
@@ -45,7 +33,6 @@ class Mailbox < ActiveRecord::Base
       allow_blank: true
     }
 
-  validates :domain_id, presence: true
   validates :encrypted_password, presence: true
 
 

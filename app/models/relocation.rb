@@ -1,3 +1,4 @@
+# Relocation model for moving of mailbox directories.
 class Relocation < ActiveRecord::Base
 
   belongs_to :mailbox

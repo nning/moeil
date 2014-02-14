@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# Tests for app/controllers/admin/domains_controller.rb
 class Admin::DomainsControllerTest < ActionController::TestCase
 
   context 'Admin namespace' do

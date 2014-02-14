@@ -1,4 +1,8 @@
+# Alias model.
 class Alias < ActiveRecord::Base
+
+  include AddressValidations
+
 
   belongs_to :domain
 
@@ -9,22 +13,6 @@ class Alias < ActiveRecord::Base
   has_paper_trail
 
 
-  validates :username,
-    presence: true,
-    uniqueness: {
-      scope: :domain_id,
-      message: 'Combination of username and domain is not unique.'
-    },
-    format: {
-      with: /\A[a-zA-Z0-9.\-_]+\z/,
-      message: 'Username contains invalid characters.'
-    },
-    exclusion: {
-      in: Settings.blocked_usernames,
-      message: 'Username is blocked.'
-    }
-
-  validates :domain_id, presence: true
   validates :goto, presence: true
 
 

@@ -1,3 +1,4 @@
+# Domain model.
 class Domain < ActiveRecord::Base
 
   include Permissionable

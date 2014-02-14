@@ -1,3 +1,4 @@
+# Helper for aliases views.
 module AliasesHelper
 
   include AddressesHelper

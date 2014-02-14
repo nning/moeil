@@ -1,3 +1,4 @@
+# Helper methods available in any view.
 module ApplicationHelper
 
   def active_navigation(controller)

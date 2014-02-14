@@ -1,3 +1,4 @@
+# DevelopmentLogin controller for quick login in development environment.
 class DevelopmentLoginController < ApplicationController
 
   skip_authorization_check

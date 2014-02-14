@@ -1,3 +1,4 @@
+# Helper for mailboxes views.
 module MailboxesHelper
   
   include AddressesHelper

@@ -30,6 +30,8 @@ rand5.times do
     rand5.times { FactoryGirl.create :mailbox, domain: d }
     rand5.times { FactoryGirl.create :alias, domain: d }
   rescue
+    # Just ignore naming conflicts.
+    nil
   end
 end
 

@@ -1,3 +1,4 @@
+# Helper for domains views.
 module DomainsHelper
   
   def link_to_domain(domain)

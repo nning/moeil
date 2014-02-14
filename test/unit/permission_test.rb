@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# Tests for app/models/permission.rb
 class PermissionTest < ActiveSupport::TestCase
   
   should belong_to :creator

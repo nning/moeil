@@ -1,3 +1,4 @@
+# Permissions controller.
 class Admin::PermissionsController < AdminController
 
   inherit_resources

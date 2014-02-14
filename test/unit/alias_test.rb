@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# Tests for app/models/alias.rb
 class AliasTest < ActiveSupport::TestCase
 
   should belong_to :domain
