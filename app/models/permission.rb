@@ -10,8 +10,8 @@ class Permission < ActiveRecord::Base
   
   attr_accessible :subject, :subject_id, :subject_type, :role
   
-  belongs_to :subject, polymorphic: true
-  belongs_to :item,    polymorphic: true
+  belongs_to :subject, polymorphic: true, dependent: :delete
+  belongs_to :item,    polymorphic: true, dependent: :delete
   belongs_to :creator, class_name: 'Mailbox'
   
   validates :role, inclusion: { in: ROLES }, presence: true
@@ -37,7 +37,15 @@ class Permission < ActiveRecord::Base
 
   # String representation.
   def to_s
-    "#{subject.email} is #{role} of #{item.name}"
+    # Fetch associated Mailbox and Domain.
+    s, i = subject, item
+
+    # Fallback names if Mailbox or Domain is deleted.
+    s ||= 'Deleted mailbox'
+    i ||= 'deleted domain'
+
+    # Return String representation.
+    "#{s} is #{role} of #{i}"
   end
 
 end

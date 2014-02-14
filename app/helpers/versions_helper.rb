@@ -3,6 +3,7 @@ module VersionsHelper
 
   include MailboxesHelper
 
+  # Icons for version events.
   def icon_for_event(event)
     case event
       when 'create'
@@ -16,10 +17,12 @@ module VersionsHelper
     end
   end
 
+  # Link to object references in version or String representation.
   def link_to_object(version)
     clazz = version.item_type
     id    = version.item_id
 
+    # Fetch object or instanciate dummy if it does not exist.
     begin
       object = Object.const_get(clazz).find(id)
     rescue ActiveRecord::RecordNotFound
@@ -33,15 +36,18 @@ module VersionsHelper
       object.assign_attributes hash, without_protection: true
     end
 
-    html = ''
-    html << if object.persisted?
-      link_to object.to_s, url_for_object(object)
-    else
-      object.to_s
+    # String representation of object.
+    html = object.to_s
+
+    # Link if object is existing.
+    if object.persisted? and url = url_for_object(object)
+      html = link_to object.to_s, url
     end
+
     html.html_safe
   end
 
+  # Convert changes of version to html summary.
   def summarize_changes(changes)
     return unless changes
 
@@ -54,6 +60,7 @@ module VersionsHelper
 
   private
 
+  # URL for link to object referenced by version.
   def url_for_object(object)
     url_for case object.class.to_s
       when 'Domain'
@@ -63,12 +70,17 @@ module VersionsHelper
       when 'Mailbox'
         [:edit, :admin, object.domain, object]
       when 'Permission'
-        [:edit, :admin, object.item, object]
+        if object.item
+          [:edit, :admin, object.item, object]
+        else
+          return nil
+        end
       else
         raise "No URL for object class '#{object.class.to_s}'."
     end
   end
 
+  # Convert changes YAML to hash just containing the new values.
   def object_changes_to_hash(version)
     h = {}
     YAML.load(version.object_changes).each do |key, value|
