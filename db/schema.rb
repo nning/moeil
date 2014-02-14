@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916220251) do
+ActiveRecord::Schema.define(version: 20140203233345) do
 
   create_table "aliases", force: true do |t|
     t.string   "username"
@@ -27,12 +27,13 @@ ActiveRecord::Schema.define(version: 20130916220251) do
   add_index "aliases", ["username", "domain_id"], name: "index_aliases_on_username_and_domain_id", unique: true
 
   create_table "domains", force: true do |t|
-    t.string   "name",                        null: false
+    t.string   "name",                         null: false
     t.string   "description"
-    t.boolean  "backupmx",    default: false
-    t.boolean  "active",      default: true
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "backupmx",     default: false
+    t.boolean  "active",       default: true
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "quick_access", default: true
   end
 
   add_index "domains", ["name"], name: "index_domains_on_name", unique: true

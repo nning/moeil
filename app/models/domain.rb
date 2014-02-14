@@ -8,6 +8,8 @@ class Domain < ActiveRecord::Base
 
   default_scope -> { order 'name asc' }
 
+  scope :quick_access, -> { where quick_access: true }
+
   validates :name,
     format: { with: /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix },
     presence: true
@@ -58,7 +60,14 @@ class Domain < ActiveRecord::Base
   end
 
   def self.managable(mailbox)
-    Domain.all.map { |d| d if d.permission? :editor, mailbox }.compact
+    if mailbox.admin?
+      Domain
+    else
+      sql = '(permissions.role = "editor" or permissions.role = "owner")
+        and subject_id = ?'
+      Domain.includes(:permissions).where(sql, mailbox.id)
+        .references(:permissions)
+    end
   end
 
 end

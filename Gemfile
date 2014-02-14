@@ -68,6 +68,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'coveralls', require: false        # Test coverage statistics as a service
   gem 'factory_girl_rails'               # Instead of fixtures
   gem 'faker'                            # For test data
   gem 'shoulda'                          # More beautiful assertions
