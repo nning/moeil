@@ -1,5 +1,5 @@
+# Permission model.
 class Permission < ActiveRecord::Base
-  
   ROLES = %w(owner editor)
   
   # Thrown if the last admin/owner tries to remove itself.
@@ -34,8 +34,22 @@ class Permission < ActiveRecord::Base
   scope :owner, role(:owner)
   scope :editor, role(:editor)
 
-  def to_s
-    "#{subject.email} is #{role} of #{item.name}"
+  # Return URL array for editing model instance.
+  def edit_url_array
+    [:edit, :admin, item, self] if item
+    nil
   end
 
+  # String representation.
+  def to_s
+    # Fetch associated Mailbox and Domain.
+    s, i = subject, item
+
+    # Fallback names if Mailbox or Domain is deleted.
+    s ||= 'Deleted mailbox'
+    i ||= 'deleted domain'
+
+    # Return String representation.
+    "#{s} is #{role} of #{i}"
+  end
 end

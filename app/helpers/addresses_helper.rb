@@ -1,30 +1,36 @@
+# Shared helpers for Alias and Mailbox models.
 module AddressesHelper
-
+  # A shortcut for Alias or Mailbox Domain.
   def parent
-    Domain.where(id: params[:domain_id]).first
+    resource.domain
   end
 
+  # Link to Alias or Mailbox if existing. Argument can be instance of Alias or
+  # Mailbox or an E-Mail address as a String.
   def link_to_alias_or_mailbox(email_or_object)
     return nil if email_or_object.blank?
 
-    if email_or_object.is_a? Alias or email_or_object.is_a? Mailbox
-      o = email_or_object
-      email = o.email
-    else
-      username, domain = email_or_object.split('@')
-      domain = Domain.where(name: domain).first
-
-      return email_or_object if domain.nil?
-
-      o   = domain.aliases.where(username: username).first
-      o ||= domain.mailboxes.where(username: username).first
-
-      return email_or_object if o.nil?
-
-      email = email_or_object
+    begin
+      email, o = email_and_object(email_or_object)
+    rescue Lookup::Error
+      return email_or_object
     end
 
     link_to email, [:edit, :admin, o.domain, o]
   end
 
+  private
+
+  # E-Mail address and Alias or Mailbox object as an Array.
+  def email_and_object(email_or_object)
+    if %w[Alias Mailbox].include? email_or_object.class.to_s
+      o = email_or_object
+      email = o.email
+    else
+      o = Lookup.by_email(email_or_object)
+      email = email_or_object
+    end
+
+    [email, o]
+  end
 end

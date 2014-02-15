@@ -1,3 +1,4 @@
+# CanCan ability definitions.
 class Ability
   include CanCan::Ability
 

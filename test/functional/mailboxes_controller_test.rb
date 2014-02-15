@@ -1,7 +1,7 @@
 require 'test_helper'
 
+# Tests for app/controllers/mailboxes_controller.rb
 class MailboxesControllerTest < ActionController::TestCase
-
   should route(:get, 'mailbox/edit').to(controller: :mailboxes, action: :edit)
   should route(:put, 'mailbox').to(controller: :mailboxes, action: :update)
 
@@ -72,5 +72,4 @@ class MailboxesControllerTest < ActionController::TestCase
       end
     end
   end
-
 end

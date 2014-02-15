@@ -16,7 +16,7 @@ Moeil::Application.routes.draw do
 
   get 'admin/test' => 'admin#test'
 
-  post 'development_login' => 'development_login#edit'
+  post 'development_login' => 'development_login#update'
 
   resource :mailbox, only: [:edit, :update]
 
