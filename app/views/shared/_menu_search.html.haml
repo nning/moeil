@@ -1,0 +1,9 @@
+%li.dropdown{class: active_navigation('admin/searches')}
+  = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
+    = icon :search
+    Search
+    %b.caret
+  %ul.dropdown-menu
+    = form_tag [:admin, :search], class: 'navbar-form navbar-left', role: 'search' do
+      .form-group
+        = text_field_tag :q, nil, class: 'form-control', placeholder: 'Search'

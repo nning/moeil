@@ -1,0 +1,24 @@
+.page-header
+  %h1
+    Search results for
+    %code
+      = params[:q]
+
+.search-results
+  - @results.each do |domain, domain_results|
+    .col-md-6
+      .well
+        %fieldset
+          %legend= link_to_domain domain
+        %ul
+          - domain_results.each do |domain_result|
+            %li
+              = link_to [:edit, :admin, domain_result.domain, domain_result] do
+                - case domain_result.class.to_s
+                - when 'Mailbox'
+                  = icon :inbox
+                - when 'Alias'
+                  = icon :share_alt
+                - else
+                  = icon :question_sign
+                = domain_result
