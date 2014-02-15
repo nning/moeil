@@ -1,6 +1,6 @@
 # Mailbox model (also used for login to Møil).
 class Mailbox < ActiveRecord::Base
-  include AddressValidations
+  include Address
 
   belongs_to :domain
   has_many   :permissions, dependent: :destroy, as: :subject

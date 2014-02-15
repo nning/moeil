@@ -34,6 +34,12 @@ class Permission < ActiveRecord::Base
   scope :owner, role(:owner)
   scope :editor, role(:editor)
 
+  # Return URL array for editing model instance.
+  def edit_url_array
+    [:edit, :admin, item, self] if item
+    nil
+  end
+
   # String representation.
   def to_s
     # Fetch associated Mailbox and Domain.

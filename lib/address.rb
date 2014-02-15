@@ -1,5 +1,6 @@
-# Shared validations for Alias and Mailbox models.
-module AddressValidations
+# Shared functionality for Alias and Mailbox models.
+module Address
+  include ActionView::Helpers::UrlHelper
   extend ActiveSupport::Concern
 
   included do
@@ -19,5 +20,10 @@ module AddressValidations
       }
 
     validates :domain_id, presence: true
+  end
+
+  # Returns URL array for editing model instance.
+  def edit_url_array
+    [:edit, :admin, domain, self]
   end
 end

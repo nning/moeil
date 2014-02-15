@@ -1,6 +1,6 @@
 # Alias model.
 class Alias < ActiveRecord::Base
-  include AddressValidations
+  include Address
 
   belongs_to :domain
 

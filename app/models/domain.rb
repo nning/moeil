@@ -44,6 +44,11 @@ class Domain < ActiveRecord::Base
     a.save! validate: false
   end
 
+  # Returns URL array for editing a model instance.
+  def edit_url_array
+    [:edit, :admin, self]
+  end
+
   # Mailboxes count for simple_form.
   def mailboxes_count
     mailboxes.count
