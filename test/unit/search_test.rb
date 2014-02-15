@@ -52,13 +52,17 @@ class SearchTest < ActiveSupport::TestCase
       end
 
       should 'contain searched mailbox' do
-        a = @results[@domain1].select { |x| x.username == @mailbox1.username }
+        a = @results[@domain1]
+          .select { |x| x.username == @mailbox1.username }
+          .select { |x| x.is_a? Mailbox }
         assert !a.empty?
         assert a.size == 1
       end
 
       should 'not contain not searched mailbox' do
-        a = @results[@domain1].select { |x| x.username == @mailbox2.username }
+        a = @results[@domain1]
+          .select { |x| x.username == @mailbox2.username }
+          .select { |x| x.is_a? Mailbox }
         assert a.empty?
       end
     end
@@ -70,13 +74,17 @@ class SearchTest < ActiveSupport::TestCase
       end
 
       should 'contain searched alias' do
-        a = @results[@domain1].select { |x| x.username == @alias1.username }
+        a = @results[@domain1]
+          .select { |x| x.username == @alias1.username }
+          .select { |x| x.is_a? Alias }
         assert !a.empty?
         assert a.size == 1
       end
 
       should 'not contain not searched alias' do
-        a = @results[@domain1].select { |x| x.username == @alias1.username }
+        a = @results[@domain1]
+          .select { |x| x.username == @alias2.username }
+          .select { |x| x.is_a? Alias }
         assert a.empty?
       end
     end
