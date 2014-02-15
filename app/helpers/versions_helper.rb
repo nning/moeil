@@ -1,19 +1,18 @@
 # Helper for versions views.
 module VersionsHelper
-
   include MailboxesHelper
 
   # Icons for version events.
   def icon_for_event(event)
     case event
-      when 'create'
-        icon :plus
-      when 'destroy'
-        icon :trash
-      when 'update'
-        icon :edit
-      else
-        raise "No icon for event '#{event}'."
+    when 'create'
+      icon :plus
+    when 'destroy'
+      icon :trash
+    when 'update'
+      icon :edit
+    else
+      raise "No icon for event '#{event}'."
     end
   end
 
@@ -40,8 +39,9 @@ module VersionsHelper
     html = object.to_s
 
     # Link if object is existing.
-    if object.persisted? and url = url_for_object(object)
-      html = link_to object.to_s, url
+    if object.persisted?
+      url = url_for_object(object)
+      html = link_to object.to_s, url if url
     end
 
     html.html_safe
@@ -63,20 +63,20 @@ module VersionsHelper
   # URL for link to object referenced by version.
   def url_for_object(object)
     url_for case object.class.to_s
-      when 'Domain'
-        [:edit, :admin, object]
-      when 'Alias'
-        [:edit, :admin, object.domain, object]
-      when 'Mailbox'
-        [:edit, :admin, object.domain, object]
-      when 'Permission'
-        if object.item
-          [:edit, :admin, object.item, object]
-        else
-          return nil
-        end
+    when 'Domain'
+      [:edit, :admin, object]
+    when 'Alias'
+      [:edit, :admin, object.domain, object]
+    when 'Mailbox'
+      [:edit, :admin, object.domain, object]
+    when 'Permission'
+      if object.item
+        [:edit, :admin, object.item, object]
       else
-        raise "No URL for object class '#{object.class.to_s}'."
+        return nil
+      end
+    else
+      raise "No URL for object class '#{object.class.to_s}'."
     end
   end
 
@@ -88,5 +88,4 @@ module VersionsHelper
     end
     h
   end
-
 end

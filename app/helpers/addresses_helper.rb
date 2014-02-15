@@ -1,9 +1,5 @@
 # Shared helpers for Alias and Mailbox models.
 module AddressesHelper
-
-  class DomainNotFound < StandardError; end
-  class AddressNotFound < StandardError; end
-
   # A shortcut for Alias or Mailbox Domain.
   def parent
     resource.domain
@@ -27,16 +23,14 @@ module AddressesHelper
 
   # E-Mail address and Alias or Mailbox object as an Array.
   def email_and_object(email_or_object)
-    case email_or_object.class.to_s
-      when 'Alias', 'Mailbox'
-        o = email_or_object
-        email = o.email
-      else
-        o = Lookup.by_email(email_or_object)
-        email = email_or_object
+    if %w[Alias Mailbox].include? email_or_object.class.to_s
+      o = email_or_object
+      email = o.email
+    else
+      o = Lookup.by_email(email_or_object)
+      email = email_or_object
     end
 
     [email, o]
   end
-
 end

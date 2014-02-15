@@ -1,6 +1,5 @@
 # Comfortable lookup of Aliases or Mailboxes.
 module Lookup
-
   class Error < StandardError; end
 
   class DomainNotFound < Error; end
@@ -20,5 +19,4 @@ module Lookup
 
     o
   end
-
 end

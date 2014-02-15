@@ -1,6 +1,5 @@
 # Mailboxes controller.
 class MailboxesController < InheritedResources::Base
-
   load_and_authorize_resource
 
   # Work-around for something, I did not understand.
@@ -19,5 +18,4 @@ class MailboxesController < InheritedResources::Base
       success.html { redirect_to [:edit, :mailbox] }
     end
   end
-
 end

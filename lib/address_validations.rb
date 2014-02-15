@@ -1,6 +1,5 @@
 # Shared validations for Alias and Mailbox models.
 module AddressValidations
-
   extend ActiveSupport::Concern
 
   included do
@@ -21,5 +20,4 @@ module AddressValidations
 
     validates :domain_id, presence: true
   end
-
 end

@@ -1,6 +1,5 @@
 # Shared code for Aliases and Mailboxes controller.
 class Admin::AddressesController < AdminController
-
   inherit_resources
 
   load_and_authorize_resource :domain
@@ -17,5 +16,4 @@ class Admin::AddressesController < AdminController
       end
     end
   end
-
 end

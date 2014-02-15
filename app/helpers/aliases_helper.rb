@@ -1,6 +1,5 @@
 # Helper for aliases views.
 module AliasesHelper
-
   include AddressesHelper
 
   # Insert links to existing Aliases or Mailboxes in String list of E-Mail
@@ -22,5 +21,4 @@ module AliasesHelper
 
     html.join.html_safe
   end
-
 end

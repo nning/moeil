@@ -1,6 +1,5 @@
 # Permissions controller.
 class Admin::PermissionsController < AdminController
-
   inherit_resources
   actions :all, except: :show
 
@@ -21,5 +20,4 @@ class Admin::PermissionsController < AdminController
   rescue
     redirect_to [:new, :admin, parent, :permission], flash: { error: 'Permission already existing.' }
   end
-
 end

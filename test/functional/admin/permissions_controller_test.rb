@@ -3,7 +3,7 @@ require 'functional/admin/test_helper.rb'
 
 # Tests for app/controllers/admin/permissions_controller.rb
 class Admin::PermissionsControllerTest < ActionController::TestCase
-
+  # Build dummy permission and POST to permissions#create.
   def post_to_create
     @permission = FactoryGirl.build :permission, item: @mailbox.domain
     post :create,
@@ -15,11 +15,11 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
       }
   end
 
+  # Create dummy permission and DELETE to permissions#destroy.
   def delete_to_destroy
     @permission = FactoryGirl.create :permission, item: @mailbox.domain
     delete :destroy, id: @permission.id, domain_id: @mailbox.domain_id
   end
-
 
   context 'As admin' do
     setup do
@@ -49,8 +49,8 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
             .first
         end
 
-        should respond_with :redirect
-        should set_the_flash.to /created/i
+        should respond_with(:redirect)
+        should set_the_flash.to(/created/i)
       end
 
       context 'update' do
@@ -77,8 +77,8 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
             .first
         end
 
-        should respond_with :redirect
-        should set_the_flash.to /successfully updated/i
+        should respond_with(:redirect)
+        should set_the_flash.to(/successfully updated/i)
       end
     end
 
@@ -95,8 +95,8 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
           .first
       end
 
-      should respond_with :redirect
-      should set_the_flash.to /successfully destroyed/i
+      should respond_with(:redirect)
+      should set_the_flash.to(/successfully destroyed/i)
     end
   end
 
@@ -141,8 +141,8 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
               .first
           end
 
-          should respond_with :redirect
-          should set_the_flash.to /created/i
+          should respond_with(:redirect)
+          should set_the_flash.to(/created/i)
         end
 
         context 'update' do
@@ -169,8 +169,8 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
               .first
           end
 
-          should respond_with :redirect
-          should set_the_flash.to /successfully updated/i
+          should respond_with(:redirect)
+          should set_the_flash.to(/successfully updated/i)
         end
       end
 
@@ -187,8 +187,8 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
             .first
         end
 
-        should respond_with :redirect
-        should set_the_flash.to /successfully destroyed/i
+        should respond_with(:redirect)
+        should set_the_flash.to(/successfully destroyed/i)
       end
     end
 
@@ -286,5 +286,4 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
       end
     end
   end
-
 end

@@ -2,7 +2,6 @@ require 'test_helper'
 
 # Tests for app/models/alias.rb
 class AliasTest < ActiveSupport::TestCase
-
   should belong_to :domain
 
   should have_db_index(:domain_id)
@@ -30,5 +29,4 @@ class AliasTest < ActiveSupport::TestCase
       assert_equal @alias.email, [@alias.username, @alias.domain.name].join('@')
     end
   end
-
 end

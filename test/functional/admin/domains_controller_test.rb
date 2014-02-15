@@ -2,7 +2,6 @@ require 'test_helper'
 
 # Tests for app/controllers/admin/domains_controller.rb
 class Admin::DomainsControllerTest < ActionController::TestCase
-
   context 'Admin namespace' do
     context 'as admin' do
       setup do
@@ -52,5 +51,4 @@ class Admin::DomainsControllerTest < ActionController::TestCase
 =end
     end
   end
-
 end

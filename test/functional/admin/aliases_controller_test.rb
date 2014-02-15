@@ -3,7 +3,6 @@ require 'functional/admin/test_helper.rb'
 
 # Tests for app/controllers/admin/aliases_controller.rb
 class Admin::AliasesControllerTest < ActionController::TestCase
-
   context 'Admin namespace' do
     context 'as admin' do
       setup do
@@ -79,5 +78,4 @@ class Admin::AliasesControllerTest < ActionController::TestCase
       end
     end
   end
-
 end

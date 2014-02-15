@@ -1,6 +1,5 @@
 # Sessions controller.
 class SessionsController < Devise::SessionsController
-
   before_filter :prepare_params, only: :create
 
   private
@@ -19,5 +18,4 @@ class SessionsController < Devise::SessionsController
 
     pm.delete(:email)
   end
-
 end

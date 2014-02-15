@@ -1,6 +1,5 @@
 # Relocation model for moving of mailbox directories.
 class Relocation < ActiveRecord::Base
-
   belongs_to :mailbox
 
   attr_accessible :old_username, :old_domain, :mailbox_id
@@ -20,5 +19,4 @@ class Relocation < ActiveRecord::Base
   def perform
     "mv /srv/mail/#{old_domain}/#{old_username} /srv/mail/#{mailbox.domain.name}/#{mailbox.username}"
   end
-
 end

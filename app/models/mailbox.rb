@@ -1,6 +1,5 @@
 # Mailbox model (also used for login to Møil).
 class Mailbox < ActiveRecord::Base
-
   include AddressValidations
 
   belongs_to :domain
@@ -101,5 +100,4 @@ class Mailbox < ActiveRecord::Base
   def password_required?
     !(persisted? || password.nil? || password_confirmation.nil?)
   end
-
 end

@@ -1,6 +1,5 @@
 # Alias model.
 class Alias < ActiveRecord::Base
-
   include AddressValidations
 
   belongs_to :domain
@@ -34,5 +33,4 @@ class Alias < ActiveRecord::Base
       end
     end
   end
-
 end

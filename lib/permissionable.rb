@@ -1,6 +1,5 @@
 # Enables permission on models it is included into.
 module Permissionable
-
   extend ActiveSupport::Concern
 
   included do
@@ -36,5 +35,4 @@ module Permissionable
     # Deny otherwise.
     false
   end
-
 end

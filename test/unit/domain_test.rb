@@ -2,7 +2,6 @@ require 'test_helper'
 
 # Tests for app/models/domain.rb
 class DomainTest < ActiveSupport::TestCase
-
   should have_many :aliases
   should have_many :mailboxes
 
@@ -56,5 +55,4 @@ class DomainTest < ActiveSupport::TestCase
       end
     end
   end
-
 end

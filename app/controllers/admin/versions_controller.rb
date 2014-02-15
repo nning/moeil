@@ -1,6 +1,5 @@
 # Versions controller.
 class Admin::VersionsController < AdminController
-
   load_and_authorize_resource
 
   inherit_resources
@@ -21,5 +20,4 @@ class Admin::VersionsController < AdminController
       redirect_to [:admin, :versions], flash: { error: "Impossible to revert #{@version.event}." }
     end
   end
-
 end

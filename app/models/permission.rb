@@ -1,6 +1,5 @@
 # Permission model.
 class Permission < ActiveRecord::Base
-  
   ROLES = %w(owner editor)
   
   # Thrown if the last admin/owner tries to remove itself.
@@ -47,5 +46,4 @@ class Permission < ActiveRecord::Base
     # Return String representation.
     "#{s} is #{role} of #{i}"
   end
-
 end

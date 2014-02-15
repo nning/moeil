@@ -1,6 +1,5 @@
 # Domain model.
 class Domain < ActiveRecord::Base
-
   include Permissionable
 
   has_many :aliases, dependent: :destroy
@@ -80,5 +79,4 @@ class Domain < ActiveRecord::Base
       )
     end
   end
-
 end

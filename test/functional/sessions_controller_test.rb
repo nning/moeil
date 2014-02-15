@@ -2,7 +2,6 @@ require 'test_helper'
 
 # Tests for app/controllers/sessions_controller.rb
 class SessionsControllerTest < ActionController::TestCase
-
   should route(:get, 'login').to(controller: :sessions, action: :new)
   should route(:post, 'login').to(controller: :sessions, action: :create)
   should route(:delete, 'logout').to(controller: :sessions, action: :destroy)
@@ -42,5 +41,4 @@ class SessionsControllerTest < ActionController::TestCase
       end
     end
   end
-
 end

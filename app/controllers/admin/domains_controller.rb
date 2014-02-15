@@ -1,6 +1,5 @@
 # Domains controller.
 class Admin::DomainsController < AdminController
-
   load_and_authorize_resource
 
   inherit_resources
@@ -35,5 +34,4 @@ class Admin::DomainsController < AdminController
       success.html { redirect_to [:edit, :admin, resource] }
     end
   end
-
 end
