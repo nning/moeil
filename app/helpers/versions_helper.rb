@@ -18,22 +18,7 @@ module VersionsHelper
 
   # Link to object references in version or String representation.
   def link_to_object(version)
-    clazz = version.item_type
-    id    = version.item_id
-
-    # Fetch object or instanciate dummy if it does not exist.
-    begin
-      object = Object.const_get(clazz).find(id)
-    rescue ActiveRecord::RecordNotFound
-      if version.object
-        hash = YAML.load(version.object)
-      else
-        hash = object_changes_to_hash(version)
-      end
-
-      object = Object.const_get(clazz).new
-      object.assign_attributes hash, without_protection: true
-    end
+    object = fetch_or_fake_object(version)
 
     # String representation of object.
     html = object.to_s
@@ -60,12 +45,33 @@ module VersionsHelper
 
   private
 
+  # Instanciate dummy for version of deleted object.
+  def fake_object(version)
+    if version.object
+      hash = YAML.load(version.object)
+    else
+      hash = object_changes_to_hash(version)
+    end
+
+    object = Object.const_get(version.item_type).new
+    object.assign_attributes hash, without_protection: true
+
+    object
+  end
+
+  # Fetch object or instanciate dummy if it does not exist.
+  def fetch_or_fake_object(version)
+    Object.const_get(version.item_type).find(version.item_id)
+  rescue ActiveRecord::RecordNotFound
+    fake_object version
+  end
+
   # Convert changes YAML to hash just containing the new values.
   def object_changes_to_hash(version)
-    h = {}
+    hash = {}
     YAML.load(version.object_changes).each do |key, value|
-      h[key] = value.last
+      hash[key] = value.last
     end
-    h
+    hash
   end
 end
