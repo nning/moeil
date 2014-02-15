@@ -62,24 +62,22 @@ module VersionsHelper
 
   # URL for link to object referenced by version.
   def url_for_object(object)
-    array = case object.class.to_s
-    when 'Domain'
-      [:edit, :admin, object]
-    when 'Alias'
-      [:edit, :admin, object.domain, object]
-    when 'Mailbox'
-      [:edit, :admin, object.domain, object]
-    when 'Permission'
-      if object.item
-        [:edit, :admin, object.item, object]
-      else
-        return nil
-      end
-    else
-      raise "No URL for object class '#{object.class.to_s}'."
-    end
-
-    url_for array
+    url_for case object.class.to_s
+            when 'Domain'
+              [:edit, :admin, object]
+            when 'Alias'
+              [:edit, :admin, object.domain, object]
+            when 'Mailbox'
+              [:edit, :admin, object.domain, object]
+            when 'Permission'
+              if object.item
+                [:edit, :admin, object.item, object]
+              else
+                return nil
+              end
+            else
+              raise "No URL for object class '#{object.class.to_s}'."
+            end
   end
 
   # Convert changes YAML to hash just containing the new values.
