@@ -49,7 +49,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
             .first
         end
 
-        should respond_with(:redirect)
+        should respond_with :redirect
         should set_the_flash.to(/created/i)
       end
 
@@ -77,7 +77,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
             .first
         end
 
-        should respond_with(:redirect)
+        should respond_with :redirect
         should set_the_flash.to(/successfully updated/i)
       end
     end
@@ -95,7 +95,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
           .first
       end
 
-      should respond_with(:redirect)
+      should respond_with :redirect
       should set_the_flash.to(/successfully destroyed/i)
     end
   end
@@ -141,7 +141,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
               .first
           end
 
-          should respond_with(:redirect)
+          should respond_with :redirect
           should set_the_flash.to(/created/i)
         end
 
@@ -169,7 +169,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
               .first
           end
 
-          should respond_with(:redirect)
+          should respond_with :redirect
           should set_the_flash.to(/successfully updated/i)
         end
       end
@@ -187,7 +187,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
             .first
         end
 
-        should respond_with(:redirect)
+        should respond_with :redirect
         should set_the_flash.to(/successfully destroyed/i)
       end
     end

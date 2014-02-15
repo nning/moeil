@@ -36,7 +36,7 @@ class Admin::AliasesControllerTest < ActionController::TestCase
           end
 
           should respond_with :redirect
-          should set_the_flash.to /created/i
+          should set_the_flash.to(/created/i)
         end
 
         context 'to update' do
@@ -59,7 +59,7 @@ class Admin::AliasesControllerTest < ActionController::TestCase
           end
 
           should respond_with :redirect
-          should set_the_flash.to /successfully updated/i
+          should set_the_flash.to(/successfully updated/i)
         end
       end
 
@@ -74,7 +74,7 @@ class Admin::AliasesControllerTest < ActionController::TestCase
         end
 
         should respond_with :redirect
-        should set_the_flash.to /successfully destroyed/i
+        should set_the_flash.to(/successfully destroyed/i)
       end
     end
   end

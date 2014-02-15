@@ -58,7 +58,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
           end
         end
 
-        should respond_with(:redirect)
+        should respond_with :redirect
         should set_the_flash.to(/created/i)
       end
 
@@ -80,7 +80,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
           assert !Mailbox.where(username: @mailbox.username, domain_id: @domain_id).first
         end
 
-        should respond_with(:redirect)
+        should respond_with :redirect
         should set_the_flash.to(/successfully updated/i)
       end
     end
@@ -95,7 +95,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
         assert !Mailbox.where(username: @mailbox.username, domain_id: @mailbox.domain_id).first
       end
 
-      should respond_with(:redirect)
+      should respond_with :redirect
       should set_the_flash.to(/successfully destroyed/i)
     end
   end
@@ -145,7 +145,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
             assert Mailbox.where(username: @new_mailbox.username, domain_id: @domain_id).first
           end
 
-          should respond_with(:redirect)
+          should respond_with :redirect
           should set_the_flash.to(/created/i)
         end
 
@@ -165,7 +165,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
             assert !Mailbox.where(username: @new_mailbox.username, domain_id: @domain_id).first
           end
 
-          should respond_with(:redirect)
+          should respond_with :redirect
           should set_the_flash.to(/successfully updated/i)
         end
       end
@@ -180,7 +180,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
           assert !Mailbox.where(username: @new_mailbox.username, domain_id: @domain_id).first
         end
 
-        should respond_with(:redirect)
+        should respond_with :redirect
         should set_the_flash.to(/successfully destroyed/i)
       end
     end
@@ -224,7 +224,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
             assert Mailbox.where(username: @new_mailbox.username, domain_id: @domain_id).first
           end
 
-          should respond_with(:redirect)
+          should respond_with :redirect
           should set_the_flash.to(/created/i)
         end
 
@@ -244,7 +244,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
             assert !Mailbox.where(username: @new_mailbox.username, domain_id: @domain_id).first
           end
 
-          should respond_with(:redirect)
+          should respond_with :redirect
           should set_the_flash.to(/successfully updated/i)
         end
       end
@@ -259,7 +259,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
           assert !Mailbox.where(username: @new_mailbox.username, domain_id: @domain_id).first
         end
 
-        should respond_with(:redirect)
+        should respond_with :redirect
         should set_the_flash.to(/successfully destroyed/i)
       end
     end

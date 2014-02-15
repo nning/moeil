@@ -18,7 +18,7 @@ class Domain < ActiveRecord::Base
 
   has_paper_trail
 
-  before_save ->{ name.downcase! }
+  before_save -> { name.downcase! }
 
   # Aliases count for simple_form.
   def aliases_count
