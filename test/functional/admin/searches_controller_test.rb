@@ -18,7 +18,7 @@ class Admin::SearchesControllerTest < ActionController::TestCase
 
       context 'on POST to search (for Domain)' do
         setup do
-          post :search, q: Search.random_substring(@domain.name)
+          post :search, q: @domain.name.random_substring
         end
 
         should respond_with :success

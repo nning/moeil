@@ -11,11 +11,19 @@ class SearchTest < ActiveSupport::TestCase
       @domain2  = FactoryGirl.create :domain
       @mailbox2 = FactoryGirl.create :mailbox, domain: @domain2
       @alias2   = FactoryGirl.create :alias,   domain: @domain2
+
+      begin
+        Domain.reindex
+        Mailbox.reindex
+      rescue
+        # For now do not fail, if indexed search is not possible.
+        nil
+      end
     end
 
     context 'for Domain' do
       setup do
-        @substring = Search.random_substring(@domain1.name)
+        @substring = @domain1.name.random_substring
         @results = Search.for(@mailbox1, @substring)
       end
 
@@ -47,7 +55,7 @@ class SearchTest < ActiveSupport::TestCase
 
     context 'for Mailbox' do
       setup do
-        substring = Search.random_substring(@mailbox1.username)
+        substring = @mailbox1.username.random_substring
         @results = Search.for(@mailbox1, substring)
       end
 
@@ -69,7 +77,7 @@ class SearchTest < ActiveSupport::TestCase
 
     context 'for Alias' do
       setup do
-        substring = Search.random_substring(@alias1.username)
+        substring = @alias1.username.random_substring
         @results = Search.for(@mailbox1, substring)
       end
 

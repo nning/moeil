@@ -6,18 +6,10 @@ class Mailbox < ActiveRecord::Base
   has_many   :permissions, dependent: :destroy, as: :subject
   has_one    :relocation,  dependent: :destroy
 
-  devise :database_authenticatable, :encryptable
-
   attr_accessible :active, :admin, :domain_id, :mail_location, :name, :password,
     :password_confirmation, :quota, :username
 
-  before_save :create_relocation
-
   default_scope order('username asc')
-
-  has_paper_trail
-
-  default_value_for :quota, Settings.default_quota
 
   validates :password,
     presence: {
@@ -32,6 +24,17 @@ class Mailbox < ActiveRecord::Base
     }
 
   validates :encrypted_password, presence: true
+
+  before_save :create_relocation
+
+  devise :database_authenticatable, :encryptable
+
+  has_paper_trail
+
+  default_value_for :quota, Settings.default_quota
+
+  searchkick word_middle: [:username, :name]
+  SEARCH_FIELDS = [{username: :word_middle}, {name: :word_middle}]
 
   # Aliases pointing to Mailbox.
   def aliases
