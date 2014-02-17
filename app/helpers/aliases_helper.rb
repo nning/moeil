@@ -13,8 +13,9 @@ module AliasesHelper
         o = Lookup.by_email(a)
         a = link_to a, [:edit, :admin, o.domain, o]
       rescue Lookup::Error
-        a = content_tag :p, a
       end
+
+      a = content_tag :p, a, class: 'alias-goto-list-item'
 
       html.push a
     end
