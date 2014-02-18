@@ -8,14 +8,12 @@ class Admin::SearchesControllerTest < ActionController::TestCase
     setup do
       @mailbox = FactoryGirl.create :mailbox, admin: true
       @domain = @mailbox.domain
+      @alias = FactoryGirl.create :alias, domain: @domain
+      [Alias, Domain, Mailbox].map(&:reindex)
       sign_in @mailbox
     end
 
     context 'search' do
-      setup do
-        @alias = FactoryGirl.create :alias, domain: @domain
-      end
-
       context 'on POST to search (for Domain)' do
         setup do
           post :search, q: @domain.name.random_substring
