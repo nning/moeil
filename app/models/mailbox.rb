@@ -33,8 +33,8 @@ class Mailbox < ActiveRecord::Base
 
   default_value_for :quota, Settings.default_quota
 
-  searchkick word_middle: [:username, :name]
-  SEARCH_FIELDS = [{username: :word_middle}, {name: :word_middle}]
+  searchkick word_middle: [:name, :username]
+  SEARCH_FIELDS = [{name: :word_middle}, {username: :word_middle}]
 
   # Aliases pointing to Mailbox.
   def aliases

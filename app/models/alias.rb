@@ -8,9 +8,12 @@ class Alias < ActiveRecord::Base
 
   default_scope order('username asc')
 
+  validates :goto, presence: true
+
   has_paper_trail
 
-  validates :goto, presence: true
+  searchkick word_middle: [:description, :username]
+  SEARCH_FIELDS = [{description: :word_middle}, {username: :word_middle}]
 
   # E-Mail address.
   def email

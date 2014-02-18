@@ -7,3 +7,5 @@ minimal_password_length: 8
 
 blocked_usernames:
   - dummy
+
+elasticsearch: true

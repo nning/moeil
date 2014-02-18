@@ -13,8 +13,7 @@ class SearchTest < ActiveSupport::TestCase
       @alias2   = FactoryGirl.create :alias,   domain: @domain2
 
       begin
-        Domain.reindex
-        Mailbox.reindex
+        [Alias, Domain, Mailbox].map(&:reindex)
       rescue
         # For now do not fail, if indexed search is not possible.
         nil
@@ -24,7 +23,6 @@ class SearchTest < ActiveSupport::TestCase
     context 'for Domain' do
       setup do
         @substring = @domain1.name.random_substring
-        @results = Search.for(@mailbox1, @substring)
       end
 
       context 'random substring' do
@@ -37,64 +35,91 @@ class SearchTest < ActiveSupport::TestCase
         end
       end
 
-      should 'be successful' do
-        assert !@results.empty?
-      end
+      [true, false].each do |sql|
+        context "(sql:#{sql})" do
+          setup do
+            @results = Search.for(@mailbox1, @substring, sql: sql)
+          end
 
-      should 'contain searched domain' do
-        a = @results.select { |x| x.name == @domain1.name }
-        assert !a.empty?
-        assert a.size == 1
-      end
+          should 'be successful' do
+            assert !@results.empty?
+          end
 
-      should 'not contain not searched domain' do
-        a = @results.select { |x| x.name == @domain2.name }
-        assert a.empty?
+          should 'contain searched domain' do
+            a = filter(@results, nil, name: @domain1.name)
+            assert !a.empty?
+            assert a.size == 1
+          end
+
+          should 'not contain not searched domain' do
+            a = filter(@results, nil, name: @domain2.name)
+            assert a.empty?
+          end
+        end
       end
     end
 
     context 'for Mailbox' do
       setup do
-        substring = @mailbox1.username.random_substring
-        @results = Search.for(@mailbox1, substring)
+        @substring = @mailbox1.username.random_substring
       end
 
-      should 'contain searched mailbox' do
-        a = @results[@domain1]
-          .select { |x| x.username == @mailbox1.username }
-          .select { |x| x.is_a? Mailbox }
-        assert !a.empty?
-        assert a.size == 1
-      end
+      [true, false].each do |sql|
+        context "(sql:#{sql})" do
+          setup do
+            @results = Search.for(@mailbox1, @substring, sql: sql)
+          end
 
-      should 'not contain not searched mailbox' do
-        a = @results[@domain1]
-          .select { |x| x.username == @mailbox2.username }
-          .select { |x| x.is_a? Mailbox }
-        assert a.empty?
+          should 'contain searched mailbox' do
+            a = filter(@results[@domain1], Mailbox, username: @mailbox1.username)
+            assert !a.empty?
+            assert a.size == 1
+          end
+
+          should 'not contain not searched mailbox' do
+            a = filter(@results[@domain1], Mailbox, username: @mailbox2.username)
+            assert a.empty?
+          end
+        end
       end
     end
 
     context 'for Alias' do
       setup do
-        substring = @alias1.username.random_substring
-        @results = Search.for(@mailbox1, substring)
+        @substring = @alias1.username.random_substring
       end
 
-      should 'contain searched alias' do
-        a = @results[@domain1]
-          .select { |x| x.username == @alias1.username }
-          .select { |x| x.is_a? Alias }
-        assert !a.empty?
-        assert a.size == 1
-      end
+      [true, false].each do |sql|
+        context "(sql:#{sql})" do
+          setup do
+            @results = Search.for(@mailbox1, @substring, sql: sql)
+          end
 
-      should 'not contain not searched alias' do
-        a = @results[@domain1]
-          .select { |x| x.username == @alias2.username }
-          .select { |x| x.is_a? Alias }
-        assert a.empty?
+          should 'contain searched alias' do
+            a = filter(@results[@domain1], Alias, username: @alias1.username)
+            assert !a.empty?
+            assert a.size == 1
+          end
+
+          should 'not contain not searched alias' do
+            a = filter(@results[@domain1], Alias, username: @alias2.username)
+            assert a.empty?
+          end
+        end
       end
     end
+  end
+
+  private
+
+  # Filter an array with select for objects class or attribute values.
+  def filter(array, clazz = nil, args = {})
+    array.select! { |x| x.is_a? clazz } if clazz
+
+    args.each do |k, v| 
+      array.select! { |x| x.send(k) == v }
+    end
+
+    array
   end
 end
