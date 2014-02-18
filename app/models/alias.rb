@@ -13,7 +13,11 @@ class Alias < ActiveRecord::Base
   has_paper_trail
 
   searchkick word_middle: [:description, :username]
-  SEARCH_FIELDS = [{description: :word_middle}, {username: :word_middle}]
+  # Search fields options includable in search on model.
+  SEARCH_FIELDS = [
+    { description: :word_middle },
+    { username: :word_middle }
+  ]
 
   # E-Mail address.
   def email

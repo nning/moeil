@@ -21,7 +21,11 @@ class Domain < ActiveRecord::Base
   has_paper_trail
 
   searchkick word_middle: [:name, :description]
-  SEARCH_FIELDS = [{name: :word_middle}, {description: :word_middle}]
+  # Search fields options includable in search on model.
+  SEARCH_FIELDS = [
+    { name: :word_middle },
+    { description: :word_middle }
+  ]
 
   # Aliases count for simple_form.
   def aliases_count

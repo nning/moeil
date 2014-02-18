@@ -4,7 +4,7 @@ module Search
   def self.for(mailbox, query, sql: !Settings.elasticsearch)
     haystack = ::Domain.managable(mailbox)
     haystack_ids = haystack.pluck(:id)
-    
+
     query = "%#{query}%" if sql
 
     results = Search::Domain.search(haystack, query, sql: sql)
