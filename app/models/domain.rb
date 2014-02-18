@@ -16,9 +16,16 @@ class Domain < ActiveRecord::Base
     format: { with: /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix },
     presence: true
 
+  before_save -> { name.downcase! }
+
   has_paper_trail
 
-  before_save -> { name.downcase! }
+  searchkick word_middle: [:name, :description]
+  # Search fields options includable in search on model.
+  SEARCH_FIELDS = [
+    { name: :word_middle },
+    { description: :word_middle }
+  ]
 
   # Aliases count for simple_form.
   def aliases_count

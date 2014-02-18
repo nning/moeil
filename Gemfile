@@ -17,6 +17,7 @@ gem 'jquery-rails'                  # jQuery
 gem 'kaminari'                      # Pagination
 gem 'paper_trail', '~> 2.7.2'       # Change history
 gem 'rails_config'                  # For configuration
+gem 'searchkick'                    # Efficient search
 gem 'simple_form'                   # DRY form
 gem 'yaml_db'                       # Database dump
 
