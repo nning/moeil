@@ -12,12 +12,7 @@ class SearchTest < ActiveSupport::TestCase
       @mailbox2 = FactoryGirl.create :mailbox, domain: @domain2
       @alias2   = FactoryGirl.create :alias,   domain: @domain2
 
-      begin
-        [Alias, Domain, Mailbox].map(&:reindex)
-      rescue
-        # For now do not fail, if indexed search is not possible.
-        nil
-      end
+      [Alias, Domain, Mailbox].map(&:reindex)
     end
 
     context 'for Domain' do
