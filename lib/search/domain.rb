@@ -2,17 +2,11 @@
 module Search::Domain
   # Search either via SQL or indexed (depending on settings or argument).
   def self.search(haystack, needle, sql: !Settings.elasticsearch)
-    results = {}
-
-    domains = if sql
-                sql_search(haystack, needle)
-              else
-                indexed_search(haystack, needle)
-              end
-
-    domains.each { |d| results[d] ||= [] }
-
-    results
+    if sql
+      sql_search(haystack, needle)
+    else
+      indexed_search(haystack, needle)
+    end
   end
 
   private
