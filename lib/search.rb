@@ -8,7 +8,7 @@ module Search
     query = "%#{query}%" if sql
 
     results = {}
-    
+
     Search::Domain.search(haystack, query, sql: sql).each do |domain|
       results[domain] ||= []
     end
