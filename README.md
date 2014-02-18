@@ -22,6 +22,7 @@ Features
 * Permissions and Roles for Mailboxes to e.g. manage a certain domain.
 * Responsive web user interface.
 * Change log for review and reverting changes.
+* Search (optionally based on SQL or elasticsearch).
 
 Installation
 ------------
@@ -30,6 +31,9 @@ Just deploy like any other current rails project. Configuration examples for
 postfix and dovecot are to be found in the doc directory of the code repository.
 
 ### Local testing
+
+It is assumed, elasticsearch is installed and running. If you want to use SQL
+based search, set `elasticsearch: false` in `config/settings.yml`.
 
     git clone git://github.com/nning/moeil.git
 	cd moeil
@@ -42,6 +46,9 @@ postfix and dovecot are to be found in the doc directory of the code repository.
 	rails s
 
 ### OpenShift
+
+**(Note, that the OpenShift guide does currently not contain instructions for
+elasticsearch.)**
 
 First steps happen in your local terminal. So this is for creating an OpenShift
 Ruby 1.9 application with a PostgreSQL 9.2 cartridge:
