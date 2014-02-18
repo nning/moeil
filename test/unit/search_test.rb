@@ -16,105 +16,150 @@ class SearchTest < ActiveSupport::TestCase
     end
 
     context 'for Domain' do
-      setup do
-        @substring = @domain1.name.random_substring
-      end
-
-      context 'random substring' do
-        should 'not be empty' do
-          assert !@substring.empty?
-        end
-
-        should 'be included in string' do
-          assert @domain1.name.include? @substring
-        end
-      end
-
       [true, false].each do |sql|
         context "(sql:#{sql})" do
-          setup do
-            @results = Search.for(@mailbox1, @substring, sql: sql)
+          context 'random' do
+            setup do
+              @substring = @domain1.name.random_substring
+              @results = Search.for(@mailbox1, @substring, sql: sql)
+            end
+
+            context 'substring' do
+              should 'not be empty' do
+                assert !@substring.empty?
+              end
+
+              should 'be included in string' do
+                assert @domain1.name.include? @substring
+              end
+            end
+
+            should 'not be empty' do
+              assert !@results.empty?
+            end
+
+            should 'contain searched domain' do
+              assert @results.keys.include? @domain1
+            end
           end
 
-          should 'be successful' do
-            assert !@results.empty?
-          end
+          context 'static' do
+            setup do
+              @results = Search.for(@mailbox1, @domain1.name, sql: sql)
+            end
 
-          should 'contain searched domain' do
-            a = filter(@results, nil, name: @domain1.name)
-            assert !a.empty?
-            assert a.size == 1
-          end
+            should 'be successful' do
+              assert !@results.empty?
+              assert @results.size == 1
+            end
 
-          should 'not contain not searched domain' do
-            a = filter(@results, nil, name: @domain2.name)
-            assert a.empty?
+            should 'contain searched domain' do
+              assert @results.keys.include? @domain1
+            end
+
+            should 'not contain not searched domain' do
+              assert !(@results.keys.include? @domain2)
+            end
           end
         end
       end
     end
 
     context 'for Mailbox' do
-      setup do
-        @substring = @mailbox1.username.random_substring
-      end
-
       [true, false].each do |sql|
         context "(sql:#{sql})" do
-          setup do
-            @results = Search.for(@mailbox1, @substring, sql: sql)
-          end
+          context 'random' do
+            setup do
+              @substring = @mailbox1.username.random_substring
+              @results = Search.for(@mailbox1, @substring, sql: sql)
+              @results = @results.values.flatten
+            end
 
-          should 'contain searched mailbox' do
-            a = filter(@results[@domain1], Mailbox, username: @mailbox1.username)
-            assert !a.empty?
-            assert a.size == 1
-          end
+            should 'not be empty' do
+              assert !@results.empty?
+            end
 
-          should 'not contain not searched mailbox' do
-            a = filter(@results[@domain1], Mailbox, username: @mailbox2.username)
-            assert a.empty?
+            should 'contain searched mailbox' do
+              assert @results.include? @mailbox1
+            end
+          end
+          
+          context 'static' do
+            setup do
+              @results = Search.for(@mailbox1, @mailbox1.username, sql: sql)
+              @results = @results.values.flatten
+            end
+
+            should 'not be empty' do
+              assert !@results.empty?
+              assert @results.size == 1
+            end
+
+            should 'contain searched mailbox' do
+              assert @results.include? @mailbox1
+            end
+
+            should 'not contain not searched mailbox' do
+              assert !(@results.include? @mailbox2)
+            end
           end
         end
       end
     end
 
     context 'for Alias' do
-      setup do
-        @substring = @alias1.username.random_substring
-      end
-
       [true, false].each do |sql|
         context "(sql:#{sql})" do
-          setup do
-            @results = Search.for(@mailbox1, @substring, sql: sql)
-          end
+          context 'random' do
+            setup do
+              @substring = @alias1.username.random_substring
+              @results = Search.for(@mailbox1, @substring, sql: sql)
+              @results = @results.values.flatten
+            end
 
-          should 'contain searched alias' do
-            a = filter(@results[@domain1], Alias, username: @alias1.username)
-            assert !a.empty?
-            assert a.size == 1
-          end
+            should 'not be empty' do
+              assert !@results.empty?
+            end
 
-          should 'not contain not searched alias' do
-            a = filter(@results[@domain1], Alias, username: @alias2.username)
-            assert a.empty?
+            should 'contain searched alias' do
+              assert @results.include? @alias1
+            end
+          end
+          
+          context 'static' do
+            setup do
+              @results = Search.for(@mailbox1, @alias1.username, sql: sql)
+              @results = @results.values.flatten
+            end
+
+            should 'not be empty' do
+              assert !@results.empty?
+              assert @results.size == 1
+            end
+
+            should 'contain searched alias' do
+              assert @results.include? @alias1
+            end
+
+            should 'not contain not searched alias' do
+              assert !(@results.include? @alias2)
+            end
           end
         end
       end
     end
   end
 
-  private
+# private
 
-  # Filter an array with select for objects class or attribute values.
-  def filter(array, clazz = nil, args = {})
-    array.select! { |x| x.is_a? clazz } if clazz
+# # Filter an array with select for objects class or attribute values.
+# def filter(array, clazz = nil, args = {})
+#   array.select! { |x| x.is_a? clazz } if clazz
 
-    args.each do |k, v| 
-      array.select! { |x| x.send(k) == v }
-    end
+#   args.each do |k, v| 
+#     array.select! { |x| x.send(k) == v }
+#   end
 
-    array
-  end
+#   array
+# end
 end
