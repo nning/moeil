@@ -1,5 +1,8 @@
 .page-header
-  %h1 Create Alias
+  - if spam?
+    %h1 Create Spam Alias
+  - else
+    %h1 Create Alias
   = link_to_back
 
 = simple_form_for [:admin, resource.domain, resource] do |f|

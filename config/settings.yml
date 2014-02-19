@@ -9,3 +9,5 @@ blocked_usernames:
   - dummy
 
 elasticsearch: true
+
+spam_alias_username_length: 6

@@ -61,6 +61,11 @@ class Mailbox < ActiveRecord::Base
     permissions.any? || admin?
   end
 
+  # Checks if Mailbox has permissions on associated domain (for spam Aliases).
+  def manager_of_address_domain?
+    Domain.managable(self).all.include? domain
+  end
+
   # Salt of the password hash.
   def password_salt
     salt = self.encrypted_password.split('$')[2] rescue nil
