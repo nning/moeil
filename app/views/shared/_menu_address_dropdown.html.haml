@@ -6,7 +6,7 @@
       = model.to_s.capitalize
       %b.caret
     %ul.dropdown-menu
-      - if current_mailbox.manager_of_address_domain?
+      - if current_mailbox.manager_of_address_domain? && model == :alias
         %li= link_to 'Create spam alias', new_admin_domain_alias_path(current_mailbox.domain, spam: true)
         %li.divider
       - domains.quick_access.each do |domain|
