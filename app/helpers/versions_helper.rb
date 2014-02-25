@@ -54,7 +54,7 @@ module VersionsHelper
     end
 
     object = Object.const_get(version.item_type).new
-    object.assign_attributes hash, without_protection: true
+    object.assign_attributes hash
 
     object
   end
