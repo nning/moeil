@@ -1,7 +1,7 @@
 require 'test_helper'
 
+# Tests for app/models/mailbox.rb
 class MailboxTest < ActiveSupport::TestCase
-
   should belong_to :domain
   should have_one :relocation
 
@@ -84,5 +84,4 @@ class MailboxTest < ActiveSupport::TestCase
       end
     end
   end
-
 end

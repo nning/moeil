@@ -1,12 +1,29 @@
 require 'test_helper'
+require 'functional/admin/test_helper.rb'
 
+# Tests for app/controllers/admin/permissions_controller.rb
 class Admin::PermissionsControllerTest < ActionController::TestCase
+  # Build dummy permission and POST to permissions#create.
+  def post_to_create
+    @permission = FactoryGirl.build :permission, item: @mailbox.domain
+    post :create,
+      domain_id: @domain_id,
+      permission: {
+        subject_id:   @permission.subject.id,
+        subject_type: @permission.subject.class,
+        role:         @permission.role
+      }
+  end
+
+  # Create dummy permission and DELETE to permissions#destroy.
+  def delete_to_destroy
+    @permission = FactoryGirl.create :permission, item: @mailbox.domain
+    delete :destroy, id: @permission.id, domain_id: @mailbox.domain_id
+  end
 
   context 'As admin' do
     setup do
-      @mailbox = FactoryGirl.create :mailbox, admin: true
-      @domain_id = @mailbox.domain_id
-      sign_in @mailbox
+      create_and_sign_in_mailbox
     end
 
     context 'on GET to index' do
@@ -21,14 +38,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
     context 'on POST to' do
       context 'create' do
         setup do
-          @permission = FactoryGirl.build :permission, item: @mailbox.domain
-          post :create,
-            domain_id: @domain_id,
-            permission: {
-              subject_id:   @permission.subject.id,
-              subject_type: @permission.subject.class,
-              role:         @permission.role
-            }
+          post_to_create
         end
 
         should 'create a record' do
@@ -40,7 +50,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
         end
 
         should respond_with :redirect
-        should set_the_flash.to /created/i
+        should set_the_flash.to(/created/i)
       end
 
       context 'update' do
@@ -68,14 +78,13 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
         end
 
         should respond_with :redirect
-        should set_the_flash.to /successfully updated/i
+        should set_the_flash.to(/successfully updated/i)
       end
     end
 
     context 'on DELETE to destroy' do
       setup do
-        @permission = FactoryGirl.create :permission, item: @mailbox.domain
-        delete :destroy, id: @permission.id, domain_id: @mailbox.domain_id
+        delete_to_destroy
       end
 
       should 'delete the record' do
@@ -87,7 +96,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
       end
 
       should respond_with :redirect
-      should set_the_flash.to /successfully destroyed/i
+      should set_the_flash.to(/successfully destroyed/i)
     end
   end
 
@@ -121,14 +130,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
       context 'on POST to' do
         context 'create' do
           setup do
-            @permission = FactoryGirl.build :permission, item: @mailbox.domain
-            post :create,
-              domain_id: @domain_id,
-              permission: {
-                subject_id:   @permission.subject.id,
-                subject_type: @permission.subject.class,
-                role:         @permission.role
-              }
+            post_to_create
           end
 
           should 'create a record' do
@@ -140,7 +142,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
           end
 
           should respond_with :redirect
-          should set_the_flash.to /created/i
+          should set_the_flash.to(/created/i)
         end
 
         context 'update' do
@@ -168,14 +170,13 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
           end
 
           should respond_with :redirect
-          should set_the_flash.to /successfully updated/i
+          should set_the_flash.to(/successfully updated/i)
         end
       end
 
       context 'on DELETE to destroy' do
         setup do
-          @permission = FactoryGirl.create :permission, item: @mailbox.domain
-          delete :destroy, id: @permission.id, domain_id: @mailbox.domain_id
+          delete_to_destroy
         end
 
         should 'delete the record' do
@@ -187,7 +188,7 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
         end
 
         should respond_with :redirect
-        should set_the_flash.to /successfully destroyed/i
+        should set_the_flash.to(/successfully destroyed/i)
       end
     end
 
@@ -285,5 +286,4 @@ class Admin::PermissionsControllerTest < ActionController::TestCase
       end
     end
   end
-
 end

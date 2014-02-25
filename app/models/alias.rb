@@ -1,35 +1,28 @@
+# Alias model.
 class Alias < ActiveRecord::Base
+  include Address
 
   belongs_to :domain
 
   default_scope -> { order 'username asc' }
 
-  has_paper_trail
-
-
-  validates :username,
-    presence: true,
-    uniqueness: {
-      scope: :domain_id,
-      message: 'Combination of username and domain is not unique.'
-    },
-    format: {
-      with: /\A[a-zA-Z0-9.\-_]+\z/,
-      message: 'Username contains invalid characters.'
-    },
-    exclusion: {
-      in: Settings.blocked_usernames,
-      message: 'Username is blocked.'
-    }
-
-  validates :domain_id, presence: true
   validates :goto, presence: true
 
+  has_paper_trail
 
+  searchkick word_middle: [:description, :username]
+  # Search fields options includable in search on model.
+  SEARCH_FIELDS = [
+    { description: :word_middle },
+    { username: :word_middle }
+  ]
+
+  # E-Mail address.
   def email
     [self.username, self.domain.name].join '@' rescue nil
   end
 
+  # String representation.
   def to_s
     if domain
       if username
@@ -45,5 +38,4 @@ class Alias < ActiveRecord::Base
       end
     end
   end
-
 end

@@ -19,6 +19,7 @@ gem 'jquery-rails'                        # jQuery
 gem 'kaminari'                            # Pagination
 gem 'paper_trail', '3.0.0.beta1'          # Change history
 gem 'rails_config'                        # For configuration
+gem 'searchkick'                          # Efficient search
 gem 'simple_form',                        # DRY forms
   github: 'plataformatec/simple_form'
 gem 'turbolinks'                          # Load links with JS

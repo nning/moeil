@@ -1,7 +1,7 @@
 require 'test_helper'
 
+# Tests for lib/password.rb
 class PasswordTest < ActiveSupport::TestCase
-
   context 'sha512_crypt' do
     context 'salt' do
       setup do
@@ -61,5 +61,4 @@ class PasswordTest < ActiveSupport::TestCase
       assert_not_equal @method.call, @method.call
     end
   end
-
 end

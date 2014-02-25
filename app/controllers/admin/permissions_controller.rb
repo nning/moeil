@@ -1,5 +1,5 @@
+# Permissions controller.
 class Admin::PermissionsController < AdminController
-
   inherit_resources
   actions :all, except: :show
 
@@ -8,19 +8,18 @@ class Admin::PermissionsController < AdminController
   load_and_authorize_resource :domain
   load_and_authorize_resource :permission, through: :domain
 
-
+  # Create new permission.
   def create
     build_resource.creator = current_mailbox
     build_resource.subject = Mailbox.find(params[:permission][:subject_id])
     build_resource.save!
 
-    respond_to do |format|
-      format.html { redirect_to [:admin, parent, :permissions], flash: { notice: 'Permission successfully created.' } }
+    super do |success|
+      success.html { redirect_to collection_url }
     end
   rescue
     redirect_to [:new, :admin, parent, :permission], flash: { error: 'Permission already existing.' }
   end
-
 
   private
 
@@ -33,5 +32,4 @@ class Admin::PermissionsController < AdminController
         :subject_type
       ]
   end
-
 end

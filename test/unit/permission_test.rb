@@ -1,7 +1,7 @@
 require 'test_helper'
 
+# Tests for app/models/permission.rb
 class PermissionTest < ActiveSupport::TestCase
-  
   should belong_to :creator
   should belong_to :item
   should belong_to :subject
@@ -93,5 +93,4 @@ class PermissionTest < ActiveSupport::TestCase
       assert_equal 0, Permission.count
     end
   end
-
 end

@@ -1,5 +1,5 @@
+# Sessions controller.
 class SessionsController < Devise::SessionsController
-
   before_filter :prepare_params, only: :create
 
   # TODO XXX THIS IS A VERY DIRTY WORKAROUND!!
@@ -25,9 +25,9 @@ class SessionsController < Devise::SessionsController
     end
   end
 
-
   private
 
+  # Convert email attribute to domain_id and username.
   def prepare_params
     mp = params[:mailbox]
 
@@ -41,5 +41,4 @@ class SessionsController < Devise::SessionsController
     devise_parameter_sanitizer.for(:sign_in) << :email
     super
   end
-
 end

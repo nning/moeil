@@ -1,12 +1,11 @@
 require 'test_helper'
+require 'functional/admin/test_helper.rb'
 
+# Tests for app/controllers/admin/mailboxes_controller.rb
 class Admin::MailboxesControllerTest < ActionController::TestCase
-
   context 'As admin' do
     setup do
-      @mailbox = FactoryGirl.create :mailbox, admin: true
-      @domain_id = @mailbox.domain_id
-      sign_in @mailbox
+      create_and_sign_in_mailbox
     end
 
     context 'on GET to index' do
@@ -60,7 +59,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
         end
 
         should respond_with :redirect
-        should set_the_flash.to /created/i
+        should set_the_flash.to(/created/i)
       end
 
       context 'to update' do
@@ -82,7 +81,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
         end
 
         should respond_with :redirect
-        should set_the_flash.to /successfully updated/i
+        should set_the_flash.to(/successfully updated/i)
       end
     end
 
@@ -97,7 +96,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
       end
 
       should respond_with :redirect
-      should set_the_flash.to /successfully destroyed/i
+      should set_the_flash.to(/successfully destroyed/i)
     end
   end
 
@@ -147,7 +146,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
           end
 
           should respond_with :redirect
-          should set_the_flash.to /created/i
+          should set_the_flash.to(/created/i)
         end
 
         context 'to update' do
@@ -167,7 +166,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
           end
 
           should respond_with :redirect
-          should set_the_flash.to /successfully updated/i
+          should set_the_flash.to(/successfully updated/i)
         end
       end
 
@@ -182,7 +181,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
         end
 
         should respond_with :redirect
-        should set_the_flash.to /successfully destroyed/i
+        should set_the_flash.to(/successfully destroyed/i)
       end
     end
 
@@ -226,7 +225,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
           end
 
           should respond_with :redirect
-          should set_the_flash.to /created/i
+          should set_the_flash.to(/created/i)
         end
 
         context 'to update' do
@@ -246,7 +245,7 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
           end
 
           should respond_with :redirect
-          should set_the_flash.to /successfully updated/i
+          should set_the_flash.to(/successfully updated/i)
         end
       end
 
@@ -261,9 +260,8 @@ class Admin::MailboxesControllerTest < ActionController::TestCase
         end
 
         should respond_with :redirect
-        should set_the_flash.to /successfully destroyed/i
+        should set_the_flash.to(/successfully destroyed/i)
       end
     end
   end
-
 end

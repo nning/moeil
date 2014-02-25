@@ -1,5 +1,5 @@
+# Relocation model for moving of mailbox directories.
 class Relocation < ActiveRecord::Base
-
   belongs_to :mailbox
 
   default_scope -> { order 'updated_at asc' }
@@ -13,8 +13,8 @@ class Relocation < ActiveRecord::Base
   validates :old_domain, presence: true
   validates :mailbox_id, presence: true
 
+  # Actually move data.
   def perform
     "mv /srv/mail/#{old_domain}/#{old_username} /srv/mail/#{mailbox.domain.name}/#{mailbox.username}"
   end
-
 end

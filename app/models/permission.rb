@@ -1,41 +1,30 @@
+# Permission model.
 class Permission < ActiveRecord::Base
-  
-  ROLES = %w(owner editor)
-  
-  # Thrown if the last admin/owner tries to remove itself.
-  class PowerVaccuumError < Exception; end
-
+  include Permission::Scopes
+  include Permission::Validations
 
   has_paper_trail
   
   belongs_to :subject, polymorphic: true
   belongs_to :item,    polymorphic: true
   belongs_to :creator, class_name: 'Mailbox'
-  
-  validates :role, inclusion: { in: ROLES }, presence: true
-  validates :subject_id,
-    uniqueness: { scope: [:subject_id, :subject_type, :item_id, :item_type] },
-    presence: true
 
-  scope :item, ->(item) {
-    where \
-      item_id:   item.id,
-      item_type: item.class.to_s
-  }
-  
-  scope :subject, ->(subject) {
-    where \
-      subject_id:   subject.id,
-      subject_type: subject.class.to_s
-  }
-  
-  scope :role,   ->(role) { where role: role }
-  scope :owner,  -> { role(:owner) }
-  scope :editor, -> { role(:editor) }
-
-
-  def to_s
-    "#{subject.email} is #{role} of #{item.name}"
+  # Return URL array for editing model instance.
+  def edit_url_array
+    [:edit, :admin, item, self] if item
+    nil
   end
 
+  # String representation.
+  def to_s
+    # Fetch associated Mailbox and Domain.
+    s, i = subject, item
+
+    # Fallback names if Mailbox or Domain is deleted.
+    s ||= 'Deleted mailbox'
+    i ||= 'deleted domain'
+
+    # Return String representation.
+    "#{s} is #{role} of #{i}"
+  end
 end

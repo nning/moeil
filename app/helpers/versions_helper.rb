@@ -1,44 +1,38 @@
+# Helper for versions views.
 module VersionsHelper
-
   include MailboxesHelper
 
+  # Icons for version events.
   def icon_for_event(event)
     case event
-      when 'create'
-        icon :plus
-      when 'destroy'
-        icon :trash
-      when 'update'
-        icon :edit
+    when 'create'
+      icon :plus
+    when 'destroy'
+      icon :trash
+    when 'update'
+      icon :edit
+    else
+      raise "No icon for event '#{event}'."
     end
   end
 
+  # Link to object references in version or String representation.
   def link_to_object(version)
-    clazz = version.item_type
-    id    = version.item_id
+    object = fetch_or_fake_object(version)
 
-    begin
-      object = Object.const_get(clazz).find(id)
-    rescue ActiveRecord::RecordNotFound
-      if version.object
-        hash = YAML.load(version.object)
-      else
-        hash = object_changes_to_hash(version)
-      end
+    # String representation of object.
+    html = object.to_s
 
-      object = Object.const_get(clazz).new
-      object.assign_attributes hash
+    # Link if object is existing.
+    if object.persisted?
+      url = url_for object.edit_url_array
+      html = link_to object.to_s, url if url
     end
 
-    html = ''
-    html << if object.persisted?
-      link_to object.to_s, url_for_object(object)
-    else
-      object.to_s
-    end
     html.html_safe
   end
 
+  # Convert changes of version to html summary.
   def summarize_changes(changes)
     return unless changes
 
@@ -49,28 +43,35 @@ module VersionsHelper
     html.html_safe
   end
 
-
   private
 
-  def url_for_object(object)
-    url_for case object.class.to_s
-      when 'Domain'
-        [:edit, :admin, object]
-      when 'Alias'
-        [:edit, :admin, object.domain, object]
-      when 'Mailbox'
-        [:edit, :admin, object.domain, object]
-      when 'Permission'
-        [:edit, :admin, object.item, object]
+  # Instanciate dummy for version of deleted object.
+  def fake_object(version)
+    if version.object
+      hash = YAML.load(version.object)
+    else
+      hash = object_changes_to_hash(version)
     end
+
+    object = Object.const_get(version.item_type).new
+    object.assign_attributes hash, without_protection: true
+
+    object
   end
 
+  # Fetch object or instanciate dummy if it does not exist.
+  def fetch_or_fake_object(version)
+    Object.const_get(version.item_type).find(version.item_id)
+  rescue ActiveRecord::RecordNotFound
+    fake_object version
+  end
+
+  # Convert changes YAML to hash just containing the new values.
   def object_changes_to_hash(version)
-    h = {}
+    hash = {}
     YAML.load(version.object_changes).each do |key, value|
-      h[key] = value.last
+      hash[key] = value.last
     end
-    h
+    hash
   end
-
 end

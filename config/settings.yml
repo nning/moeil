@@ -8,4 +8,8 @@ minimal_password_length: 8
 blocked_usernames:
   - dummy
 
+elasticsearch: true
+
+spam_alias_username_length: 6
+
 dirty_rails4_warden_workaround: true

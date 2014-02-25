@@ -1,3 +1,4 @@
+# Enables permission on models it is included into.
 module Permissionable
   extend ActiveSupport::Concern
 

@@ -12,11 +12,12 @@ Moeil::Application.routes.draw do
     end
     resources :versions, only: :index
     post 'versions/:id/revert' => 'versions#revert', as: 'revert_version'
+    post 'search' => 'searches#search'
   end
 
   get 'admin/test' => 'admin#test'
 
-  post 'development_login' => 'development_login#edit'
+  post 'development_login' => 'development_login#update'
 
   resource :mailbox, only: [:edit, :update]
 
