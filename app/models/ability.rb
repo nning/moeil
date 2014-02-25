@@ -2,9 +2,8 @@
 class Ability
   include CanCan::Ability
 
+  # Define abilities for the passed in mailbox here.
   def initialize(mailbox)
-    # Define abilities for the passed in mailbox here.
-    
     mailbox ||= Mailbox.new # Not logged in
     
     if mailbox.admin?

@@ -6,6 +6,7 @@ class Admin::DomainsController < AdminController
 
   actions :all, except: [:show, :index]
 
+  # Create Domain and redirect to index.
   def create
     super do |success, error|
       success.html { redirect_to collection_url }
@@ -25,10 +26,12 @@ class Admin::DomainsController < AdminController
   end
 =end
 
+  # Return only managable domains.
   def index
     @domains = Domain.managable current_mailbox
   end
 
+  # Update Domain and redirect to edit form.
   def update
     super do |success, error|
       success.html { redirect_to [:edit, :admin, resource] }

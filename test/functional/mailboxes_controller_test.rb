@@ -41,7 +41,7 @@ class MailboxesControllerTest < ActionController::TestCase
       end
 
       should respond_with :redirect
-      should set_the_flash.to /successfully updated/i
+      should set_the_flash.to(/successfully updated/i)
 
       should 'have new name' do
         assert_equal 'Foo', @mailbox.name

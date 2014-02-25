@@ -32,10 +32,10 @@ SimpleForm.setup do |config|
     b.use :min_max
     b.use :maxlength
     b.use :placeholder
-    
+
     b.optional :pattern
     b.optional :readonly
-    
+
     b.wrapper tag: 'div', class: 'col-md-4 col-xs-12' do |ba|
       ba.use :label
     end

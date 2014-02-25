@@ -1,6 +1,9 @@
+# Aliases controller.
 class Admin::AliasesController < Admin::AddressesController
   load_and_authorize_resource :alias, through: :domain
 
+  # Build Alias resource (and fill with some defaults, if it should be a spam
+  # alias).
   def new
     if spam?
       @alias = parent.aliases.build \

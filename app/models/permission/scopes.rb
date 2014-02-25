@@ -8,7 +8,7 @@ module Permission::Scopes
         item_id:   item.id,
         item_type: item.class.to_s
     }
-    
+
     scope :subject, ->(subject) {
       where \
         subject_id:   subject.id,
