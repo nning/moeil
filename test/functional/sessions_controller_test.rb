@@ -38,7 +38,7 @@ class SessionsControllerTest < ActionController::TestCase
 
         should respond_with :redirect
         should redirect_to :new_mailbox_session
-        should set_the_flash.to /invalid email or password/i
+        should set_the_flash.to(/invalid email or password/i)
       end
     end
   end

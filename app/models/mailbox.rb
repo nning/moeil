@@ -2,7 +2,10 @@
 class Mailbox < ActiveRecord::Base
   include Address
 
+  # Parameters, any user can change.
   PARAMS = %i[email name password password_confirmation]
+
+  # Parameters, only admin or manager users can change.
   PARAMS_ADMIN = PARAMS + %i[active admin domain_id mail_location quota username]
 
   belongs_to :domain

@@ -4,6 +4,7 @@ class SessionsController < Devise::SessionsController
 
   # TODO XXX THIS IS A VERY DIRTY WORKAROUND!!
   if Settings.dirty_rails4_warden_workaround
+    # Authenticate user and create a session.
     def create
       # Manually do the Mailbox lookup, because I could not get
       # warden.authenticate! to work.
@@ -21,7 +22,7 @@ class SessionsController < Devise::SessionsController
       # From here it's original devise code again..
       set_flash_message(:notice, :signed_in) if is_navigational_format?
       sign_in(resource_name, resource)
-      respond_with resource, :location => after_sign_in_path_for(resource)
+      respond_with resource, location: after_sign_in_path_for(resource)
     end
   end
 
