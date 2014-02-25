@@ -63,7 +63,7 @@ class Mailbox < ActiveRecord::Base
 
   # Checks if Mailbox has permissions on associated domain (for spam Aliases).
   def manager_of_address_domain?
-    Domain.managable(self).all.include? domain
+    Domain.managable(self).where(id: domain.id).any?
   end
 
   # Salt of the password hash.
