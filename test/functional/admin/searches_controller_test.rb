@@ -2,7 +2,7 @@ require 'test_helper'
 
 # Tests for app/controllers/admin/searches_controller.rb
 class Admin::SearchesControllerTest < ActionController::TestCase
-  should route(:post, 'admin/search').to('admin/searches#search')
+  should route(:post, 'admin/search').to(controller: 'admin/searches', action: :search)
 
   context 'Admin namespace' do
     setup do
