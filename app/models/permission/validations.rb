@@ -2,6 +2,7 @@
 module Permission::Validations
   extend ActiveSupport::Concern
 
+  # Possible roles.
   ROLES = %w(owner editor)
 
   included do
