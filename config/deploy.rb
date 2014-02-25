@@ -1,5 +1,5 @@
 require File.expand_path('../../config/environment',  __FILE__)
- 
+
 set :application, Rails.application.class.parent_name.downcase
 set :hostname, Settings.host
 

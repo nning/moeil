@@ -4,7 +4,7 @@ class Permission < ActiveRecord::Base
   include Permission::Validations
 
   has_paper_trail
-  
+
   belongs_to :subject, polymorphic: true
   belongs_to :item,    polymorphic: true
   belongs_to :creator, class_name: 'Mailbox'

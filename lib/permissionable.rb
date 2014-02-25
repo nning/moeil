@@ -5,11 +5,13 @@ module Permissionable
   included do
     has_many :permissions, as: :item
   end
-  
+
+  # Dummy method for easier use in simple_form.
   def permissions_count
     permissions.count
   end
   
+  # Does a Mailbox have at least role permission?
   def permission?(role, mailbox)
     # Deny if mailbox is nil.
     return false unless mailbox

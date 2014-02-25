@@ -7,12 +7,14 @@ module AliasesHelper
   def address_list(string)
     addresses = string.split(',')
     html = []
-    
+
     addresses.each do |a|
       begin
         o = Lookup.by_email(a)
         a = link_to a, [:edit, :admin, o.domain, o]
       rescue Lookup::Error
+        # No link, if no Alias or Mailbox is found.
+        nil
       end
 
       a = content_tag :p, a, class: 'alias-goto-list-item'
