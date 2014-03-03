@@ -3,3 +3,5 @@
 * If a mailbox "foo" is renamed to "bar" and then to "foo" again, an exception
   is thrown (see test/unit/mailbox_test.rb:57):
   SQLite3::ConstraintException: UNIQUE constraint failed: relocations.mailbox_id: INSERT INTO "relocations" ("created_at", "mailbox_id", "old_domain", "old_username", "updated_at") VALUES (?, ?, ?, ?, ?)
+* Relocation daemon.
+* Make auto-refresh in changes index configurable.
