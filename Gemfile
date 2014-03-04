@@ -49,7 +49,7 @@ end
 group :development, :test do
   platforms :ruby do
     gem 'sqlite3'
-    gem 'mysql'
+    gem 'mysql2'
   end
 
   platforms :jruby do
