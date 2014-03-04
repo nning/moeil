@@ -155,6 +155,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    minitest (4.7.5)
     multi_json (1.8.4)
     mysql (2.9.1)
     net-scp (1.1.2)
@@ -313,6 +314,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   kaminari
+  minitest
   mysql
   paper_trail (~> 2.7.2)
   pg
