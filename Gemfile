@@ -57,7 +57,7 @@ end
 group :development, :test do
   platforms :ruby do
     gem 'sqlite3'
-    gem 'mysql'
+    gem 'mysql2'
   end
 
   platforms :jruby do
@@ -72,6 +72,8 @@ group :test do
   gem 'coveralls', require: false        # Test coverage statistics as a service
   gem 'factory_girl_rails'               # Instead of fixtures
   gem 'faker'                            # For test data
+  gem 'minitest'                         # Required explicitly in "ruby 2.2.0dev (2014-03-04 trunk 45265)"
+  gem 'rake'                             # Travis seems to like this added explicitly
   gem 'shoulda'                          # More beautiful assertions
   gem 'shoulda-matchers', '~> 2.4.0'
 end
