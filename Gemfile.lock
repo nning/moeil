@@ -14,6 +14,12 @@ GIT
       rack (>= 1.0)
 
 GIT
+  remote: git://github.com/jetthoughts/yaml_db.git
+  revision: 5f73cbd14adee939adf08574ec3bf6e05ee55889
+  specs:
+    yaml_db (0.2.3)
+
+GIT
   remote: git://github.com/plataformatec/devise-encryptable.git
   revision: 803d30fb267f3be9fa626c8a93d9a893acc931a0
   specs:
@@ -284,7 +290,6 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    yaml_db (0.2.3)
 
 PLATFORMS
   ruby
@@ -335,4 +340,4 @@ DEPENDENCIES
   turbolinks
   uglifier
   warden!
-  yaml_db
+  yaml_db!

@@ -25,7 +25,8 @@ gem 'simple_form',                        # DRY forms
 gem 'turbolinks'                          # Load links with JS
 gem 'warden',                             # Rack authentication
   github: 'hassox/warden'
-gem 'yaml_db'                             # Database dump
+gem 'yaml_db',                            # Database dump
+  github: 'jetthoughts/yaml_db'
 
 group :assets do
   gem 'coffee-rails'
