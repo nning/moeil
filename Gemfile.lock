@@ -158,7 +158,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    minitest (4.7.5)
     multi_json (1.9.2)
     multipart-post (2.0.0)
     mysql2 (0.3.15)
@@ -307,7 +306,6 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   kaminari
-  minitest (~> 4.7.5)
   mysql2
   paper_trail (~> 2.7.2)
   pg

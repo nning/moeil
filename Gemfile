@@ -62,7 +62,6 @@ group :test do
   gem 'coveralls', require: false   # Test coverage statistics as a service
   gem 'factory_girl_rails'          # Instead of fixtures
   gem 'faker'                       # For test data
-  gem 'minitest', '~> 4.7.5'        # Required explicitly in "ruby 2.2.0dev (2014-03-04 trunk 45265)"
   gem 'rake'                        # Travis seems to like this added explicitly
   gem 'shoulda'                     # Cleaner tests
 end
