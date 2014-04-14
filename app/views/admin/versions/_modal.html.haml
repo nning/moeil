@@ -15,5 +15,5 @@
         = summarize_changes version.object_changes
       .modal-footer
         - if ['update', 'destroy'].include? version.event
-          = link_to 'Revert', [:admin, :revert, version], class: 'btn btn-danger', method: :post
+          = link_to 'Revert', [:revert, :admin, version], class: 'btn btn-danger', method: :post
         = button_tag 'Close', class: 'btn btn-default', :'data-dismiss' => 'modal'

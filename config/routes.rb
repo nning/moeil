@@ -10,8 +10,10 @@ Moeil::Application.routes.draw do
       resources :mailboxes, except: :show
       resources :permissions, except: :show
     end
-    resources :versions, only: :index
-    post 'versions/:id/revert' => 'versions#revert', as: 'revert_version'
+    resources :versions, only: :index do
+      get 'updates', on: :collection
+      post 'revert', on: :member
+    end
     post 'search' => 'searches#search'
   end
 
