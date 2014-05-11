@@ -2,7 +2,11 @@
 %footer.container
   - if current_mailbox.try :admin?
     %p.text-right
-      %code= "Last deployment: #{About.last_deploy}"
+      %code
+        Last deployment was
+        %span.tooltipp{title: About.last_deploy}
+          = time_ago_in_words(About.last_deploy)
+        ago
     %p.text-right
       %code= About.rails
       on

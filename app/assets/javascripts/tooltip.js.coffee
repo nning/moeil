@@ -1,0 +1,2 @@
+$ ->
+  $('.tooltipp').tooltip()
