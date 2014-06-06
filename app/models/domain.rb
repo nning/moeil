@@ -15,7 +15,7 @@ class Domain < ActiveRecord::Base
 
   before_save -> { name.downcase! }
 
-  has_paper_trail
+  has_paper_trail class_name: 'Version'
 
   searchkick word_middle: [:name, :description]
   # Search fields options includable in search on model.

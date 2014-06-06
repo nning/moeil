@@ -36,7 +36,7 @@ class Mailbox < ActiveRecord::Base
 
   devise :database_authenticatable, :encryptable
 
-  has_paper_trail
+  has_paper_trail class_name: 'Version'
 
   default_value_for :quota, Settings.default_quota
 

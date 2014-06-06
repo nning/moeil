@@ -194,8 +194,9 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.9.0)
     orm_adapter (0.5.0)
-    paper_trail (3.0.0.beta1)
+    paper_trail (3.0.2)
       activerecord (>= 3.0, < 5.0)
+      activesupport (>= 3.0, < 5.0)
     pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -327,7 +328,7 @@ DEPENDENCIES
   kaminari
   minitest
   mysql2
-  paper_trail (= 3.0.0.beta1)
+  paper_trail (~> 3.0.2)
   pg
   rails (~> 4.1.1)
   rails-erd

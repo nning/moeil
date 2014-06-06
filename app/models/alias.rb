@@ -8,7 +8,7 @@ class Alias < ActiveRecord::Base
 
   validates :goto, presence: true
 
-  has_paper_trail
+  has_paper_trail class_name: 'Version'
 
   searchkick word_middle: [:description, :username]
   # Search fields options includable in search on model.
