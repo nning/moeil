@@ -322,14 +322,14 @@ DEPENDENCIES
   foreigner
   haml
   highline
-  inherited_resources
+  inherited_resources (~> 1.4.1)
   jquery-rails
   kaminari
   minitest
   mysql2
   paper_trail (= 3.0.0.beta1)
   pg
-  rails (~> 4.1.0)
+  rails (~> 4.1.1)
   rails-erd
   rails_config
   rake

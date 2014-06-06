@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.1.1'
 
 gem 'pg', platforms: :ruby
 gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
@@ -14,7 +14,7 @@ gem 'devise-encryptable',
 gem 'foreigner'                           # Foreign key constraints
 gem 'haml'                                # More beautiful views
 gem 'highline'                            # Terminal input in cli scripts
-gem 'inherited_resources'                 # DRY
+gem 'inherited_resources', '~> 1.4.1'     # DRY
 gem 'jquery-rails'                        # jQuery
 gem 'kaminari'                            # Pagination
 gem 'paper_trail', '3.0.0.beta1'          # Change history

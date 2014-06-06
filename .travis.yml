@@ -1,9 +1,7 @@
 language: ruby
 
 rvm:
-  - 2.1.1
-  - ruby-head
-  - jruby-head
+  - 2.1
 
 notifications:
   email: false
