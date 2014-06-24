@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/hassox/warden.git
-  revision: e31e72f4078206529856bfa9ea98db4cd9bdc707
+  revision: e43d3ed7a1d8a8915b39e0ebbd21c733beca00d5
   specs:
     warden (1.2.3)
       rack (>= 1.0)
@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: eeb6060d9df0aac63d2f8cc90895941b30ba1c0f
+  revision: 6f7cd1332b48b6e29ed1b73ab7050671d1bf4785
   specs:
     devise (3.2.4)
       bcrypt (~> 3.0)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 122ac3b252f6d953c5e4e4856b95a63e6fd83f5a
+  revision: 3c228defb57d65ddcae370088a0ef85e05cd8376
   specs:
     simple_form (3.1.0.rc1)
       actionpack (~> 4.0)
@@ -57,7 +57,7 @@ GIT
 
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: b0f052e0a68d27a9d1714ef0fea47417bc289d45
+  revision: 081372ebf582d69791b3f77c6e4c383f86043a04
   specs:
     bootstrap-sass (3.1.1.1)
       autoprefixer-rails (~> 1.1)
@@ -93,7 +93,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (1.1.20140605)
+    autoprefixer-rails (1.3.1.20140619)
       execjs
     bcrypt (3.1.7)
     better_errors (1.1.0)
@@ -143,7 +143,7 @@ GEM
     debug_inspector (0.0.2)
     default_value_for (3.0.0.1)
       activerecord (>= 3.2.0, < 5.0)
-    docile (1.1.3)
+    docile (1.1.5)
     elasticsearch (0.4.11)
       elasticsearch-api (= 0.4.11)
       elasticsearch-transport (= 0.4.11)
@@ -178,11 +178,11 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    jquery-rails (3.1.0)
+    jquery-rails (3.1.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
-    kaminari (0.15.1)
+    kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     libv8 (3.16.14.3)
@@ -190,7 +190,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    minitest (5.3.4)
+    minitest (5.3.5)
     multi_json (1.10.1)
     multipart-post (2.0.0)
     mysql2 (0.3.16)
@@ -246,7 +246,7 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
-    searchkick (0.7.6)
+    searchkick (0.7.8)
       activemodel
       elasticsearch (~> 0.4.11)
       hashie
@@ -297,7 +297,7 @@ GEM
       coffee-rails
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
-    uglifier (2.5.0)
+    uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
 
