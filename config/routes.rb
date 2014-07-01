@@ -9,6 +9,7 @@ Moeil::Application.routes.draw do
       resources :aliases, except: :show
       resources :mailboxes, except: :show
       resources :permissions, except: :show
+      post 'check_mx_records', on: :collection
     end
     resources :versions, only: :index do
       get 'updates', on: :collection

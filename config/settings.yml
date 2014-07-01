@@ -11,3 +11,5 @@ blocked_usernames:
 elasticsearch: true
 
 spam_alias_username_length: 6
+
+mx_check_domain: mx.orgizm.net

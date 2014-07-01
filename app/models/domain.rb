@@ -18,7 +18,7 @@ class Domain < ActiveRecord::Base
 
   before_save -> { name.downcase! }
 
-  has_paper_trail
+  has_paper_trail ignore: :mx_set
 
   searchkick word_middle: [:name, :description]
   # Search fields options includable in search on model.
@@ -64,6 +64,12 @@ class Domain < ActiveRecord::Base
   # Mailboxes for select input.
   def mailboxes_for_select
     mailboxes.map { |m| [m.email, m.id] }
+  end
+
+  # Check if MX of Domain is set to default MX for Møil instance.
+  def update_mx_set!
+    self.mx_set = (Resolve.address(Resolve.mx(self)) == Resolve.address(Settings.mx_check_domain))
+    save!
   end
 
   # String representation.
