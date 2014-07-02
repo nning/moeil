@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.18'
+gem 'rails', '~> 3.2.19'
 
 gem 'pg', platforms: :ruby
 gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
@@ -28,7 +28,7 @@ group :assets do
   gem 'uglifier'
 
   gem 'sass-rails'
-  gem 'bootstrap-sass'
+  gem 'bootstrap-sass', '~> 3.1.1.1'
 end
 
 group :development do
