@@ -6,6 +6,12 @@ class Admin::DomainsController < AdminController
 
   actions :all, except: [:show, :index]
 
+  # Check if MX records on all managable Domains and redirect to index.
+  def check_mx_records
+    Domain.managable(current_mailbox).all.map(&:update_mx_set!)
+    redirect_to [:admin, :domains]
+  end
+
   # Create Domain and redirect to index.
   def create
     super do |success, error|

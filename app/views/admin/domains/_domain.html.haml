@@ -5,6 +5,9 @@
   %td= link_to domain.permissions.count, [:admin, domain, :permissions]
   %td= link_to_alias_or_mailbox domain.catch_all_address
   %td
+    - unless domain.mx_set?
+      %span.label.label-warning no
+  %td
     - if can? :destroy, domain
       = link_to [:admin, domain], method: :delete, data: { confirm: 'Are you really sure? This will delete all mailboxes and aliases of this domain, too.' }, class: 'btn btn-danger btn-xs' do
         = icon :trash

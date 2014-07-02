@@ -1,7 +1,15 @@
 .page-header
   %h1 Domains
   - if can? :create, :domain
-    = link_to_create new_admin_domain_path
+    .btn-toolbar
+      .btn-group
+        = link_to_create [:new, :admin, :domain]
+        %button.btn.btn-default.dropdown-toggle{data: {toggle: 'dropdown'}}
+          Actions
+          %span.caret
+        %ul.dropdown-menu{role: 'menu'}
+          %li
+            = link_to 'Check MX records', [:check_mx_records, :admin, :domains], method: :post
 
 %p
   Got
@@ -20,6 +28,7 @@
       = icon :certificate
       Permissions
     %th Catch-All
+    %th MX?
     %th
   %tbody
     = render collection.all
