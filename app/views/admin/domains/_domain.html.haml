@@ -4,6 +4,7 @@
   %td= link_to domain.aliases.count, [:admin, domain, :aliases]
   %td= link_to domain.permissions.count, [:admin, domain, :permissions]
   %td= link_to_alias_or_mailbox domain.catch_all_address
+  %td= domain.active? ? '' : 'no'
   %td
     - unless domain.mx_set?
       %span.label.label-warning no
