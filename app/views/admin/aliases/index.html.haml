@@ -22,7 +22,7 @@
       %tr
         %td= link_to a.email, [:edit, :admin, a.domain, a]
         %td= address_list(a.goto)
-        %td= :no unless a.active
+        %td= icon(:remove) unless a.active
         %td
           - if can? :destroy, a
             = link_to [:admin, a.domain, a], method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger btn-xs' do
