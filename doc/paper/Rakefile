@@ -1,0 +1,66 @@
+@name = File.basename(File.dirname(__FILE__))
+@files = Dir['*.{bib,tex}']
+
+task default: :build
+
+desc 'Build document as PDF (default)'
+task build: "#@name.pdf"
+ 
+desc 'Build document as PDF'
+file "#@name.pdf" => @files do
+  sh "texi2pdf #@name.tex"
+end
+ 
+desc 'Cleanup temporary files'
+task :clean do
+  Dir['**/*.{aux,bbl,bcf,blg,log,nav,out,run.xml,snm,toc}'].each do |file|
+    rm_f file
+  end
+end
+
+desc 'Cleanup everything'
+task clean_all: [:clean] do
+  rm_f "#@name.pdf"
+end
+
+desc 'Open document in default PDF viewer'
+task open: :build do
+  sh "xdg-open #@name.pdf"
+end
+
+desc 'Build document for export and clean up'
+task export: :build do
+  export_name = 'moeil-' + Time.now.strftime('%Y%m%d') + '.pdf'
+  sh "ln #@name.pdf #{export_name}"
+  Rake::Task['clean_all'].invoke
+end
+
+desc 'Watch tex file with inotify and invoke build on changes'
+task :autocompile do
+  require 'bundler/setup'
+  require 'inotify'
+
+  wpath = File.expand_path('.')
+
+  puts 'Watching...'
+
+  i = Inotify.new
+  i.add_watch wpath, InotifyEvents::IN_MODIFY
+
+  trap 'INT' do
+    i.rm_watch wpath
+  end
+
+  while true
+    begin
+      i.wait_for_event do |path, mask, name|
+        if @files.include? name
+          Rake::Task['clean_all'].invoke # Work-around for rake not recognizing changed files.
+          Rake::Task['build'].invoke
+        end
+      end
+    rescue ArgumentError
+      exit 0
+    end
+  end
+end
