@@ -25,31 +25,94 @@
 \begin{document}
 
 	\title{Møil: A web-based administration tool for database-backed mail servers}
-	%\subtitle{}
-	\author{
-		Henning Müller $<$\href{mailto:henning@orgizm.net}{henning@orgizm.net}$>$
-	}
+	\author{Henning Müller $<$\href{mailto:henning@orgizm.net}{henning@orgizm.net}$>$}
 	\date{}
 
 	\maketitle
 
 
-	\section*{Introduction and problem}
-		% Usage examples:
-		%	\cite{rest}
-		%	\s after a paragraph for a little space
-		%	\begin{description}
-		%		\item[\rm Foo]\ \\
-		%			Bar
-		%	\end{description}
+	% Usage examples:
+	%	\cite{rest}
+	%	\s after a paragraph for a little space
+	%	\begin{description}
+	%		\item[\rm Foo]\ \\
+	%			Bar
+	%	\end{description}
 
-	\section*{Analysis of existing software}
+	\section*{Introduction}
+		For mail system setups (meaning one or more servers running Mail
+		Submission, Delivery and Transfer Agent software and providing a
+		Message Store for users \cite{mail-architecture}), storing data about
+		which domains and E-Mail addresses the system is responsible for in
+		databases is beneficial for several reasons.
 
-	\subsection*{Criteria}
+		% Reasons for database-backing
+		%	Structural clarity for administrators
+		%	Horizontal scalability
+		%	API (e.g. for accounting)
+		% Query possibilities (LDAP, SQL)
 
-	\subsection*{The contestants}
+	\section*{Evaluation of existing software}
+		% Overview and inspiration
+
+		\subsection*{Criteria}
+			% Data model
+			%	Structure (postfix.admin compatible?)
+			%	Maintainability of schema
+			%	Security (e.g. password hashing)
+			% Responsiveness
+			%	Terminal
+			%	Desktop web browsers
+			%	Mobile devices
+			% Usability
+			% Scalability (for user exposed functionality)
+			% Features
+			%	Basic domain, mailbox and alias management
+			%	Password change for end users
+			%	Privilege model
+			%	Others
+			%		Audit trail
+			%		Vacation
+			%		Spam frontend
+			%		Sieve
+			%		Webmail integration
+			% Programming language
+			% Containability (e.g. independence of Message Store file system)
+			% Database independence
+
+		\subsection*{The contestants}
+			% PHP
+			%	ratuus http://www.ratuus.org/
+			%	ViMbAdmin http://www.vimbadmin.net/
+			%	postfix.admin http://postfixadmin.sourceforge.net/
+			% Perl
+			%	VBox.Adm http://www.vboxadm.net/
+			% Python
+			%	modoboa http://modoboa.org
 
 	\section*{A new solution: Møil}
+		% Rails
+		% Causes for a new solution
+		%	Data model, migrations
+		%	CLI
+		%	Password hash generation for compatibility to older solution
+		%	Other features
+
+		\subsection*{Features}
+
+		\subsection*{Architecture}
+			% Modules
+
+		\subsection*{Data model}
+			% Data model
+			%	Structure / ERD
+			%	Migrations
+			%	sha512-crypt
+
+		\subsection*{Setup}
+			% Relevant configs for postfix and dovecot
+			% Setup of rails app
+			% Links to README on GitHub
 
 	\printbibliography
 
