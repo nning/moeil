@@ -6,7 +6,7 @@ desc 'Build document as PDF (default)'
 task build: "#@name.pdf"
  
 desc 'Build document as PDF'
-file "#@name.pdf" => Dir['*.{bib,tex}'] do
+file "#@name.pdf" => Dir['{*.{bib,tex},images/*.pdf}'] do
   sh "texi2pdf #@name.tex"
 end
  
