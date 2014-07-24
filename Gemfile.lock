@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/capistrano/rbenv.git
-  revision: 0f96a99d56957dc13cb1a6e22389acc4c100eb25
+  revision: 2332dba20ec1f8c8cb7a9cd38770d71f5c4bf5a9
   specs:
     capistrano-rbenv (2.0.2)
       capistrano (~> 3.1)
@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: 6f7cd1332b48b6e29ed1b73ab7050671d1bf4785
+  revision: 66db52ce31b5d8629f5813a1d7f03a8bc17e5d52
   specs:
     devise (3.2.4)
       bcrypt (~> 3.0)
@@ -39,17 +39,17 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 3c228defb57d65ddcae370088a0ef85e05cd8376
+  revision: ed3de1c2b566a962697529e824953f6b280e2867
   specs:
-    simple_form (3.1.0.rc1)
+    simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
 
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: 3a9e47db7d769221157c82229fc1bade55b580f0
+  revision: 57ec3397ff99655890895df29a7bf3f683410256
   specs:
-    sass-rails (4.0.1)
+    sass-rails (5.0.0.dev)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2)
       sprockets (~> 2.12)
@@ -57,10 +57,9 @@ GIT
 
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 081372ebf582d69791b3f77c6e4c383f86043a04
+  revision: d5625c907168b6311be122b99d89614e02448475
   specs:
-    bootstrap-sass (3.1.1.1)
-      autoprefixer-rails (~> 1.1)
+    bootstrap-sass (3.2.0.0)
       sass (~> 3.2)
 
 GEM
@@ -93,15 +92,13 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (1.3.1.20140619)
-      execjs
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    brakeman (2.6.0)
+    brakeman (2.6.1)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
       haml (>= 3.0, < 5.0)
@@ -129,10 +126,10 @@ GEM
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
-    coffee-script (2.2.0)
+    coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.7.0)
+    coffee-script-source (1.7.1)
     colorize (0.7.3)
     coveralls (0.7.0)
       multi_json (~> 1.3)
@@ -144,22 +141,22 @@ GEM
     default_value_for (3.0.0.1)
       activerecord (>= 3.2.0, < 5.0)
     docile (1.1.5)
-    elasticsearch (0.4.11)
-      elasticsearch-api (= 0.4.11)
-      elasticsearch-transport (= 0.4.11)
-    elasticsearch-api (0.4.11)
+    elasticsearch (1.0.4)
+      elasticsearch-api (= 1.0.4)
+      elasticsearch-transport (= 1.0.4)
+    elasticsearch-api (1.0.4)
       multi_json
-    elasticsearch-transport (0.4.11)
+    elasticsearch-transport (1.0.4)
       faraday
       multi_json
     erubis (2.7.0)
-    execjs (2.2.0)
+    execjs (2.2.1)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
-    faker (1.3.0)
+    faker (1.4.2)
       i18n (~> 0.5)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -171,7 +168,7 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
-    hashie (3.0.0)
+    hashie (3.2.0)
     highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.11)
@@ -197,8 +194,9 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    netrc (0.7.7)
     orm_adapter (0.5.0)
-    paper_trail (3.0.2)
+    paper_trail (3.0.3)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
     pg (0.17.1)
@@ -234,21 +232,22 @@ GEM
     ref (1.0.5)
     responders (1.0.0)
       railties (>= 3.2, < 5)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     ruby-graphviz (1.0.9)
     ruby2ruby (2.0.8)
       ruby_parser (~> 3.1)
       sexp_processor (~> 4.0)
     ruby_parser (3.5.0)
       sexp_processor (~> 4.1)
-    sass (3.3.8)
+    sass (3.3.10)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
-    searchkick (0.7.8)
+    searchkick (0.8.0)
       activemodel
-      elasticsearch (~> 0.4.11)
+      elasticsearch (>= 1)
       hashie
     sexp_processor (4.4.3)
     shoulda (3.5.0)
@@ -257,15 +256,15 @@ GEM
     shoulda-context (1.2.1)
     shoulda-matchers (2.4.0)
       activesupport (>= 3.0.0)
-    simplecov (0.8.2)
+    simplecov (0.9.0)
       docile (~> 1.1.0)
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
-    slim (2.0.2)
+    slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    sprockets (2.12.0)
+    sprockets (2.12.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -279,7 +278,7 @@ GEM
       colorize
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    temple (0.6.7)
+    temple (0.6.8)
     term-ansicolor (1.3.0)
       tins (~> 1.0)
     terminal-table (1.4.5)
@@ -297,7 +296,7 @@ GEM
       coffee-rails
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
-    uglifier (2.5.1)
+    uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
 
