@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage[ampersand]{easylist}
-\usepackage[printonlyused,withpage]{acronym}
+\usepackage[printonlyused]{acronym}
 
 \usepackage{url}
 %\urldef{\urlTcpdump}{\url}{http://www.tcpdump.org/}
@@ -98,7 +98,9 @@
 			Not only for the development of \emph{Møil}, some of the criteria
 			arose from shortcomings of \emph{postfix.admin} (see page
 			\pageref{sec:contestants:postfix.admin}), which is a quite widely
-			deployed solution.
+			deployed solution. The criteria will be classified into five
+			categories (Data model, features, security \& robustness, user
+			interface and miscellaneous) and numbered for easier reference.
 
 			\subsubsection*{Data model (1)}
 				From a database engineering perspective, it is in general
@@ -120,41 +122,49 @@
 				conduction of an update). Last but not least, \crit{database
 				independence}{1.5} allows a free choice of the \ac{DBMS} and
 				integration with other software.
-				
-			\subsubsection*{Numbered index}
-				\begin{easylist}
-					& Data model
-					&& Normalized schema
-					&& \emph{postfix.admin} compatible
-					&& \emph{postfix.admin} import
-					&& Updatable (Migrations)
-					&& Database independence
 
-					& User interface
-					&& Responsiveness
-					&&&	\ac{CLI} support
-					&&& Mobile devices
-					&& Usability
+			\subsubsection*{Features (2)}
+				There are features, without which a mail server admistration
+				user interface would not work at all and yet I list them,
+				because it is more about analyzing, how these are implemented.
+				The \crit{basic domain, mailbox and alias management}{2.1} is
+				one of them. The \crit{password changing ability for
+				users}{2.2} is a feature, which is also quite basic and the
+				first one legitimating letting users access the administration
+				frontend. Some solutions also integrate into popular
+				self-hosted web mailer software for password changing. When
+				users are allowed to access the administration frontend,
+				\crit{access control}{2.3} or authorization is needed to
+				selectively restrict the access to resources. It could also be
+				possible to delegate administrative access on domains or
+				resources in general to certain users.
+				\s
 
-					& Features
-					&& Basic domain, mailbox and alias management
-					&& Password changing for end users
-					&& Privilege seperation
-					&& Others
-					&&& Audit trail
-					&&& Vacation
-					&&& Spam frontend
-					&&& Sieve
+				More mature utilities also bring useful non-basic features as
+				an \crit{audit trail}{2.4.1} for example, which can be used to
+				log any changes to the database with time and transacting
+				account. It is also possible, the audit trail provides an undo
+				functionality. In some environments users demand \crit{vacation
+				mailing}{2.4.2} to automatically answer any incoming mail with
+				a pre-defined text when they are vacant. Some solutions serve
+				users with the possibility to activate or deactivate it and
+				edit the pre-defined text. Automatic answers can also be solved
+				more generic with \crit{Sieve}{2.4.3} \cite{sieve}, which is a
+				server-side mail filter interface. The protocol for users to
+				edit the server-side filters is called \emph{ManageSieve}
+				\cite{managesieve}. Another common demand of users of a mail
+				system is a \crit{spam frontend}{2.4.4} to review mails, which
+				got quarantined by spam or virus checking software. (Although in
+				my personal experience this false negative classification does
+				occure almost never with a setup common in the Open Source
+				world consisting of \emph{amavisd-new}, \emph{spamassassin} and
+				\emph{clamav}.)
 
-					& Security \& robustness
-					&& Password hashing
-					&& Tests
+			\subsubsection*{Security \& robustness (3)}
 
-					& Miscellaneous
-					&& Scalability
-					&& Programming language
-					&& Containability (e.g. independence of Message Store file system)
-				\end{easylist}
+			\subsubsection*{User interface (4)}
+
+			\subsubsection*{Miscellaneous (5)}
 
 		\subsection*{The contestants}
 			\subsubsection*{modoboa}
@@ -164,15 +174,15 @@
 			\subsubsection*{postfix.admin}
 				\infotable{http://postfixadmin.sourceforge.net}{PHP}
 
-				As said, \emph{postfix.admin} seems to be a (negative) example
-				not only for \emph{Møil}. Many solutions aim to overcome its
-				shortcomings. \emph{postfix.admin} uses a non-normalized
-				\cite{dbnorm} database schema, which could spare a JOIN in some
-				database queries but is very prone to inconsistencies. There
-				are no means of handling database schema updates; the schema is
-				imported via a \ac{SQL} file on the initial installation. Also
-				it creates an alias entry for every mailbox (even when the mail
-				is not forwarded). This may have a cause, but is messy anyway.
+%				As said, \emph{postfix.admin} seems to be a (negative) example
+%				not only for \emph{Møil}. Many solutions aim to overcome its
+%				shortcomings. \emph{postfix.admin} uses a non-normalized
+%				\cite{dbnorm} database schema, which could spare a JOIN in some
+%				database queries but is very prone to inconsistencies. There
+%				are no means of handling database schema updates; the schema is
+%				imported via a \ac{SQL} file on the initial installation. Also
+%				it creates an alias entry for every mailbox (even when the mail
+%				is not forwarded). This may have a cause, but is messy anyway.
 
 			\subsubsection*{ratuus}
 				\infotable{http://www.ratuus.org}{PHP}
@@ -208,6 +218,44 @@
 			% Relevant configs for postfix and dovecot
 			% Setup of rails app
 			% Links to README on GitHub
+
+	\appendix
+
+	\newpage
+	\section*{Numbered index of criteria}
+		\begin{easylist}
+			& Data model
+			&& Normalized schema
+			&& \emph{postfix.admin} compatible
+			&& \emph{postfix.admin} import
+			&& Updatable (Migrations)
+			&& Database independence
+
+			& Features
+			&& Basic domain, mailbox and alias management
+			&& Password changing for users
+			&& Access control
+			&& Others
+			&&& Audit trail
+			&&& Vacation
+			&&& Sieve
+			&&& Spam frontend
+
+			& Security \& robustness
+			&& Password hashing
+			&& Tests
+
+			& User interface
+			&& Responsiveness
+			&&&	\ac{CLI} support
+			&&& Mobile devices
+			&& Usability
+
+			& Miscellaneous
+			&& Scalability
+			&& Programming language
+			&& Containability (e.g. independence of Message Store file system)
+		\end{easylist}
 
 	\include{acronyms}
 
