@@ -1,4 +1,8 @@
 - flash.each do |type, message|
-  %div{class: "alert alert-#{flash_class(type)}"}
-    = link_to '×', '#', class: 'close', :'data-dismiss' => 'alert'
-    %p= message
+  %div.alert.alert-dismissable{class: "alert-#{flash_class(type)}"}
+    = link_to '#', class: 'close', :'data-dismiss' => 'alert' do
+      %span{:'aria-hidden' => 'true'} &times;
+      %span.sr-only Close
+    %p
+      %strong= flash_class(type).capitalize + ':'
+      = message
