@@ -1,8 +1,9 @@
 \documentclass[12pt,a4paper]{scrartcl}
 
-%\usepackage{german}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage[ampersand]{easylist}
+\usepackage[printonlyused,withpage]{acronym}
 
 \usepackage{url}
 %\urldef{\urlTcpdump}{\url}{http://www.tcpdump.org/}
@@ -11,12 +12,8 @@
 \hypersetup{colorlinks=false,pdfborder={0 0 0}}
 
 \usepackage{biblatex}
-%\usepackage[style=alphabetic]{biblatex}
 \ExecuteBibliographyOptions{hyperref=true,language=ngerman,backref=true}
 \addbibresource{bibliography.bib}
-
-%\usepackage{lineno}
-%\linenumbers
 
 \include{commands}
 \include{font-family}
@@ -34,11 +31,12 @@
 	\section*{Abstract}
 		This document compares existing administration user interface solutions
 		for mail servers backed by relational databases and introduces yet
-		another one, which is called Møil and is written in Ruby utilizing the
-		Ruby on Rails\footnote{\url{http://rubyonrails.org}} framework. It
-		brings the handy possibility of managing the database schema with
-		migrations, a lot of beautiful, responsive CRUD and some other nice
-		features (see page \pageref{moeil-features}). The code is available from
+		another one, which is called \emph{Møil} and is written in Ruby
+		utilizing the Ruby on Rails\footnote{\url{http://rubyonrails.org}}
+		framework. It brings the handy possibility of managing the database
+		schema with migrations, a lot of beautiful, responsive \ac{CRUD} and
+		some other nice features (see page \pageref{sec:moeil:features}). The
+		code is available from
 		GitHub\footnote{\url{https://github.com/nning/moeil}} licensed under
 		AGPLv3 \cite{agpl}.
 
@@ -65,26 +63,26 @@
 
 		%	API (e.g. for accounting)
 
-		Database Management Systems (DBMS) for relational databases usually
-		provide a query interface with the Structured Query Language (SQL)
-		\cite{sql} for editing the data sets. It is widely supported by
-		programming languages and equally widely spoken among programmers, which
-		makes it valuable for integration of several services dealing with this
-		mail system meta data. For example this can be used to integrate
-		accounting solutions for charging purposes into mail systems.
+		\acp{DBMS} for relational databases usually provide a query interface
+		with the \ac{SQL} \cite{sql} for editing the data sets. It is widely
+		supported by programming languages and equally widely spoken among
+		programmers, which makes it valuable for integration of several
+		services dealing with this mail system meta data. For example this can
+		be used to integrate accounting solutions for charging purposes into
+		mail systems.
 
 		%	Structural clarity for administrators
 
 		Another reason for the usage of relational databases as mail system
 		meta data storage is the increased structural clarity for
-		administrators. In a typical SMTP server setup (without a relational
-		database), the relevant data for domains, mailboxes and aliases is
-		distributed to several files. The existence of a domain is stated
-		independently of the existence of a mailbox of the same domain or the
-		password of this mailbox. The data is not interconnected; a mailbox
-		address is usually not checked against the list of domains for
-		consistency. For bigger mail system setups, this meta data
-		configuration inevitably gets unmaintainable.
+		administrators. In a typical \acs{SMTP} \cite{smtp} server setup
+		(without a relational database), the relevant data for domains,
+		mailboxes and aliases is distributed to several files. The existence of
+		a domain is stated independently of the existence of a mailbox of the
+		same domain or the password of this mailbox. The data is not
+		interconnected; a mailbox address is usually not checked against the
+		list of domains for consistency. For bigger mail system setups, this
+		meta data configuration inevitably gets unmaintainable.
 
 	\section*{Evaluation of existing software}
 		% Overview and inspiration
@@ -94,40 +92,87 @@
 		of the programs were still sighted and some of the following criteria
 		was still considered. This more systematical and detailed analysis
 		shall gain an overview and provide inspiration for the development of
-		Møil.
+		\emph{Møil}.
 
 		\subsection*{Criteria}
-			% Data model
-			%	Structure (postfix.admin compatible?)
-			%	Maintainability of schema
-			%	Security (e.g. password hashing)
-			% Responsiveness
-			%	Terminal
-			%	Desktop web browsers
-			%	Mobile devices
-			% Usability
-			% Scalability (for user exposed functionality)
-			% Features
-			%	Basic domain, mailbox and alias management
-			%	Password change for end users
-			%	Privilege model
-			%	Others
-			%		Audit trail
-			%		Vacation
-			%		Spam frontend
-			%		Sieve
-			%		Webmail integration
-			% Programming language
-			% Containability (e.g. independence of Message Store file system)
-			% Database independence
-			% Security, robustness, tests
+			Not only for the development of \emph{Møil}, some of the criteria
+			arose from shortcomings of \emph{postfix.admin} (see page
+			\pageref{sec:contestants:postfix.admin}), which is a quite widely
+			deployed solution.
+
+			\subsubsection*{Data model (1)}
+				From a database engineering perspective, it is in general
+				favourable to design a database with a \crit{normalized
+				relational database schema}{1.1} \cite{dbnorm}. For a query to
+				check the existence of a mailbox for example, a JOIN or nested
+				query would be necessary, which has a very small performance
+				impact. However, the schema normalization prevents data
+				redundancies and inconsistencies. \emph{postfix.admin} does not
+				have a normalized schema, so any solution which has one can not
+				be \crit{compatible to \emph{postfix.admin}}{1.2}. A
+				compatibility could be useful, if there is a big database
+				already administered with \emph{postfix.admin}, which shall be
+				migrated to another tool. Another possibility for this is an
+				\crit{import of \emph{postfix.admin} data}{1.3}. When it comes
+				to updates to the administration interface, \crit{means to
+				handle database schema updates}{1.4} ease the update process
+				(and therefore increase the probability of the actual
+				conduction of an update). Last but not least, \crit{database
+				independence}{1.5} allows a free choice of the \ac{DBMS} and
+				integration with other software.
+				
+			\subsubsection*{Numbered index}
+				\begin{easylist}
+					& Data model
+					&& Normalized schema
+					&& \emph{postfix.admin} compatible
+					&& \emph{postfix.admin} import
+					&& Updatable (Migrations)
+					&& Database independence
+
+					& User interface
+					&& Responsiveness
+					&&&	\ac{CLI} support
+					&&& Mobile devices
+					&& Usability
+
+					& Features
+					&& Basic domain, mailbox and alias management
+					&& Password changing for end users
+					&& Privilege seperation
+					&& Others
+					&&& Audit trail
+					&&& Vacation
+					&&& Spam frontend
+					&&& Sieve
+
+					& Security \& robustness
+					&& Password hashing
+					&& Tests
+
+					& Miscellaneous
+					&& Scalability
+					&& Programming language
+					&& Containability (e.g. independence of Message Store file system)
+				\end{easylist}
 
 		\subsection*{The contestants}
 			\subsubsection*{modoboa}
 				\infotable{http://modoboa.org}{Python}
 
+			\label{sec:contestants:postfix.admin}
 			\subsubsection*{postfix.admin}
 				\infotable{http://postfixadmin.sourceforge.net}{PHP}
+
+				As said, \emph{postfix.admin} seems to be a (negative) example
+				not only for \emph{Møil}. Many solutions aim to overcome its
+				shortcomings. \emph{postfix.admin} uses a non-normalized
+				\cite{dbnorm} database schema, which could spare a JOIN in some
+				database queries but is very prone to inconsistencies. There
+				are no means of handling database schema updates; the schema is
+				imported via a \ac{SQL} file on the initial installation. Also
+				it creates an alias entry for every mailbox (even when the mail
+				is not forwarded). This may have a cause, but is messy anyway.
 
 			\subsubsection*{ratuus}
 				\infotable{http://www.ratuus.org}{PHP}
@@ -146,7 +191,7 @@
 		%	Password hash generation for compatibility to older solution
 		%	Other features
 
-		\label{moeil-features}
+		\label{sec:moeil:features}
 		\subsection*{Features}
 
 		\subsection*{Architecture}
@@ -163,6 +208,8 @@
 			% Relevant configs for postfix and dovecot
 			% Setup of rails app
 			% Links to README on GitHub
+
+	\include{acronyms}
 
 	\printbibliography
 
