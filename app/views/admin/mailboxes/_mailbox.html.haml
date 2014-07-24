@@ -1,7 +1,7 @@
 %tr
   %td= link_to mailbox.email, [:edit, :admin, mailbox.domain, mailbox]
-  %td= :yes if mailbox.admin
-  %td= :no unless mailbox.active
+  %td= icon(:ok) if mailbox.admin
+  %td= icon(:remove) unless mailbox.active
   %td
     - if can? :destroy, mailbox
       = link_to [:admin, mailbox.domain, mailbox], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do

@@ -305,9 +305,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-jdbcmysql-adapter
-  activerecord-jdbcpostgresql-adapter
-  activerecord-jdbcsqlite3-adapter
   better_errors
   binding_of_caller
   bootstrap-sass!
@@ -346,7 +343,6 @@ DEPENDENCIES
   simple_form!
   sqlite3
   therubyracer
-  therubyrhino
   turbolinks
   uglifier
   warden!
