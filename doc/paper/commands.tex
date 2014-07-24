@@ -1,5 +1,5 @@
 % Shorten the usage of german quotation marks.
-\newcommand{\gq}[1] {
+\newcommand{\gq}[1]{
 	\glqq #1\grqq
 }
 
@@ -9,3 +9,12 @@
 
 % Vertical space after paragraph.
 \newcommand{\s}{\vspace{0.5em}}
+
+% Little table for most important software info.
+\newcommand{\infotable}[2]{
+	\begin{tabular}{p{2.5cm}l}
+		Website: & \url{#1} \\
+		Language: & #2 \\
+	\end{tabular}
+	\s
+}

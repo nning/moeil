@@ -39,10 +39,12 @@
 		brings the handy possibility of managing the database schema with
 		migrations, a lot of beautiful, responsive CRUD and some other nice
 		features (see page \pageref{moeil-features}). The code is available from
-		GitHub\footnote{\url{https://github.com/nning/moeil}} under the AGPLv3
-		\cite{agpl}.
+		GitHub\footnote{\url{https://github.com/nning/moeil}} licensed under
+		AGPLv3 \cite{agpl}.
 
 	\section*{Introduction}
+		% Reasons for database-backing
+
 		For mail system setups (meaning one or more servers running Mail
 		Submission, Delivery and Transfer Agent software and providing a
 		Message Store for users \cite{mail-architecture}), storing data about
@@ -50,7 +52,6 @@
 		(further called meta data) in relational databases (as opposed to plain
 		files for example) is beneficial for several reasons.
 
-		% Reasons for database-backing
 		%	Horizontal scalability
 
 		In bigger setups, it offers the possibility for scaling to more than
@@ -58,9 +59,9 @@
 		loads: Several servers handling incoming mail or users reading their
 		mail act as readers on one or more database servers. The performance of
 		the frequent lookups of domains, mailboxes and aliases (forwardings)
-		for receiving mail or user logins can be increased. (We can not
-		consider another big problem with horizontal scaling of Message Stores,
-		here -- the actual accommodation of E-Mails.)
+		for receiving mail or user logins can be increased. (The actual
+		accommodation of E-Mails -- another big problem with horizontal scaling
+		-- can not be considered here.)
 
 		%	API (e.g. for accounting)
 
@@ -87,6 +88,13 @@
 
 	\section*{Evaluation of existing software}
 		% Overview and inspiration
+
+		Although an extensive evaluation of the existing administration user
+		interfaces did not happen before implementing a custom solution, some
+		of the programs were still sighted and some of the following criteria
+		was still considered. This more systematical and detailed analysis
+		shall gain an overview and provide inspiration for the development of
+		Møil.
 
 		\subsection*{Criteria}
 			% Data model
@@ -115,16 +123,22 @@
 			% Security, robustness, tests
 
 		\subsection*{The contestants}
-			% PHP
-			%	ratuus http://www.ratuus.org/
-			%	ViMbAdmin http://www.vimbadmin.net/
-			%	postfix.admin http://postfixadmin.sourceforge.net/
-			% Perl
-			%	VBox.Adm http://www.vboxadm.net/
-			% Python
-			%	modoboa http://modoboa.org
+			\subsubsection*{modoboa}
+				\infotable{http://modoboa.org}{Python}
 
-	\section*{A new solution: Møil}
+			\subsubsection*{postfix.admin}
+				\infotable{http://postfixadmin.sourceforge.net}{PHP}
+
+			\subsubsection*{ratuus}
+				\infotable{http://www.ratuus.org}{PHP}
+
+			\subsubsection*{VBox.Adm}
+				\infotable{http://www.vboxadm.net}{Perl}
+
+			\subsubsection*{ViMbAdmin}
+				\infotable{http://www.vimbadmin.net}{PHP}
+
+	\section*{Møil}
 		% Rails
 		% Causes for a new solution
 		%	Data model, migrations
