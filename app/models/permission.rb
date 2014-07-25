@@ -13,8 +13,7 @@ class Permission < ActiveRecord::Base
 
   # Return URL array for editing model instance.
   def edit_url_array
-    [:edit, :admin, item, self] if item
-    nil
+    item ? [:edit, :admin, item, self] : nil
   end
 
   # String representation.
