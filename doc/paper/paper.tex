@@ -7,6 +7,7 @@
 
 \usepackage{url}
 %\urldef{\urlTcpdump}{\url}{http://www.tcpdump.org/}
+\urldef{\urlARSupport}{\url}{http://api.rubyonrails.org/classes/ActiveRecord/Migration.html#class-ActiveRecord::Migration-label-Database+support}
 
 \usepackage{hyperref}
 \hypersetup{colorlinks=false,pdfborder={0 0 0}}
@@ -32,9 +33,9 @@
 		This document compares existing administration user interface solutions
 		for mail servers backed by relational databases and introduces yet
 		another one, which is called \emph{Møil} and is written in Ruby
-		utilizing the Ruby on Rails\footnote{\url{http://rubyonrails.org}}
+		utilizing the \ac{Rails}\footnote{\url{http://rubyonrails.org}}
 		framework. It brings the handy possibility of managing the database
-		schema with migrations, a lot of beautiful, responsive \ac{CRUD} and
+		schema with migrations, a lot of beautiful, responsive \acs{CRUD} and
 		some other nice features (see page \pageref{sec:moeil:features}). The
 		code is available from
 		GitHub\footnote{\url{https://github.com/nning/moeil}} licensed under
@@ -195,14 +196,103 @@
 
 	\section*{Møil}
 		% Rails
+		
+		\emph{Møil} is written in
+		Ruby\footnote{\url{https://www.ruby-lang.org}} utilizing the popular
+		\ac{Rails} web framework, which has some features that emphasize it
+		against other frameworks or web development approaches. It promotes the
+		development by \acs{REST} \cite{rest} criteria, supports test driven
+		development and implements many well-known software engineering design
+		patterns and methods of agile software development as Active Record,
+		\ac{CoC}, \ac{DRY} and \ac{MVC}. Additionally, the \ac{Rails} community
+		is quite vivid and there is an huge ecosystem of extensions for many
+		recurrent problems.
+		\s
+
 		% Causes for a new solution
 		%	Data model, migrations
 		%	CLI
 		%	Password hash generation for compatibility to older solution
-		%	Other features
+
+		That fact alone would maybe suffice as an argument for the development
+		for yet another tool but was not as important as some other ideas.
+		\emph{Møil} began as a replacement for the database schema shipped with
+		\emph{postfix.admin} in a private mail system of mine. The schema
+		was intended to be reimplemented normalized \cite{dbnorm} and with
+		a possibility of being updated through schema
+		migrations\footnote{\url{http://en.wikipedia.org/wiki/Schema_migration}}).
+		Also, the \ac{Rails} project was intended to provide the basis for
+		command line utilities to import the existent data and to perform basic
+		administration tasks on domains, mailboxes and aliases. As there has
+		been only the schema in use, not the whole \emph{postfix.admin} web
+		frontend, there was an extra solution to generate password hashes and
+		send them to an administrative contact in place. A replacement for this
+		extra tool at first was the only function of the web interface part of
+		\emph{Møil}. The migration opportunity was also used to change the
+		password hashing algorithm from unsalted \texttt{md5} to
+		\texttt{sha512-crypt}, which is substantially more secure
+		\cite{missing}. (\texttt{bcrypt} was considered but unfortunately
+		rejected, because it is not supported by \texttt{glibc} included in
+		Debian Linux 7.)
+
+		\todo{Sources for algorithms and their comparisons}
+
+		%	Other features?
 
 		\label{sec:moeil:features}
 		\subsection*{Features}
+			As the time of writing this document, \emph{Møil} comes with the
+			following features.
+
+			\begin{description}
+				\item[\rm Tested with postfix and dovecot]\ \\
+					There are some produtive installations of \emph{Møil} in
+					connection with postfix and dovecot but it could possibly
+					also be used with other mailing software which provides the
+					opportunity to configure the \ac{SQL} statements used to
+					request necessary meta data.
+
+				\item[\rm Track database schema with rails migrations]\ \\
+					Through \emph{Active Record} and \ac{Rails} migrations,
+					\emph{Møil} has a robust solution for database change
+					management. This also makes individual changes to the
+					database schema easily maintainable.
+				
+				\item[\rm Database agnostic]\ \\
+					\emph{Møil} is tested mostly on SQLite3 and PostgreSQL but
+					also occasionally on MySQL (or MariaDB respectively). In
+					general, it should be supported on any database supported
+					by \emph{Active Record}, which currently are (at least)
+					MySQL, PostgreSQL, SQLite, SQL Server, Sybase, and all
+					supported Oracle databases except
+					DB2\footnote{\urlARSupport}.
+
+				\item[\rm Managing domains, aliases and mailboxes]\ \\
+					\todo
+
+				\item[\rm Permissions and Roles]\ \\
+					...for Mailboxes to e.g. manage a certain domain.
+					\todo
+
+				\item[\rm Responsive user interface]\ \\
+					\emph{Møil} adapts to the environment, it is needed in. The
+					web user interface is responsive and therefore supports
+					both classic desktop view ports and mobile devices like
+					phones or tablets. For friends of the command line, some
+					commands to manage the most important resources are
+					provided, too.
+
+				\item[\rm Audit log]\ \\
+					Any change to resources is logged with time and acting
+					mailbox to support the collaboration of several different
+					administrative users and to implement the possibility of
+					reverting changes.
+
+				\item[\rm Search]\ \\
+					A search for any resources is provided, which is optionally
+					based on \ac{SQL} or elasticsearch for really huge
+					databases (if installed and configured to be used).
+			\end{description}
 
 		\subsection*{Architecture}
 			% Modules
@@ -213,6 +303,11 @@
 			\includegraphics[width=\textwidth]{images/erd.pdf}
 			%	Migrations
 			%	sha512-crypt
+
+		\subsection*{Perspective}
+			% Better CLI
+			% Spam
+			% Sieve
 
 		\subsection*{Setup}
 			% Relevant configs for postfix and dovecot
