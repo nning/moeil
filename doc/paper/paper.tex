@@ -195,18 +195,21 @@
 				\infotable{http://www.vimbadmin.net}{PHP}
 
 	\section*{Møil}
+		The development of \emph{Møil} has been begun in May, 2013 as an Open
+		Source project licensed under the terms of the AGPL, Version 3
+		\cite{agpl}.
+
 		% Rails
 		
-		\emph{Møil} is written in
-		Ruby\footnote{\url{https://www.ruby-lang.org}} utilizing the popular
-		\ac{Rails} web framework, which has some features that emphasize it
-		against other frameworks or web development approaches. It promotes the
-		development by \acs{REST} \cite{rest} criteria, supports test driven
-		development and implements many well-known software engineering design
-		patterns and methods of agile software development as Active Record,
-		\ac{CoC}, \ac{DRY} and \ac{MVC}. Additionally, the \ac{Rails} community
-		is quite vivid and there is an huge ecosystem of extensions for many
-		recurrent problems.
+		It is written in Ruby\footnote{\url{https://www.ruby-lang.org}}
+		utilizing the popular \ac{Rails} web framework, which has some features
+		that emphasize it against other frameworks or web development
+		approaches. It promotes the development by \acs{REST} \cite{rest}
+		criteria, supports test driven development and implements many
+		well-known software engineering design patterns and methods of agile
+		software development as Active Record, \ac{CoC}, \ac{DRY} and \ac{MVC}.
+		Additionally, the \ac{Rails} community is quite vivid and there is an
+		huge ecosystem of extensions for many recurrent problems.
 		\s
 
 		% Causes for a new solution
@@ -241,22 +244,19 @@
 
 		\label{sec:moeil:features}
 		\subsection*{Features}
-			As the time of writing this document, \emph{Møil} comes with the
-			following features.
+			At the time of writing of this document, \emph{Møil} comes with the
+			below-mentioned features.
 
 			\begin{description}
+				\item[\rm Managing domains, aliases and mailboxes]\ \\
+					\todo
+
 				\item[\rm Tested with postfix and dovecot]\ \\
 					There are some produtive installations of \emph{Møil} in
 					connection with postfix and dovecot but it could possibly
 					also be used with other mailing software which provides the
 					opportunity to configure the \ac{SQL} statements used to
 					request necessary meta data.
-
-				\item[\rm Track database schema with rails migrations]\ \\
-					Through \emph{Active Record} and \ac{Rails} migrations,
-					\emph{Møil} has a robust solution for database change
-					management. This also makes individual changes to the
-					database schema easily maintainable.
 				
 				\item[\rm Database agnostic]\ \\
 					\emph{Møil} is tested mostly on SQLite3 and PostgreSQL but
@@ -267,12 +267,16 @@
 					supported Oracle databases except
 					DB2\footnote{\urlARSupport}.
 
-				\item[\rm Managing domains, aliases and mailboxes]\ \\
-					\todo
+				\item[\rm Track database schema with rails migrations]\ \\
+					Through \emph{Active Record} and \ac{Rails} migrations,
+					\emph{Møil} has a robust solution for database change
+					management. This also makes individual changes to the
+					database schema easily maintainable.
 
 				\item[\rm Permissions and Roles]\ \\
-					...for Mailboxes to e.g. manage a certain domain.
-					\todo
+					The abilities to manage domains and/or subordinate resources
+					like mailboxes and aliases can be configured fine grained
+					in order to delegate administrative tasks.
 
 				\item[\rm Responsive user interface]\ \\
 					\emph{Møil} adapts to the environment, it is needed in. The
@@ -300,7 +304,71 @@
 		\subsection*{Data model}
 			% Data model
 			%	Structure / ERD
+
+			The application model is put into graphs in the following image. It
+			shows the model classes and their relations among each other. (The
+			graph is generated, so unfortunately (for now) the actual attributes
+			saving a relation are missing.)
+
 			\includegraphics[width=\textwidth]{images/erd.pdf}
+
+			The model classes will be examined individually in the following
+			subsections.
+			\s
+
+			In this chapter, whenever a resource type is mentioned, which
+			corresponds to an actual \ac{Rails} model class, it is written in a
+			monospace font and -- as the class name -- capitalized, like
+			\texttt{Mailbox}. Attributes of models are also in monospace font,
+			but lowercase, as the \texttt{username} attribute of a
+			\texttt{Mailbox} for example.
+
+			\subsubsection*{Domains}
+
+			\subsubsection*{Mailboxes}
+
+			\subsubsection*{Aliases}
+
+			\subsubsection*{Permissions}
+				\texttt{Mailbox} records (or users) are also used for the login
+				to \emph{Møil}. There are administrators and regular users.
+				Administrators are allowed to edit any resources. Through a
+				\texttt{Permission}, a \texttt{Mailbox} (the \texttt{subject})
+				can be given access to \texttt{Domains} (the \texttt{item}).
+				The rights on these \texttt{Domains} depend on the
+				\texttt{role} of the user in this context. With an owner
+				\texttt{role}, users can manage any aspect of the
+				\texttt{Domains}. The editor \texttt{role} allows users to
+				manage \texttt{Mailboxes} and \texttt{Aliases} of that.
+				\texttt{Domain}. The \texttt{Permission} model is implemented
+				polymorphic. Its \texttt{subject} and \texttt{item} attributes
+				are not bound to \texttt{Mailboxes} and \texttt{Domains} (as in
+				the current implementation). It is possible to extend the
+				implementation easily to allow even more fine-grained
+				permissions (for certain \texttt{Mailboxes} for example).
+
+			\subsubsection*{Versions}
+				As seen in the graph, \texttt{Domains}, \texttt{Mailboxes},
+				\texttt{Aliases} and \texttt{Permissions} are versioned, which
+				means that changes to resources of any of these types are
+				tracked in the audit log and are revertable for administrators.
+				On any change, a reference to the corresponding resource
+				(\texttt{item\_id} and \texttt{item\_type}), the type of change
+				(\texttt{event}), the transacting individual
+				(\texttt{whodunnit}), the serialized \texttt{object} (only on
+				deletions), the \texttt{object\_changes} (only on updates) and
+				the point in time (\texttt{created\_at}) are saved.
+
+			\subsubsection*{Relocations}
+				The relocation model is in fact updated but actually not
+				further used, currently. Whenever a \texttt{Domain} or
+				\texttt{Mailbox} is renamed, it is necessary to move the
+				corresponding folders in the file system of the Mail Store.
+				These moves are represented as \texttt{Relocation} resources,
+				which can be read by a daemon (yet to be implemented) running
+				on the actual Mail Store.
+				\todo{Other solutions?}
+
 			%	Migrations
 			%	sha512-crypt
 
