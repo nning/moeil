@@ -8,7 +8,7 @@ notifications:
 
 branches:
   except:
-    - paper
+    - study
 
 services:
   - elasticsearch
