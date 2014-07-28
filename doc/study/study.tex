@@ -171,6 +171,10 @@
 			\subsubsection*{modoboa}
 				\infotable{http://modoboa.org}{Python}
 
+				\emph{modoboa} seems the most mature of the compared tools. It
+				uses the Python Django framework and therefore includes
+				facilities like schema migrations.
+
 			\label{sec:contestants:postfix.admin}
 			\subsubsection*{postfix.admin}
 				\infotable{http://postfixadmin.sourceforge.net}{PHP}
@@ -364,9 +368,11 @@
 				further used, currently. Whenever a \texttt{Domain} or
 				\texttt{Mailbox} is renamed, it is necessary to move the
 				corresponding folders in the file system of the Mail Store.
-				These moves are represented as \texttt{Relocation} resources,
+				These moves are represented as \texttt{Relocation} resources
+				saving \texttt{old\_domain} and \texttt{old\_username} values,
 				which can be read by a daemon (yet to be implemented) running
 				on the actual Mail Store.
+
 				\todo{Other solutions?}
 
 			%	Migrations
