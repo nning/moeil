@@ -4,10 +4,13 @@
 \usepackage{graphicx}
 \usepackage[ampersand]{easylist}
 \usepackage[printonlyused]{acronym}
+\usepackage{lscape}
+\usepackage{amssymb}
 
 \usepackage{url}
 %\urldef{\urlTcpdump}{\url}{http://www.tcpdump.org/}
 \urldef{\urlARSupport}{\url}{http://api.rubyonrails.org/classes/ActiveRecord/Migration.html#class-ActiveRecord::Migration-label-Database+support}
+\urldef{\urlPHPBashing}{\url}{http://eev.ee/blog/2012/04/09/php-a-fractal-of-bad-design}
 
 \usepackage{hyperref}
 \hypersetup{colorlinks=false,pdfborder={0 0 0}}
@@ -36,8 +39,8 @@
 		utilizing the \ac{Rails}\footnote{\url{http://rubyonrails.org}}
 		framework. It brings the handy possibility of managing the database
 		schema with migrations, a lot of beautiful, responsive \acs{CRUD} and
-		some other nice features (see page \pageref{sec:moeil:features}). The
-		code is available from
+		some other nice features (see \emph{Møil} \textref{sec:moeil:features}).
+		The code is available from
 		GitHub\footnote{\url{https://github.com/nning/moeil}} licensed under
 		AGPLv3 \cite{agpl}.
 
@@ -93,15 +96,28 @@
 		of the programs were still sighted and some of the following criteria
 		was still considered. This more systematical and detailed analysis
 		shall gain an overview and provide inspiration for the development of
-		\emph{Møil}.
+		\emph{Møil}. An in-depth analysis of the source code can not be
+		provided here. Instead, the solutions will be compared by a composed set
+		of criteria. The current state of the source code was checked out on
+		29\textsuperscript{th} July, 2014 from the particular version control
+		systems and used for evaluation.
 
 		\subsection*{Criteria}
+			\label{sec:evaluation:criteria}
 			Not only for the development of \emph{Møil}, some of the criteria
 			arose from shortcomings of \emph{postfix.admin} (see page
 			\pageref{sec:contestants:postfix.admin}), which is a quite widely
 			deployed solution. The criteria will be classified into five
 			categories (Data model, features, security \& robustness, user
 			interface and miscellaneous) and numbered for easier reference.
+
+			There is some meta-data like website, programming language, last
+			update in VCS and number of commits, which is not numbered and
+			compared. The used programming language would be a neutral
+			attribute but gets a criterium, because before the development of
+			\emph{Møil}, a decision was made against deploying further PHP
+			applications to accomplish a more maintainable and secure web
+			hosting environment\footnote{\urlPHPBashing}.
 
 			\subsubsection*{Data model (1)}
 				From a database engineering perspective, it is in general
@@ -162,22 +178,56 @@
 				\emph{clamav}.)
 
 			\subsubsection*{Security \& robustness (3)}
+				For now, only three criteria in this category shall be
+				considered, because further security analysis would require an
+				in-depth source code review. The \crit{password hashing}{3.1}
+				availability and algorithm strength is important against
+				unauthorized database access through potential security holes
+				in the application. When the database is maliciously read, the
+				value of the passwords to the attacker is inversely
+				proportional to the time it costs, to crack the password
+				hashing. \crit{Test coverage}{3.2} is important for this
+				evaluation and for security purposes, because it lowers the
+				probability of bugs per lines of code by trend. As
+				\crit{Containability}{3.3}, the modular independence (e.g.
+				independence of the web interface from the Message Store file
+				system) from a security perspective is perceived.
 
-			\subsubsection*{User interface (4)}
-
-			\subsubsection*{Miscellaneous (5)}
+			\subsubsection*{Responsive design (UI) (4)}
+				In the days of rapidly increased mobile device usage, a
+				responsive design (e.g. different layout for different screen
+				sizes) is an important attribute of user interfaces. Usually,
+				responsive design means \crit{adapting to mobile devices}{4.1}
+				as phones and tablet computers. In this document, also the
+				\crit{ability of usage from a \ac{CLI}}{4.2} is considered,
+				because it is widespread among system administrators.
 
 		\subsection*{The contestants}
+			For introduction of "the contestants", the most important
+			attributes and specialities will be listed for each. A more
+			detailed comparison of the features can be found under
+			\textref{sec:evaluation:overview}.
+
 			\subsubsection*{modoboa}
-				\infotable{http://modoboa.org}{Python}
+				\infotable{http://modoboa.org}{Python}{2014-07-28}{1594}
 
 				\emph{modoboa} seems the most mature of the compared tools. It
 				uses the Python Django framework and therefore includes
 				facilities like schema migrations.
 
-			\label{sec:contestants:postfix.admin}
+				% Criteria
+				% 	2.4.1	No undo.
+				%   4.1		Bad mobile experience.
+
+			\subsubsection*{Møil}
+				\infotable{https://github.com/nning/moeil}{Ruby}{2014-07-26}{353}
+				
+				Further information on \emph{Møil} is to be found under
+				\textref{sec:moeil}.
+
 			\subsubsection*{postfix.admin}
-				\infotable{http://postfixadmin.sourceforge.net}{PHP}
+			\label{sec:contestants:postfix.admin}
+				\infotable{http://postfixadmin.sourceforge.net}{PHP}{2014-07-22}{1682}
 
 %				As said, \emph{postfix.admin} seems to be a (negative) example
 %				not only for \emph{Møil}. Many solutions aim to overcome its
@@ -189,19 +239,120 @@
 %				it creates an alias entry for every mailbox (even when the mail
 %				is not forwarded). This may have a cause, but is messy anyway.
 
+				% Criteria
+				%	1.4		Migrations one big file upgrade.php with functions
+				%			like upgrade_<n>_<db>.
+				%	1.5		No systematic database independence (or object
+				%			relational mapper at all), only manual support for
+				%			mysql and pgsql.
+				%	2.4.1	No undo.
+				%	3.1		Password hash default md5-crypt.
+				%	3.3		Can move mail data if configured and access on Mail
+				%			Store, but disabled by default.
+
 			\subsubsection*{PostVis Admin}
-				\infotable{http://postvisadmin.sourceforge.net}{PHP}
+				\infotable{http://postvisadmin.sourceforge.net}{PHP}{2010-06-24}{183}
+				% SQL injections
+				% Badly strutured
+				% Code duplication
+				% Best example for non-PHP policy
+				%
+				% Criteria
+				%	1.2		Also not normalized like postfix.admin and much
+				%			table names and fields equally named.
+				%	2.3		Even on a quick view, access control does not seem
+				%			effective. Any logged in user (also non-superadmin
+				%			users) seem to be able to delete any other user.
+				%	3.1		Default md5-crypt.
+				%	3.3		Features do not work without shell execution on same
+				%			server (e.g. amavisd-release).
 
 			\subsubsection*{ratuus}
-				\infotable{http://www.ratuus.org}{PHP}
+				\infotable{http://www.ratuus.org}{PHP}{}{}
+
+				The Development website was not linked correctly; the linked
+				hostname did not even exist in DNS, so the URL of the VCS
+				could not be determined and the 0.3-r2 version was examined.
+
+				% Bad struture (almost everything inside include/libratuus.php)
+				% but way more organized (object oriented, systematic 'routing'
+				% and access control) than PostVis Admin, for example. No query
+				% sanitization in mailClass->ask_db(). mysql_query() supports
+				% multiple queries configuration dependently.
+				%
+				% Criteria
+				%	2.4.1	No undo.
+				%	3.1		Only md5-crypt.
 
 			\subsubsection*{VBox.Adm}
-				\infotable{http://www.vboxadm.net}{Perl}
+				\infotable{http://www.vboxadm.net}{Perl}{2012-12-11}{657}
+
+				% Manual SQL queries, but sanitized. Not easy to get
+				% information as for example, if it is database independent.
+				%
+				% Criteria
+				% 	1.5		MySQL dependend in some places (w.g. in maintainance
+				%			code), independend in others (e.g. authentication).
+				%	3.2		Just custom SMTP proxy for spam maintainance
+				%			integration seems to be tested a little.
 
 			\subsubsection*{ViMbAdmin}
-				\infotable{http://www.vimbadmin.net}{PHP}
+				\infotable{http://www.vimbadmin.net}{PHP}{2014-07-23}{337}
+
+				% PHP und ORM!!
+				% Criteria
+				%	2.4.1	No undo.
+				%	2.4.3	Support for access restriction for mailboxes to
+				%			SIEVE.
+				%	3.1		Default is salted MD5, "more" secure algorithms
+				%			only supported with dovecotpw call.
+				%	3.3		See 3.1.
+
+			\begin{landscape}
+				\subsubsection*{Comparison overview}
+				\label{sec:evaluation:overview}
+					% 1. modoboa
+					% 2. Møil
+					% 3. VBox.Adm?
+					% 4. postfix.admin
+					% 5. ratuus
+					% 6. PostVis Admin
+
+					\begin{tabular}{l|cccccc|ccccccccc}
+						              & 1 & 1.1 & 1.2  & 1.3 & 1.4   & 1.5  & 2 & 2.1 & 2.2 & 2.3  & 2.4 & 2.4.1 & 2.4.2 & 2.4.3 & 2.4.4 \\
+						\hline
+						modoboa       &   & \y  &  \n  & \y  &  \y   &  \y  &   & \y  & \y  &  \y  &     & (\y)  & \y    &  \y   & \y    \\
+						Møil          &   & \y  &  \n  & \y  &  \y   &  \y  &   & \y  & \y  &  \y  &     &  \y   & \n    &  \n   & \n    \\
+						postfix.admin &   & \n  &      &     & (\y)  & (\y) &   & \y  & \y  &  \y  &     & (\y)  & \y    &  \n   & \n    \\
+						PostVis Admin &   & \n  & (\y) & \n  &  \n   &  \n  &   & \y  & \n  & (\y) &     &  \n   & \n    &  \n   & \y    \\
+						ratuus        &   & \n  &  \y  & \y  &  \n   &  \n  &   & \y  & \y  &  \y  &     & (\y)  & \n    &  \n   & \n    \\
+						VBox.Adm      &   & \y  &  \n  & \y  &  \n   & (\y) &   & \y  & \y  &  \y  &     &  \n   & \y    &  \n   & \y    \\
+						ViMbAdmin     &   & \y  &  \n  & \n  &       &  \y  &   & \y  & \y  &  \y  &     & (\y)  & \n    & (\n)  & \n    \\
+						\hline
+					\end{tabular}
+					\s
+
+					\noindent
+					\begin{tabular}{l|cccc|ccc|ccc}
+						              & 3 & 3.1  & 3.2  & 3.3  & 4 & 4.1  & 4.2 \\
+						\hline
+						modoboa       &   &  \y  &  \y  &  \y  &   & (\y) & \y  \\
+						Møil          &   &  \y  &  \y  &  \y  &   &  \y  & \y  \\
+						postfix.admin &   & (\y) &  \n  & (\y) &   &  \n  & \y  \\
+						PostVis Admin &   & (\y) &  \n  &  \n  &   &  \n  & \n  \\
+						ratuus        &   & (\y) &  \n  &  \y  &   &  \n  & \n  \\
+						VBox.Adm      &   &  \y  & (\y) &  \y  &   &  \n  & \y  \\
+						ViMbAdmin     &   & (\y) &      & (\n) &   &      &     \\
+						\hline
+					\end{tabular}
+					\s
+
+					(See \textref{sec:evaluation:criteria} and
+					\textref{sec:appendix:criteria}.)
+			\end{landscape}
 
 	\section*{Møil}
+	\label{sec:moeil}
 		The development of \emph{Møil} has been begun in May, 2013 as an Open
 		Source project licensed under the terms of the AGPL, Version 3
 		\cite{agpl}.
@@ -249,8 +400,8 @@
 
 		%	Other features?
 
-		\label{sec:moeil:features}
 		\subsection*{Features}
+		\label{sec:moeil:features}
 			At the time of writing of this document, \emph{Møil} comes with the
 			below-mentioned features.
 
@@ -395,6 +546,7 @@
 
 	\newpage
 	\section*{Numbered index of criteria}
+	\label{sec:appendix:criteria}
 		\begin{easylist}
 			& Data model
 			&& Normalized schema
@@ -415,18 +567,12 @@
 
 			& Security \& robustness
 			&& Password hashing
-			&& Tests
-
-			& User interface
-			&& Responsiveness
-			&&&	\ac{CLI} support
-			&&& Mobile devices
-			&& Usability
-
-			& Miscellaneous
-			&& Scalability
-			&& Programming language
+			&& Test coverage
 			&& Containability (e.g. independence of Message Store file system)
+
+			& Responsive design
+			&& Mobile devices
+			&& \ac{CLI} support
 		\end{easylist}
 
 	\include{acronyms}

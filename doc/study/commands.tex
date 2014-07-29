@@ -11,13 +11,21 @@
 \newcommand{\s}{\vspace{0.5em}}
 
 % Little table for most important software info.
-\newcommand{\infotable}[2]{
+\newcommand{\infotable}[4]{
 	\begin{tabular}{p{2.5cm}l}
 		Website: & \url{#1} \\
 		Language: & #2 \\
+		Last commit: & #3 \\
+		Commits: & #4 \\
 	\end{tabular}
 	\s
 }
 
 % Emphasize a criterion.
 \newcommand{\crit}[2]{\textbf{#1} (#2)}
+
+% Aliases for yes and no in comparison overview table.
+\newcommand{\y}{\checkmark}
+\newcommand{\n}{$\times$}
+
+\newcommand{\textref}[1]{\emph{\nameref{#1}} on page \pageref{#1}}
