@@ -30,8 +30,12 @@
 
 	\maketitle
 
-	\tableofcontents
+	\begin{center}
+		\textit{Updated versions of this document are to be found at \\
+			\url{https://henning.orgizm.net/doc/moeil.pdf}.}
+	\end{center}
 
+	\tableofcontents
 
 	\section{Abstract}
 		This document compares existing administration user interface solutions
@@ -120,8 +124,6 @@
 			applications to accomplish a more maintainable and secure web
 			hosting environment\footnote{\urlPHPBashing}.
 
-			\todo{Sources for most of the criteria!}
-
 			\subsubsection{Data model (1)}
 				From a database engineering perspective, it is in general
 				favourable to design a database with a \crit{normalized
@@ -182,7 +184,6 @@
 				\emph{clamav}.)
 
 			\subsubsection{Security \& robustness (3)}
-			\todo{Password hashing algorithms strengths}
 				For now, only three criteria in this category shall be
 				considered, because further security analysis would require an
 				in-depth source code review. The \crit{password hashing}{3.1}
@@ -191,12 +192,16 @@
 				in the application. When the database is maliciously read, the
 				value of the passwords to the attacker is inversely
 				proportional to the time it costs, to crack the password
-				hashing. \crit{Test coverage}{3.2} is important for this
-				evaluation and for security purposes, because it lowers the
-				probability of bugs per lines of code by trend. As
-				\crit{Containability}{3.3}, the modular independence (e.g.
-				independence of the web interface from the Message Store file
-				system) from a security perspective is perceived.
+				hashing. \texttt{MD5} and \texttt{SHA1} based methods are
+				considered unsecure, \texttt{SHA256}, \texttt{SHA384},
+				\texttt{SHA512} and \texttt{bcrypt} are
+				recommended\footnote{\url{http://www.keylength.com/en/8/}}.
+				\crit{Test coverage}{3.2} is important for this evaluation and
+				for security purposes, because it lowers the probability of
+				bugs per lines of code by trend. As \crit{Containability}{3.3},
+				the modular independence (e.g. independence of the web
+				interface from the Message Store file system) from a security
+				perspective is perceived.
 
 			\subsubsection{Responsive design (\acs{UI}) (4)}
 				In the days of rapidly increased mobile device usage, a
@@ -405,8 +410,6 @@
 		Debian Linux 7. Therefore, none of the compared tools supports it
 		natively.)
 
-		\todo{Sources for algorithms and their comparisons}
-
 		%	Other features?
 
 		\subsection{Features}
@@ -415,24 +418,27 @@
 			below-mentioned features.
 
 			\begin{description}
-				\item[\rm Managing domains, aliases and mailboxes]\ \\
-					\todo
+				\item[\rm Managing domains, mailbox and aliases]\ \\
+					\emph{Møil} provides beautiful and usable \acp{UI} for
+					management tasks on domains, mailboxes and aliases hosted
+					on a mail system.
 
-				\item[\rm Tested with postfix and dovecot]\ \\
+				\item[\rm Tested with \emph{postfix} and \emph{dovecot}]\ \\
 					There are some productive installations of \emph{Møil} in
-					connection with postfix and dovecot but it could possibly
-					also be used with other mailing software which provides the
-					opportunity to configure the \ac{SQL} statements used to
-					request necessary meta data.
+					connection with \emph{postfix} and \emph{dovecot} but it
+					could possibly also be used with other mailing software
+					which provides the opportunity to configure the \ac{SQL}
+					statements used to request necessary meta data.
 				
 				\item[\rm Database agnostic]\ \\
-					\emph{Møil} is tested mostly on SQLite3 and PostgreSQL but
-					also occasionally on MySQL (or MariaDB respectively). In
-					general, it should be supported on any database supported
-					by \emph{Active Record}, which currently are (at least)
-					MySQL, PostgreSQL, SQLite, SQL Server, Sybase, and all
-					supported Oracle databases except
-					DB2\footnote{\urlARSupport}.
+					\emph{Møil} is tested mostly on \emph{SQLite3} and
+					\emph{PostgreSQL} but also occasionally on \emph{MySQL} (or
+					\emph{MariaDB} respectively). In general, it should be
+					supported on any database supported by \emph{Active
+					Record}, which currently are (at least) \emph{MySQL},
+					\emph{PostgreSQL}, \emph{SQLite}, \emph{SQL Server},
+					\emph{Sybase}, and all supported Oracle databases except
+					\emph{DB2}\footnote{\urlARSupport}.
 
 				\item[\rm Track database schema with rails migrations]\ \\
 					Through \emph{Active Record} and \ac{Rails} migrations,
@@ -476,7 +482,7 @@
 			The model connects to the \ac{DBMS} via TCP/IP or Unix Sockets. The
 			abstractly noted queries are translated to the respective \ac{SQL}
 			(or NoSQL) dialect. All communication with external services like
-			postfix, dovecot or the relocation daemon (see
+			\emph{postfix}, \emph{dovecot} or the relocation daemon (see
 			\textref{sec:moeil:model:relocation}) happen solely with the
 			\ac{DBMS} as an intermediary.
 
@@ -630,16 +636,16 @@
 			should make this document a little more long-lasting, because setup
 			instructions usually are subject to frequent changes.
 
-			\subsubsection{Relevant configs for postfix and dovecot}
-				The relevant configuration files for postfix and dovecot
-				(especially regarding to the \ac{SQL} statements compatible to
-				\emph{Møil}) can be found in the source code repository on
-				GitHub in the folders
+			\subsubsection{Relevant configs for \emph{postfix} and \emph{dovecot}}
+				The relevant configuration files for \emph{postfix} and
+				\emph{dovecot} (especially regarding to the \ac{SQL} statements
+				compatible to \emph{Møil}) can be found in the source code
+				repository on GitHub in the folders
 				\texttt{doc/postfix}\footnote{\url{https://github.com/nning/moeil/tree/master/doc/postfix}}
 				and
 				\texttt{doc/dovecot}\footnote{\url{https://github.com/nning/moeil/tree/master/doc/dovecot}}.
 
-			\subsubsection{Setup of the rails app}
+			\subsubsection{Setup of the rails application}
 				The setup of the rails app for testing or deployment on
 				OpenShift is described in the main
 				README\footnote{\url{https://github.com/nning/moeil}} file of
@@ -647,7 +653,8 @@
 				\emph{nginx} and \emph{lighttpd} is made similar to any other
 				current \ac{Rails} project. (Also it is possible to deploy with
 				\emph{capistrano}.) More detailed and beginner-friendly
-				instructions will be provided in the main README file, later.
+				instructions will be provided in the main README file at a
+				later point.
 
 	\appendix
 
@@ -659,8 +666,9 @@
 			&& Normalized schema
 			&& \emph{postfix.admin} compatible
 			&& \emph{postfix.admin} import
-			&& Updatable (Migrations)
+			&& Schema migrations
 			&& Systematic database independence
+			\s
 
 			& Features
 			&& Basic domain, mailbox and alias management
@@ -671,11 +679,13 @@
 			&&& Vacation
 			&&& Sieve
 			&&& Spam front-end
+			\s
 
 			& Security \& robustness
 			&& Password hashing
 			&& Test coverage
-			&& Containability (e.g. independence of Message Store file system)
+			&& Containability
+			\s
 
 			& Responsive design
 			&& Mobile devices
