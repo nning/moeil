@@ -30,8 +30,10 @@
 
 	\maketitle
 
+	\tableofcontents
 
-	\section*{Abstract}
+
+	\section{Abstract}
 		This document compares existing administration user interface solutions
 		for mail servers running \emph{postfix} and backed by relational
 		databases and introduces yet another one, which is called \emph{Møil}
@@ -43,7 +45,7 @@
 		from GitHub\footnote{\url{https://github.com/nning/moeil}} licensed
 		under AGPLv3 \cite{agpl}.
 
-	\section*{Introduction}
+	\section{Introduction}
 		% Reasons for database-backing
 
 		For mail system setups (meaning one or more servers running Mail
@@ -87,7 +89,7 @@
 		list of domains for consistency. For bigger mail system setups, this
 		meta data configuration inevitably gets unmaintainable.
 
-	\section*{Evaluation of existing software}
+	\section{Evaluation of existing software}
 		% Overview and inspiration
 
 		Although an extensive evaluation of the existing administration user
@@ -101,7 +103,7 @@
 		on 29\textsuperscript{th} July, 2014 from the particular \acp{VCS} and
 		used for evaluation.
 
-		\subsection*{Criteria}
+		\subsection{Criteria}
 		\label{sec:evaluation:criteria}
 			Not only for the development of \emph{Møil}, some of the criteria
 			arose from shortcomings of \emph{postfix.admin} (see page
@@ -120,7 +122,7 @@
 
 			\todo{Sources for most of the criteria!}
 
-			\subsubsection*{Data model (1)}
+			\subsubsection{Data model (1)}
 				From a database engineering perspective, it is in general
 				favourable to design a database with a \crit{normalized
 				relational database schema}{1.1} \cite{dbnorm}. For a query to
@@ -142,7 +144,7 @@
 				and allows a free choice of the \ac{DBMS} and integration with
 				other software.
 
-			\subsubsection*{Features (2)}
+			\subsubsection{Features (2)}
 				There are features, without which a mail server administration
 				user interface would not work at all and yet I list them,
 				because it is more about analyzing, how these are implemented.
@@ -179,7 +181,7 @@
 				world consisting of \emph{amavisd-new}, \emph{spamassassin} and
 				\emph{clamav}.)
 
-			\subsubsection*{Security \& robustness (3)}
+			\subsubsection{Security \& robustness (3)}
 			\todo{Password hashing algorithms strengths}
 				For now, only three criteria in this category shall be
 				considered, because further security analysis would require an
@@ -196,7 +198,7 @@
 				independence of the web interface from the Message Store file
 				system) from a security perspective is perceived.
 
-			\subsubsection*{Responsive design (\acs{UI}) (4)}
+			\subsubsection{Responsive design (\acs{UI}) (4)}
 				In the days of rapidly increased mobile device usage, a
 				responsive design (e.g. different layout for different screen
 				sizes) is an important attribute of user interfaces. Usually,
@@ -205,13 +207,13 @@
 				\crit{ability of usage from a \ac{CLI}}{4.2} is considered,
 				because it is widespread among system administrators.
 
-		\subsection*{The contestants}
+		\subsection{The contestants}
 			For introduction of "the contestants", the most important
 			attributes and specialties will be listed for each. A more detailed
 			comparison of the features can be found under
 			\textref{sec:evaluation:overview}.
 
-			\subsubsection*{modoboa}
+			\subsubsection{modoboa}
 				\infotable{http://modoboa.org}{Python}{2014-07-28}{1594}
 
 				Of the compared tools, \emph{modoboa} seems to be one of the
@@ -221,13 +223,13 @@
 				to the \crit{audit trail}{2.4.1}, there is no undo support.
 				Also the user interface on a mobile phone, was a little sloppy.
 
-			\subsubsection*{Møil}
+			\subsubsection{Møil}
 				\infotable{https://github.com/nning/moeil}{Ruby}{2014-07-26}{353}
 				
 				Further information on \emph{Møil} is to be found under
 				\textref{sec:moeil}.
 
-			\subsubsection*{postfix.admin}
+			\subsubsection{postfix.admin}
 			\label{sec:contestants:postfix.admin}
 				\infotable{http://postfixadmin.sourceforge.net}{PHP}{2014-07-22}{1682}
 
@@ -255,7 +257,7 @@
 				movement of mail data, then, which would require the direct
 				access to the Mail Store.
 
-			\subsubsection*{PostVis Admin}
+			\subsubsection{PostVis Admin}
 				\infotable{http://postvisadmin.sourceforge.net}{PHP}{2010-06-24}{183}
 
 				PostVis Admin is the best acknowledgement for the non-PHP
@@ -275,7 +277,7 @@
 				(e.g. \texttt{amavisd-release}, so the solution is not really
 				\crit{containable}{3.3}.
 
-			\subsubsection*{ratuus}
+			\subsubsection{ratuus}
 				\infotable{http://www.ratuus.org}{PHP}{}{}
 
 				The Development website was not linked correctly; the linked
@@ -293,7 +295,7 @@
 				trail}{2.4.1} feature but it supports no undo. Also the default
 				\crit{password hashing}{3.1} algorithm is \texttt{md5-crypt}.
 
-			\subsubsection*{VBox.Adm}
+			\subsubsection{VBox.Adm}
 				\infotable{http://www.vboxadm.net}{Perl}{2012-12-11}{657}
 
 				\emph{VBox.Adm} makes use of raw \ac{SQL} queries much, but
@@ -304,7 +306,7 @@
 				tests. Solely the custom SMTP proxy for spam maintenance
 				integration seems to be tested a little.
 
-			\subsubsection*{ViMbAdmin}
+			\subsubsection{ViMbAdmin}
 				\infotable{http://www.vimbadmin.net}{PHP}{2014-07-23}{337}
 
 				The only PHP tool, which uses an \ac{ORM}. (But migrations were
@@ -323,7 +325,7 @@
 				mobile phones, for example).
 
 			\begin{landscape}
-				\subsubsection*{Comparison overview}
+				\subsubsection{Comparison overview}
 				\label{sec:evaluation:overview}
 					\begin{tabular}{l|cccccc|ccccccccc}
 						              & 1 & 1.1 & 1.2  & 1.3 & 1.4   & 1.5  & 2 & 2.1 & 2.2 & 2.3  & 2.4 & 2.4.1 & 2.4.2 & 2.4.3 & 2.4.4 \\
@@ -358,7 +360,7 @@
 					\textref{sec:appendix:criteria}.)
 			\end{landscape}
 
-	\section*{Møil}
+	\section{Møil}
 	\label{sec:moeil}
 		The development of \emph{Møil} has been begun in May, 2013 as an Open
 		Source project licensed under the terms of the AGPL, Version 3
@@ -407,7 +409,7 @@
 
 		%	Other features?
 
-		\subsection*{Features}
+		\subsection{Features}
 		\label{sec:moeil:features}
 			At the time of writing of this document, \emph{Møil} comes with the
 			below-mentioned features.
@@ -465,7 +467,7 @@
 					be used).
 			\end{description}
 
-		\subsection*{Architecture}
+		\subsection{Architecture}
 			% Modules
 
 			The code is strictly modularized according to the \ac{MVC} pattern,
@@ -495,7 +497,7 @@
 			\ac{SQL} or by using \emph{Elasticsearch}, which is an indexed
 			search server based on \emph{Apache Lucene}.
 
-		\subsection*{Data model}
+		\subsection{Data model}
 			% Data model
 			%	Structure / ERD
 
@@ -517,7 +519,7 @@
 			but lowercase, as the \texttt{username} attribute of a
 			\texttt{Mailbox} for example.
 
-			\subsubsection*{Domains}
+			\subsubsection{Domains}
 				For \texttt{Domains} the following attributes are saved per
 				record: \texttt{name} (which is the actual domain- or hostname,
 				\texttt{description}, \texttt{backupmx} (indicates, if the
@@ -530,7 +532,7 @@
 				many \texttt{Mailboxes} and \texttt{Aliases} to reflect the
 				affiliation of the latter.
 
-			\subsubsection*{Mailboxes}
+			\subsubsection{Mailboxes}
 				A \texttt{Mailbox} is connected to its \texttt{Domain} and
 				possibly also to one \texttt{Relocation} and has the attributes
 				\texttt{username} (which is the part in front of the
@@ -541,7 +543,7 @@
 				\texttt{quota}, \texttt{active}, \texttt{admin} and timestamp
 				attributes for saving the date of creation or the last update.
 
-			\subsubsection*{Aliases}
+			\subsubsection{Aliases}
 				\texttt{Aliases} represent mail forwardings and are also
 				connected to their affiliated \texttt{Domain}. They have the
 				attributes \texttt{username}, \texttt{goto} (which is the
@@ -550,7 +552,7 @@
 				\texttt{active}, \texttt{description} and timestamps of
 				creation and last update.
 
-			\subsubsection*{Permissions}
+			\subsubsection{Permissions}
 				\texttt{Mailbox} records (or users) are also used for the login
 				to \emph{Møil}. There are administrators and regular users.
 				Administrators are allowed to edit any resources. Through a
@@ -568,7 +570,7 @@
 				implementation easily to allow even more fine-grained
 				permissions (for certain \texttt{Mailboxes} for example).
 
-			\subsubsection*{Versions}
+			\subsubsection{Versions}
 				As seen in the graph, \texttt{Domains}, \texttt{Mailboxes},
 				\texttt{Aliases} and \texttt{Permissions} are versioned, which
 				means that changes to resources of any of these types are
@@ -580,7 +582,7 @@
 				deletions), the \texttt{object\_changes} (only on updates) and
 				the point in time (\texttt{created\_at}) are saved.
 
-			\subsubsection*{Relocations}
+			\subsubsection{Relocations}
 			\label{sec:moeil:model:relocation}
 				The relocation model is in fact updated but actually not
 				further used, currently. Whenever a \texttt{Domain} or
@@ -594,7 +596,7 @@
 			%	Migrations
 			%	sha512-crypt
 
-		\subsection*{Perspective}
+		\subsection{Perspective}
 			Not least through the evaluation of the different solutions for
 			Open Source mail system administration user interfaces, some
 			possible features for Møil become obvious.
@@ -622,18 +624,35 @@
 					disfunctional.
 			\end{description}
 
-		\subsection*{Setup}
-			\subsubsection*{Relevant configs for postfix and dovecot}
+		\subsection{Setup}
+			Installation instructions and configuration files will not appear
+			itself in this section. Instead, they will be linked to. This
+			should make this document a little more long-lasting, because setup
+			instructions usually are subject to frequent changes.
 
-			\subsubsection*{Setup of the rails app}
+			\subsubsection{Relevant configs for postfix and dovecot}
+				The relevant configuration files for postfix and dovecot
+				(especially regarding to the \ac{SQL} statements compatible to
+				\emph{Møil}) can be found in the source code repository on
+				GitHub in the folders
+				\texttt{doc/postfix}\footnote{\url{https://github.com/nning/moeil/tree/master/doc/postfix}}
+				and
+				\texttt{doc/dovecot}\footnote{\url{https://github.com/nning/moeil/tree/master/doc/dovecot}}.
 
-			\subsubsection*{Further readings}
-				% Links to README on GitHub
+			\subsubsection{Setup of the rails app}
+				The setup of the rails app for testing or deployment on
+				OpenShift is described in the main
+				README\footnote{\url{https://github.com/nning/moeil}} file of
+				\emph{Møil}. A deployment in web servers like \emph{Apache},
+				\emph{nginx} and \emph{lighttpd} is made similar to any other
+				current \ac{Rails} project. (Also it is possible to deploy with
+				\emph{capistrano}.) More detailed and beginner-friendly
+				instructions will be provided in the main README file, later.
 
 	\appendix
 
 	\newpage
-	\section*{Numbered index of criteria}
+	\section{Numbered index of criteria}
 	\label{sec:appendix:criteria}
 		\begin{easylist}
 			& Data model
