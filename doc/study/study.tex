@@ -33,15 +33,15 @@
 
 	\section*{Abstract}
 		This document compares existing administration user interface solutions
-		for mail servers backed by relational databases and introduces yet
-		another one, which is called \emph{Møil} and is written in Ruby
-		utilizing the \ac{Rails}\footnote{\url{http://rubyonrails.org}}
-		framework. It brings the handy possibility of managing the database
-		schema with migrations, a lot of beautiful, responsive \acs{CRUD} and
-		some other nice features (see \emph{Møil} \textref{sec:moeil:features}).
-		The code is available from
-		GitHub\footnote{\url{https://github.com/nning/moeil}} licensed under
-		AGPLv3 \cite{agpl}.
+		for mail servers running \emph{postfix} and backed by relational
+		databases and introduces yet another one, which is called \emph{Møil}
+		and is written in Ruby utilizing the
+		\ac{Rails}\footnote{\url{http://rubyonrails.org}} framework. It brings
+		the handy possibility of managing the database schema with migrations,
+		a lot of beautiful, responsive \acs{CRUD} and some other nice features
+		(see \emph{Møil} \textref{sec:moeil:features}). The code is available
+		from GitHub\footnote{\url{https://github.com/nning/moeil}} licensed
+		under AGPLv3 \cite{agpl}.
 
 	\section*{Introduction}
 		% Reasons for database-backing
@@ -59,7 +59,7 @@
 		one node (horizontal scalability) to cope with high mail and user
 		loads: Several servers handling incoming mail or users reading their
 		mail act as readers on one or more database servers. The performance of
-		the frequent lookups of domains, mailboxes and aliases (forwardings)
+		the frequent look-up of domains, mailboxes and aliases (forwardings)
 		for receiving mail or user logins can be increased. (The actual
 		accommodation of E-Mails -- another big problem with horizontal scaling
 		-- can not be considered here.)
@@ -96,13 +96,13 @@
 		was still considered. This more systematical and detailed analysis
 		shall gain an overview and provide inspiration for the development of
 		\emph{Møil}. An in-depth analysis of the source code can not be
-		provided here. Instead, the solutions will be compared by a composed set
-		of criteria. The current state of the source code was checked out on
-		29\textsuperscript{th} July, 2014 from the particular version control
-		systems and used for evaluation.
+		provided here. Instead, the solutions will be compared by a composed
+		set of criteria. The current state of the source code was checked out
+		on 29\textsuperscript{th} July, 2014 from the particular \acp{VCS} and
+		used for evaluation.
 
 		\subsection*{Criteria}
-			\label{sec:evaluation:criteria}
+		\label{sec:evaluation:criteria}
 			Not only for the development of \emph{Møil}, some of the criteria
 			arose from shortcomings of \emph{postfix.admin} (see page
 			\pageref{sec:contestants:postfix.admin}), which is a quite widely
@@ -113,7 +113,7 @@
 			There is some meta-data like website, programming language, last
 			update in VCS and number of commits, which is not numbered and
 			compared. The used programming language would be a neutral
-			attribute but gets a criterium, because before the development of
+			attribute but gets a criterion, because before the development of
 			\emph{Møil}, a decision was made against deploying further PHP
 			applications to accomplish a more maintainable and secure web
 			hosting environment\footnote{\urlPHPBashing}.
@@ -143,16 +143,16 @@
 				other software.
 
 			\subsubsection*{Features (2)}
-				There are features, without which a mail server admistration
+				There are features, without which a mail server administration
 				user interface would not work at all and yet I list them,
 				because it is more about analyzing, how these are implemented.
 				The \crit{basic domain, mailbox and alias management}{2.1} is
 				one of them. The \crit{password changing ability for
 				users}{2.2} is a feature, which is also quite basic and the
 				first one legitimating letting users access the administration
-				frontend. Some solutions also integrate into popular
+				front-end. Some solutions also integrate into popular
 				self-hosted web mailer software for password changing. When
-				users are allowed to access the administration frontend,
+				users are allowed to access the administration front-end,
 				\crit{access control}{2.3} or authorization is needed to
 				selectively restrict the access to resources. It could also be
 				possible to delegate administrative access on domains or
@@ -167,20 +167,20 @@
 				mailing}{2.4.2} to automatically answer any incoming mail with
 				a pre-defined text when they are vacant. Some solutions serve
 				users with the possibility to activate or deactivate it and
-				edit the pre-defined text. Automatic answers can also be solved
-				more generic with \crit{Sieve}{2.4.3} \cite{sieve}, which is a
+				edit the pretext. Automatic answers can also be solved more
+				generic with \crit{Sieve}{2.4.3} \cite{sieve}, which is a
 				server-side mail filter interface. The protocol for users to
 				edit the server-side filters is called \emph{ManageSieve}
 				\cite{managesieve}. Another common demand of users of a mail
-				system is a \crit{spam frontend}{2.4.4} to review mails, which
-				got quarantined by spam or virus checking software. (Although in
-				my personal experience this false negative classification does
-				occure almost never with a setup common in the Open Source
+				system is a \crit{spam front-end}{2.4.4} to review mails, which
+				got quarantined by spam or virus checking software. (Although
+				in my personal experience this false negative classification
+				does occur almost never with a setup common in the Open Source
 				world consisting of \emph{amavisd-new}, \emph{spamassassin} and
 				\emph{clamav}.)
 
 			\subsubsection*{Security \& robustness (3)}
-			\todo{Password hashing algorithms strenghts}
+			\todo{Password hashing algorithms strengths}
 				For now, only three criteria in this category shall be
 				considered, because further security analysis would require an
 				in-depth source code review. The \crit{password hashing}{3.1}
@@ -207,8 +207,8 @@
 
 		\subsection*{The contestants}
 			For introduction of "the contestants", the most important
-			attributes and specialities will be listed for each. A more
-			detailed comparison of the features can be found under
+			attributes and specialties will be listed for each. A more detailed
+			comparison of the features can be found under
 			\textref{sec:evaluation:overview}.
 
 			\subsubsection*{modoboa}
@@ -217,7 +217,7 @@
 				Of the compared tools, \emph{modoboa} seems to be one of the
 				most mature ones. It uses the Python Django framework and
 				therefore includes facilities like schema migrations and an
-				\ac{ORM}. It passes almost every criterium; just when it comes
+				\ac{ORM}. It passes almost every criterion; just when it comes
 				to the \crit{audit trail}{2.4.1}, there is no undo support.
 				Also the user interface on a mobile phone, was a little sloppy.
 
@@ -263,7 +263,7 @@
 				\emph{postfix.admin} replacement. The code is very bad
 				structured and full of redundancies. There is no \crit{schema
 				normalization}{1.1} and the schema seems \crit{compatible to
-				\emph{postifx.admin}}{1.2} but is likely to depart from it in
+				\emph{postfix.admin}}{1.2} but is likely to depart from it in
 				some details. \ac{SQL} injections are findable just by checking
 				for criteria like if there is an \crit{access control}{2.3}
 				feature, which is basically existing but not very effective,
@@ -279,7 +279,7 @@
 				\infotable{http://www.ratuus.org}{PHP}{}{}
 
 				The Development website was not linked correctly; the linked
-				hostname did not even exist in DNS, so the URL of the VCS
+				hostname did not even exist in DNS, so the URL of the \ac{VCS}
 				could not be determined and the 0.3-r2 version was examined.
 				The code is not well modularized (almost everything is to be
 				found inside \texttt{include/libratuus.php}), but it is well
@@ -288,8 +288,8 @@
 				Admin}. The possibility of \ac{SQL} injections is unclear but
 				there is no query sanitization in the
 				\texttt{mailClass->as\_db()} function, that makes use of
-				\texttt{mysql\_query()}, which in turn supports multiple queries
-				configuration dependently. There is an \crit{audit
+				\texttt{mysql\_query()}, which in turn supports multiple
+				queries configuration dependently. There is an \crit{audit
 				trail}{2.4.1} feature but it supports no undo. Also the default
 				\crit{password hashing}{3.1} algorithm is \texttt{md5-crypt}.
 
@@ -297,11 +297,11 @@
 				\infotable{http://www.vboxadm.net}{Perl}{2012-12-11}{657}
 
 				\emph{VBox.Adm} makes use of raw \ac{SQL} queries much, but
-				sanitizes them. At some places (e.g. in a database maintainance
+				sanitizes them. At some places (e.g. in a database maintenance
 				script), the queries depend on MySQL. In others (e.g. the
 				authentication), they are abstractly noted and \crit{database
-				independend}{1.5}. As with most other solutions, there are no
-				tests. Solely the custom SMTP proxy for spam maintainance
+				independent}{1.5}. As with most other solutions, there are no
+				tests. Solely the custom SMTP proxy for spam maintenance
 				integration seems to be tested a little.
 
 			\subsubsection*{ViMbAdmin}
@@ -319,7 +319,7 @@
 				bad for \crit{containability}{3.3}. As with many other compared
 				solutions, Twitter bootstrap is used as an \ac{UI} framework,
 				which supports responsive design easily but \emph{ViMbAdmin}
-				seems not to make use of it conciously (there is no menu on
+				seems not to make use of it consciously (there is no menu on
 				mobile phones, for example).
 
 			\begin{landscape}
@@ -386,13 +386,13 @@
 		for yet another tool but was not as important as some other ideas.
 		\emph{Møil} began as a replacement for the database schema shipped with
 		\emph{postfix.admin} in a private mail system of mine. The schema was
-		intended to be reimplemented normalized \cite{dbnorm} and with a
+		intended to be re-implemented normalized \cite{dbnorm} and with a
 		possibility of being updated through schema migrations. Also, the
 		\ac{Rails} project was intended to provide the basis for command line
 		utilities to import the existent data and to perform basic
 		administration tasks on domains, mailboxes and aliases. As there has
 		been only the schema in use, not the whole \emph{postfix.admin} web
-		frontend, there was an extra solution to generate password hashes and
+		front-end, there was an extra solution to generate password hashes and
 		send them to an administrative contact in place. A replacement for this
 		extra tool at first was the only function of the web interface part of
 		\emph{Møil}. The migration opportunity was also used to change the
@@ -417,7 +417,7 @@
 					\todo
 
 				\item[\rm Tested with postfix and dovecot]\ \\
-					There are some produtive installations of \emph{Møil} in
+					There are some productive installations of \emph{Møil} in
 					connection with postfix and dovecot but it could possibly
 					also be used with other mailing software which provides the
 					opportunity to configure the \ac{SQL} statements used to
@@ -439,9 +439,9 @@
 					database schema easily maintainable.
 
 				\item[\rm Permissions and Roles]\ \\
-					The abilities to manage domains and/or subordinate resources
-					like mailboxes and aliases can be configured fine grained
-					in order to delegate administrative tasks.
+					The abilities to manage domains and/or subordinate
+					resources like mailboxes and aliases can be configured fine
+					grained in order to delegate administrative tasks.
 
 				\item[\rm Responsive user interface]\ \\
 					\emph{Møil} adapts to the environment, it is needed in. The
@@ -459,12 +459,41 @@
 
 				\item[\rm Search]\ \\
 					A search for any resources is provided, which is optionally
-					based on \ac{SQL} or elasticsearch for really huge
-					databases (if installed and configured to be used).
+					based on \ac{SQL} or
+					\emph{Elasticsearch}\footnote{\url{http://www.elasticsearch.org}}
+					for really huge databases (if installed and configured to
+					be used).
 			\end{description}
 
 		\subsection*{Architecture}
 			% Modules
+
+			The code is strictly modularized according to the \ac{MVC} pattern,
+			like it is encouraged by \ac{Rails}.
+			
+			The model connects to the \ac{DBMS} via TCP/IP or Unix Sockets. The
+			abstractly noted queries are translated to the respective \ac{SQL}
+			(or NoSQL) dialect. All communication with external services like
+			postfix, dovecot or the relocation daemon (see
+			\textref{sec:moeil:model:relocation}) happen solely with the
+			\ac{DBMS} as an intermediary.
+
+			The view templates are written in
+			Haml\footnote{\url{http://haml.info}}, styling is done in SASS and
+			CoffeeScript is used for client-side dynamic functionality. Markup,
+			styling and scripts are delivered to the client after being
+			processed by the \ac{Rails} asset pipeline, which converts HAML to
+			HTML, SASS to CSS and CoffeeScript to JavaScript. It also
+			compresses the output and packs it in as few as possible files to
+			keep the requests to the server low.
+
+			Controllers and their actions are routed to by URL path patterns
+			and are responsible for updating the models' state and providing
+			the according data for the views.
+
+			The search is either solved through using the \ac{DBMS} via
+			\ac{SQL} or by using \emph{Elasticsearch}, which is an indexed
+			search server based on \emph{Apache Lucene}.
 
 		\subsection*{Data model}
 			% Data model
@@ -472,8 +501,8 @@
 
 			The application model is put into graphs in the following image. It
 			shows the model classes and their relations among each other. (The
-			graph is generated, so unfortunately (for now) the actual attributes
-			saving a relation are missing.)
+			graph is generated, so unfortunately (for now) the actual
+			attributes saving a relation and the cardinalities are missing.)
 
 			\includegraphics[width=\textwidth]{images/erd.pdf}
 
@@ -525,6 +554,7 @@
 				the point in time (\texttt{created\_at}) are saved.
 
 			\subsubsection*{Relocations}
+			\label{sec:moeil:model:relocation}
 				The relocation model is in fact updated but actually not
 				further used, currently. Whenever a \texttt{Domain} or
 				\texttt{Mailbox} is renamed, it is necessary to move the
@@ -533,8 +563,6 @@
 				saving \texttt{old\_domain} and \texttt{old\_username} values,
 				which can be read by a daemon (yet to be implemented) running
 				on the actual Mail Store.
-
-				\todo{Other solutions?}
 
 			%	Migrations
 			%	sha512-crypt
@@ -570,7 +598,7 @@
 			&&& Audit trail
 			&&& Vacation
 			&&& Sieve
-			&&& Spam frontend
+			&&& Spam front-end
 
 			& Security \& robustness
 			&& Password hashing
