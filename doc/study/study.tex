@@ -8,7 +8,6 @@
 \usepackage{amssymb}
 
 \usepackage{url}
-%\urldef{\urlTcpdump}{\url}{http://www.tcpdump.org/}
 \urldef{\urlARSupport}{\url}{http://api.rubyonrails.org/classes/ActiveRecord/Migration.html#class-ActiveRecord::Migration-label-Database+support}
 \urldef{\urlPHPBashing}{\url}{http://eev.ee/blog/2012/04/09/php-a-fractal-of-bad-design}
 
@@ -119,6 +118,8 @@
 			applications to accomplish a more maintainable and secure web
 			hosting environment\footnote{\urlPHPBashing}.
 
+			\todo{Sources for most of the criteria!}
+
 			\subsubsection*{Data model (1)}
 				From a database engineering perspective, it is in general
 				favourable to design a database with a \crit{normalized
@@ -136,9 +137,10 @@
 				to updates to the administration interface, \crit{means to
 				handle database schema updates}{1.4} ease the update process
 				(and therefore increase the probability of the actual
-				conduction of an update). Last but not least, \crit{database
-				independence}{1.5} allows a free choice of the \ac{DBMS} and
-				integration with other software.
+				conduction of an update). Last but not least, \crit{systematic
+				database independence}{1.5} abstracts from raw \ac{SQL} queries
+				and allows a free choice of the \ac{DBMS} and integration with
+				other software.
 
 			\subsubsection*{Features (2)}
 				There are features, without which a mail server admistration
@@ -178,6 +180,7 @@
 				\emph{clamav}.)
 
 			\subsubsection*{Security \& robustness (3)}
+			\todo{Password hashing algorithms strenghts}
 				For now, only three criteria in this category shall be
 				considered, because further security analysis would require an
 				in-depth source code review. The \crit{password hashing}{3.1}
@@ -193,7 +196,7 @@
 				independence of the web interface from the Message Store file
 				system) from a security perspective is perceived.
 
-			\subsubsection*{Responsive design (UI) (4)}
+			\subsubsection*{Responsive design (\acs{UI}) (4)}
 				In the days of rapidly increased mobile device usage, a
 				responsive design (e.g. different layout for different screen
 				sizes) is an important attribute of user interfaces. Usually,
@@ -211,13 +214,12 @@
 			\subsubsection*{modoboa}
 				\infotable{http://modoboa.org}{Python}{2014-07-28}{1594}
 
-				\emph{modoboa} seems the most mature of the compared tools. It
-				uses the Python Django framework and therefore includes
-				facilities like schema migrations.
-
-				% Criteria
-				% 	2.4.1	No undo.
-				%   4.1		Bad mobile experience.
+				Of the compared tools, \emph{modoboa} seems to be one of the
+				most mature ones. It uses the Python Django framework and
+				therefore includes facilities like schema migrations and an
+				\ac{ORM}. It passes almost every criterium; just when it comes
+				to the \crit{audit trail}{2.4.1}, there is no undo support.
+				Also the user interface on a mobile phone, was a little sloppy.
 
 			\subsubsection*{Møil}
 				\infotable{https://github.com/nning/moeil}{Ruby}{2014-07-26}{353}
@@ -229,43 +231,49 @@
 			\label{sec:contestants:postfix.admin}
 				\infotable{http://postfixadmin.sourceforge.net}{PHP}{2014-07-22}{1682}
 
-%				As said, \emph{postfix.admin} seems to be a (negative) example
-%				not only for \emph{Møil}. Many solutions aim to overcome its
-%				shortcomings. \emph{postfix.admin} uses a non-normalized
-%				\cite{dbnorm} database schema, which could spare a JOIN in some
-%				database queries but is very prone to inconsistencies. There
-%				are no means of handling database schema updates; the schema is
-%				imported via a \ac{SQL} file on the initial installation. Also
-%				it creates an alias entry for every mailbox (even when the mail
-%				is not forwarded). This may have a cause, but is messy anyway.
-
-				% Criteria
-				%	1.4		Migrations one big file upgrade.php with functions
-				%			like upgrade_<n>_<db>.
-				%	1.5		No systematic database independence (or object
-				%			relational mapper at all), only manual support for
-				%			mysql and pgsql.
-				%	2.4.1	No undo.
-				%	3.1		Password hash default md5-crypt.
-				%	3.3		Can move mail data if configured and access on Mail
-				%			Store, but disabled by default.
+				For many of the solutions, \emph{postfix.admin} seems to be an
+				inspiration and also the impulse for a new implementation. Many
+				solutions aim to overcome its shortcomings, but many also fail
+				to live up to that task (which in this case means every PHP
+				tool). \emph{postfix.admin} uses a non-normalized \cite{dbnorm}
+				database schema, which could spare a JOIN in some database
+				queries but is very prone to inconsistencies. \crit{Schema
+				migrations}{1.4} are not present through a database abstraction
+				library or an \ac{ORM}, but manually implemented rather
+				minimalist. There is one big file (\texttt{upgrade.php})
+				containing a pile of functions like
+				\texttt{upgrade\_<n>\_<db>}, which contain database dependent
+				raw \ac{SQL} queries to perform the transformations on the
+				schema. There is no \crit{systematic database
+				independence}{1.5} or an \ac{ORM}, just "manual" support for
+				MySQL and PostgreSQL. Oddly, for every mailbox there is an
+				alias entry created (even when the mail is not forwarded).
+				\emph{postfix.admin} has support for an \crit{audit
+				trail}{2.4.1} but without undo. The default \crit{password
+				hashing}{3.1} algorithm is \texttt{md5-crypt}. It is
+				\crit{containable}{3.3} by default but does not support the
+				movement of mail data, then, which would require the direct
+				access to the Mail Store.
 
 			\subsubsection*{PostVis Admin}
 				\infotable{http://postvisadmin.sourceforge.net}{PHP}{2010-06-24}{183}
-				% SQL injections
-				% Badly strutured
-				% Code duplication
-				% Best example for non-PHP policy
-				%
-				% Criteria
-				%	1.2		Also not normalized like postfix.admin and much
-				%			table names and fields equally named.
-				%	2.3		Even on a quick view, access control does not seem
-				%			effective. Any logged in user (also non-superadmin
-				%			users) seem to be able to delete any other user.
-				%	3.1		Default md5-crypt.
-				%	3.3		Features do not work without shell execution on same
-				%			server (e.g. amavisd-release).
+
+				PostVis Admin is the best acknowledgement for the non-PHP
+				policy it was decided on when searching for a
+				\emph{postfix.admin} replacement. The code is very bad
+				structured and full of redundancies. There is no \crit{schema
+				normalization}{1.1} and the schema seems \crit{compatible to
+				\emph{postifx.admin}}{1.2} but is likely to depart from it in
+				some details. \ac{SQL} injections are findable just by checking
+				for criteria like if there is an \crit{access control}{2.3}
+				feature, which is basically existing but not very effective,
+				because it is not implemented securely. (Any logged in user
+				(also non-superadmin users) seem to be able to delete any other
+				user.) The default \crit{password hashing}{3.1} algorithm is
+				\texttt{md5-crypt} and there are features, which do not work
+				without shell execution privileges on the mail system servers
+				(e.g. \texttt{amavisd-release}, so the solution is not really
+				\crit{containable}{3.3}.
 
 			\subsubsection*{ratuus}
 				\infotable{http://www.ratuus.org}{PHP}{}{}
@@ -273,51 +281,50 @@
 				The Development website was not linked correctly; the linked
 				hostname did not even exist in DNS, so the URL of the VCS
 				could not be determined and the 0.3-r2 version was examined.
-
-				% Bad struture (almost everything inside include/libratuus.php)
-				% but way more organized (object oriented, systematic 'routing'
-				% and access control) than PostVis Admin, for example. No query
-				% sanitization in mailClass->ask_db(). mysql_query() supports
-				% multiple queries configuration dependently.
-				%
-				% Criteria
-				%	2.4.1	No undo.
-				%	3.1		Only md5-crypt.
+				The code is not well modularized (almost everything is to be
+				found inside \texttt{include/libratuus.php}), but it is well
+				more organized (when it comes to object orientation, systematic
+				"routing" and access control for example) than \emph{PostVis
+				Admin}. The possibility of \ac{SQL} injections is unclear but
+				there is no query sanitization in the
+				\texttt{mailClass->as\_db()} function, that makes use of
+				\texttt{mysql\_query()}, which in turn supports multiple queries
+				configuration dependently. There is an \crit{audit
+				trail}{2.4.1} feature but it supports no undo. Also the default
+				\crit{password hashing}{3.1} algorithm is \texttt{md5-crypt}.
 
 			\subsubsection*{VBox.Adm}
 				\infotable{http://www.vboxadm.net}{Perl}{2012-12-11}{657}
 
-				% Manual SQL queries, but sanitized. Not easy to get
-				% information as for example, if it is database independent.
-				%
-				% Criteria
-				% 	1.5		MySQL dependend in some places (w.g. in maintainance
-				%			code), independend in others (e.g. authentication).
-				%	3.2		Just custom SMTP proxy for spam maintainance
-				%			integration seems to be tested a little.
+				\emph{VBox.Adm} makes use of raw \ac{SQL} queries much, but
+				sanitizes them. At some places (e.g. in a database maintainance
+				script), the queries depend on MySQL. In others (e.g. the
+				authentication), they are abstractly noted and \crit{database
+				independend}{1.5}. As with most other solutions, there are no
+				tests. Solely the custom SMTP proxy for spam maintainance
+				integration seems to be tested a little.
 
 			\subsubsection*{ViMbAdmin}
 				\infotable{http://www.vimbadmin.net}{PHP}{2014-07-23}{337}
 
-				% PHP und ORM!!
-				% Criteria
-				%	2.4.1	No undo.
-				%	2.4.3	Support for access restriction for mailboxes to
-				%			SIEVE.
-				%	3.1		Default is salted MD5, "more" secure algorithms
-				%			only supported with dovecotpw call.
-				%	3.3		See 3.1.
+				The only PHP tool, which uses an \ac{ORM}. (But migrations were
+				not used, yet they are supported by that \ac{ORM}.)
+				\emph{ViMbAdmin} has an \crit{audit log}{2.4.1} available but
+				it does not support undo. There is no real \crit{SIEVE
+				support}{2.4.3}, but an access restriction if configurable for
+				mailboxes on different services like SIEVE. The default
+				\crit{password hashing}{3.1} algorithm is salted \texttt{MD5}
+				(\texttt{md5-crypt}?) and more secure algorithms are only
+				supported with shell execution of \texttt{dovecotpw}, which is
+				bad for \crit{containability}{3.3}. As with many other compared
+				solutions, Twitter bootstrap is used as an \ac{UI} framework,
+				which supports responsive design easily but \emph{ViMbAdmin}
+				seems not to make use of it conciously (there is no menu on
+				mobile phones, for example).
 
 			\begin{landscape}
 				\subsubsection*{Comparison overview}
 				\label{sec:evaluation:overview}
-					% 1. modoboa
-					% 2. Møil
-					% 3. VBox.Adm?
-					% 4. postfix.admin
-					% 5. ratuus
-					% 6. PostVis Admin
-
 					\begin{tabular}{l|cccccc|ccccccccc}
 						              & 1 & 1.1 & 1.2  & 1.3 & 1.4   & 1.5  & 2 & 2.1 & 2.2 & 2.3  & 2.4 & 2.4.1 & 2.4.2 & 2.4.3 & 2.4.4 \\
 						\hline
@@ -327,7 +334,7 @@
 						PostVis Admin &   & \n  & (\y) & \n  &  \n   &  \n  &   & \y  & \n  & (\y) &     &  \n   & \n    &  \n   & \y    \\
 						ratuus        &   & \n  &  \y  & \y  &  \n   &  \n  &   & \y  & \y  &  \y  &     & (\y)  & \n    &  \n   & \n    \\
 						VBox.Adm      &   & \y  &  \n  & \y  &  \n   & (\y) &   & \y  & \y  &  \y  &     &  \n   & \y    &  \n   & \y    \\
-						ViMbAdmin     &   & \y  &  \n  & \n  &       &  \y  &   & \y  & \y  &  \y  &     & (\y)  & \n    & (\n)  & \n    \\
+						ViMbAdmin     &   & \y  &  \n  & \n  &  \n   &  \y  &   & \y  & \y  &  \y  &     & (\y)  & \n    & (\n)  & \n    \\
 						\hline
 					\end{tabular}
 					\s
@@ -342,7 +349,7 @@
 						PostVis Admin &   & (\y) &  \n  &  \n  &   &  \n  & \n  \\
 						ratuus        &   & (\y) &  \n  &  \y  &   &  \n  & \n  \\
 						VBox.Adm      &   &  \y  & (\y) &  \y  &   &  \n  & \y  \\
-						ViMbAdmin     &   & (\y) &      & (\n) &   &      &     \\
+						ViMbAdmin     &   & (\y) &  \n  & (\n) &   &  \n  & \n  \\
 						\hline
 					\end{tabular}
 					\s
@@ -378,12 +385,11 @@
 		That fact alone would maybe suffice as an argument for the development
 		for yet another tool but was not as important as some other ideas.
 		\emph{Møil} began as a replacement for the database schema shipped with
-		\emph{postfix.admin} in a private mail system of mine. The schema
-		was intended to be reimplemented normalized \cite{dbnorm} and with
-		a possibility of being updated through schema
-		migrations\footnote{\url{http://en.wikipedia.org/wiki/Schema_migration}}).
-		Also, the \ac{Rails} project was intended to provide the basis for
-		command line utilities to import the existent data and to perform basic
+		\emph{postfix.admin} in a private mail system of mine. The schema was
+		intended to be reimplemented normalized \cite{dbnorm} and with a
+		possibility of being updated through schema migrations. Also, the
+		\ac{Rails} project was intended to provide the basis for command line
+		utilities to import the existent data and to perform basic
 		administration tasks on domains, mailboxes and aliases. As there has
 		been only the schema in use, not the whole \emph{postfix.admin} web
 		frontend, there was an extra solution to generate password hashes and
@@ -394,7 +400,8 @@
 		\texttt{sha512-crypt}, which is substantially more secure
 		\cite{missing}. (\texttt{bcrypt} was considered but unfortunately
 		rejected, because it is not supported by \texttt{glibc} included in
-		Debian Linux 7.)
+		Debian Linux 7. Therefore, none of the compared tools supports it
+		natively.)
 
 		\todo{Sources for algorithms and their comparisons}
 
@@ -553,7 +560,7 @@
 			&& \emph{postfix.admin} compatible
 			&& \emph{postfix.admin} import
 			&& Updatable (Migrations)
-			&& Database independence
+			&& Systematic database independence
 
 			& Features
 			&& Basic domain, mailbox and alias management
