@@ -518,10 +518,37 @@
 			\texttt{Mailbox} for example.
 
 			\subsubsection*{Domains}
+				For \texttt{Domains} the following attributes are saved per
+				record: \texttt{name} (which is the actual domain- or hostname,
+				\texttt{description}, \texttt{backupmx} (indicates, if the
+				domain is specified as backup MX), \texttt{active},
+				\texttt{quick\_access} (indicates, if the domain edit is
+				reachable through a quick access menu in the \ac{UI}),
+				\texttt{mx\_set} (for automatically saving, if the MX record in
+				the DNS points to the correct mail server) and the timestamps
+				of creation and last update. \texttt{Domains} are connected to
+				many \texttt{Mailboxes} and \texttt{Aliases} to reflect the
+				affiliation of the latter.
 
 			\subsubsection*{Mailboxes}
+				A \texttt{Mailbox} is connected to its \texttt{Domain} and
+				possibly also to one \texttt{Relocation} and has the attributes
+				\texttt{username} (which is the part in front of the
+				domain in the E-Mail address), \texttt{encrypted\_password}
+				(containing the password hash), \texttt{name} (for a given name
+				for example), \texttt{mail\_location} (which is empty by
+				default but can be used to move the users mail data location),
+				\texttt{quota}, \texttt{active}, \texttt{admin} and timestamp
+				attributes for saving the date of creation or the last update.
 
 			\subsubsection*{Aliases}
+				\texttt{Aliases} represent mail forwardings and are also
+				connected to their affiliated \texttt{Domain}. They have the
+				attributes \texttt{username}, \texttt{goto} (which is the
+				target of the forwarding and can contain one or more internal
+				or external E-Mail addresses seperated by commas),
+				\texttt{active}, \texttt{description} and timestamps of
+				creation and last update.
 
 			\subsubsection*{Permissions}
 				\texttt{Mailbox} records (or users) are also used for the login
@@ -568,14 +595,40 @@
 			%	sha512-crypt
 
 		\subsection*{Perspective}
-			% Better CLI
-			% Spam
-			% Sieve
+			Not least through the evaluation of the different solutions for
+			Open Source mail system administration user interfaces, some
+			possible features for Møil become obvious.
+
+			\begin{description}
+				\item[\rm Better \ac{CLI}]\ \\
+					Currently, Møil has seperate \ac{CLI} tools for the most
+					important tasks like managing domains and mailboxes and
+					importing data from an \emph{postfix.admin} installation.
+					This can be expanded into a single \ac{CLI} utility with
+					better support for the features, the web user interface
+					offers.
+
+				\item[\rm Spam and virus check integration]\ \\
+					Some compared solutions integrate \texttt{amavisd-new} by
+					shared database tables. After this being clear, there is
+					not much left to be solved conceptually for a spam and
+					virus check integration and this becomes a question of time.
+
+				\item[\rm Support for server-side filters]\ \\
+					The support for server-side filters in Møil was already
+					examined and begun but at first, a Ruby library for the
+					ManageSieve protocol has to be implemented, because the
+					only one existing is not maintained anymore and became
+					disfunctional.
+			\end{description}
 
 		\subsection*{Setup}
-			% Relevant configs for postfix and dovecot
-			% Setup of rails app
-			% Links to README on GitHub
+			\subsubsection*{Relevant configs for postfix and dovecot}
+
+			\subsubsection*{Setup of the rails app}
+
+			\subsubsection*{Further readings}
+				% Links to README on GitHub
 
 	\appendix
 
