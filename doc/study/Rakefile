@@ -30,6 +30,6 @@ end
 desc 'Build document for export and clean up'
 task export: :build do
   export_name = 'moeil-' + Time.now.strftime('%Y%m%d') + '.pdf'
-  sh "ln #@name.pdf #{export_name}"
+  sh "ln -f #@name.pdf #{export_name}"
   Rake::Task['clean_all'].invoke
 end
