@@ -1,0 +1,33 @@
+% Shorten the usage of german quotation marks.
+\newcommand{\gq}[1]{
+	\glqq #1\grqq
+}
+
+% Inline comment.
+\newcommand{\comment}[2]{#2}
+\newcommand{\todo}[2]{#2}
+
+% Vertical space after paragraph.
+\newcommand{\s}{\vspace{0.5em}}
+
+% Little table for most important software info.
+\newcommand{\infotable}[4]{
+	\begin{tabular}{p{2.5cm}l}
+		Website: & \url{#1} \\
+		Language: & #2 \\
+		Last commit: & #3 \\
+		Commits: & #4 \\
+	\end{tabular}
+	\s
+}
+
+% Emphasize a criterion.
+\newcommand{\crit}[2]{\textbf{#1} (#2)}
+
+% Aliases for yes and no in comparison overview table.
+\newcommand{\y}{\checkmark}
+\newcommand{\n}{$\times$}
+
+% Easy reference to section name and page.
+\newcommand{\textref}[1]{"\nameref{#1}" on page \pageref{#1}}
+\newcommand{\textsecref}[1]{"\nameref{#1}" section on page \pageref{#1}}

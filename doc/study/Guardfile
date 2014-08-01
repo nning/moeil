@@ -1,0 +1,3 @@
+guard 'rake', task: :open do
+  watch(/^.*\.(bib|tex)$/)
+end
