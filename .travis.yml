@@ -6,10 +6,6 @@ rvm:
 notifications:
   email: false
 
-branches:
-  except:
-    - study
-
 services:
   - elasticsearch
 
