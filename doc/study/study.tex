@@ -18,12 +18,12 @@
 \ExecuteBibliographyOptions{hyperref=true,language=ngerman,backref=true}
 \addbibresource{bibliography.bib}
 
-%\usepackage{lineno}
-%\linenumbers
-
 \include{commands}
 \include{font-family}
 
+\IfFileExists{review.tex}{
+	\include{review}
+}
 
 \begin{document}
 
@@ -42,15 +42,15 @@
 
 	\section{Abstract}
 		This document compares existing administration user interface solutions
-		for mail servers running \emph{postfix} and backed by relational
-		databases and introduces yet another one, which is called \emph{Møil}
-		and is written in Ruby utilizing the
-		\ac{Rails}\footnote{\url{http://rubyonrails.org}} framework. It brings
-		the handy possibility of managing the database schema with migrations,
-		a lot of beautiful, responsive \acs{CRUD} and some other nice features
-		(see \emph{Møil} \textref{sec:moeil:features}). The code is available
-		from GitHub\footnote{\url{https://github.com/nning/moeil}} licensed
-		under AGPLv3 \cite{agpl}.
+		for mail servers running \emph{postfix} and \emph{dovecot} backed by
+		relational databases and introduces yet another one, called \emph{Møil}
+		and written in Ruby utilizing the
+		\ac{Rails}\footnote{\url{http://rubyonrails.org}} framework. It
+		provides an usable, responsive \ac{UI}, database independence and ACLs.
+		More features are listed in the \textsecref{sec:moeil:features}. The
+		code is available from
+		GitHub\footnote{\url{https://github.com/nning/moeil}} licensed under
+		AGPLv3 \cite{agpl}.
 
 	\section{Introduction}
 		% Reasons for database-backing
@@ -58,7 +58,7 @@
 		For mail system setups (meaning one or more servers running Mail
 		Submission, Delivery and Transfer Agent software and providing a
 		Message Store for users \cite{mail-architecture}), storing data about
-		which domains and E-Mail addresses the system is responsible for
+		which domains and email addresses the system is responsible for
 		(further called meta data) in relational databases (as opposed to plain
 		files for example) is beneficial for several reasons.
 
@@ -69,19 +69,21 @@
 		loads: Several servers handling incoming mail or users reading their
 		mail act as readers on one or more database servers. The performance of
 		the frequent look-up of domains, mailboxes and aliases (forwardings)
-		for receiving mail or user logins can be increased. The actual
-		accommodation of E-Mails -- another big problem with horizontal scaling
-		-- can not be considered here.
+		for receiving mail or user logins can be increased, because it offers
+		more parallel read capacity. The actual accommodation of emails --
+		another big problem with horizontal scaling	-- can not be covered
+		here.
 
 		%	API (e.g. for accounting)
 
 		\acp{DBMS} for relational databases usually provide a query interface
-		with the \ac{SQL} \cite{sql} for editing the data sets. It is widely
+		based on the \ac{SQL} \cite{sql} for editing the data sets. It is widely
 		supported by programming languages and equally widely spoken among
 		programmers, which makes it valuable for integration of several
 		services dealing with this mail system meta data. For example this can
 		be used to integrate accounting solutions for charging purposes into
-		mail systems.
+		mail systems using \ac{SQL} as consistent interface to the application
+		data (regarded as an \acs{API}).
 
 		%	Structural clarity for administrators
 
@@ -112,14 +114,16 @@
 
 		\subsection{Criteria}
 		\label{sec:evaluation:criteria}
-			Not only for the development of \emph{Møil}, some of the criteria
-			arose from shortcomings of \emph{postfix.admin} (see page
+			Some of the criteria arose from shortcomings of
+			\emph{postfix.admin} (see page
 			\pageref{sec:contestants:postfix.admin}), which is a quite widely
-			deployed solution. The criteria will be classified into four
-			categories (Data model, features, security \& robustness and user
-			interface) and numbered for easier reference. An example for the
-			textual distinguation is the criterion \crit{normalized database
-			schema}{1.1} as it is written here. There is some meta-data like
+			deployed solution -- not only for the development of \emph{Møil}.
+			The criteria will be classified into four categories (Data model,
+			features, security \& robustness and user interface) and numbered
+			for easier reference. An example for the textual distinguation is
+			the criterion \crit{normalized database schema}{1.1} as it is
+			written here: A short description in \textbf{bold} font succeeded
+			by a sequential number in parenthesis. There is some meta-data like
 			website, programming language, last update in VCS and number of
 			commits, which is not numbered and compared. The used programming
 			language would be a neutral attribute but gets a criterion, because
@@ -153,7 +157,7 @@
 			\subsubsection{Features (2)}
 				There are features, which no mail server administration user
 				interface could spare and yet they will be listed here, because
-				it is important to analyze, how these are implemented and how
+				it is important to analyze how these are implemented and how
 				the implementations differ by solution. The \crit{basic
 				domain, mailbox and alias management}{2.1} is one of them. The
 				\crit{password changing ability for users}{2.2} is a feature,
@@ -170,7 +174,7 @@
 				More mature utilities also bring useful non-basic features as
 				an \crit{audit trail}{2.4.1} for example, which can be used to
 				log any changes to the database with time and transacting
-				account. It is also possible, the audit trail provides an undo
+				account. It is also possible the audit trail provides an undo
 				functionality. In some environments users demand \crit{vacation
 				mailing}{2.4.2} to automatically answer any incoming mail with
 				a pre-defined text when they are vacant. Some solutions serve
@@ -195,7 +199,7 @@
 				unauthorized database access through potential security holes
 				in the application. When the database is maliciously read, the
 				value of the passwords to the attacker is inversely
-				proportional to the time it costs, to crack the password
+				proportional to the time it costs to crack the password
 				hashing. \texttt{MD5} and \texttt{SHA1} based methods are
 				considered unsecure, \texttt{SHA256}, \texttt{SHA384},
 				\texttt{SHA512} and \texttt{bcrypt} are
@@ -218,9 +222,9 @@
 
 		\subsection{The contestants}
 			For introduction of "the contestants", the most important
-			attributes and specialties will be listed for each. A more detailed
-			comparison of the features can be found under
-			\textref{sec:evaluation:overview}.
+			attributes and specialties will be listed for each. A more direct
+			comparison of the features and a subsumption can be found in the
+			\textsecref{sec:evaluation:overview}.
 
 			\subsubsection{modoboa}
 				\infotable{http://modoboa.org}{Python}{2014-07-28}{1594}
@@ -231,22 +235,22 @@
 				therefore includes facilities like schema migrations and an
 				\ac{ORM}. It passes almost every criterion; just when it comes
 				to the \crit{audit trail}{2.4.1}, there is no undo support.
-				Also the user interface on a mobile phone is not fully
-				elaborated and has some minor flaws.
+				Also the \ac{UI} on mobile phones is not fully elaborated and
+				has some minor flaws.
 
 			\subsubsection{Møil}
 				\infotable{https://github.com/nning/moeil}{Ruby}{2014-07-26}{353}
 				
 				\noindent
 				Further information on \emph{Møil} is to be found in the
-				section \textref{sec:moeil}.
+				\textsecref{sec:moeil}.
 
 			\subsubsection{postfix.admin}
 			\label{sec:contestants:postfix.admin}
 				\infotable{http://postfixadmin.sourceforge.net}{PHP}{2014-07-22}{1682}
 
 				\noindent
-				For many of the solutions, \emph{postfix.admin} seems to be an
+				For many of the solutions \emph{postfix.admin} seems to be an
 				inspiration and also the impulse for a new implementation. Many
 				solutions aim to overcome its shortcomings, but many also fail
 				to live up to that task (which in this case means every PHP
@@ -460,10 +464,10 @@
 					grained in order to delegate administrative tasks.
 
 				\item[\rm Responsive user interface]\ \\
-					\emph{Møil} adapts to the environment, it is needed in. The
+					\emph{Møil} adapts to the environment it is needed in. The
 					web user interface is responsive and therefore supports
 					both classic desktop view ports and mobile devices like
-					phones or tablets. For friends of the command line, some
+					phones or tablets. For friends of the command line some
 					commands to manage the most important resources are
 					provided, too.
 
@@ -474,8 +478,8 @@
 					reverting changes.
 
 				\item[\rm Search]\ \\
-					A search for any resources is provided, which is optionally
-					based on \ac{SQL} or
+					A combined search for any resource is provided, which is
+					optionally based on \ac{SQL} or
 					\emph{Elasticsearch}\footnote{\url{http://www.elasticsearch.org}}
 					for really huge databases (if installed and configured to
 					be used).
@@ -512,9 +516,9 @@
 			%	sha512-crypt
 
 			The application model is put into graphs in the following image. It
-			shows the model classes and their relations among each other. (The
-			graph is generated, so unfortunately (for now) the actual
-			attributes saving a relation and the cardinalities are missing.)
+			shows the model classes and their relations among each other. The
+			graph is generated, so unfortunately the actual attributes saving a
+			relation and the cardinalities are missing, for now.
 
 			\includegraphics[width=\textwidth]{images/erd.pdf}
 
@@ -544,7 +548,7 @@
 				A \texttt{Mailbox} is connected to its \texttt{Domain} and
 				possibly also to one \texttt{Relocation} and has the attributes
 				\texttt{username} (which is the part in front of the
-				domain in the E-Mail address), \texttt{encrypted\_password}
+				domain in the email address), \texttt{encrypted\_password}
 				(containing the password hash), \texttt{name} (for a given name
 				for example), \texttt{mail\_location} (which is empty by
 				default but can be used to move the users mail data location),
@@ -558,7 +562,7 @@
 				connected to their affiliated \texttt{Domain}. They have the
 				attributes \texttt{username}, \texttt{goto} (which is the
 				target of the forwarding and can contain one or more internal
-				or external E-Mail addresses seperated by commas),
+				or external email addresses seperated by commas),
 				\texttt{active}, \texttt{description} and timestamps of
 				creation and last update.
 
@@ -615,21 +619,22 @@
 					important tasks like managing domains and mailboxes and
 					importing data from an \emph{postfix.admin} installation.
 					This can be expanded into a single \ac{CLI} utility with
-					better support for the features, the web user interface
+					better support for the features the web user interface
 					offers.
 
 				\item[\rm Spam and virus check integration]\ \\
-					Some compared solutions integrate \texttt{amavisd-new} by
-					shared database tables. After this being clear, there is
-					not much left to be solved conceptually for a spam and
-					virus check integration and this becomes a question of time.
+					Of the compared solutions, some integrate
+					\texttt{amavisd-new} by shared database tables. After this
+					being clear, there is not much left to be solved
+					conceptually for a spam and virus check integration and
+					this becomes a question of time.
 
 				\item[\rm Support for server-side filters]\ \\
 					The support for server-side filters in Møil was already
-					examined and begun but at first, a Ruby library for the
+					examined and begun but at first a Ruby library for the
 					ManageSieve protocol has to be implemented, because the
 					only one existing is not maintained anymore and became
-					disfunctional.
+					dysfunctional.
 			\end{description}
 
 		\subsection{Setup}

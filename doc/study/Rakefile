@@ -9,6 +9,13 @@ desc 'Build document as PDF'
 file "#@name.pdf" => Dir['{*.{bib,tex},images/*.pdf}'] do
   sh "texi2pdf #@name.tex"
 end
+
+desc 'Build document as PDF with line numbers'
+task :review do
+  File.write 'review.tex', '\usepackage{lineno}\linenumbers'
+  Rake::Task['build'].invoke
+  rm_f 'review.tex'
+end
  
 desc 'Cleanup temporary files'
 task :clean do
@@ -18,7 +25,7 @@ task :clean do
 end
 
 desc 'Cleanup everything'
-task clean_all: [:clean] do
+task clean_all: :clean do
   rm_f "#@name.pdf"
 end
 
