@@ -28,9 +28,9 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: 66db52ce31b5d8629f5813a1d7f03a8bc17e5d52
+  revision: 6e95b66b544638178f1e9648369ec560594163ac
   specs:
-    devise (3.2.4)
+    devise (3.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: ed3de1c2b566a962697529e824953f6b280e2867
+  revision: c3bc4af79df2f3f51500a38d8a84aa682f9ad009
   specs:
     simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
@@ -57,9 +57,9 @@ GIT
 
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: d5625c907168b6311be122b99d89614e02448475
+  revision: 54317e5c02a4915e7a5def3a3e94cc2738a51ed3
   specs:
-    bootstrap-sass (3.2.0.0)
+    bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
 
 GEM
@@ -115,8 +115,8 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)
-    capistrano-bundler (1.1.2)
-      capistrano (~> 3.0)
+    capistrano-bundler (1.1.3)
+      capistrano (~> 3.1)
       sshkit (~> 1.2)
     capistrano-rails (1.1.1)
       capistrano (~> 3.1)
@@ -241,15 +241,15 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.5.0)
       sexp_processor (~> 4.1)
-    sass (3.3.10)
-    sdoc (0.4.0)
-      json (~> 1.8)
-      rdoc (~> 4.0, < 5.0)
+    sass (3.3.14)
+    sdoc (0.4.1)
+      json (~> 1.7, >= 1.7.7)
+      rdoc (~> 4.0)
     searchkick (0.8.0)
       activemodel
       elasticsearch (>= 1)
       hashie
-    sexp_processor (4.4.3)
+    sexp_processor (4.4.4)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
       shoulda-matchers (>= 1.4.1, < 3.0)
@@ -288,13 +288,13 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-    tins (1.3.0)
+    tins (1.3.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
-    tzinfo (1.2.1)
+    tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
