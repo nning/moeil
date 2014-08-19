@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/hassox/warden.git
-  revision: e43d3ed7a1d8a8915b39e0ebbd21c733beca00d5
+  revision: 74162f2bf896b377472b6621ed1f6b40046525f4
   specs:
     warden (1.2.3)
       rack (>= 1.0)
@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: 6e95b66b544638178f1e9648369ec560594163ac
+  revision: 8e4a700f81c8bfc3d46951e34f5ff3c18138c89e
   specs:
     devise (3.3.0)
       bcrypt (~> 3.0)
@@ -98,13 +98,13 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    brakeman (2.6.1)
+    brakeman (2.6.2)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
       haml (>= 3.0, < 5.0)
       highline (~> 1.6.20)
       multi_json (~> 1.2)
-      ruby2ruby (~> 2.0.5)
+      ruby2ruby (~> 2.1.1)
       ruby_parser (~> 3.5.0)
       sass (~> 3.0)
       slim (>= 1.3.6, < 3.0)
@@ -131,7 +131,7 @@ GEM
       execjs
     coffee-script-source (1.7.1)
     colorize (0.7.3)
-    coveralls (0.7.0)
+    coveralls (0.7.1)
       multi_json (~> 1.3)
       rest-client
       simplecov (>= 0.7)
@@ -156,7 +156,7 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
-    faker (1.4.2)
+    faker (1.4.3)
       i18n (~> 0.5)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -236,16 +236,16 @@ GEM
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
     ruby-graphviz (1.0.9)
-    ruby2ruby (2.0.8)
+    ruby2ruby (2.1.1)
       ruby_parser (~> 3.1)
       sexp_processor (~> 4.0)
     ruby_parser (3.5.0)
       sexp_processor (~> 4.1)
-    sass (3.3.14)
+    sass (3.4.0)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    searchkick (0.8.0)
+    searchkick (0.8.2)
       activemodel
       elasticsearch (>= 1)
       hashie
@@ -264,7 +264,7 @@ GEM
     slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    sprockets (2.12.0)
+    sprockets (2.12.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
