@@ -5,6 +5,7 @@ class Admin::SearchesController < AdminController
   # Search models for query.
   def search
     @results = Search.for(current_mailbox, params[:q])
+=begin
   rescue Elasticsearch::Transport::Transport::BadRequest
     if @already_retried
       raise
@@ -14,5 +15,6 @@ class Admin::SearchesController < AdminController
       @already_retried = true
       retry
     end
+=end
   end
 end
