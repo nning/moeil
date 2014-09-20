@@ -7,7 +7,7 @@ set :repo_url, 'https://github.com/nning/moeil.git'
 set :scm, :git
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.1.2'
+set :rbenv_ruby, '2.1'
 
 set :deploy_to,  '/srv/http/' + fetch(:hostname)
 set :deploy_via, :remote_cache
