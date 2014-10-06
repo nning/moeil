@@ -89,10 +89,11 @@ GEM
     debug_inspector (0.0.2)
     default_value_for (3.0.0.1)
       activerecord (>= 3.2.0, < 5.0)
-    devise (3.3.0)
+    devise (3.4.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
+      responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     devise-encryptable (0.2.0)
