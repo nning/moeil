@@ -93,4 +93,18 @@ class PermissionTest < ActiveSupport::TestCase
       assert_equal 0, Permission.count
     end
   end
+
+  context 'Domain deletion' do
+    setup do
+      @permission = FactoryGirl.create :permission
+      @mailbox = @permission.subject
+      @domain = @permission.item
+
+      @domain.destroy
+    end
+
+    should 'also delete permissions' do
+      assert_equal 0, Permission.count
+    end
+  end
 end
