@@ -65,8 +65,6 @@ group :development, :test do
     gem 'activerecord-jdbcsqlite3-adapter'
     gem 'activerecord-jdbcmysql-adapter'
   end
-
-  gem 'rspec-rails', '~> 2.0'            # Needed by shoulda
 end
 
 group :test do
