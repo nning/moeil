@@ -3,7 +3,7 @@ module Permissionable
   extend ActiveSupport::Concern
 
   included do
-    has_many :permissions, as: :item
+    has_many :permissions, as: :item, dependent: :destroy
   end
 
   # Dummy method for easier use in simple_form.

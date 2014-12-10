@@ -5,7 +5,13 @@ module MailboxesHelper
   # Link to edit action of Mailbox by id.
   def link_to_mailbox(id)
     return unless id
-    m = Mailbox.find(id)
+
+    begin
+      m = Mailbox.find(id)
+    rescue ActiveRecord::RecordNotFound
+      return
+    end
+
     link_to(m, [:edit, :admin, m.domain, m]).html_safe
   end
 end

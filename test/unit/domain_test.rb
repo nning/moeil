@@ -54,5 +54,36 @@ class DomainTest < ActiveSupport::TestCase
         assert_equal 'foo.com', @domain.name
       end
     end
+
+    context 'managable' do
+      setup do
+        @another_domain = FactoryGirl.create :domain
+      end
+
+      context 'admin' do
+        setup do
+          @mailbox = FactoryGirl.create :mailbox, domain: @domain, admin: true
+        end
+
+        should 'return everything' do
+          assert_equal Domain.managable(@mailbox).all, Domain.all
+        end
+      end
+
+      %w[owner editor].each do |role|
+        context role do
+          setup do
+            @mailbox = FactoryGirl.create :mailbox, domain: @domain
+            @domain.permissions.create!(subject: @mailbox, role: role)
+            @managable = Domain.managable(@mailbox)
+          end
+
+          should 'return correct domain' do
+            assert_equal @managable.all.size, 1
+            assert_equal @managable.first, @domain
+          end
+        end
+      end
+    end
   end
 end

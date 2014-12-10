@@ -1,7 +1,9 @@
 # Search for resources.
 module Search
   # Results for query.
-  def self.for(mailbox, query, sql: !Settings.elasticsearch)
+  def self.for(mailbox, query, options = {})
+    sql = options[:sql] || !Settings.elasticsearch
+
     haystack = ::Domain.managable(mailbox)
     haystack_ids = haystack.pluck(:id)
 

@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.1.4'
 
 gem 'pg', platforms: :ruby
-#gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
+gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
 
 gem 'cancan'                              # Authorization
 gem 'default_value_for'                   # Default values
@@ -31,7 +31,7 @@ gem 'yaml_db',                            # Database dump
 group :assets do
   gem 'coffee-rails'
   gem 'therubyracer', platforms: :ruby
-# gem 'therubyrhino', platforms: :jruby
+  gem 'therubyrhino', platforms: :jruby
   gem 'uglifier'
 
   gem 'sass-rails',                       # Less ugly CSS
@@ -48,7 +48,7 @@ group :development do
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 
   # More beautiful exception pages
-  gem 'better_errors'
+  gem 'better_errors', platforms: :ruby
   gem 'binding_of_caller', platforms: :ruby
 
   gem 'rails-erd'                         # Entity/relationship diagram of model
@@ -61,12 +61,12 @@ group :development, :test do
     gem 'mysql2'
   end
 
-# platforms :jruby do
-#   gem 'activerecord-jdbcsqlite3-adapter'
-#   gem 'activerecord-jdbcmysql-adapter'
-# end
+  platforms :jruby do
+    gem 'activerecord-jdbcsqlite3-adapter'
+    gem 'activerecord-jdbcmysql-adapter'
+  end
 
-# gem 'rspec-rails', '~> 2.0'            # Needed by shoulda
+  gem 'rspec-rails', '~> 2.0'            # Needed by shoulda
 end
 
 group :test do

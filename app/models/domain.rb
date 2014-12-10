@@ -87,10 +87,13 @@ class Domain < ActiveRecord::Base
     if mailbox.admin?
       Domain
     else
-      sql = '(permissions.role = "editor" or permissions.role = "owner")
-        and subject_id = ?'
-      Domain.includes(:permissions).where(sql, mailbox.id)
-        .references(:permissions)
+      Domain.joins(:permissions).where('
+        (permissions.role = ? or permissions.role = ?)
+        and subject_id = ?',
+        'editor',
+        'owner',
+        mailbox.id
+      )
     end
   end
 end

@@ -2,13 +2,10 @@ language: ruby
 
 rvm:
   - 2.1
+  - jruby
 
 notifications:
   email: false
-
-branches:
-  except:
-    - paper
 
 services:
   - elasticsearch

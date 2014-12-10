@@ -21,7 +21,7 @@
 
   %ul.nav.navbar-nav.navbar-right
     / User settings
-    %li{class: active_navigation('mailbox')}
+    %li{class: active_navigation('mailboxes')}
       = link_to [:edit, :mailbox] do
         = icon :user
         = current_mailbox.email
