@@ -64,4 +64,5 @@ group :test do
   gem 'faker'                       # For test data
   gem 'rake'                        # Travis seems to like this added explicitly
   gem 'shoulda'                     # Cleaner tests
+  gem 'test-unit'                   # Explicitly necessary for Ruby >= 2.2.0
 end
