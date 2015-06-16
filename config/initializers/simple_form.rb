@@ -47,7 +47,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.form_class = 'simple_form form-horizontal'
+  config.default_form_class = 'simple_form form-horizontal'
 
   config.default_wrapper = :bootstrap3
 end
