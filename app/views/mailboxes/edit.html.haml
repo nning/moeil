@@ -23,7 +23,7 @@
         %fieldset
           %legend Change Password
           = f.input :password, hint: 'Leave blank, if you do not want to change it.'
-          = f.input :password_confirmation, label: false
+          = f.input :password_confirmation
 
       = render partial: 'shared/mailbox_permissions'
 
