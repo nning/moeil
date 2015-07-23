@@ -30,13 +30,11 @@ gem 'yaml_db',                            # Database dump
   github: 'jetthoughts/yaml_db'
 
 group :assets do
+  gem 'bootstrap-sass'
   gem 'coffee-rails'
   gem 'therubyracer', platforms: :ruby
   gem 'therubyrhino', platforms: :jruby
   gem 'uglifier'
-
-  gem 'sass-rails'                        # Less ugly CSS
-  gem 'bootstrap-sass'
 end
 
 group :development do
@@ -49,11 +47,10 @@ group :development do
   # More beautiful exception pages
   # gem 'better_errors', platforms: :ruby
   # gem 'binding_of_caller', platforms: :ruby
+  gem 'web-console', '~> 2.0'
 
   gem 'rails-erd'                         # Entity/relationship diagram of model
   gem 'brakeman', require: false          # Vulnerability scanner
-
-  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do

@@ -12,5 +12,7 @@
  *= require_tree .
  */
 
+@import 'bootstrap-sprockets';
 @import 'bootstrap';
+
 body { padding: 50px 1em; }
