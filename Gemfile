@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.4'
+gem 'rails', '~> 4.2.3'
 
 gem 'pg', platforms: :ruby
 gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
@@ -14,11 +14,12 @@ gem 'devise-encryptable',
 gem 'foreigner'                           # Foreign key constraints
 gem 'haml'                                # More beautiful views
 gem 'highline'                            # Terminal input in cli scripts
-gem 'inherited_resources', '~> 1.4.1'     # DRY
+gem 'inherited_resources', '~> 1.6.0'     # DRY
 gem 'jquery-rails'                        # jQuery
 gem 'kaminari'                            # Pagination
-gem 'paper_trail', '~> 3.0.2'             # Change history
+gem 'paper_trail', '~> 3.0.8'             # Change history
 gem 'rails_config'                        # For configuration
+gem 'responders', '~> 2.0'
 gem 'searchkick'                          # Efficient search
 gem 'simple_form',                        # DRY forms
   github: 'plataformatec/simple_form'
@@ -34,10 +35,8 @@ group :assets do
   gem 'therubyrhino', platforms: :jruby
   gem 'uglifier'
 
-  gem 'sass-rails',                       # Less ugly CSS
-    github: 'rails/sass-rails'
-  gem 'bootstrap-sass',
-    github: 'thomas-mcdonald/bootstrap-sass'
+  gem 'sass-rails'                        # Less ugly CSS
+  gem 'bootstrap-sass'
 end
 
 group :development do
@@ -48,11 +47,13 @@ group :development do
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 
   # More beautiful exception pages
-  gem 'better_errors', platforms: :ruby
-  gem 'binding_of_caller', platforms: :ruby
+  # gem 'better_errors', platforms: :ruby
+  # gem 'binding_of_caller', platforms: :ruby
 
   gem 'rails-erd'                         # Entity/relationship diagram of model
   gem 'brakeman', require: false          # Vulnerability scanner
+
+  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
