@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140701123952) do
 
-  create_table "aliases", force: true do |t|
+  create_table "aliases", force: :cascade do |t|
     t.string   "username"
     t.integer  "domain_id",                  null: false
     t.text     "goto",                       null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140701123952) do
   add_index "aliases", ["domain_id"], name: "index_aliases_on_domain_id"
   add_index "aliases", ["username", "domain_id"], name: "index_aliases_on_username_and_domain_id", unique: true
 
-  create_table "domains", force: true do |t|
+  create_table "domains", force: :cascade do |t|
     t.string   "name",                         null: false
     t.string   "description"
     t.boolean  "backupmx",     default: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140701123952) do
 
   add_index "domains", ["name"], name: "index_domains_on_name", unique: true
 
-  create_table "mailboxes", force: true do |t|
+  create_table "mailboxes", force: :cascade do |t|
     t.string   "username",                           null: false
     t.string   "encrypted_password",                 null: false
     t.string   "name"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20140701123952) do
   add_index "mailboxes", ["username", "domain_id"], name: "index_mailboxes_on_username_and_domain_id", unique: true
   add_index "mailboxes", ["username"], name: "index_mailboxes_on_username"
 
-  create_table "permissions", force: true do |t|
+  create_table "permissions", force: :cascade do |t|
     t.integer  "subject_id",                      null: false
     t.string   "subject_type",                    null: false
     t.integer  "item_id",                         null: false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20140701123952) do
   add_index "permissions", ["item_id", "item_type", "subject_id", "subject_type"], name: "index_permissions_on_item_and_subject", unique: true
   add_index "permissions", ["subject_id", "subject_type"], name: "index_permissions_on_subject_id_and_subject_type"
 
-  create_table "relocations", force: true do |t|
+  create_table "relocations", force: :cascade do |t|
     t.string   "old_username", null: false
     t.string   "old_domain",   null: false
     t.integer  "mailbox_id",   null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20140701123952) do
   add_index "relocations", ["old_username", "old_domain", "mailbox_id"], name: "index_relocations_on_complete_uniqueness", unique: true
   add_index "relocations", ["old_username", "old_domain"], name: "index_relocations_on_old_username_and_old_domain", unique: true
 
-  create_table "versions", force: true do |t|
+  create_table "versions", force: :cascade do |t|
     t.string   "item_type",      null: false
     t.integer  "item_id",        null: false
     t.string   "event",          null: false
