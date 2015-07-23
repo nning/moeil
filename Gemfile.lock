@@ -323,7 +323,7 @@ DEPENDENCIES
   mysql2
   paper_trail (~> 2.7.2)
   pg
-  rails (~> 3.2.19)
+  rails (~> 3.2.22)
   rails-erd
   rails_config
   rake
@@ -337,3 +337,6 @@ DEPENDENCIES
   therubyrhino
   uglifier
   yaml_db
+
+BUNDLED WITH
+   1.10.6
