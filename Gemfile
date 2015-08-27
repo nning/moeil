@@ -16,7 +16,7 @@ gem 'inherited_resources', '~> 1.4.1'
 gem 'jquery-rails'                  # jQuery
 gem 'kaminari'                      # Pagination
 gem 'paper_trail', '~> 2.7.2'       # Change history
-gem 'rails_config'                  # For configuration
+gem 'config'                        # For configuration
 gem 'searchkick'                    # Efficient search
 gem 'simple_form'                   # DRY form
 gem 'yaml_db'                       # Database dump
@@ -25,7 +25,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'therubyracer', platforms: :ruby
   gem 'therubyrhino', platforms: :jruby
-  gem 'uglifier'
+  gem 'uglifier', '~> 2.7.2'
 
   gem 'sass-rails'
   gem 'bootstrap-sass', '~> 3.1.1.1'
