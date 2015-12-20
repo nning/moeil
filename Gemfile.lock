@@ -118,12 +118,12 @@ GEM
     docile (1.1.5)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
-    elasticsearch (1.0.14)
-      elasticsearch-api (= 1.0.14)
-      elasticsearch-transport (= 1.0.14)
-    elasticsearch-api (1.0.14)
+    elasticsearch (1.0.15)
+      elasticsearch-api (= 1.0.15)
+      elasticsearch-transport (= 1.0.15)
+    elasticsearch-api (1.0.15)
       multi_json
-    elasticsearch-transport (1.0.14)
+    elasticsearch-transport (1.0.15)
       faraday
       multi_json
     erubis (2.7.0)
@@ -234,7 +234,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    searchkick (1.0.2)
+    searchkick (1.1.2)
       activemodel
       elasticsearch (>= 1)
       hashie
