@@ -19,6 +19,7 @@ gem 'paper_trail', '~> 2.7.2'       # Change history
 gem 'config'                        # For configuration
 gem 'searchkick'                    # Efficient search
 gem 'simple_form'                   # DRY form
+gem 'sshkit', '~> 1.7.1'
 gem 'yaml_db'                       # Database dump
 
 group :assets do
