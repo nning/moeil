@@ -2,6 +2,8 @@ require 'test_helper'
 
 # Tests for lib/search.rb
 class SearchTest < ActiveSupport::TestCase
+  BOOLS = [true]
+
   context 'Search' do
     setup do
       @domain1  = FactoryGirl.create :domain
@@ -12,11 +14,14 @@ class SearchTest < ActiveSupport::TestCase
       @mailbox2 = FactoryGirl.create :mailbox, domain: @domain2
       @alias2   = FactoryGirl.create :alias,   domain: @domain2
 
-      [Alias, Domain, Mailbox].map(&:reindex)
+      if Settings.elasticsearch
+        [Alias, Domain, Mailbox].map(&:reindex)
+        BOOLS << false
+      end
     end
 
     context 'for Domain' do
-      [true, false].each do |sql|
+      BOOLS.each do |sql|
         context "(sql:#{sql})" do
           context 'random' do
             setup do
@@ -66,7 +71,7 @@ class SearchTest < ActiveSupport::TestCase
     end
 
     context 'for Mailbox' do
-      [true, false].each do |sql|
+      BOOLS.each do |sql|
         context "(sql:#{sql})" do
           context 'random' do
             setup do
@@ -108,7 +113,7 @@ class SearchTest < ActiveSupport::TestCase
     end
 
     context 'for Alias' do
-      [true, false].each do |sql|
+      BOOLS.each do |sql|
         context "(sql:#{sql})" do
           context 'random' do
             setup do

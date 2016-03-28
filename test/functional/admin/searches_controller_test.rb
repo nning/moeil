@@ -9,7 +9,9 @@ class Admin::SearchesControllerTest < ActionController::TestCase
       @mailbox = FactoryGirl.create :mailbox, admin: true
       @domain = @mailbox.domain
       @alias = FactoryGirl.create :alias, domain: @domain
-      [Alias, Domain, Mailbox].map(&:reindex)
+
+      [Alias, Domain, Mailbox].map(&:reindex) if Settings.elasticsearch
+
       sign_in @mailbox
     end
 
