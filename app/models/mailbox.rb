@@ -32,10 +32,6 @@ class Mailbox < ActiveRecord::Base
 
   validates :encrypted_password, presence: true
 
-  before_save :create_relocation
-
-  devise :database_authenticatable, :encryptable
-
   has_paper_trail class_name: 'Version'
 
   default_value_for :quota, Settings.default_quota
