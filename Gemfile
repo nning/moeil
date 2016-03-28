@@ -7,10 +7,8 @@ gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
 
 gem 'cancan'                              # Authorization
 gem 'default_value_for'                   # Default values
-gem 'devise',                             # Authentication
-  github: 'plataformatec/devise'
-gem 'devise-encryptable',
-  github: 'plataformatec/devise-encryptable'
+gem 'devise'                              # Authentication
+gem 'devise-encryptable'
 gem 'foreigner'                           # Foreign key constraints
 gem 'haml'                                # More beautiful views
 gem 'highline'                            # Terminal input in cli scripts
@@ -22,13 +20,10 @@ gem 'config'                              # For configuration
 gem 'quiet_assets'
 gem 'responders', '~> 2.0'
 gem 'searchkick'                          # Efficient search
-gem 'simple_form',                        # DRY forms
-  github: 'plataformatec/simple_form'
+gem 'simple_form'                         # DRY forms
 gem 'turbolinks'                          # Load links with JS
-gem 'warden',                             # Rack authentication
-  github: 'hassox/warden'
-gem 'yaml_db',                            # Database dump
-  github: 'jetthoughts/yaml_db'
+gem 'warden'                              # Rack authentication
+gem 'yaml_db'                             # Database dump
 
 group :assets do
   gem 'bootstrap-sass'
