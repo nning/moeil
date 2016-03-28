@@ -137,12 +137,12 @@ GEM
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
-    elasticsearch (1.0.12)
-      elasticsearch-api (= 1.0.12)
-      elasticsearch-transport (= 1.0.12)
-    elasticsearch-api (1.0.12)
+    elasticsearch (1.0.15)
+      elasticsearch-api (= 1.0.15)
+      elasticsearch-transport (= 1.0.15)
+    elasticsearch-api (1.0.15)
       multi_json
-    elasticsearch-transport (1.0.12)
+    elasticsearch-transport (1.0.15)
       faraday
       multi_json
     erubis (2.7.0)
@@ -154,7 +154,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
-    faraday (0.9.1)
+    faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
     foreigner (1.7.4)
@@ -166,7 +166,7 @@ GEM
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
-    hashie (3.4.2)
+    hashie (3.4.3)
     highline (1.6.21)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -191,7 +191,7 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.6.1)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.8.4)
     multi_json (1.11.2)
     multipart-post (2.0.0)
     mysql2 (0.3.18)
@@ -259,7 +259,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    searchkick (0.9.0)
+    searchkick (1.2.1)
       activemodel
       elasticsearch (>= 1)
       hashie
@@ -363,4 +363,4 @@ DEPENDENCIES
   yaml_db!
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
