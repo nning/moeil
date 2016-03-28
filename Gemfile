@@ -18,7 +18,8 @@ gem 'inherited_resources', '~> 1.6.0'     # DRY
 gem 'jquery-rails'                        # jQuery
 gem 'kaminari'                            # Pagination
 gem 'paper_trail', '~> 3.0.8'             # Change history
-gem 'rails_config'                        # For configuration
+gem 'config'                              # For configuration
+gem 'quiet_assets'
 gem 'responders', '~> 2.0'
 gem 'searchkick'                          # Efficient search
 gem 'simple_form',                        # DRY forms
