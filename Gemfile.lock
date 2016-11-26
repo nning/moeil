@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/capistrano/rbenv.git
+  remote: https://github.com/capistrano/rbenv.git
   revision: e056efc0c361cc15b76ff961d6c5f65ed5e2c57e
   specs:
     capistrano-rbenv (2.0.4)
@@ -312,4 +312,4 @@ DEPENDENCIES
   yaml_db
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
