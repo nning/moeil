@@ -17,6 +17,7 @@ services:
   - elasticsearch
 
 before_install:
+  - bundle config github.https true
   - gem install bundler
 
 before_script:
