@@ -50,6 +50,7 @@ GEM
     arel (3.0.3)
     bcrypt (3.1.11)
     bcrypt (3.1.11-java)
+    bcrypt_pbkdf (1.0.0)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -123,6 +124,8 @@ GEM
       i18n (~> 0.5)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
+    ffi (1.9.18)
+    ffi (1.9.18-java)
     foreigner (1.7.4)
       activerecord (>= 3.0.0)
     haml (4.0.7)
@@ -195,6 +198,10 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (12.0.0)
+    rbnacl (4.0.2)
+      ffi
+    rbnacl-libsodium (1.0.11)
+      rbnacl (>= 3.0.1)
     rdoc (3.12.2)
       json (~> 1.4)
     ref (2.0.0)
@@ -270,6 +277,7 @@ DEPENDENCIES
   activerecord-jdbcmysql-adapter
   activerecord-jdbcpostgresql-adapter
   activerecord-jdbcsqlite3-adapter
+  bcrypt_pbkdf
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.1.1.1)
@@ -299,6 +307,8 @@ DEPENDENCIES
   rails (~> 3.2.22)
   rails-erd
   rake
+  rbnacl (~> 4.0.2)
+  rbnacl-libsodium
   sass-rails
   searchkick
   shoulda

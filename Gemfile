@@ -39,6 +39,11 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 
+  # ed25519 support for capistrano
+  gem 'rbnacl', '~> 4.0.2'
+  gem 'rbnacl-libsodium'
+  gem 'bcrypt_pbkdf'
+
   # More beautiful exception pages
   gem 'better_errors', platforms: :ruby
   gem 'binding_of_caller', platforms: :ruby
