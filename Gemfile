@@ -22,15 +22,12 @@ gem 'simple_form'                   # DRY form
 gem 'sshkit', '~> 1.7.1'
 gem 'yaml_db'                       # Database dump
 
-group :assets do
-  gem 'coffee-rails'
-  gem 'therubyracer', platforms: :ruby
-  gem 'therubyrhino', platforms: :jruby
-  gem 'uglifier', '~> 2.7.2'
-
-  gem 'sass-rails'
-  gem 'bootstrap-sass', '~> 3.1.1.1'
-end
+gem 'coffee-rails'
+gem 'therubyracer', platforms: :ruby
+gem 'therubyrhino', platforms: :jruby
+gem 'uglifier', '~> 2.7.2'
+gem 'sass-rails'
+gem 'bootstrap-sass', '~> 3.1.1.1'
 
 group :development do
   # Convenient deployment
