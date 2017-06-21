@@ -9,7 +9,7 @@ class SessionsController < Devise::SessionsController
       # Manually do the Mailbox lookup, because I could not get
       # warden.authenticate! to work.
       #
-      # Original line was this one (http://is.gd/yAipp2):
+      # Original line was this one (https://is.gd/sweaya):
       #   self.resource = warden.authenticate!(auth_options)
       #
       self.resource = Mailbox.lookup(sign_in_params[:username], sign_in_params[:domain_id])
@@ -20,8 +20,9 @@ class SessionsController < Devise::SessionsController
       end
 
       # From here it's original devise code again..
-      set_flash_message(:notice, :signed_in) if is_navigational_format?
+      set_flash_message!(:notice, :signed_in)
       sign_in(resource_name, resource)
+      yield resource if block_given?
       respond_with resource, location: after_sign_in_path_for(resource)
     end
   end
