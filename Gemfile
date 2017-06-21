@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
+
 gem 'rails', '~> 4.2'
 
 gem 'pg', platforms: :ruby
@@ -15,7 +21,7 @@ gem 'highline'                            # Terminal input in cli scripts
 gem 'inherited_resources', '~> 1.7'       # DRY
 gem 'jquery-rails'                        # jQuery
 gem 'kaminari'                            # Pagination
-gem 'paper_trail', '~> 4'                 # Change history
+gem 'paper_trail', '~> 7'                 # Change history
 gem 'config'                              # For configuration
 gem 'quiet_assets'
 gem 'responders', '~> 2'
@@ -35,7 +41,7 @@ end
 
 group :development do
   # Convenient deployment
-  gem 'capistrano', '~> 3.1'
+  gem 'capistrano', '~> 3'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
@@ -43,7 +49,7 @@ group :development do
   # More beautiful exception pages
   # gem 'better_errors', platforms: :ruby
   # gem 'binding_of_caller', platforms: :ruby
-  gem 'web-console', '~> 2'
+  gem 'web-console', '~> 3'
 
   gem 'rails-erd'                         # Entity/relationship diagram of model
   gem 'brakeman', require: false          # Vulnerability scanner

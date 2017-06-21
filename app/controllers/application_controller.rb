@@ -1,6 +1,6 @@
 # Application controller.
 class ApplicationController < ActionController::Base
-  before_action :configure_permitted_parameters, if: :devise_controller?  
+  before_action :configure_permitted_parameters, if: :devise_controller?
   check_authorization unless: :devise_controller?
 
   protect_from_forgery
