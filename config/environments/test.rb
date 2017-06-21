@@ -30,4 +30,8 @@ Moeil::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.eager_load = false
+
+  # TODO Check if random test order works with Rails >= 5 (by uncommenting next
+  #      line)
+  config.active_support.test_order = :sorted
 end

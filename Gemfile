@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.6'
+gem 'rails', '~> 4.2'
 
 gem 'pg', platforms: :ruby
 gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
@@ -12,13 +12,13 @@ gem 'devise-encryptable'
 gem 'foreigner'                           # Foreign key constraints
 gem 'haml'                                # More beautiful views
 gem 'highline'                            # Terminal input in cli scripts
-gem 'inherited_resources', '~> 1.6.0'     # DRY
+gem 'inherited_resources', '~> 1.7'       # DRY
 gem 'jquery-rails'                        # jQuery
 gem 'kaminari'                            # Pagination
-gem 'paper_trail', '~> 3.0.8'             # Change history
+gem 'paper_trail', '~> 4'                 # Change history
 gem 'config'                              # For configuration
 gem 'quiet_assets'
-gem 'responders', '~> 2.0'
+gem 'responders', '~> 2'
 gem 'searchkick'                          # Efficient search
 gem 'simple_form'                         # DRY forms
 gem 'turbolinks'                          # Load links with JS
@@ -35,7 +35,7 @@ end
 
 group :development do
   # Convenient deployment
-  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano', '~> 3.1'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
@@ -43,7 +43,7 @@ group :development do
   # More beautiful exception pages
   # gem 'better_errors', platforms: :ruby
   # gem 'binding_of_caller', platforms: :ruby
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 2'
 
   gem 'rails-erd'                         # Entity/relationship diagram of model
   gem 'brakeman', require: false          # Vulnerability scanner
@@ -68,7 +68,7 @@ group :test do
   gem 'minitest'                         # Required explicitly in "ruby 2.2.0dev (2014-03-04 trunk 45265)"
   gem 'rake'                             # Travis seems to like this added explicitly
   gem 'shoulda'                          # More beautiful assertions
-  gem 'shoulda-matchers', '~> 2.4.0'
+  gem 'shoulda-matchers', '~> 2.4'
 end
 
 group :doc do

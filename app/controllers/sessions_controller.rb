@@ -37,9 +37,4 @@ class SessionsController < Devise::SessionsController
     domain ||= Settings.default_domain
     mp[:domain_id] = Domain.where(name: domain).first.try(:id)
   end
-
-  def sign_in_params
-    devise_parameter_sanitizer.for(:sign_in) << :email
-    super
-  end
 end

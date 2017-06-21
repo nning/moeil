@@ -1,5 +1,6 @@
 # Application controller.
 class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?  
   check_authorization unless: :devise_controller?
 
   protect_from_forgery
@@ -25,6 +26,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+  
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_in)
+  end
 
   # User assigned to version.
   def user_for_paper_trail

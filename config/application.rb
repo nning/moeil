@@ -54,5 +54,8 @@ module Moeil
     config.assets.version = '1.0'
 
     config.i18n.enforce_available_locales = true
+
+    # TODO Remove after update to Rails >= 5
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end
