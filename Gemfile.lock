@@ -164,7 +164,7 @@ GEM
     mime-types (1.25.1)
     multi_json (1.13.1)
     multipart-post (2.0.0)
-    mysql2 (0.4.9)
+    mysql2 (0.4.10)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
