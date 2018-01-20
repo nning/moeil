@@ -174,7 +174,7 @@ GEM
       railties (~> 3.0)
     pg (0.21.0)
     polyglot (0.3.5)
-    power_assert (1.1.0)
+    power_assert (1.1.1)
     rack (1.4.7)
     rack-cache (1.7.1)
       rack (>= 0.4)
@@ -256,7 +256,7 @@ GEM
     temple (0.8.0)
     term-ansicolor (1.6.0)
       tins (~> 1.0)
-    test-unit (3.2.5)
+    test-unit (3.2.7)
       power_assert
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
