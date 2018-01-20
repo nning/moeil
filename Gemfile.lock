@@ -131,7 +131,7 @@ GEM
     ffi (1.9.18-java)
     foreigner (1.7.4)
       activerecord (>= 3.0.0)
-    haml (5.0.3)
+    haml (5.0.4)
       temple (>= 0.8.0)
       tilt
     has_scope (0.6.0)
