@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2.22'
 
-gem 'pg', platforms: :ruby
+gem 'pg', '~> 0.21', platforms: :ruby
 gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
 
 gem 'cancan'                        # Authorization
