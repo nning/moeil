@@ -178,7 +178,7 @@ GEM
     jdbc-postgres (42.1.4)
     jdbc-sqlite3 (3.20.1)
     journey (1.0.4)
-    jquery-rails (3.1.4)
+    jquery-rails (3.1.5)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.6)
