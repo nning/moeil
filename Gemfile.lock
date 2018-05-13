@@ -285,7 +285,7 @@ GEM
     temple (0.8.0)
     term-ansicolor (1.6.0)
       tins (~> 1.0)
-    test-unit (3.2.7)
+    test-unit (3.2.8)
       power_assert
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
