@@ -2,7 +2,6 @@ Møil
 ====
 
 [![Build Status](https://img.shields.io/travis/nning/moeil.svg)](https://travis-ci.org/nning/moeil)
-[![Dependency Status](https://img.shields.io/gemnasium/nning/moeil.svg)](https://gemnasium.com/nning/moeil)
 [![Code Climate](https://img.shields.io/codeclimate/github/nning/moeil.svg)](https://codeclimate.com/github/nning/moeil)
 [![Coverage Status](https://img.shields.io/coveralls/nning/moeil.svg)](https://coveralls.io/r/nning/moeil)
 
