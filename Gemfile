@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
 gem 'rails', '~> 3.2.22'
 
 gem 'pg', '~> 0.21', platforms: :ruby
