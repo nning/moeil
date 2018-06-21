@@ -1,32 +1,32 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.22'
+gem 'rails', '~> 4.0.0'
 
 gem 'pg', '~> 0.21', platforms: :ruby
 gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
 
 gem 'cancan'                        # Authorization
 gem 'default_value_for'             # Default values
-gem 'devise'                        # Authentication
-gem 'devise-encryptable'
+gem 'devise'                        , '>= 3.5.10' # Authentication
+gem 'devise-encryptable', '>= 0.2.0'
 gem 'foreigner'                     # Foreign key constraints
 gem 'haml'                          # More beautiful views
 gem 'highline'                      # For terminal input in command line scripts
 gem 'inherited_resources', '~> 1.4.1'
-gem 'jquery-rails'                  # jQuery
-gem 'kaminari'                      # Pagination
-gem 'paper_trail', '~> 2.7.2'       # Change history
+gem 'jquery-rails'                  , '>= 3.1.4' # jQuery
+gem 'kaminari'                      , '>= 0.17.0' # Pagination
+gem 'paper_trail', '~> 3.0.0' # Change history
 gem 'config'                        # For configuration
 gem 'searchkick'                    # Efficient search
-gem 'simple_form'                   # DRY form
+gem 'simple_form'                   , '>= 3.0.0' # DRY form
 gem 'sshkit', '~> 1.7.1'
-gem 'yaml_db'                       # Database dump
+gem 'yaml_db'                       , '>= 0.7.0' # Database dump
 
-gem 'coffee-rails'
+gem 'coffee-rails', '>= 4.0.0'
 gem 'therubyracer', platforms: :ruby
 gem 'therubyrhino', platforms: :jruby
 gem 'uglifier', '~> 2.7.2'
-gem 'sass-rails'
+gem 'sass-rails', '>= 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.1.1'
 
 group :development do
@@ -63,7 +63,7 @@ end
 
 group :test do
   gem 'coveralls', require: false   # Test coverage statistics as a service
-  gem 'factory_girl_rails'          # Instead of fixtures
+  gem 'factory_girl_rails'          , '>= 4.9.0' # Instead of fixtures
   gem 'faker'                       # For test data
   gem 'rake'                        # Travis seems to like this added explicitly
   gem 'shoulda'                     # Cleaner tests
