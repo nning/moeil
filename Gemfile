@@ -28,7 +28,7 @@ gem 'coffee-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'therubyrhino', platforms: :jruby
 gem 'uglifier', '~> 2.7.2'
-gem 'sass-rails'
+gem 'sass-rails', '>= 3.2.6'
 gem 'bootstrap-sass', '~> 3.1.1.1'
 
 group :development do
@@ -40,7 +40,7 @@ group :development do
 
   # ed25519 support for capistrano
   gem 'rbnacl', '~> 4.0.2'
-  gem 'rbnacl-libsodium'
+  gem 'rbnacl-libsodium', '>= 1.0.16'
   gem 'bcrypt_pbkdf'
 
   # More beautiful exception pages
