@@ -29,7 +29,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'therubyrhino', platforms: :jruby
 gem 'uglifier', '~> 2.7.2'
 gem 'sass-rails', '>= 3.2.6'
-gem 'bootstrap-sass', '~> 3.1.1.1'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 group :development do
   # Convenient deployment
