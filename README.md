@@ -5,6 +5,8 @@ Møil
 [![Code Climate](https://img.shields.io/codeclimate/github/nning/moeil.svg)](https://codeclimate.com/github/nning/moeil)
 [![Coverage Status](https://img.shields.io/coveralls/nning/moeil.svg)](https://coveralls.io/r/nning/moeil)
 
+**UNMAINTAINED, do not use**
+
 Møil is an open source administration user interface for database backed mail
 servers (postfix/dovecot). It brings the handy possibility of managing the
 database with migrations and a lot of beautiful CRUD.
