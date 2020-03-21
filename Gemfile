@@ -2,29 +2,29 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails', '~> 3.2.22'
+gem 'rails', '~> 3.2.22', '>= 3.2.22.5'
 
 gem 'pg', '~> 0.21', platforms: :ruby
 gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
 
 gem 'cancan'                        # Authorization
 gem 'default_value_for'             # Default values
-gem 'devise'                        # Authentication
-gem 'devise-encryptable'
+gem 'devise'                        , '>= 3.5.10' # Authentication
+gem 'devise-encryptable', '>= 0.2.0'
 gem 'foreigner'                     # Foreign key constraints
 gem 'haml'                          # More beautiful views
 gem 'highline'                      # For terminal input in command line scripts
 gem 'inherited_resources', '~> 1.4.1'
-gem 'jquery-rails'                  # jQuery
+gem 'jquery-rails'                  , '>= 3.1.5' # jQuery
 gem 'kaminari'                      # Pagination
-gem 'paper_trail', '~> 2.7.2'       # Change history
+gem 'paper_trail', '~> 2.7.2' # Change history
 gem 'config'                        # For configuration
 gem 'searchkick'                    # Efficient search
 gem 'simple_form'                   # DRY form
 gem 'sshkit', '~> 1.7.1'
-gem 'yaml_db'                       # Database dump
+gem 'yaml_db'                       , '>= 0.7.0' # Database dump
 
-gem 'coffee-rails'
+gem 'coffee-rails', '>= 3.2.2'
 gem 'therubyracer', platforms: :ruby
 gem 'therubyrhino', platforms: :jruby
 gem 'uglifier', '~> 2.7.2'
@@ -34,8 +34,8 @@ gem 'bootstrap-sass', '~> 3.1.1.1'
 group :development do
   # Convenient deployment
   gem 'capistrano', '~> 3.1.0'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
+  gem 'capistrano-bundler', '>= 1.3.0'
+  gem 'capistrano-rails', '>= 1.3.1'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 
   # ed25519 support for capistrano
@@ -65,9 +65,9 @@ end
 
 group :test do
   gem 'coveralls', require: false   # Test coverage statistics as a service
-  gem 'factory_girl_rails'          # Instead of fixtures
+  gem 'factory_girl_rails'          , '>= 4.9.0' # Instead of fixtures
   gem 'faker'                       # For test data
-  gem 'rake'                        # Travis seems to like this added explicitly
+  gem 'rake'                        , '>= 12.3.3' # Travis seems to like this added explicitly
   gem 'shoulda'                     # Cleaner tests
   gem 'test-unit'                   # Explicitly necessary for Ruby >= 2.2.0
 end
